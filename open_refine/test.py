@@ -4,9 +4,9 @@ import requests
 payload = {
     "queries": {
         "q0": {
-            "query": "JOHN SMITH||PA"
+            "query": "AARON BOURN||"
         }
     }
 }
 resp = requests.post("http://127.0.0.1:5000/reconcile", json=payload)
-print("ABEL SAWYER||NH →", resp.json())
+print("AARON BOURN|| →", resp.json())

@@ -9,17 +9,17 @@ app = Flask(__name__)
 NAME = "final data CD"
 
 # The “publish to web” CSV ID (the long token after /e/…/pub?output=csv)
-PUBLISHED_CSV_ID    = "2PACX-1vT2OeiJxqYKunUQhZE07fzn1ThDaj-R0jdi4NZZN7QNOV7Ssj3KDrYxwCiYW93FPwzjU7Yfk8WUuGGg"
+PUBLISHED_CSV_ID = "2PACX-1vT2OeiJxqYKunUQhZE07fzn1ThDaj-R0jdi4NZZN7QNOV7Ssj3KDrYxwCiYW93FPwzjU7Yfk8WUuGGg"
 
 # The spreadsheet’s “edit” ID (the one after /d/…/edit)
-SPREADSHEET_ID      = "1QmLNxHkKi_-nQc1V4xSAKGDpuUYvoA4EuPZj3Q_5Qq8"
+SPREADSHEET_ID = "1QmLNxHkKi_-nQc1V4xSAKGDpuUYvoA4EuPZj3Q_5Qq8"
 
 # The specific sheet’s gid (found in the URL as &gid=…)
-SHEET_GID           = "711348286"
+SHEET_GID = "711348286"
 
 # Buildable URLs
-CSV_URL             = f"https://docs.google.com/spreadsheets/d/e/{PUBLISHED_CSV_ID}/pub?output=csv"
-VIEW_URL_TEMPLATE   = (
+CSV_URL = f"https://docs.google.com/spreadsheets/d/e/{PUBLISHED_CSV_ID}/pub?output=csv"
+VIEW_URL_TEMPLATE = (
     f"https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}"
     f"/edit#gid={SHEET_GID}&range={{{{id}}}}"
 )
