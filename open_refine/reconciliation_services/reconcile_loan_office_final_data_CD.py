@@ -3,18 +3,17 @@ import requests, csv, io, json
 
 app = Flask(__name__)
 
-# ─── CONSTANTS 
+# ─── CONSTANTS ──────────────────────────────────────────────────────────────
 
-#Name of reconciliation service
 NAME = "final data CD"
 
-# The “publish to web” CSV ID (the long token after /e/…/pub?output=csv)
+# The “publish to web” CSV ID (the token after /e/…/pub?output=csv)
 PUBLISHED_CSV_ID = "2PACX-1vT2OeiJxqYKunUQhZE07fzn1ThDaj-R0jdi4NZZN7QNOV7Ssj3KDrYxwCiYW93FPwzjU7Yfk8WUuGGg"
 
-# The spreadsheet’s “edit” ID (the one after /d/…/edit)
+# The spreadsheet’s “edit” ID (after /d/…/edit)
 SPREADSHEET_ID = "1QmLNxHkKi_-nQc1V4xSAKGDpuUYvoA4EuPZj3Q_5Qq8"
 
-# The specific sheet’s gid (found in the URL as &gid=…)
+# The specific sheet’s gid (in the URL as &gid=…)
 SHEET_GID = "711348286"
 
 # Buildable URLs
@@ -32,11 +31,17 @@ METADATA = {
     "identifierSpace": "http://example.org/post1790#",
     "schemaSpace":     "http://example.org/schema#",
     "view": {
-        "url":    VIEW_URL_TEMPLATE,   # leaves literal "{{id}}" for OpenRefine to replace
+        "url":    VIEW_URL_TEMPLATE,
         "width":  600,
         "height": 400
     },
-    "defaultTypes":   []
+    "defaultTypes":   [],
+    "columns": [
+        {
+            "name": "raw_name_state",
+            "datatype": "string"
+        }
+    ]
 }
 
 # ─── CSV LOADER ─────────────────────────────────────────────────────────────
@@ -48,20 +53,18 @@ def load_rows():
 
 # ─── RECONCILE ENDPOINT ────────────────────────────────────────────────────
 
-@app.route('/reconcile', methods=['GET','POST'])
+@app.route('/reconcile', methods=['GET', 'POST'])
 def reconcile():
-    # 1) Bare GET → return metadata
+    # 1) GET without queries → return metadata
     if request.method == 'GET' and not request.args.get('queries'):
-        
         meta_json = json.dumps(METADATA)
         callback  = request.args.get('callback')
         if callback:
             return Response(f'{callback}({meta_json});',
-                                mimetype='application/javascript')
-        else:
-            return Response(meta_json, mimetype='application/json')        
+                            mimetype='application/javascript')
+        return Response(meta_json, mimetype='application/json')
 
-    # 2) Parse queries (form-encoded, GET param, or raw JSON)
+    # 2) Parse queries
     qs = None
     if 'queries' in request.form:
         qs = json.loads(request.form['queries'])
@@ -74,35 +77,29 @@ def reconcile():
     if not qs:
         return jsonify({"error": "no queries supplied"})
 
-    column = request.args.get('column', 'raw_name')
-    rows   = load_rows()
+    rows = load_rows()
     results = {}
 
     for key, q in qs.items():
-        term = q.get('query', '').lower()
-        comp = q.get('query','').split("||")
-        term = comp[0].lower()
-
-        state_prop = comp[1].lower() if len(comp)>1 else ""
-
+        # Expect query exactly "raw_name||STATE"
+        term_full = q.get('query', '').strip().lower()
         candidates = []
-        for row_num, row in enumerate(rows, start=2):
-            cell = row.get(column, '')
-            row_state = row.get('state', '').lower()
 
-            if term in cell.lower() and state_prop == row_state:
+        for row_num, row in enumerate(rows, start=2):
+            candidate_full = row.get('raw_name_state', '').strip().lower()
+            if candidate_full and term_full == candidate_full:
                 range_ref = f"A{row_num}:Z{row_num}"
                 candidates.append({
                     "id":    range_ref,
-                    "name":  cell,
+                    "name":  row['raw_name_state'],
                     "score": 100,
                     "match": True,
                     "view": {
-                        # replace the literal "{{id}}" in the template
                         "url":   VIEW_URL_TEMPLATE.replace("{{id}}", range_ref),
                         "label": "View in Sheet"
                     }
                 })
+
         results[key] = {"result": candidates}
 
     return jsonify(results)

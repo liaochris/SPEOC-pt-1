@@ -14,6 +14,7 @@ from future import future_layout
 
 from maps import maps_layout
 from tables import tables_layout
+from pre_1790_tab import get_pre1790_layout
 
 ########################################################################################################################
 ######################################### Define App Components ########################################################
@@ -25,6 +26,7 @@ title = html.H1(children='The Price of Liberty: Hamilton\'s Resolution of the Na
 nav_bar = dbc.Nav(className='nav-bar', children=[
     dbc.NavItem(dbc.NavLink("Maps", href="/", className="nav-link", 
                             style={'fontWeight': 'bold'})),
+    dbc.NavItem(dbc.NavLink("Pre-1790 Data", href="/pre1790", className="nav-link", style={'fontWeight': 'bold'})),
     dbc.NavItem(dbc.NavLink("Tables", href="/tables", className="nav-link", 
                             style={'fontWeight': 'bold'})),
     dbc.DropdownMenu(label = 'Project Details', children = [    
@@ -60,6 +62,8 @@ app.layout = html.Div(className='app-container', children=[
 def display_page(pathname):
     if pathname == '/about_us':
         return html.Div([about_us_layout()])
+    elif pathname == '/pre1790':                                 
+        return html.Div(get_pre1790_layout())
     elif pathname == '/tables':
         return html.Div(tables_layout)
     elif pathname == '/project_description':
@@ -74,4 +78,4 @@ def display_page(pathname):
 server = app.server
 # run app
 if __name__ == '__main__':
-    app.run_server(debug=True, host='localhost')
+    app.run(debug=True, host='localhost')
