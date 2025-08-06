@@ -6,6 +6,17 @@ _pre1790_df = (
       .drop_duplicates(subset="uid")
 )
 
+_pre1790_pierce_df = (
+    pd.read_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv")
+        .drop_duplicates(subset="uid")
+)
+
+_pre1790_loan_df = (
+    pd.read_csv("data_raw/pre1790/loan_office_certificates_9_states.csv")
+        .drop_duplicates(subset="uid")
+
+)
+
 def get_pre1790_layout(page_size=10):
     return html.Div([
         html.H4("Liquidated Debt Certificates"),
