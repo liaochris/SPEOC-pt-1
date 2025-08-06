@@ -6,17 +6,6 @@ _pre1790_df = (
       .drop_duplicates(subset="uid")
 )
 
-_pre1790_pierce_df = (
-    pd.read_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv")
-        .drop_duplicates(subset="uid")
-)
-
-_pre1790_loan_df = (
-    pd.read_csv("data_raw/pre1790/loan_office_certificates_9_states.csv")
-        .drop_duplicates(subset="uid")
-
-)
-
 def get_pre1790_layout(page_size=10):
     return html.Div([
         html.H4("Liquidated Debt Certificates"),
@@ -51,3 +40,49 @@ def get_pre1790_layout(page_size=10):
             }
         )
     ])
+_pre1790_pierce_df = (
+    pd.read_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv")
+        .drop_duplicates(subset="uid")
+)
+
+def get_pre1790_pierce_layout(page_size=10):
+    return html.Div([
+        html.H4("Cleaned Pierce Certificates"),
+        dash_table.DataTable(
+            columns=[
+                {"name": "First Name", "id": "First"}
+                {"name": "Last Name", "id": "Last"}
+                {"name": "Dollars", "id": "Value"}
+                {"name": "Issued to", "id": "To Whom Issued"}
+                {"name": "State", "id": "State"}
+            ]
+        )
+    ])
+
+_pre1790_loan_df = (
+    pd.read_csv("data_raw/pre1790/loan_office_certificates_9_states.csv")
+        .drop_duplicates(subset="uid")
+
+)
+
+def get_pre1790_loan_layout(page_size=10):
+    return html.Div([
+        html.H4("Loan Office Certificates"),
+        dash_table.DataTable(
+            columns=[
+                {"name": "Year", "id": "Year"}
+                {"name": "Month", "id": "Month"}
+                {"name": "Day", "id": "Day"}
+                {"name": "Title (person 1)", "id": "Title 1"}
+                {"name": "First Name (person 1)", "id": "First Name 1"}
+                {"name": "Last Name (person 1)", "id": "Last Name 1"}
+                {"name": "Title (person 2)", "id": "Title 2"}
+                {"name": "First Name (person 2)", "id": "First Name 2"}
+                {"name": "Last Name (person 2)", "id": "Last Name 2"}
+                {"name": "Face Value", "id": "Face Value"}
+                {"name": "Specie Value", "id": "Specie Value"}
+            ]
+        )
+    ])
+
+
