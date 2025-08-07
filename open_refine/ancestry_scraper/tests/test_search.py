@@ -17,11 +17,11 @@ class DummyDriver:
 @pytest.fixture(autouse=True)
 def patch_driver(monkeypatch):
     dummy = DummyDriver()
-    monkeypatch.setattr("search._driver", dummy) # replace the real selenium driver with our dummy
+    monkeypatch.setattr("ancestry_scraper.search._driver", dummy) # replace the real selenium driver with our dummy
     return dummy
 
 def test_fetch_search_page_url_and_html(patch_driver):
-    html, url = fetch_search_page("John Doe", event_year=1800, year_offset=5)
+    html, url = fetch_search_page("John Doe", "DE", event_year=1800, year_offset=5)
     assert "name=John_Doe" in url
     assert "&event=1800" in url
     # the offset should now be '5-0-0'

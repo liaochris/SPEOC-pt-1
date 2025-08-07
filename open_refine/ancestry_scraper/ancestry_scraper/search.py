@@ -1,7 +1,9 @@
-import time
-from .config import BASE_SEARCH_URL
-from .session import rate_limited, get_library_session
+# old: from .config import BASE_SEARCH_URL
+from .config import STATE_COLLECTION_URLS
+from .session import rate_limited
 from .auth import get_authenticated_driver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # reuse one logged-in Selenium driver across calls
 # _driver = get_authenticated_driver()
@@ -14,8 +16,7 @@ def _get_driver():
     return _driver
 
 @rate_limited
-def fetch_search_page(name, event_year=None, year_offset=0):
-
+def fetch_search_page(name, state, event_year=None, year_offset=0):
     """
     Build the library search URL, navigate via Selenium,
     wait for page load, and return the rendered HTML and URL.
@@ -27,15 +28,26 @@ def fetch_search_page(name, event_year=None, year_offset=0):
     # format name for URL (spaces->underscores)
     formatted = name.replace(" ", "_")
     # build URL
-    url = BASE_SEARCH_URL.format(name=formatted)
+    base = STATE_COLLECTION_URLS[state.upper()]
+    formatted = name.replace(" ", "_")
+    url = f"{base}?name={formatted}"
+    # old: url = BASE_SEARCH_URL.format(name=formatted)
     if event_year:
         url += f"&event={event_year}"
         if year_offset:
             url += f"&event_x={year_offset}-0-0"
+
+    url += "&name_x=1_1"
     # navigate to URL
     driver = _get_driver()
     driver.get(url)
-    time.sleep(1.5)  # allow dynamic content to load
+    # time.sleep(1.5)  # allow dynamic content to load
+
+    # block until the browser's address bar actually contains your “name=” param
+    WebDriverWait(driver, 10).until(
+        EC.url_contains(f"name={formatted}")
+    )
+
     # return page HTML and actual URL
 
     raw = driver.page_source
@@ -43,23 +55,3 @@ def fetch_search_page(name, event_year=None, year_offset=0):
         raw = raw()
 
     return raw, _driver.current_url
-
-
-@rate_limited
-def fetch_search_with_requests(name, event_year=None, year_offset=0):
-    """
-    Build the search URL just as before, then GET it with requests,
-    using the pre-authenticated Library session.
-    Returns: (html_text, used_url)
-    """
-    formatted = name.replace(" ", "_")
-    url = BASE_SEARCH_URL.format(name=formatted)
-    if event_year:
-        url += f"&event={event_year}"
-        if year_offset:
-            url += f"&event_x={year_offset}-0-0"
-
-    session = get_library_session()
-    resp = session.get(url, timeout=10, allow_redirects=True)
-    resp.raise_for_status()
-    return resp.text, resp.url

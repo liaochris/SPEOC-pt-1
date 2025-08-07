@@ -3,6 +3,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def get_authenticated_driver():
     opts = Options()
@@ -16,6 +18,16 @@ def get_authenticated_driver():
 
     driver = webdriver.Chrome(options=opts)
 
+    # 1) hit your school’s proxy landing page
+    driver.get("https://www.galileo.usg.edu/express?link=zual&inst=git1")
+
+    # 2) wait up to 5 minutes for the redirect into ancestrylibrary.com
+    WebDriverWait(driver, 300).until(
+        EC.url_contains("ancestrylibrary.com")
+    )
+
+
+    """
     # 1) Kick off the login flow explicitly:
     proxy_login = "https://ancestrylibrary.proquest.com/aleweb/ale/do/login"
     driver.get(proxy_login)
@@ -33,6 +45,7 @@ def get_authenticated_driver():
     # 4) At this point, cookies should be written out to TestProfile.
     #    Give Chrome a brief moment to flush them:
     time.sleep(1)
+    """
 
     # you should start already authenticated to your school’s proxy
     return driver

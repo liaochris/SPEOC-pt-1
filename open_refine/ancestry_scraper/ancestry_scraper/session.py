@@ -2,7 +2,7 @@ import json
 import requests, random, time
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-from .config import RATE_LIMIT_SECONDS, MAX_RETRIES, TIMEOUT, USER_AGENTS
+from .config import RATE_LIMIT_SECONDS, MAX_RETRIES, USER_AGENTS
 
 def get_session():
     s = requests.Session() # create a new session
