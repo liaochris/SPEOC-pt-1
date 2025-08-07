@@ -5,9 +5,12 @@ import importlib
 
 @pytest.mark.integration
 def test_process_name_writes_real_csv(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+
+    state = "DE"
     # 1) Pick a real path for our output files
-    results_file    = tmp_path / "results.csv"
-    checkpoint_file = tmp_path / "progress.json"
+    results_file    = tmp_path / f"results_{state}.csv"
+    checkpoint_file = tmp_path / f"progress_{state}.json"
 
     # 2) Override the config module's variables directly
     import ancestry_scraper.config as cfg
@@ -42,10 +45,10 @@ def test_process_name_writes_real_csv(tmp_path, monkeypatch):
 
     # 7) Run your scraper over three real names
     for name in ("Thomas McKean", "Alexander McBeath", "John Passmore"):
-        process_name(name, event_year=1777, event_x=10)
+        process_name(name, state, event_year=1777, event_x=10)
 
     # 8) Progress file should mark each “done”
-    prog = load_progress()
+    prog = load_progress(state)
     for nm in ("Thomas McKean", "Alexander McBeath", "John Passmore"):
         assert prog.get(nm) == "done", f"{nm} should be marked done"
 

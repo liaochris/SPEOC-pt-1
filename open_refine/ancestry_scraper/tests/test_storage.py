@@ -15,7 +15,7 @@ def test_load_and_save_progress(tmp_path, monkeypatch):
 
 def test_append_result_creates_and_appends(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
-    
+
     state = "DE"
     out = tmp_path / f"results_{state}.csv" 
     # monkeypatch.setattr("ancestry_scraper.storage.OUTPUT_CSV", str(out), raising=True)
@@ -23,7 +23,7 @@ def test_append_result_creates_and_appends(tmp_path, monkeypatch):
     append_result(["A", "url", "County"], state)
     with open(out) as f:
         reader = list(csv.reader(f))
-    assert reader[0] == ["name", "search_url", "residence_county"] # row 0 should be the header
+    assert reader[0] == ["name", "url", "county"] # row 0 should be the header
     assert reader[1] == ["A", "url", "County"] # row 1 should be the only data we added
     # second append just adds a new row
     append_result(["B", "u2", "C2"], state)

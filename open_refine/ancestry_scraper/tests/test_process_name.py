@@ -12,13 +12,22 @@ def isolation(monkeypatch):
 
 def test_process_name_skips_done(monkeypatch):
     # load_progress returns name already done
-    monkeypatch.setattr(worker, 'load_progress', lambda: {'Alice': 'done'})
     called = {'append': False, 'save': False}
-    monkeypatch.setattr(worker, 'append_result', lambda args: called.__setitem__('append', True))
-    monkeypatch.setattr(worker, 'save_progress', lambda prog: called.__setitem__('save', True))
+
+    # Stub load_progress(state) → {'Alice':'done'}
+    monkeypatch.setattr(worker, 'load_progress',
+                        lambda state: {'Alice': 'done'})
+
+    # Stub append_result(row, state)
+    monkeypatch.setattr(worker, 'append_result',
+                        lambda row, state: called.__setitem__('append', True))
+
+    # Stub save_progress(prog, state)
+    monkeypatch.setattr(worker, 'save_progress',
+                        lambda prog, state: called.__setitem__('save', True))
 
     # invoke
-    result = worker.process_name('Alice', event_year=1800, event_x=5)
+    result = worker.process_name('Alice', "DE", event_year=1800, event_x=5)
     # should skip entirely: no append, no save
     assert called['append'] is False
     assert called['save'] is False
@@ -27,21 +36,26 @@ def test_process_name_skips_done(monkeypatch):
 def test_process_name_success(monkeypatch):
     # initial empty progress
     prog = {}
-    def fake_load():
-        return prog
-    monkeypatch.setattr(worker, 'load_progress', fake_load)
+    monkeypatch.setattr(worker, 'load_progress', lambda state: prog)
     # stub fetch and parse
-    monkeypatch.setattr(worker, 'fetch_search_page', lambda name, event_year, event_x: ('<html>', 'http://example.com/?name='+name))
-    monkeypatch.setattr(worker, 'parse_residence_county', lambda html: 'SomeCounty')
+    monkeypatch.setattr(worker, 'fetch_search_page',
+                        # accept state + keywords
+                        lambda name, state, **kwargs:
+                            ('<html>', f'http://example.com/?name={name}'))
+
+    monkeypatch.setattr(worker, 'parse_residence_county',
+                        lambda html: 'SomeCounty')
+
+
     # capture append and save
     appended = []
-    monkeypatch.setattr(worker, 'append_result', lambda args: appended.append(args))
+    monkeypatch.setattr(worker, 'append_result', lambda args, state: appended.append(args))
 
     saved = []
-    monkeypatch.setattr(worker, 'save_progress', lambda p: saved.append(p.copy()))
+    monkeypatch.setattr(worker, 'save_progress', lambda p, state: saved.append(p.copy()))
 
     # run
-    worker.process_name('Bob', event_year=1777, event_x=10)
+    worker.process_name('Bob', "DE", event_year=1777, event_x=10)
 
     # verify append called once with correct values
     assert appended == [['Bob', 'http://example.com/?name=Bob', 'SomeCounty']]
@@ -51,21 +65,22 @@ def test_process_name_success(monkeypatch):
     assert saved == [ {'Bob': 'done'} ]
 
 def test_process_name_error(monkeypatch):
+    state = "DE"
     # initial empty progress
     prog = {}
-    monkeypatch.setattr(worker, 'load_progress', lambda: prog)
+    monkeypatch.setattr(worker, 'load_progress', lambda state: prog)
     # simulate fetch throwing
     def bad_fetch(name, event_year, event_x):
         raise DummyException("failed fetch")
     monkeypatch.setattr(worker, 'fetch_search_page', bad_fetch)
     # capture append and save
     appended = []
-    monkeypatch.setattr(worker, 'append_result', lambda args: appended.append(args))
+    monkeypatch.setattr(worker, 'append_result', lambda args, state: appended.append(args))
     saved = []
-    monkeypatch.setattr(worker, 'save_progress', lambda p: saved.append(p.copy()))
+    monkeypatch.setattr(worker, 'save_progress', lambda p, state: saved.append(p.copy()))
 
     # run
-    worker.process_name('Carol', event_year=1780, event_x=0)
+    worker.process_name('Carol', state, event_year=1780, event_x=0)
 
     # append should never be called
     assert appended == []

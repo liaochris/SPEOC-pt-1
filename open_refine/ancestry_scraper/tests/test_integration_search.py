@@ -10,6 +10,7 @@ def test_integration_fetch_and_parse():
     """
     html, url = fetch_search_page(
         "Eleanor Marshal",
+        "DE",
         event_year=1777,
         year_offset=10
     )
