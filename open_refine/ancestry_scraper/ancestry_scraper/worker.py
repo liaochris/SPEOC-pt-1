@@ -1,7 +1,6 @@
 from .storage import append_result, load_progress, save_progress
 from .search import fetch_search_page
 from .parser import parse_residence_county
-from difflib import SequenceMatcher
 
 def process_name(name, state, event_year=None, event_x=None):
     """

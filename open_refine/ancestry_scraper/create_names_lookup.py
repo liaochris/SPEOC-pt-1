@@ -29,7 +29,8 @@ def create_all_state_lookups(
         sub = df[df["state"] == state]
         to_lookup = (
             sub[["Year", "raw_name"]]
-              .drop_duplicates()
+              .sort_values("Year", ascending=True)
+              .drop_duplicates(subset=["raw_name"], keep="first")
               .rename(columns={"Year": "year", "raw_name": "name"})
         )
         out_file = output_dir / f"names_to_lookup_{state.lower()}.csv"

@@ -14,21 +14,29 @@ def test_process_name_writes_real_csv(tmp_path, monkeypatch):
 
     # 2) Override the config module's variables directly
     import ancestry_scraper.config as cfg
-    monkeypatch.setattr(cfg, "OUTPUT_CSV",   str(results_file))
-    monkeypatch.setattr(cfg, "CHECKPOINT_FILE", str(checkpoint_file))
+    #monkeypatch.setattr(cfg, "OUTPUT_CSV",   str(results_file))
+    #monkeypatch.setattr(cfg, "CHECKPOINT_FILE", str(checkpoint_file))
 
     # 3) Clear any previous imports so reload sees the new config
     for mod in (
         "ancestry_scraper.storage",
         "ancestry_scraper.worker",
-    ):
-        sys.modules.pop(mod, None)
+    ):sys.modules.pop(mod, None)
 
     # 4) Reload in dependency order
-    # importlib.reload(cfg)
-
     import ancestry_scraper.storage as storage
     importlib.reload(storage)
+
+    monkeypatch.setattr(
+        storage,
+        "_results_path",
+        lambda state: tmp_path / f"results_{state}.csv",
+    )
+    monkeypatch.setattr(
+        storage,
+        "_progress_path",
+        lambda state: tmp_path / f"progress_{state}.json",
+    )
 
     import ancestry_scraper.worker as worker
     importlib.reload(worker)

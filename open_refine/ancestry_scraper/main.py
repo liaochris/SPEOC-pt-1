@@ -4,16 +4,6 @@ from pathlib import Path
 import argparse
 from ancestry_scraper.worker import process_name
 
-"""
-if __name__ == '__main__':
-    with open('names_to_lookup.csv', newline='') as f:
-        for row in csv.reader(f):
-            year = row[0].strip()
-            name = row[1].strip()
-            if name:
-                process_name(name, event_year=year, event_x=10)
-"""
-
 def main():
     p = argparse.ArgumentParser(
         description="Lookup names for a given state and run ancestry_scraper"
@@ -42,6 +32,7 @@ def main():
 
     with lookup_file.open(newline="") as f:
         reader = csv.reader(f)
+        next(reader, None) 
         for row in reader:
             year, name = row[0].strip(), row[1].strip()
             if not name:

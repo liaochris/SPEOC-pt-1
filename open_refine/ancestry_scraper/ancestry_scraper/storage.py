@@ -1,24 +1,39 @@
-import os, csv, json
-from .config import OUTPUT_CSV, CHECKPOINT_FILE
+import csv, json
+from pathlib import Path
+from json import JSONDecodeError
+
+
+ROOT = Path(__file__).parent.parent
+PROGRESS_DIR = ROOT / "progress"
+RESULTS_DIR  = ROOT / "results"
+
+def _progress_path(state):
+    PROGRESS_DIR.mkdir(exist_ok=True)
+    return PROGRESS_DIR / f"progress_{state}.json"
+
+def _results_path(state):
+    RESULTS_DIR.mkdir(exist_ok=True)
+    return RESULTS_DIR / f"results_{state}.csv"
 
 def load_progress(state): # get current checkpoint file
+    path = _progress_path(state)
     try:
-        return json.load(open("progress_" + state + ".json", 'r'))
-        #return json.load(open(CHECKPOINT_FILE + "_" + state, 'r'))
-    except:
+        return json.load(path.open())
+    except (FileNotFoundError, JSONDecodeError):
         return {}
 
-
 def save_progress(data, state): # store data in checkpoint file 
-    json.dump(data, open("progress_" + state + ".json", 'w'))
-    #json.dump(data, open(CHECKPOINT_FILE + "_" + state, 'w'))
+    path = _progress_path(state)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    json.dump(data, path.open("w"))
 
 
 def append_result(row, state): # append row to csv file 
-    output_file = "results_" + state + ".csv" # new
-    need_header = not os.path.exists(output_file)
-    with open(output_file, 'a', newline='') as f:
+    path = _results_path(state)
+    need_header = (not path.exists()) or path.stat().st_size == 0
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", newline="") as f:
         w = csv.writer(f)
-        if need_header: # add header if csv file is empty 
-            w.writerow(['name', 'url', 'county'])
+        if need_header:
+            w.writerow(["name","url","county"])
         w.writerow(row)
