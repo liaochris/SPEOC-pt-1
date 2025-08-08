@@ -335,7 +335,55 @@ return fig
 
 from web_app.map_plot import create_debt_map
 
-layout = html.Div([
+debt_layout = html.Div([
     html.H3("1790 Debt Map"),
     dcc.Graph(figure=create_debt_map())
 ])
+
+DESCRIPTION_COUNT = 2
+
+pre_project_desc = html.Div(className='box', children=[
+    html.H2(children='Description', className='box-title', style={'marginBottom': '20px'}, id = 'slider-title'),
+   
+    html.Div(className='slider-container', children=[
+    html.Button('\u25C0', id='left_arrow', className='slider-button',
+                style={'float': 'left', 'marginRight': '10px', 'flex': 1}),
+    dcc.Markdown(id='project_desc_text', style={'textAlign': 'center'}),
+    html.Button('\u25B6', id='right_arrow', className='slider-button',
+                style={'float': 'right', 'marginLeft': '10px', 'flex': 1})
+        
+    ]),
+   
+])
+
+description = {
+    0: "By examining who held government debt in the years leading up to and following Hamilton’s 1790 funding plan,\
+        we are able to uncover patterns of financial power and inequality that helped shape the nation’s foundations. \
+        Drawing on detailed pre-1790 debt records, we explore how debt was distributed across regions and social groups,  \
+        and how patterns of ownership shifted in the lead-up to federal assumption.\
+        We ask, what share of the original founders of the American Revolution participated in Hamilton’s 1790 funding? \
+        In 1789, what share of the Confederation debt was held by merchants, traders, and brokers? \
+        During the late 1780s, did debt in the South migrate North? Who owned the pre-1790 vs post-1790 securities? \
+        Through interactive maps and tables, this website offers a data driven lens into how early financial systems shaped national development, \
+        and how those historical dynamics are still relevant today.",
+    1: "What share of the original founders of the American Revolution participated in Hamilton’s 1790 funding? \
+        In 1789, what share of the Confederation debt was held by merchants, traders, and brokers? \
+        During the late 1780s, did debt in the South migrate North? \
+        Who owned the pre-1790 vs post-1790 securities?"
+title = {
+    0: 'Why Studying This Data is Important', 
+    1: 'Driving Questions',
+}
+
+def update_pre_project_desc(left_clicks, right_clicks):
+    global DESCRIPTION_COUNT
+    if left_clicks == None:
+        left_clicks = 0
+    if right_clicks == None:
+        right_clicks = 0
+
+    number = 0
+    number += right_clicks - left_clicks
+    number = number % DESCRIPTION_COUNT
+    return slide_text[number], slide_title[number]
+
