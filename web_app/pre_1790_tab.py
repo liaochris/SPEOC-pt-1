@@ -14,8 +14,8 @@ pierce_df.to_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv", index=False)
 
 
 _pre1790_df = (
-    pd.read_csv("data_raw/pre1790/clean_files/liquidated_debt_certificates.csv")
-      .drop_duplicates(subset="uid")
+    pd.read_csv("data_raw/pre1790/clean_files/liquidated_debt_certificates.csv", low_memory=False)
+    .drop_duplicates(subset="uid")
 )
 
 def get_pre1790_layout(page_size=10):
@@ -53,7 +53,7 @@ def get_pre1790_layout(page_size=10):
         )
     ])
 _pre1790_pierce_df = (
-    pd.read_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv")
+    pd.read_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv", low_memory=False)
         .drop_duplicates(subset=["First", "Last", "Value", "Group", "To Whom Issued", "State", "Officer"])
 )
 
