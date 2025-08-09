@@ -74,7 +74,7 @@ pop_layout = html.Div([
 def create_debt_map():
     states = gpd.read_file("data_raw/shapefiles/historicalstates")
     states = states.rename(columns={'NAME': 'state'})
-    tates['state'] = states['state'].astype(str).str.strip().str.title()
+    states['state'] = states['state'].astype(str).str.strip().str.title()
 
     state_name_corrections = {
         "Alabama Territory": "Alabama", 
