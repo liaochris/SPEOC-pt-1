@@ -8,7 +8,7 @@ app = Dash(__name__)
 excel_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx"
 pierce_df = pd.read_excel(excel_path)
 
-_pre1790_pierce_df = pierce_df.drop_duplicates(subset="uid")
+_pre1790_pierce_df = pierce_df.drop_duplicates(subset=["First", "Last", "Value", "Group", "To Whom Issued", "State", "Officer"])
 pierce_df.to_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv", index=False)
 
 
