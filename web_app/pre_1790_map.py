@@ -374,6 +374,7 @@ description = {
         In 1789, what share of the Confederation debt was held by merchants, traders, and brokers? \
         During the late 1780s, did debt in the South migrate North? \
         Who owned the pre-1790 vs post-1790 securities?"
+}
 title = {
     0: 'Why Studying This Data is Important', 
     1: 'Driving Questions',
