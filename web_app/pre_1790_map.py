@@ -311,7 +311,7 @@ def create_debt_map():
     gdf = gdf[gdf['geometry'].apply(lambda g: g.is_valid and not g.is_empty)]
 
     if gdf.crs is None:
-    gdf = gdf.set_crs("EPSG:4326", allow_override=True)
+        gdf = gdf.set_crs("EPSG:4326", allow_override=True)
 
     minx, miny, maxx, maxy = gdf.total_bounds
     ax = gdf.plot(
