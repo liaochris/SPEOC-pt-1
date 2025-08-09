@@ -5,7 +5,13 @@ from dash import Dash
 
 app = Dash(__name__)
 
-_loan_office_df = pd.read_csv("path/to/loan_office_certificates.csv", low_memory=False)
+loan_excel_path = "data_raw/pre1790/loan_office_certificates_9_states.xlsx"
+loan_df = pd.read_excel(loan_excel_path)
+
+_pre1790_loan_df = loan_df.drop_duplicates(subset=["State", "Year", "Month", "Day", "Title 1", "First Name 1", "Last Name 1", "Title 2", "First Name 2", "Last Name 2", "Face Value", "Specie Value "])
+loan_df.to_csv("data_raw/pre1790/loan_office_certificates_9_states.csv", index=False)
+
+_loan_office_df = pd.read_csv("data_raw/pre1790/loan_office_certificates_9_states.csv", low_memory=False)
 
 
 excel_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx"
