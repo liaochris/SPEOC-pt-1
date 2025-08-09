@@ -108,8 +108,8 @@ def create_pop_map():
     plt.tight_layout()
     plt.show()
 
-fig.update_layout(margin={"r":0,"t":30,"l":0,"b":0})
-return fig
+    fig.update_layout(margin={"r":0,"t":30,"l":0,"b":0})
+    return fig
 
 from web_app.map_plot import create_pop_map
 
