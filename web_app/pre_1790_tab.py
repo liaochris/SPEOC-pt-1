@@ -74,17 +74,17 @@ def get_pre1790_loan_layout(page_size=10):
         html.H4("Loan Office Certificates"),
         dash_table.DataTable(
             columns=[
-                {"name": "Year", "id": "Year"}
-                {"name": "Month", "id": "Month"}
-                {"name": "Day", "id": "Day"}
-                {"name": "Title (person 1)", "id": "Title 1"}
-                {"name": "First Name (person 1)", "id": "First Name 1"}
-                {"name": "Last Name (person 1)", "id": "Last Name 1"}
-                {"name": "Title (person 2)", "id": "Title 2"}
-                {"name": "First Name (person 2)", "id": "First Name 2"}
-                {"name": "Last Name (person 2)", "id": "Last Name 2"}
-                {"name": "Face Value", "id": "Face Value"}
-                {"name": "Specie Value", "id": "Specie Value"}
+                {"name": "Year", "id": "Year"},
+                {"name": "Month", "id": "Month"},
+                {"name": "Day", "id": "Day"},
+                {"name": "Title (person 1)", "id": "Title 1"},
+                {"name": "First Name (person 1)", "id": "First Name 1"},
+                {"name": "Last Name (person 1)", "id": "Last Name 1"},
+                {"name": "Title (person 2)", "id": "Title 2"},
+                {"name": "First Name (person 2)", "id": "First Name 2"},
+                {"name": "Last Name (person 2)", "id": "Last Name 2"},
+                {"name": "Face Value", "id": "Face Value"},
+                {"name": "Specie Value", "id": "Specie Value"},
             ]
         )
     ])
