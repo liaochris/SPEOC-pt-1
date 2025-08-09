@@ -13,8 +13,6 @@ import requests
 
 
 import plotly.graph_objects as go  
-from web_app.map_plot import create_map
-
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -32,7 +30,7 @@ def create_pop_map():
     pre_map_df['state'] = pre_map_df['FULL_NAME'].str.strip().str.title()
     pre_map_df["geometry"] = pre_map_df["geometry"].simplify(0.01).buffer(0)
 
-    state_pops = pd.read_csv("data_raw/census_data/statePop.csv", header=0, usecols=[0, 1])
+    state_pops = pd.read_csv("data_raw/census_data/statePop.csv", header=0, usecols=[0, 1], low_memory=False)
     state_pops.columns = ['state', 'population']
     state_pops['state'] = state_pops['state'].str.strip().str.title()
     state_pops['population'] = pd.to_numeric(state_pops['population'], errors='coerce')
