@@ -62,25 +62,20 @@ def create_pop_map():
 
         return fig
     except Exception as e:
-        print("Error in create_pop_map:", e)
-        return px.scatter() 
-
+        print("Error in create_debt_map:", e)
+        return px.scatter()
+    
 try:
     pop_fig = create_pop_map()
 except Exception as e:
     print("Error creating population map:", e)
     pop_fig = {}
 
-try:
-    debt_fig = create_debt_map()
-except Exception as e:
-    print("Error creating debt map:", e)
-    debt_fig = {}
-
-debt_layout = html.Div([
-    html.H3("1790 Debt Map"),
-    dcc.Graph(figure=debt_fig)
+pop_layout = html.Div([
+    html.H3("1790 Population Map"),
+    dcc.Graph(figure=pop_fig)
 ])
+
 
 def create_debt_map():
     try:
@@ -296,9 +291,15 @@ def create_debt_map():
         print("Error in create_debt_map:", e)
         return px.scatter()
 
+try:
+    debt_fig = create_debt_map()
+except Exception as e:
+    print("Error creating debt map:", e)
+    debt_fig = {}
+
 debt_layout = html.Div([
     html.H3("1790 Debt Map"),
-    dcc.Graph(figure=create_debt_map())
+    dcc.Graph(figure=debt_fig)
 ])
 
 DESCRIPTION_COUNT = 2
@@ -336,6 +337,11 @@ pre_project_desc = html.Div([
         step=None,
         tooltip={"placement": "bottom", "always_visible": True},
     )
+])
+
+pop_layout = html.Div([
+    html.H3("1790 Population Map"),
+    dcc.Graph(figure=pop_fig)
 ])
 
 app.layout = html.Div([
