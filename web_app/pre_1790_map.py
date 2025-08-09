@@ -42,13 +42,15 @@ def create_pop_map():
     merged_df = pre_map_df.merge(state_pops, on='state', how='left')
     merged_df['population'] = merged_df['population'].fillna(0)
 
-    # Convert GeoDataFrame to GeoJSON for Plotly
-    geojson = json.loads(merged_df.to_json())
+    # Keep only essential columns for JSON export: geometry, state, population
+    minimal_df = merged_df[['state', 'population', 'geometry']]
+
+    geojson = json.loads(minimal_df.to_json())
 
     fig = px.choropleth(
-        merged_df,
+        minimal_df,
         geojson=geojson,
-        locations=merged_df.index,
+        locations=minimal_df.index,
         color='population',
         hover_name='state',
         color_continuous_scale='OrRd',
