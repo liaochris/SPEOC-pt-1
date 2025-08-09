@@ -42,7 +42,6 @@ def create_pop_map():
     merged_df = pre_map_df.merge(state_pops, on='state', how='left')
     merged_df['population'] = merged_df['population'].fillna(0)
 
-    # Keep only essential columns for JSON export: geometry, state, population
     minimal_df = merged_df[['state', 'population', 'geometry']]
 
     geojson = json.loads(minimal_df.to_json())
@@ -74,8 +73,44 @@ def create_debt_map():
     states['state'] = states['state'].astype(str).str.strip().str.title()
 
     state_name_corrections = {
-        # your mapping here (same as before)
-        # ...
+        "Alabama Territory": "Alabama", 
+        "Alaska Department": "Alaska",
+        "Alaska District": "Alaska",
+        "Alaska Territory": "Alaska",
+        "Arizona Territory": "Arizona",
+        "Arkansas Territory": "Arkansas",
+        "Colorado Territory": "Colorado",
+        "Florida Territory": "Florida",
+        "Florida Unorg. Ft": "Florida",
+        "Hawaii Annexation": "Hawaii",
+        "Hawaii Territory": "Hawaii",
+        "Idaho Territory": 'Idaho',
+        "Illinois Territory": "Illinois",
+        "Indiana Territory": "Indiana",
+        "Iowa Territory": "Iowa",
+        "Kansas Territory": "Kansas", 
+        "Louisiana Territory": "Louisiana Purchase",
+        "Michigan Territory": "Michigan",
+        "Minnesota Territory": "Minnesota",
+        "Mississippi Terr.": "Mississippi",
+        "Missouri Territory": "Missouri",
+        "Montana Territory": "Montana",
+        "Nebraska Territory": "Nebraska",
+        "Nevada Territory": "Nevada",
+        "New Mexico Territory": "New Mexico",
+        "Oklahoma Territory": "Oklahoma",
+        "Oregon Country": "Oregon",
+        "Oregon Territory": "Oregon",
+        "Oregon Unorg. Ft": "Oregon",
+        "Orleans Territory": "Louisiana",
+        "Southwest Territory": "Tennessee",
+        "Texas Republic": "Texas",
+        "Utah Territory": "Utah Territory",
+        "Vermont Republic": "Vermont",
+        "Washington Territory": "Washington",
+        "Wisc. Terr. De Facto": "Wisconsin",
+        "Wisconsin Territory": "Wisconsin",
+        "Wyoming Territory": "Wyoming"
     }
 
     states['state'] = states['state'].replace(state_name_corrections)
@@ -98,10 +133,107 @@ def create_debt_map():
     df.columns = df.columns.str.strip()
 
     abbr_to_full = {
-        # your abbreviation mapping here (same as before)
-        # ...
+        'Ct': 'Connecticut',
+        'CT': 'Connecticut',
+        'De': 'Delaware',
+        'DE': 'Delaware',
+        'Ma': 'Massachusetts',
+        'MA': 'Massachusetts',
+        'Md': 'Maryland',
+        'MD': 'Maryland',
+        'Nh': 'New Hampshire',
+        'NH': 'New Hampshire',
+        'Nj': 'New Jersey',
+        'NJ': 'New Jersey',
+        'Ny': 'New York',
+        'NY': 'New York',
+        'Pa': 'Pennsylvania',
+        'PA': 'Pennsylvania',
+        'Ri': 'Rhode Island',
+        'RI': 'Rhode Island',
+        'Va': 'Virginia',
+        'VA': 'Virginia',
+        'Al': 'Alabama',
+        'AL': 'Alabama',
+        'AK': 'Alaska',
+        'Ak': 'Alaska',
+        'AZ': 'Arizona',
+        'Az': 'Arizona',
+        'AR': 'Arkansas',
+        'Ar': 'Arkansas',
+        'CA': 'California',
+        'Ca': 'California',
+        'CO': 'Colorado',
+        'Co': 'Colorado',
+        'DC': 'District of Columbia',
+        'Dc': 'District of Columbia',
+        'FL': 'Florida',
+        'Fl': 'Florida',
+        'GA': 'Georgia',
+        'Ga': 'Georgia',
+        'HI': 'Hawaii',
+        'Hi': 'Hawaii',
+        'ID': 'Idaho',
+        'Id': 'Idaho',
+        'IL': 'Illinois',
+        'Il': 'Illinois',
+        'IN': 'Indiana',
+        'In': 'Indiana',
+        'IA': 'Iowa',
+        'Ia': 'Iowa',
+        'KA': 'Kansas',
+        'Ka': 'Kansas',
+        'KY': 'Kentucky',
+        'Ky': 'Kentucky',
+        'LA': 'Louisiana',
+        'La': 'Louisiana',
+        'ME': 'Maine',
+        'Me': 'Maine',
+        'MI': 'Michigan',
+        'Mi': 'Michigan',
+        'MN': 'Minnesota',
+        'Mn': 'Minnesota',
+        'Ms': 'Mississippi',
+        'MS': 'Mississippi',
+        'Mo': 'Missouri',
+        'MO': 'Missouri',
+        'Mt': 'Montana',
+        'MT': 'Montana',
+        'NE': 'Nebraska',
+        'Ne': 'Nebraska',
+        'NV': 'Nevada',
+        'Nv': 'Nevada',
+        'Nc': 'North Carolina',
+        'NC': 'North Carolina',
+        'ND': 'North Dakota',
+        'Nd': 'North Dakota',
+        'OH': 'Ohio',
+        'Oh': 'Ohio',
+        'Ok': 'Oklahoma',
+        'OK': 'Oklahoma',
+        'OR': 'Oregon',
+        'Or': 'Oregon',
+        'Sc': 'South Carolina',
+        'SC': 'South Carolina',
+        'SD': 'South Dakota',
+        'Sd': 'South Dakota',
+        'Tn': 'Tennessee',
+        'TN': 'Tennessee',
+        'TX': 'Texas',
+        'Tx': 'Texas',
+        'Ut': 'Utah',
+        'UT': 'Utah',
+        'VT': 'Vermont',
+        'Vt': 'Vermont',
+        'WA': 'Washington',
+        'Wa': 'Washington',
+        'WV': 'West Virginia',
+        'Wv': 'West Virginia',
+        'WI': 'Wisconsin',
+        'Wi': 'Wisconsin',
+        'WY': 'Wyoming',
+        'Wy': 'Wyoming',
     }
-
     state_col = "state"
     amount_col = "amount | dollars"
 
@@ -126,7 +258,6 @@ def create_debt_map():
     if gdf.crs is None:
         gdf = gdf.set_crs("EPSG:4326", allow_override=True)
 
-    # Keep only relevant columns
     minimal_gdf = gdf[['state', 'amount', 'geometry']]
 
     geojson = json.loads(minimal_gdf.to_json())
