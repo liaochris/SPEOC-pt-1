@@ -301,6 +301,11 @@ description = {
         and how those historical dynamics are still relevant today.",
 }
 
+title = {
+    0: 'Why Studying this Data is Important', 
+    1: 'Driving Questions',
+}
+
 pre_project_desc = html.Div([
     html.Div(id='description-text'),
     dcc.Slider(
