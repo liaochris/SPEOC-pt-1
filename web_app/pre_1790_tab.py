@@ -5,6 +5,9 @@ from dash import Dash
 
 app = Dash(__name__)
 
+_loan_office_df = pd.read_csv("path/to/loan_office_certificates.csv", low_memory=False)
+
+
 excel_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx"
 pierce_df = pd.read_excel(excel_path)
 
@@ -91,7 +94,11 @@ def get_pre1790_loan_layout(page_size=10):
                 {"name": "Last Name (person 2)", "id": "Last Name 2"},
                 {"name": "Face Value", "id": "Face Value"},
                 {"name": "Specie Value", "id": "Specie Value"},
-            ]
+            ],
+            data=_loan_office_df.to_dict('records'),  
+            page_action="native",
+            page_current=0,
+            page_size=page_size,
         )
     ])
     
