@@ -96,4 +96,11 @@ def get_pre1790_loan_layout(page_size=10):
     ])
     
 if __name__ == '__main__':
+    app.layout = html.Div([
+        get_pre1790_layout(),
+        html.Hr(),
+        get_pre1790_pierce_layout(),
+        html.Hr(),
+        get_pre1790_loan_layout()
+    ])
     app.run(debug=True)
