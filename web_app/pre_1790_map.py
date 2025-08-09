@@ -26,7 +26,6 @@ from dash import Dash
 app = Dash(__name__)
 
 def create_pop_map():
-def create_pop_map():
     folder_path = "data_raw/shapefiles/historicalstates"
     pre_map_df = gpd.read_file(folder_path)
     pre_map_df = pre_map_df.set_crs('EPSG:4326', allow_override=True)
