@@ -5,6 +5,13 @@ from dash import Dash
 
 app = Dash(__name__)
 
+
+pierce_excel_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx"
+pierce_df = pd.read_excel(pierce)excel_path)
+
+pierce_csv_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.csv"
+
+
 _pre1790_df = (
     pd.read_csv("data_raw/pre1790/clean_files/liquidated_debt_certificates.csv")
       .drop_duplicates(subset="uid")
