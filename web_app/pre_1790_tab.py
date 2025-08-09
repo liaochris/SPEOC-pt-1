@@ -59,16 +59,14 @@ def get_pre1790_pierce_layout(page_size=10):
                 {"name": "Dollars", "id": "Value"},
                 {"name": "Issued to", "id": "To Whom Issued"},
                 {"name": "State", "id": "State"},
-            ]
+            ],
+            data=_pre1790_pierce_df.to_dict("records"),
+            page_action="native",
+            page_current=0,
+            page_size=page_size,
         )
     ])
-
-_pre1790_loan_df = (
-    pd.read_csv("data_raw/pre1790/loan_office_certificates_9_states.csv")
-        .drop_duplicates(subset="uid")
-
-)
-
+    
 def get_pre1790_loan_layout(page_size=10):
     return html.Div([
         html.H4("Loan Office Certificates"),
