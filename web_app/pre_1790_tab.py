@@ -54,11 +54,11 @@ def get_pre1790_pierce_layout(page_size=10):
         html.H4("Cleaned Pierce Certificates"),
         dash_table.DataTable(
             columns=[
-                {"name": "First Name", "id": "First"}
-                {"name": "Last Name", "id": "Last"}
-                {"name": "Dollars", "id": "Value"}
-                {"name": "Issued to", "id": "To Whom Issued"}
-                {"name": "State", "id": "State"}
+                {"name": "First Name", "id": "First"},
+                {"name": "Last Name", "id": "Last"},
+                {"name": "Dollars", "id": "Value"},
+                {"name": "Issued to", "id": "To Whom Issued"},
+                {"name": "State", "id": "State"},
             ]
         )
     ])
