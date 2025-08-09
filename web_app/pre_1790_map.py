@@ -134,7 +134,7 @@ def create_debt_map():
     states = merge_territory(states, ['Ohio', 'Indiana', 'Illinois', 'Michigan', 'Wisconsin'], 'Northwest Territory')
 
 
-    df = pd.read_csv("cleaning_CD/pre1790/data/agg_debt_david.csv", header=0)
+    df = pd.read_csv("../cleaning_CD/pre1790/data/agg_debt_david.csv", header=0)
     df.columns = df.columns.str.strip()
 
     abbr_to_full = {
