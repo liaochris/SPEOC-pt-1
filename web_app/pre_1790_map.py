@@ -61,11 +61,22 @@ def create_pop_map():
 
     return fig
 
-pop_layout = html.Div([
-    html.H3("1790 Population Map"),
-    dcc.Graph(figure=create_pop_map())
-])
+try:
+    pop_fig = create_pop_map()
+except Exception as e:
+    print("Error creating population map:", e)
+    pop_fig = {}
 
+try:
+    debt_fig = create_debt_map()
+except Exception as e:
+    print("Error creating debt map:", e)
+    debt_fig = {}
+
+debt_layout = html.Div([
+    html.H3("1790 Debt Map"),
+    dcc.Graph(figure=debt_fig)
+])
 
 def create_debt_map():
     states = gpd.read_file("data_raw/shapefiles/historicalstates")
