@@ -10,7 +10,8 @@ def parse_residence_county(html):
 
     # Try table-based approach: look for <td data-label="Residence County">
     county = ""
-    county_cell = soup.find('td', { 'data-label': re.compile(r'(county|place)$', re.I) })
+    #county_cell = soup.find('td', { 'data-label': re.compile(r'(county|place)$', re.I) })
+    county_cell = soup.find('td', { 'data-label': re.compile(r'(county|place)',   re.I) })
     if county_cell:
         return county_cell.get_text(strip=True)
     else:

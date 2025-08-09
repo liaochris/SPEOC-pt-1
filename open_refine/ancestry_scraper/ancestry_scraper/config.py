@@ -4,17 +4,38 @@ STATE_COLLECTION_URLS = {
         "base":"https://www.ancestrylibrary.com/search/collections/2497/",
         "residence":None
     },
-    "MA": "https://www.ancestrylibrary.com/search/collections/48173/",
-    "CT": "https://www.ancestrylibrary.com/search/collections/3537/",
-    "MD": "https://www.ancestrylibrary.com/search/collections/3552/",
-    "NH": "https://www.ancestrylibrary.com/search/collections/49199/",
-    "NJ": "https://www.ancestrylibrary.com/search/collections/2234/",
-    "NY": {
-        "base":"https://www.ancestrylibrary.com/search/collections/2234/",
-        "residence":"_new+york-usa_35"
+    "MA": {
+        "base":"https://www.ancestrylibrary.com/search/collections/48173/",
+        "residence":None
     },
-    "VA": "https://www.ancestrylibrary.com/search/collections/2234/",
-    "DE": "https://www.ancestrylibrary.com/search/collections/61025/"
+    "CT": {
+        "base":"https://www.ancestrylibrary.com/search/collections/3537/",
+        "residence":None
+    },
+    "MD": {
+        "base":"https://www.ancestrylibrary.com/search/collections/3552/",
+        "residence":None
+    },
+    "NH": {
+        "base":"https://www.ancestrylibrary.com/search/collections/49199/",
+        "residence":None
+    },
+    "NJ": {
+        "base":"https://www.ancestrylibrary.com/search/collections/2234/",
+        "residence":"_new+jersey-usa_33"
+    },
+    "NY": {
+        "base":"https://www.ancestrylibrary.com/search/collections/3564/",
+        "residence":None
+    },
+    "VA": {
+        "base":"https://www.ancestrylibrary.com/search/collections/2234/",
+        "residence":"_virginia-usa_49"
+    },
+    "DE": {
+        "base":"https://www.ancestrylibrary.com/search/collections/61025/",
+        "residence":None
+    }
 }
 
 RATE_LIMIT_SECONDS = 2

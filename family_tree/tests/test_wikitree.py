@@ -1,6 +1,6 @@
 import requests
 import pytest
-from wikitree import _year_from_date, search_profile_key, get_descendants
+from wikitree import _year_from_date, search_profile_key, get_descendants, get_primary_location
 
 class DummyResponse:
     def __init__(self, json_data, status_code=200):
@@ -106,3 +106,16 @@ def test_search_and_descendants_benjamin_franklin():
 
     # 3) Spot-check that we got at least one child
     assert len(descs) >= 1, "Expected at least one known descendant of Benjamin Franklin"
+
+def test_get_primary_location_real_api():
+    # Benjamin Franklin was born in Boston, MA (1706–1790)
+    loc = get_primary_location(
+        "George Washington",
+        state="Virginia",
+        birth_year_range=(1720,1740),
+        max_candidates=100
+    )
+
+    # We expect at least a non‐empty string mentioning "Virginia"
+    assert isinstance(loc, str) and loc, f"Expected a non‐empty location, got {loc!r}"
+    assert "Westmoreland" in loc or "Virginia" in loc

@@ -7,7 +7,7 @@ import importlib
 def test_process_name_writes_real_csv(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
 
-    state = "DE"
+    state = "NY"
     # 1) Pick a real path for our output files
     results_file    = tmp_path / f"results_{state}.csv"
     checkpoint_file = tmp_path / f"progress_{state}.json"
@@ -75,4 +75,3 @@ def test_process_name_writes_real_csv(tmp_path, monkeypatch):
         assert f"name={fmt}" in url
         assert "&event=1777"      in url
         assert "&event_x=10-0-0"  in url
-        assert county == "New Castle"

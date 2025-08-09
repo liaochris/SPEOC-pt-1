@@ -25,17 +25,26 @@ def fetch_search_page(name, state, event_year=None, year_offset=0):
     - event_year: e.g. 1777
     - event_x: e.g. '10-0-0'
     """
+
+    spec = STATE_COLLECTION_URLS[state.upper()]
+    base = spec["base"]
+
     # format name for URL (spaces->underscores)
     formatted = name.replace(" ", "_")
     # build URL
-    base = STATE_COLLECTION_URLS[state.upper()]
-    formatted = name.replace(" ", "_")
+    # base = STATE_COLLECTION_URLS[state.upper()]
+    # formatted = name.replace(" ", "_")
     url = f"{base}?name={formatted}"
     # old: url = BASE_SEARCH_URL.format(name=formatted)
     if event_year:
         url += f"&event={event_year}"
         if year_offset:
             url += f"&event_x={year_offset}-0-0"
+
+    # optional residence param
+    res = spec.get("residence")
+    if res:
+        url += f"&residence={res}&residence_x=_1-0"
 
     url += "&name_x=1_1"
     # navigate to URL
