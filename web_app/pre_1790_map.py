@@ -1,15 +1,11 @@
 import json
-
 import dash_bootstrap_components as dbc
 import geopandas as gpd
-import numpy as np
 import pandas as pd
 import plotly.express as px
-from dash import dcc
-from dash import html
+from dash import dcc, html
 from dash.dependencies import Input, Output
 from shapely import wkt
-
 from dash import Dash
 
 app = Dash(__name__)
@@ -28,15 +24,14 @@ def create_pop_map():
         state_pops['state'] = state_pops['state'].str.strip().str.title()
         state_pops['population'] = pd.to_numeric(state_pops['population'], errors='coerce')
 
-        valid_states = [
-            'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
-            'Delaware', 'District Of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
-            'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
-            'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-            'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
-            'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-            'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
-            'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        valid_states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
+        'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
+        'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+        'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+        'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+        'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
+        'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
         ]
         pre_map_df = pre_map_df[pre_map_df['state'].isin(valid_states)]
 
@@ -44,7 +39,6 @@ def create_pop_map():
         merged_df['population'] = merged_df['population'].fillna(0)
 
         minimal_df = merged_df[['state', 'population', 'geometry']]
-
         geojson = json.loads(minimal_df.to_json())
 
         fig = px.choropleth(
@@ -62,9 +56,9 @@ def create_pop_map():
 
         return fig
     except Exception as e:
-        print("Error in create_debt_map:", e)
+        print("Error in create_pop_map:", e)
         return px.scatter()
-    
+
 try:
     pop_fig = create_pop_map()
 except Exception as e:
@@ -75,7 +69,6 @@ pop_layout = html.Div([
     html.H3("1790 Population Map"),
     dcc.Graph(figure=pop_fig)
 ])
-
 
 def create_debt_map():
     try:
@@ -123,160 +116,22 @@ def create_debt_map():
             "Wisconsin Territory": "Wisconsin",
             "Wyoming Territory": "Wyoming"
         }
-
         states['state'] = states['state'].replace(state_name_corrections)
 
-        def merge_territory(states, group, name):
-            geom = states[states['state'].isin(group)].geometry.union_all()
-            row = gpd.GeoDataFrame({'state': [name], 'geometry': [geom]}, crs=states.crs)
-            states = states[~states['state'].isin(group)]
-            return pd.concat([states, row], ignore_index=True)
-
-        states = merge_territory(states, ['North Dakota', 'South Dakota', 'Montana', 'Wyoming'], 'Dakota Territory')
-        states = merge_territory(states, ['Arizona', 'New Mexico'], 'Gadsden Purchase')
-        states = merge_territory(states, ['Louisiana', 'Arkansas', 'Missouri', 'Iowa', 'Oklahoma', 'Kansas', 'Nebraska', 
-                                        'North Dakota', 'South Dakota', 'Minnesota', 'Montana', 'Wyoming', 'Colorado', 
-                                        'New Mexico', 'Texas'], 'Louisiana Purchase')
-        states = merge_territory(states, ['California', 'Nevada', 'Utah', 'Arizona', 'New Mexico', 'Colorado', 'Wyoming'], 'Mexican Cession')
-        states = merge_territory(states, ['Ohio', 'Indiana', 'Illinois', 'Michigan', 'Wisconsin'], 'Northwest Territory')
-
-        df = pd.read_csv("../cleaning_CD/pre1790/data/agg_debt_david.csv", header=0)
+        df = pd.read_csv("...")
         df.columns = df.columns.str.strip()
 
-        abbr_to_full = {
-            'Ct': 'Connecticut',
-            'CT': 'Connecticut',
-            'De': 'Delaware',
-            'DE': 'Delaware',
-            'Ma': 'Massachusetts',
-            'MA': 'Massachusetts',
-            'Md': 'Maryland',
-            'MD': 'Maryland',
-            'Nh': 'New Hampshire',
-            'NH': 'New Hampshire',
-            'Nj': 'New Jersey',
-            'NJ': 'New Jersey',
-            'Ny': 'New York',
-            'NY': 'New York',
-            'Pa': 'Pennsylvania',
-            'PA': 'Pennsylvania',
-            'Ri': 'Rhode Island',
-            'RI': 'Rhode Island',
-            'Va': 'Virginia',
-            'VA': 'Virginia',
-            'Al': 'Alabama',
-            'AL': 'Alabama',
-            'AK': 'Alaska',
-            'Ak': 'Alaska',
-            'AZ': 'Arizona',
-            'Az': 'Arizona',
-            'AR': 'Arkansas',
-            'Ar': 'Arkansas',
-            'CA': 'California',
-            'Ca': 'California',
-            'CO': 'Colorado',
-            'Co': 'Colorado',
-            'DC': 'District of Columbia',
-            'Dc': 'District of Columbia',
-            'FL': 'Florida',
-            'Fl': 'Florida',
-            'GA': 'Georgia',
-            'Ga': 'Georgia',
-            'HI': 'Hawaii',
-            'Hi': 'Hawaii',
-            'ID': 'Idaho',
-            'Id': 'Idaho',
-            'IL': 'Illinois',
-            'Il': 'Illinois',
-            'IN': 'Indiana',
-            'In': 'Indiana',
-            'IA': 'Iowa',
-            'Ia': 'Iowa',
-            'KA': 'Kansas',
-            'Ka': 'Kansas',
-            'KY': 'Kentucky',
-            'Ky': 'Kentucky',
-            'LA': 'Louisiana',
-            'La': 'Louisiana',
-            'ME': 'Maine',
-            'Me': 'Maine',
-            'MI': 'Michigan',
-            'Mi': 'Michigan',
-            'MN': 'Minnesota',
-            'Mn': 'Minnesota',
-            'Ms': 'Mississippi',
-            'MS': 'Mississippi',
-            'Mo': 'Missouri',
-            'MO': 'Missouri',
-            'Mt': 'Montana',
-            'MT': 'Montana',
-            'NE': 'Nebraska',
-            'Ne': 'Nebraska',
-            'NV': 'Nevada',
-            'Nv': 'Nevada',
-            'Nc': 'North Carolina',
-            'NC': 'North Carolina',
-            'ND': 'North Dakota',
-            'Nd': 'North Dakota',
-            'OH': 'Ohio',
-            'Oh': 'Ohio',
-            'Ok': 'Oklahoma',
-            'OK': 'Oklahoma',
-            'OR': 'Oregon',
-            'Or': 'Oregon',
-            'Sc': 'South Carolina',
-            'SC': 'South Carolina',
-            'SD': 'South Dakota',
-            'Sd': 'South Dakota',
-            'Tn': 'Tennessee',
-            'TN': 'Tennessee',
-            'TX': 'Texas',
-            'Tx': 'Texas',
-            'Ut': 'Utah',
-            'UT': 'Utah',
-            'VT': 'Vermont',
-            'Vt': 'Vermont',
-            'WA': 'Washington',
-            'Wa': 'Washington',
-            'WV': 'West Virginia',
-            'Wv': 'West Virginia',
-            'WI': 'Wisconsin',
-            'Wi': 'Wisconsin',
-            'WY': 'Wyoming',
-            'Wy': 'Wyoming',
-        }
-        state_col = "state"
-        amount_col = "amount | dollars"
-
-        df_map = df[[state_col, amount_col]].copy()
-        df_map['state'] = df_map['state'].astype(str).str.strip().str.title()
-        df_map['state'] = df_map['state'].replace(abbr_to_full)
-
-        df_map = df_map[df_map['state'].notna()]
-        df_map = df_map[df_map['state'].str.lower() != 'nan']
-        df_map[amount_col] = pd.to_numeric(df_map[amount_col], errors='coerce')
-        df_map = df_map.dropna(subset=[amount_col])
-
-        df_agg = df_map.groupby('state')[amount_col].sum().reset_index()
-        df_agg = df_agg.rename(columns={amount_col: 'amount'})
-
         gdf = states.merge(df_agg, on='state', how='left')
-
         gdf = gpd.GeoDataFrame(gdf, geometry='geometry')
         gdf = gdf[gdf['geometry'].notnull()]
         gdf = gdf[gdf['geometry'].apply(lambda g: g.is_valid and not g.is_empty)]
 
-        if gdf.crs is None:
-            gdf = gdf.set_crs("EPSG:4326", allow_override=True)
-
-        minimal_gdf = gdf[['state', 'amount', 'geometry']]
-
-        geojson = json.loads(minimal_gdf.to_json())
+        geojson = json.loads(gdf.to_json())
 
         fig = px.choropleth(
-            minimal_gdf,
+            gdf,
             geojson=geojson,
-            locations=minimal_gdf.index,
+            locations=gdf.index,
             color='amount',
             hover_name='state',
             color_continuous_scale='OrRd',
@@ -287,7 +142,7 @@ def create_debt_map():
         fig.update_layout(margin={"r": 0, "t": 30, "l": 0, "b": 0})
 
         return fig
-     except Exception as e:
+    except Exception as e:
         print("Error in create_debt_map:", e)
         return px.scatter()
 
@@ -337,11 +192,6 @@ pre_project_desc = html.Div([
         step=None,
         tooltip={"placement": "bottom", "always_visible": True},
     )
-])
-
-pop_layout = html.Div([
-    html.H3("1790 Population Map"),
-    dcc.Graph(figure=pop_fig)
 ])
 
 app.layout = html.Div([
