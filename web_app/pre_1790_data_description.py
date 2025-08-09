@@ -28,7 +28,7 @@ pre1790_description = html.Div(className='box', children=[
 
 
 pre_data_layout = html.Div([
-    pre1790_desc,    
+    pre1790_description,    
 ])
 
 app.layout = pre_data_layout

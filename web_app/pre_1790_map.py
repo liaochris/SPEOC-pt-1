@@ -392,7 +392,7 @@ def update_pre_project_desc(left_clicks, right_clicks):
     return slide_text[number], slide_title[number]
 
 pre_map_layout = html.Div([
-    pre1790_desc,    
+    pre_project_desc,    
 ])
 
 app.layout = pre_map_layout

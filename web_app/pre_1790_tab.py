@@ -88,12 +88,6 @@ def get_pre1790_loan_layout(page_size=10):
             ]
         )
     ])
-
-pre_tab_layout = html.Div([
-    pre1790_desc,    
-])
-
-app.layout = pre_tab_layout
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
