@@ -68,8 +68,6 @@ def create_pop_map():
 
     return fig
 
-from web_app.map_plot import create_pop_map
-
 layout = html.Div([
     html.H3("1790 Population Map"),
     dcc.Graph(figure=create_pop_map())
