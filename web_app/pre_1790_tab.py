@@ -5,9 +5,8 @@ from dash import Dash
 
 app = Dash(__name__)
 
-
-pierce_excel_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx"
-pierce_df = pd.read_excel(pierce)excel_path)
+excel_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx"
+pierce_df = pd.read_excel(excel_path)
 
 pierce_csv_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.csv"
 
