@@ -391,5 +391,12 @@ def update_pre_project_desc(left_clicks, right_clicks):
     number = number % DESCRIPTION_COUNT
     return slide_text[number], slide_title[number]
 
+pre_map_layout = html.Div([
+    pre1790_desc,    
+])
+
+app.layout = pre_map_layout
+
+
 if __name__ == '__main__':
     app.run(debug=True)

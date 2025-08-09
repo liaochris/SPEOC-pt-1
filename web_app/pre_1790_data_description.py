@@ -26,10 +26,12 @@ pre1790_description = html.Div(className='box', children=[
     ''', style = {'font-size':'3vh'}),
     ])
 
-data_layout = html.Div([
-    pre1790_description,
-    
+
+pre_data_layout = html.Div([
+    pre1790_desc,    
 ])
+
+app.layout = pre_data_layout
 
 if __name__ == '__main__':
     app.run(debug=True)

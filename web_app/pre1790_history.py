@@ -21,5 +21,7 @@ pre_hist_layout = html.Div([
     pre1790_desc,    
 ])
 
+app.layout = pre_hist_layout
+
 if __name__ == '__main__':
     app.run(debug=True)
