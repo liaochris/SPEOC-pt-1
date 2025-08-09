@@ -29,13 +29,13 @@ def get_pre1790_layout(page_size=10):
             page_current=0, 
             page_size=page_size,
 
-            sort_action="none", # disable sorting
-            filter_action="none", # disable filtering
+            sort_action="none", 
+            filter_action="none", 
             virtualization=True,
 
             style_table={
-                "height": "400px",        # pick a height that fits your layout
-                "overflowY": "auto",      # allow vertical scrolling
+                "height": "400px",        
+                "overflowY": "auto",      
                 "overflowX": "auto"
             }
         )
