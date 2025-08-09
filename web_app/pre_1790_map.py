@@ -68,10 +68,10 @@ def create_pop_map():
 
     return fig
 
-layout = html.Div([
-    html.H3("1790 Population Map"),
-    dcc.Graph(figure=create_pop_map())
-])
+    layout = html.Div([
+        html.H3("1790 Population Map"),
+        dcc.Graph(figure=create_pop_map())
+    ])
 
 def create_debt_map():
     states = gpd.read_file("data_raw/shapefiles/historicalstates")
