@@ -54,7 +54,7 @@ def get_pre1790_layout(page_size=10):
     ])
 _pre1790_pierce_df = (
     pd.read_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv")
-        .drop_duplicates(subset="uid")
+        .drop_duplicates(subset="First", "Last", "Value", "Group", "To Whom Issued", "State", "Officer")
 )
 
 def get_pre1790_pierce_layout(page_size=10):
