@@ -15,7 +15,6 @@ import requests
 import plotly.graph_objects as go  
 from web_app.map_plot import create_map
 
-from app import app
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -79,17 +78,15 @@ debt_layout = html.Div([
 DESCRIPTION_COUNT = 2
 
 pre_project_desc = html.Div(className='box', children=[
-    html.H2(children='Description', className='box-title', style={'marginBottom': '20px'}, id = 'slider-title'),
+    html.H2(children=title[0], className='box-title', style={'marginBottom': '20px'}, id='slider-title'),
    
     html.Div(className='slider-container', children=[
-    html.Button('\u25C0', id='left_arrow', className='slider-button',
-                style={'float': 'left', 'marginRight': '10px', 'flex': 1}),
-    dcc.Markdown(id='project_desc_text', style={'textAlign': 'center'}),
-    html.Button('\u25B6', id='right_arrow', className='slider-button',
-                style={'float': 'right', 'marginLeft': '10px', 'flex': 1})
-        
+        html.Button('\u25C0', id='left_arrow', className='slider-button',
+                    style={'float': 'left', 'marginRight': '10px', 'flex': 1}),
+        dcc.Markdown(description[0], id='project_desc_text', style={'textAlign': 'center'}),
+        html.Button('\u25B6', id='right_arrow', className='slider-button',
+                    style={'float': 'right', 'marginLeft': '10px', 'flex': 1})
     ]),
-   
 ])
 
 description = {
@@ -113,23 +110,28 @@ title = {
 }
 
 def update_pre_project_desc(left_clicks, right_clicks):
-    global DESCRIPTION_COUNT
-    if left_clicks == None:
+    if left_clicks is None:
         left_clicks = 0
-    if right_clicks == None:
+    if right_clicks is None:
         right_clicks = 0
 
-    number = 0
-    number += right_clicks - left_clicks
-    number = number % DESCRIPTION_COUNT
-    return slide_text[number], slide_title[number]
+    number = (right_clicks - left_clicks) % DESCRIPTION_COUNT
+    return description[number], title[number]
 
 pre_map_layout = html.Div([
     pre_project_desc,    
 ])
 
-app.layout = pre_map_layout
+@app.callback(
+    Output('project_desc_text', 'children'),
+    Output('slider-title', 'children'),
+    Input('left_arrow', 'n_clicks'),
+    Input('right_arrow', 'n_clicks')
+)
+def update_description(left_clicks, right_clicks):
+    return update_pre_project_desc(left_clicks, right_clicks)
 
+app.layout = pre_map_layout
 
 if __name__ == '__main__':
     app.run(debug=True)
