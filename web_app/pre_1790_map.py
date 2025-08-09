@@ -66,8 +66,6 @@ def create_pop_map():
     return fig
 
 
-from web_app.map_plot import create_debt_map
-
 debt_layout = html.Div([
     html.H3("1790 Debt Map"),
     dcc.Graph(figure=create_debt_map())
