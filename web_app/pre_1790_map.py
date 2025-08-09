@@ -116,7 +116,7 @@ def create_debt_map():
     states['state'] = states['state'].replace(state_name_corrections)
 
     def merge_territory(states, group, name):
-        geom = states[states['state'].isin(group)].unary_union
+        geom = states[states['state'].isin(group)].geometry.union_all()
         row = gpd.GeoDataFrame({'state': [name], 'geometry': [geom]}, crs=states.crs)
         states = states[~states['state'].isin(group)]
         return pd.concat([states, row], ignore_index=True)
@@ -330,4 +330,4 @@ def update_description(value):
     return description.get(value, "")
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
