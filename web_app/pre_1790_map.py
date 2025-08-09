@@ -392,4 +392,4 @@ def update_pre_project_desc(left_clicks, right_clicks):
     return slide_text[number], slide_title[number]
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(debug=True)

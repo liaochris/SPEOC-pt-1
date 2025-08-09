@@ -90,4 +90,4 @@ def get_pre1790_loan_layout(page_size=10):
     ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(debug=True)
