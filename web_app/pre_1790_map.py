@@ -332,7 +332,10 @@ app.layout = html.Div([
     Input('description-slider', 'value')
 )
 def update_description(value):
-    return description.get(value, "")
+    return html.Div([
+        html.H3(title.get(value, "")),   
+        html.P(description.get(value, ""))  
+    ])
 
 if __name__ == "__main__":
     app.run(debug=True)
