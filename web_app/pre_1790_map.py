@@ -7,16 +7,8 @@ import pandas as pd
 import plotly.express as px
 from dash import dcc
 from dash import html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 from shapely import wkt
-import requests
-
-
-import plotly.graph_objects as go  
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-import us
 
 from dash import Dash
 
@@ -50,10 +42,13 @@ def create_pop_map():
     merged_df = pre_map_df.merge(state_pops, on='state', how='left')
     merged_df['population'] = merged_df['population'].fillna(0)
 
+    # Convert GeoDataFrame to GeoJSON for Plotly
+    geojson = json.loads(merged_df.to_json())
+
     fig = px.choropleth(
         merged_df,
-        geojson=merged_df.geometry.__geo_interface__,
-        locations=merged_df.index,  
+        geojson=geojson,
+        locations=merged_df.index,
         color='population',
         hover_name='state',
         color_continuous_scale='OrRd',
@@ -243,7 +238,6 @@ def create_debt_map():
     state_col = "state"
     amount_col = "amount | dollars"
 
-
     df_map = df[[state_col, amount_col]].copy()
     df_map['state'] = df_map['state'].astype(str).str.strip().str.title()
 
@@ -266,26 +260,24 @@ def create_debt_map():
     if gdf.crs is None:
         gdf = gdf.set_crs("EPSG:4326", allow_override=True)
 
-    minx, miny, maxx, maxy = gdf.total_bounds
-    ax = gdf.plot(
-        column='amount',
-        cmap='OrRd',
-        legend=True,
-        edgecolor='black',
-        linewidth=0.2,
-        figsize=(12, 8),
-        missing_kwds={
-            'color': 'lightgrey',
-            'label': 'No data',
-            'hatch': '///'
-        }
+    gdf = gdf.to_crs(epsg=4326)
+
+    geojson = json.loads(gdf.to_json())
+
+    fig = px.choropleth(
+        gdf,
+        geojson=geojson,
+        locations=gdf.index,
+        color='amount',
+        hover_name='state',
+        color_continuous_scale='OrRd',
+        title='State Debt Map (ca. 1790)'
     )
 
-    ax.set_aspect(1 / np.cos(np.deg2rad((miny + maxy) / 2)))
-    plt.title("Heatmap of State Debt ca. 1790")
-    plt.axis('off')
-    plt.tight_layout()
-    plt.show()
+    fig.update_geos(fitbounds="locations", visible=False)
+    fig.update_layout(margin={"r":0,"t":30,"l":0,"b":0})
+
+    return fig
 
 debt_layout = html.Div([
     html.H3("1790 Debt Map"),
@@ -306,51 +298,38 @@ description = {
         and how those historical dynamics are still relevant today.",
     1: "What share of the original founders of the American Revolution participated in Hamilton’s 1790 funding? \
         In 1789, what share of the Confederation debt was held by merchants, traders, and brokers? \
-        During the late 1780s, did debt in the South migrate North? \
-        Who owned the pre-1790 vs post-1790 securities?"
+        During the late 1780s, did debt in the South migrate North? Who owned the pre-1790 vs post-1790 securities? \
+        Through interactive maps and tables, this website offers a data driven lens into how early financial systems shaped national development, \
+        and how those historical dynamics are still relevant today.",
 }
 
-title = {
-    0: 'Why Studying This Data is Important', 
-    1: 'Driving Questions',
-}
-
-pre_project_desc = html.Div(className='box', children=[
-    html.H2(children=title[0], className='box-title', style={'marginBottom': '20px'}, id='slider-title'),
-   
-    html.Div(className='slider-container', children=[
-        html.Button('\u25C0', id='left_arrow', className='slider-button',
-                    style={'float': 'left', 'marginRight': '10px', 'flex': 1}),
-        dcc.Markdown(description[0], id='project_desc_text', style={'textAlign': 'center'}),
-        html.Button('\u25B6', id='right_arrow', className='slider-button',
-                    style={'float': 'right', 'marginLeft': '10px', 'flex': 1})
-    ]),
+pre_project_desc = html.Div([
+    html.Div(id='description-text'),
+    dcc.Slider(
+        id='description-slider',
+        min=0,
+        max=DESCRIPTION_COUNT - 1,
+        value=0,
+        marks={i: f"Part {i + 1}" for i in range(DESCRIPTION_COUNT)},
+        step=None,
+        tooltip={"placement": "bottom", "always_visible": True},
+    )
 ])
 
-
-def update_pre_project_desc(left_clicks, right_clicks):
-    if left_clicks is None:
-        left_clicks = 0
-    if right_clicks is None:
-        right_clicks = 0
-
-    number = (right_clicks - left_clicks) % DESCRIPTION_COUNT
-    return description[number], title[number]
-
-pre_map_layout = html.Div([
-    pre_project_desc,    
+app.layout = html.Div([
+    pre_project_desc,
+    html.Hr(),
+    pop_layout,
+    html.Hr(),
+    debt_layout
 ])
 
 @app.callback(
-    Output('project_desc_text', 'children'),
-    Output('slider-title', 'children'),
-    Input('left_arrow', 'n_clicks'),
-    Input('right_arrow', 'n_clicks')
+    Output('description-text', 'children'),
+    Input('description-slider', 'value')
 )
-def update_description(left_clicks, right_clicks):
-    return update_pre_project_desc(left_clicks, right_clicks)
+def update_description(value):
+    return description.get(value, "")
 
-app.layout = pre_map_layout
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run_server(debug=True)
