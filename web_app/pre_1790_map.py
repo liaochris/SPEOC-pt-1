@@ -13,9 +13,6 @@ import requests
 
 
 import plotly.graph_objects as go  
-
-import dash_html_components as html
-import dash_core_components as dcc
 from web_app.map_plot import create_map
 
 from app import app
