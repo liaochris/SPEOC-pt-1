@@ -24,6 +24,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import us
 
+from dash import Dash
+
+app = Dash(__name__)
+
 def create_pop_map():
     folder_path = "data_raw/shapefiles/historicalstates"
     pre_map_df = gpd.read_file(folder_path)
@@ -387,3 +391,5 @@ def update_pre_project_desc(left_clicks, right_clicks):
     number = number % DESCRIPTION_COUNT
     return slide_text[number], slide_title[number]
 
+if __name__ == '__main__':
+    app.run_server(debug=True)

@@ -1,5 +1,8 @@
 from dash import html
 from dash import dcc
+from dash import Dash
+
+app = Dash(__name__)
 
 pre1790_desc = html.Div(className='box', children=[
     html.H1("Historical Context", style={'marginBottom': '5px'}, className='section-title'),
@@ -17,3 +20,6 @@ pre1790_desc = html.Div(className='box', children=[
 pre_hist_layout = html.Div([
     pre1790_desc,    
 ])
+
+if __name__ == '__main__':
+    app.run_server(debug=True)

@@ -1,5 +1,6 @@
 from dash import html
 from dash import dcc
+from dash import Dash
 
 app = Dash(__name__)
 

@@ -1,5 +1,9 @@
 import pandas as pd
 from dash import html, dash_table
+from dash import dcc
+from dash import Dash
+
+app = Dash(__name__)
 
 _pre1790_df = (
     pd.read_csv("data_raw/pre1790/clean_files/liquidated_debt_certificates.csv")
@@ -85,4 +89,5 @@ def get_pre1790_loan_layout(page_size=10):
         )
     ])
 
-
+if __name__ == '__main__':
+    app.run_server(debug=True)
