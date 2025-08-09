@@ -294,6 +294,11 @@ debt_layout = html.Div([
 
 DESCRIPTION_COUNT = 2
 
+title = {
+    0: 'Why Studying This Data is Important', 
+    1: 'Driving Questions',
+}
+
 pre_project_desc = html.Div(className='box', children=[
     html.H2(children=title[0], className='box-title', style={'marginBottom': '20px'}, id='slider-title'),
    
@@ -321,10 +326,7 @@ description = {
         During the late 1780s, did debt in the South migrate North? \
         Who owned the pre-1790 vs post-1790 securities?"
 }
-title = {
-    0: 'Why Studying This Data is Important', 
-    1: 'Driving Questions',
-}
+
 
 def update_pre_project_desc(left_clicks, right_clicks):
     if left_clicks is None:
