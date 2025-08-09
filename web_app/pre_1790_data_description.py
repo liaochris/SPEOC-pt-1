@@ -1,6 +1,8 @@
 from dash import html
 from dash import dcc
 
+app = Dash(__name__)
+
 pre1790_description = html.Div(className='box', children=[
     html.H1("Pre1790 Data Description", style={'marginBottom': '5px'}, className='section-title'),
     dcc.Markdown('''
@@ -28,3 +30,5 @@ data_layout = html.Div([
     
 ])
 
+if __name__ == '__main__':
+    app.run_server(debug=True)
