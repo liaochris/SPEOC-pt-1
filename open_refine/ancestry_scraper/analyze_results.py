@@ -1,10 +1,9 @@
-import re
 import argparse
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
-import unittest
 import matplotlib.colors as mcolors
+import os
 
 # map two-letter → full state name for your shapefile
 STATE_NAMES = {
@@ -116,7 +115,7 @@ def plot_choropleth(
     ax = merged.plot(
         column="count",
         cmap="OrRd",
-        scheme="Quantiles",
+        scheme="UserDefined",
         k=5,
         legend=False,
         figsize=(8, 6),
@@ -200,11 +199,134 @@ def get_cert_year_range(state_code: str):
         return None, None
     return int(years.min()), int(years.max())
 
+# Add missing state names for the rest of the 13 colonies
+STATE_NAMES.update({
+    "RI": "Rhode Island",
+})
+
+COLONIES_13 = ["MA","NH","CT","NY","NJ","PA","DE","MD","VA"]
+
+def build_national_counts(
+    state_codes: list[str],
+    results_dir: str = "results"
+) -> pd.DataFrame:
+    """
+    Build a single table of county-level counts across many states.
+    Output columns: ['state_code','state_name','county','count']
+    """
+    frames = [] # list to hold each state's county counts
+    for sc in state_codes:
+        sc_u = sc.upper() # normalize to uppercase (e.g., 'ma' → 'MA')
+        csv_path = f"{results_dir}/results_{sc_u.lower()}.csv" # path to that state's results CSV
+        
+        if not os.path.exists(csv_path):
+            print(f"[WARN] Missing results file for {sc_u}, skipping.")
+            continue
+
+        df = pd.read_csv(csv_path) # load the state's results
+
+        # parse county with your simple rules
+        df["county"] = (
+            df["county"]
+            .fillna("")
+            .astype(str)
+            .apply(lambda s: extract_county(s, sc_u))
+            .str.upper()
+            .str.strip()
+        )
+        has_county = df["county"].ne("") # boolean mask → True if county is not empty
+
+        # aggregate per county (count how many rows per county)
+        cc = (
+            df[has_county]
+            .groupby("county", as_index=False)
+            .size()
+            .rename(columns={"size":"count"})
+        )
+        if cc.empty:
+            continue # skip this state if no county data found
+
+        # add state metadata so we know which state each county belongs to
+        cc["state_code"] = sc_u
+        cc["state_name"] = STATE_NAMES[sc_u].upper()
+        frames.append(cc)
+
+    # if no data was collected from any state, return empty DataFrame with correct columns
+    if not frames:
+        return pd.DataFrame(columns=["state_code","state_name","county","count"])
+
+    # combine all states' DataFrames into one
+    out = pd.concat(frames, ignore_index=True)
+    # if any state/county appears multiple times, sum them
+    out = (out
+           .groupby(["state_code","state_name","county"], as_index=False)["count"]
+           .sum())
+    return out
+
+
+def plot_national_choropleth(
+    cert_year: int,
+    shapefile_path: str,
+    results_dir: str = "results",
+    states: list[str] = COLONIES_13,
+):
+    """
+    Plot a county-level choropleth for the 13 colonies (or a custom list of states).
+    - No labels
+    - Basic legend for resident density
+    """
+    # 1) Build counts across all chosen states
+    county_counts = build_national_counts(states, results_dir=results_dir)
+
+    # 2) Load shapefile and filter to selected states + active in year
+    gdf = gpd.read_file(shapefile_path)
+    gdf["START_YEAR"] = gdf["START_DATE"].str.split("/").str[0].astype(int)
+    gdf["END_YEAR"]   = gdf["END_DATE"].str.split("/").str[0].astype(int)
+
+    want_states = {STATE_NAMES[s].upper() for s in [s.upper() for s in states]}
+    sub = gdf[
+        (gdf["STATE_TERR"].str.upper().isin(want_states))
+        & (gdf["START_YEAR"] <= cert_year)
+        & ((gdf["END_YEAR"] >= cert_year) | (gdf["END_YEAR"] == 9999))
+    ].copy()
+
+    # 3) Normalize join keys and dissolve so each (STATE_TERR, NAME) is one row
+    sub["STATE_TERR"] = sub["STATE_TERR"].astype(str).str.upper().str.strip()
+    sub["NAME"]       = sub["NAME"].astype(str).str.upper().str.strip()
+    sub = sub.dissolve(by=["STATE_TERR","NAME"], as_index=False)
+
+    # 4) Prepare counts for join; join on both state and county name
+    counts = county_counts.rename(columns={"state_name":"STATE_TERR", "county":"NAME"})
+    merged = sub.merge(
+        counts[["STATE_TERR","NAME","count"]],
+        on=["STATE_TERR","NAME"],
+        how="left"
+    ).fillna({"count": 0})
+
+    # 5) Plot (no labels, basic legend)
+    ax = merged.plot(
+        column="count",
+        cmap="OrRd",
+        scheme="UserDefined",
+        classification_kwds={"bins": [1, 5, 10, 20, 50, 100, 200, 1000]},
+        legend=True,           # show simple legend
+        figsize=(10, 10),
+        edgecolor="black",
+        linewidth=0.2,
+        legend_kwds={"fmt": "{:.0f}", "title": "Residents"}
+    )
+    ax.set_title("Residency Counts by County – Thirteen Colonies", fontsize=12)
+    ax.set_axis_off()
+    plt.tight_layout()
+    plt.savefig("maps/national_13_colonies.png", dpi=300, bbox_inches="tight")
+    plt.show()
+    print(f"National map saved to {out_path}")
+
 def main():
     p = argparse.ArgumentParser(
         description="Summarize & map loan-office results by state"
     )
-    p.add_argument("state", help="Two-letter code, e.g. DE, PA")
+    p.add_argument("state", nargs="?", help="Two-letter code, e.g. DE, PA")
     p.add_argument(
         "--year", type=int, default=1777,
         help="Certificate year to filter historic counties"
@@ -222,21 +344,27 @@ def main():
         "--out-dir", default="maps",
         help="Where to write your PNG"
     )
+    p.add_argument(
+        "--national", action="store_true",
+        help="If set, plot national choropleth instead of a single state"
+    )
     args = p.parse_args()
 
-    counts = summarize_results(
-        args.state, args.year, results_dir=args.results_dir
-    )
-
-    earliest, latest = get_cert_year_range(args.state)
-
-    plot_choropleth(
-        args.state, counts, args.year,
-        shapefile_path=args.shapefile,
-        map_out_dir=args.out_dir,
-        earliest_year=earliest,
-        latest_year=latest
-    )
+    if args.national:
+        plot_national_choropleth(
+            cert_year=args.year,
+            shapefile_path=args.shapefile,
+        )
+    else:
+        counts = summarize_results(args.state, args.year, results_dir=args.results_dir)
+        earliest, latest = get_cert_year_range(args.state)
+        plot_choropleth(
+            args.state, counts, args.year,
+            shapefile_path=args.shapefile,
+            map_out_dir=args.out_dir,
+            earliest_year=earliest,
+            latest_year=latest
+        )
 
 
 if __name__ == "__main__":
