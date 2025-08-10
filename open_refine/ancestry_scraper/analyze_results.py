@@ -4,6 +4,7 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import os
+import matplotlib.patheffects as pe
 
 # map two-letter → full state name for your shapefile
 STATE_NAMES = {
@@ -115,7 +116,7 @@ def plot_choropleth(
     ax = merged.plot(
         column="count",
         cmap="OrRd",
-        scheme="UserDefined",
+        scheme="Quantiles",
         k=5,
         legend=False,
         figsize=(8, 6),
@@ -145,6 +146,9 @@ def plot_choropleth(
 
         # Choose text color
         text_color = "white" if brightness < 0.9 else "black"
+
+        if int(row["count"]) == 0: 
+            continue
 
         ax.annotate(
             text=label,
@@ -331,7 +335,6 @@ def plot_national_choropleth(
     plt.tight_layout()
     plt.savefig("maps/national_13_colonies.png", dpi=300, bbox_inches="tight")
     plt.show()
-    print(f"National map saved to {out_path}")
 
 def main():
     p = argparse.ArgumentParser(
