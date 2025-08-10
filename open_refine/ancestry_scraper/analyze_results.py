@@ -315,6 +315,17 @@ def plot_national_choropleth(
         linewidth=0.2,
         legend_kwds={"fmt": "{:.0f}", "title": "Residents"}
     )
+
+    sub_states = sub.copy() # use filtered data
+    # if you normalized STATE_TERR earlier, make sure it’s consistent:
+    sub_states["STATE_TERR"] = sub_states["STATE_TERR"].astype(str).str.upper().str.strip()
+
+    # dissolve to one geometry per state (still only the colonies in your filter)
+    sub_states = sub_states.dissolve(by="STATE_TERR", as_index=False)
+
+    # plot just the boundaries on top
+    sub_states.boundary.plot(ax=ax, color="black", linewidth=1.0)
+
     ax.set_title("Residency Counts by County – Thirteen Colonies", fontsize=12)
     ax.set_axis_off()
     plt.tight_layout()
