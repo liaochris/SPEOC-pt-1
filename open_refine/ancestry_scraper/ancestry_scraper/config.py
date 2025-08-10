@@ -5,8 +5,8 @@ STATE_COLLECTION_URLS = {
         "residence":None
     },
     "MA": {
-        "base":"https://www.ancestrylibrary.com/search/collections/48173/",
-        "residence":None
+        "base":"https://www.ancestrylibrary.com/search/collections/5058",
+        "residence":"_massachusetts-usa_24"
     },
     "CT": {
         "base":"https://www.ancestrylibrary.com/search/collections/3537/",
@@ -17,16 +17,16 @@ STATE_COLLECTION_URLS = {
         "residence":None
     },
     "NH": {
-        "base":"https://www.ancestrylibrary.com/search/collections/49199/",
-        "residence":None
+        "base":"https://www.ancestrylibrary.com/search/collections/5058",
+        "residence":"_new+hampshire-usa_32"
     },
     "NJ": {
         "base":"https://www.ancestrylibrary.com/search/collections/2234/",
         "residence":"_new+jersey-usa_33"
     },
     "NY": {
-        "base":"https://www.ancestrylibrary.com/search/collections/3564/",
-        "residence":None
+        "base":"https://www.ancestrylibrary.com/search/collections/5058",
+        "residence":"_new+york-usa_35"
     },
     "VA": {
         "base":"https://www.ancestrylibrary.com/search/collections/2234/",

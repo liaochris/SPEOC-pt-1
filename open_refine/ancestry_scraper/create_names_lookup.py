@@ -1,16 +1,3 @@
-"""
-import pandas as pd
-
-df = pd.read_csv("data/loan_office_certificates_cleaned.csv")
-
-de = df[df["state"] == "DE"]
-
-to_lookup = de[["Year", "raw_name"]]
-
-unique_to_lookup = to_lookup.drop_duplicates()
-unique_to_lookup.to_csv("names_to_lookup/names_to_lookup_de.csv", index=False, header=["year", "name"])
-"""
-
 import pandas as pd
 from pathlib import Path
 

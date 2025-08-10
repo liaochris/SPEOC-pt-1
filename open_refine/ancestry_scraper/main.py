@@ -23,6 +23,10 @@ def main():
         default=10,
         help="Optional fuzziness window (default: 10)"
     )
+    p.add_argument(
+        "--year",
+        help="Year you want to search (useful for 1790 census)"
+    )
     args = p.parse_args()
 
     lookup_file = Path(args.dir) / f"names_to_lookup_{args.state.lower()}.csv"
@@ -38,6 +42,9 @@ def main():
             if not name:
                 continue
             print(f"→ {args.state} • {year} • {name}")
+            if (args.year is not None):
+                year = args.year
+
             process_name(name, args.state, event_year=int(year), event_x=args.event_x)
 
 if __name__ == "__main__":
