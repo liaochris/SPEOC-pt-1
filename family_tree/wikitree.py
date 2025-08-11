@@ -20,9 +20,7 @@ def search_profile_key(name, state=None, birth_year_range=(1700,1770), max_candi
     fn, ln = parts[0], parts[-1]
 
     start, end = birth_year_range
-    # midpoint year for “target”
     mid = (start + end) // 2
-    # how many years on either side
     spread = end - start
 
     params = {
@@ -37,8 +35,6 @@ def search_profile_key(name, state=None, birth_year_range=(1700,1770), max_candi
         "dateInclude":  "both", 
         "dateSpread": str(spread)
     }
-    # optional: params["BirthLocation"] = state
-
     r = requests.get(WIKITREE_API, params=params)
     r.raise_for_status()
     data = r.json()
@@ -97,7 +93,7 @@ def get_profile(profile_key: str) -> Dict[str,str]:
         "action": "getProfile",
         "format": "json",
         "key":     profile_key,
-        "fields":  "Id,Name,BirthDate,BirthLocation,DeathDate,DeathLocation"
+        "fields":  "Id,Name,BirthDate,BirthLocation,DeathDate,DeathLocation,Children,Children.Name,Children.BirthDate,Children.BirthLocation"
     })
     resp.raise_for_status()
     data = resp.json()
@@ -150,6 +146,77 @@ def get_primary_location(
         return None
     return prof.get("BirthLocation") or prof.get("DeathLocation")
 
+def search_candidates_for_name(
+        name: str,
+        state: Optional[str] = None,
+        birth_year_range: tuple[int, int] = (1700, 1770),
+        max_candidates: int = 10
+) -> list[dict]:
+    # get first and last name
+    parts = name.split()
+    if len(parts) < 2:
+        return []
+    
+    fn = " ".join(parts[:-1])
+    ln = parts[-1]
+
+    # start = 1700, end = 1770
+    start, end = birth_year_range
+    # mid =. 1735
+    mid = (start + end) // 2
+
+    params = {
+        "action":       "searchPerson",
+        "format":       "json",
+        "FirstName":    fn,
+        "LastName":     ln,
+        "limit":        max_candidates,
+        "BirthLocation": state,                  # same as your existing call
+        "fields":       "Id,Name,BirthDate,BirthLocation,Url",
+        "BirthDate":    f"{mid}-00-00",
+        "dateInclude":  "both",
+        "dateSpread":   str(20),
+    }
+
+    # make request
+    r = requests.get(WIKITREE_API, params=params)
+    r.raise_for_status()
+    # get data
+    data = r.json()
+
+    matches = []
+    # if there are any matches
+    if (isinstance(data, list) and data):
+        matches = data[0].get("matches", [])
+    
+    out = []
+
+    for m in matches:
+        bd = m.get("BirthDate") or ""
+        by = _year_from_date(bd)                 # reuse your helper
+        if by is None:
+            continue                             # must have a birth year
+        if not (start <= by <= end):
+            continue                             # must be within range
+
+        bp = (m.get("BirthLocation") or "")      # get birth place
+        if state and (state.lower() not in bp.lower()):
+            continue                             # must include state (e.g. Virginia)
+        
+        # store potential match
+        out.append({
+            "query_name": name,
+            "state": state,
+            "range_lo": start,
+            "range_hi": end,
+            "profile_key": m.get("Name"),
+            "birth_year": by,
+            "birth_place": bp,
+            "url": m.get("Url"),
+        })
+    return out
+
+
 if __name__ == "__main__":
     with open("../data/loan_office_certificates_cleaned.csv") as f:
         for row in csv.DictReader(f):
@@ -158,7 +225,7 @@ if __name__ == "__main__":
             # pick a generous birth‐year window around your certificate “Year”
             cert_year = int(row["Year"])
             yr0 = cert_year - 90
-            yr1 = cert_year
+            yr1 = cert_year - 20
             key = search_profile_key(name, state=state, birth_year_range=(yr0,yr1))
             if not key:
                 print("❌", name, "→ no profile in range", yr0, "–", yr1)

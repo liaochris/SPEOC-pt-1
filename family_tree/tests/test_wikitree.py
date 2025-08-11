@@ -1,6 +1,7 @@
 import requests
 import pytest
-from wikitree import _year_from_date, search_profile_key, get_descendants, get_primary_location
+from wikitree import _year_from_date, search_profile_key, get_descendants, get_primary_location, search_candidates_for_name
+from task_1 import task1_write_candidates
 
 class DummyResponse:
     def __init__(self, json_data, status_code=200):
@@ -16,9 +17,9 @@ class DummyResponse:
 
 def test_year_from_date_valid_and_invalid():
     assert _year_from_date("1778-05-12") == 1778
-    assert _year_from_date("c.1778")      == 1778
-    assert _year_from_date("born 180")    is None
-    assert _year_from_date("")            is None
+    assert _year_from_date("c.1778") == 1778
+    assert _year_from_date("born 180") is None
+    assert _year_from_date("") is None
 
 def test_search_profile_key_no_profiles(monkeypatch):
     # simulate search returning no profiles
@@ -108,7 +109,6 @@ def test_search_and_descendants_benjamin_franklin():
     assert len(descs) >= 1, "Expected at least one known descendant of Benjamin Franklin"
 
 def test_get_primary_location_real_api():
-    # Benjamin Franklin was born in Boston, MA (1706–1790)
     loc = get_primary_location(
         "George Washington",
         state="Virginia",
@@ -119,3 +119,21 @@ def test_get_primary_location_real_api():
     # We expect at least a non‐empty string mentioning "Virginia"
     assert isinstance(loc, str) and loc, f"Expected a non‐empty location, got {loc!r}"
     assert "Westmoreland" in loc or "Virginia" in loc
+
+def test_search_candidates_for_name():
+    out = search_candidates_for_name(
+        name="George Washington",
+        state="Virginia"
+    )
+
+    print(out)
+
+def test_task1_write_candidates():
+    task1_write_candidates(
+        names_csv="data/test.csv",
+        out_csv="results/result.csv"
+    )
+
+
+
+    
