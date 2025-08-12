@@ -12,7 +12,7 @@ STATE_NAMES = {
     "NH": "New Hampshire",
     "NJ": "New Jersey",
     "VA": "Virginia",
-    "CT": "Connecticut",
+    "CT": "Connecticut"
 }
 
 def task1_write_candidates(names_csv: str, out_csv: str, max_candidates: int = 10):

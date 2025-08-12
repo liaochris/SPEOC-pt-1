@@ -1,5 +1,6 @@
 import csv, json
 from typing import Callable, Dict, Any, Tuple, List, Optional
+from wikitree import get_profile
 
 def get_children(
     input_csv: str,
@@ -21,12 +22,20 @@ def get_children(
                 s = str(val or "")[:4]
                 return int(s) if s.isdigit() else None
             
+            # checkpoint
+            print(f"[INFO] Processing {pid} ({row.get('query_name', 'Unknown')})...")
+
             # get profile
             p = fetch_profile(profile_key=pid) or {}
+
+            if not p:
+                print(f"[WARN] No profile data returned for {pid}")
+
             p_birth = to_year(p.get("BirthDate")) # isolate birth date
             # add person to nodes dictionary
-            nodes[pid] = {
-                "person_id": pid,
+            parent_id = (p.get("Name") or pid).strip()
+            nodes[parent_id] = {
+                "person_id": parent_id,
                 "name": p.get("RealName") or p.get("PreferredName") or p.get("Name"),
                 "birth_year": p_birth,
                 "birth_location": (p.get("BirthLocation") or None),
@@ -54,6 +63,8 @@ def get_children(
                 }
                 edges.append({"parent_id": pid, "child_id": cid, "relationship": "biological", "gen_depth": 1})
 
+            print(f"[INFO]   Found {len(children)} children for {parent_id}")
+
     if nodes_path:
         with open(nodes_path, "w", encoding="utf-8") as f:
             json.dump(nodes, f, indent=2, ensure_ascii=False)
@@ -61,4 +72,14 @@ def get_children(
         with open(edges_path, "w", encoding="utf-8") as f:
             json.dump(edges, f, indent=2, ensure_ascii=False)
 
-    return nodes, edges    
+    return nodes, edges
+
+if __name__ == "__main__":
+    nodes, edges = get_children(
+        input_csv="results/task_1.csv",
+        fetch_profile=get_profile,
+        nodes_path="results/nodes_task_2.json",
+        edges_path="results/edges_task_2.json"
+    )    
+
+    print(f"[DONE] Total nodes: {len(nodes)}, total edges: {len(edges)}")
