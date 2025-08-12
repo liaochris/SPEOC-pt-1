@@ -2,6 +2,7 @@ import pandas as pd
 import json
 from pathlib import Path
 from wikitree import get_profile  # your existing method
+from task_3 import build_name, norm
 
 IN_CSV = "results/task_3_matches.csv"
 EDGES_JSON = "results/edges_task_2.json"
@@ -88,7 +89,6 @@ def refine_matches(
     if not filtered.empty:
         filtered["parent_id"] = filtered["child_id"].map(child_to_parent)
         filtered["parent_ids_all"] = filtered["child_id"].map(child_to_parents_all)
-
 
     Path(out_csv).parent.mkdir(parents=True, exist_ok=True)
     filtered.to_csv(out_csv, index=False)

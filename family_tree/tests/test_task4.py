@@ -104,3 +104,70 @@ def test_refine_matches_defaults(tmp_path, monkeypatch):
     # out_csv should match df_out
     check = pd.read_csv(out_csv)
     assert set(check["child_id"]) == {"C_OK"}
+
+def test_refine_matches_drops_same_parent_child_name(tmp_path):
+    """
+    Rows where parent and child have the same normalized name should be dropped.
+    Rows with different names should remain.
+    """
+
+    # --- Fake get_profile that returns both child and parent profiles ---
+    def fake_get_profile(profile_key: str):
+        # Children (by child_id)
+        if profile_key == "C1":
+            return {"BirthDate": "1765-01-01"}  # within 1760±20
+        if profile_key == "C2":
+            return {"BirthDate": "1750-02-02"}  # within 1760±20
+
+        # Parents (by parent_id)
+        if profile_key == "P1":
+            # Same name as child C1 -> should cause drop
+            return {"RealName": "John", "LastNameCurrent": "Smith"}
+        if profile_key == "P2":
+            # Different name from child C2 -> should keep
+            return {"RealName": "Thomas", "LastNameCurrent": "Jones"}
+
+        return {}
+
+    # --- Edges: map children to parents ---
+    edges = [
+        {"parent_id": "P1", "child_id": "C1"},
+        {"parent_id": "P2", "child_id": "C2"},
+    ]
+    edges_path = tmp_path / "edges.json"
+    edges_path.write_text(json.dumps(edges), encoding="utf-8")
+
+    # --- Matches CSV: both children “match” initially ---
+    df_in = pd.DataFrame(
+        [
+            {"child_id": "C1", "child_name": "John Smith", "state": "PA", "in_post1790": True, "error": ""},
+            {"child_id": "C2", "child_name": "Mary Jones", "state": "MA", "in_post1790": True, "error": ""},
+        ]
+    )
+    in_csv = tmp_path / "task_3_matches.csv"
+    df_in.to_csv(in_csv, index=False)
+
+    out_csv = tmp_path / "filtered.csv"
+
+    # --- Run refine_matches (inject fake_get_profile) ---
+    df_out = mod.refine_matches(
+        in_csv=str(in_csv),
+        edges_json=str(edges_path),
+        out_csv=str(out_csv),
+        center_year=1760,
+        window=20,
+        drop_if_missing_year=True,
+        fetch_profile=fake_get_profile,
+    )
+
+    # --- Assertions ---
+    # C1 should be DROPPED (same name as parent), C2 should be KEPT
+    assert set(df_out["child_id"]) == {"C2"}
+
+    # Parent mapping columns should exist
+    assert "parent_id" in df_out.columns
+    assert "parent_ids_all" in df_out.columns
+
+    # And parent_id for the kept row should be P2
+    row = df_out.iloc[0]
+    assert row["parent_id"] == "P2"
