@@ -94,7 +94,8 @@ def get_profile(profile_key: str) -> Dict[str,str]:
         "format": "json",
         "key":     profile_key,
         "fields":  "Id,Name,BirthDate,RealName,FirstName,LastNameCurrent,LastNameAtBirth,LongName,\
-            BirthName,BirthLocation,DeathDate,DeathLocation,Children,Children.Name,Children.BirthDate,Children.BirthLocation"
+            BirthName,BirthLocation,DeathDate,DeathLocation,Children,Children.Name,Children.BirthDate,Children.BirthLocation,Bio",
+        "bioFormat":"wiki"
     })
     resp.raise_for_status()
     data = resp.json()
