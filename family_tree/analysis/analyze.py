@@ -1,8 +1,11 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Load the provided CSV
 file_path = "../results/task_4_final.csv"
 df = pd.read_csv(file_path)
+
+task_3_matches = pd.read_csv("../results/task_3_matches.csv")
 
 # Basic statistics
 stats = {}
@@ -65,4 +68,22 @@ print(len(greater_than_two))
 latex_str = greater_than_two.head(10).to_latex(index=False)
 print(latex_str)
 
+# Overall distribution
+summary = task_3_matches['in_post1790'].value_counts(normalize=True).rename({True: "Matched", False: "Not Matched"}) * 100
+print("Overall Matching Rate (%):")
+print(summary)
+
+# Distribution by state
+state_summary = task_3_matches.groupby('state')['in_post1790'].mean().sort_values(ascending=False) * 100
+print("\nMatching Rate by State (%):")
+print(state_summary)
+
+# Plot
+plt.figure(figsize=(10,6))
+state_summary.plot(kind='bar', color='steelblue')
+plt.ylabel("Match Rate (%)")
+plt.title("WikiTree Matching Rate by State")
+plt.xticks(rotation=45, ha="right")
+plt.tight_layout()
+plt.show()
 

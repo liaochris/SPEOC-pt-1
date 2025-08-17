@@ -32,7 +32,7 @@ _pre1790_df = (
     .drop_duplicates(subset="uid")
 )
 
-def get_pre1790_layout(page_size=10):
+def get_pre1790_liquidated_layout(page_size=10):
     return html.Div([
         html.H4("Liquidated Debt Certificates"),
         dash_table.DataTable(
@@ -82,7 +82,7 @@ def get_pre1790_pierce_layout(page_size=10):
                 {"name": "Issued to", "id": "To Whom Issued"},
                 {"name": "State", "id": "State"},
             ],
-            data=_pre1790_pierce_df.to_dict("records"),
+            data=_pre1790_pierce_df.to_dict("records"), # pyright: ignore[reportArgumentType]
             page_action="native",
             page_current=0,
             page_size=page_size,
@@ -113,12 +113,12 @@ def get_pre1790_loan_layout(page_size=10):
         )
     ])
     
-if __name__ == '__main__':
-    app.layout = html.Div([
-        get_pre1790_layout(),
+def layout():
+    return html.Div([
+        html.H2("Pre-1790 Data"),
+        get_pre1790_liquidated_layout(),
         html.Hr(),
         get_pre1790_pierce_layout(),
         html.Hr(),
         get_pre1790_loan_layout()
     ])
-    app.run(debug=True)
