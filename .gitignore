@@ -3,4 +3,5 @@
 .idea
 data_raw/.ipynb_checkpoints
 ~/.venv/*
-~$*.xlsx
+~$*.xlsx__pycache__/
+*.pyc

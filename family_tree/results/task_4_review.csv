@@ -1,0 +1,19 @@
+child_id,child_name,state,in_post1790,error,parent_id,parent_ids_all,parent_name,multi_parent
+Coit-294,John Coit,CT,True,,Coit-268,Coit-268;Richards-6877,Samuel Coit,True
+Hine-1091,Daniel Hine,CT,True,,Beecher-686,Beecher-686;Hine-692,Lydia Hine,True
+Lansing-277,Abraham Lansing,NY,True,,Cooper-11570,Cooper-11570;Lansing-206,Elizabeth Lansing,True
+Lansing-534,Abraham Lansing,NY,True,,Lansing-533,Lansing-533;Van_der_Heyden-63,Levinus Lansing,True
+Leffingwell-158,Christopher Leffingwell,CT,True,,Coit-59,Coit-59;Leffingwell-38,Elizabeth Leffingwell,True
+Leffingwell-293,William Leffingwell,CT,True,,Coit-59,Coit-59;Leffingwell-38,Elizabeth Leffingwell,True
+Livingston-2677,Henry Livingston,NY,True,,Beekman-80,Beekman-80;Livingston-800,Margaret Livingston,True
+Livingston-754,Robert Livingston,NY,True,,Beekman-80,Beekman-80;Livingston-800,Margaret Livingston,True
+Porter-29334,Andrew Porter,PA,True,,McDowell-271,McDowell-271;Porter-541,Elizabeth Porter,True
+Porter-29335,William Porter,PA,True,,McDowell-271,McDowell-271;Porter-541,Elizabeth Porter,True
+Porter-5618,Robert Porter,PA,True,,McDowell-271,McDowell-271;Porter-541,Elizabeth Porter,True
+Reed-4888,John Reed,PA,True,,Brotherton-931,Brotherton-931;Reed-29087,Mary Reed,True
+Roosevelt-337,Nicholas Roosevelt,NY,True,,Bogert-182,Bogert-182;Roosevelt-70,Annatje Roosevelt,True
+Starr-2712,Thomas Starr,CT,True,,Closson-375,Closson-375;Starr-2711,Elizabeth Starr,True
+Stevenson-12363,John Stevenson,PA,True,,Mc_Comb-6,Mc_Comb-6;Stevenson-4123,Jean Stevenson,True
+Stevenson-4070,Robert Stevenson,PA,True,,Mc_Comb-6,Mc_Comb-6;Stevenson-4123,Jean Stevenson,True
+Strong-4296,Nathan Strong,CT,True,,Olcott-197,Olcott-197;Strong-4294,Anne Strong,True
+Trumbull-512,Benjamin Trumbull,CT,True,,Phelps-6617,Phelps-6617;Trumbull-335,Martha Trumbull,True
