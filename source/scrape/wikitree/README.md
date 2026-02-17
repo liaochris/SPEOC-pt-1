@@ -2,23 +2,26 @@
 
 Searches WikiTree for historical persons matching pre-1790 debt certificate holders, fetches their family trees, and collects biographical data via the WikiTree API.
 
-### Pipeline
+### Code
 
-1. `search_wikitree_candidates.py` (task 1) — For each unique person in the cleaned loan office certificates, searches WikiTree for matching profiles filtered by birth year range and state. Writes all candidates to `task_1.csv`.
-2. `build_family_graph.py` (task 2) — For each candidate profile, fetches children via the WikiTree API. Builds a graph of parent→child edges (`edges_task_2.json`) and person nodes (`nodes_task_2.json`).
-3. `get_bios.py` — Fetches full biographical profiles from WikiTree for all task 1 candidates. Writes one JSON record per line to `wikitree_bios.jsonl`. Supports resume via deduplication.
+- `wikitree.py` — WikiTree API client (`search_candidates_for_name()`, `get_profile()`, `get_descendants()`)
+- `search_wikitree_candidates.py` — Searches WikiTree for matching profiles filtered by birth year range and state
+- `build_family_graph.py` — Fetches children for each candidate, builds parent→child edge graph
+- `get_bios.py` — Fetches full biographical profiles, supports resume via deduplication
+- `tests/` — Unit tests (mocked API) and integration tests (live API)
 
-### Core Module
+### Input
 
-`wikitree.py` — WikiTree API client. Provides `search_candidates_for_name()`, `get_profile()`, `get_descendants()`, and related functions.
+- `output/scrape/wikitree/data/loan_office_certificates_cleaned.csv`
+- `output/scrape/wikitree/data/post_1790.csv`
 
-### Tests
+### Output
 
-```bash
-pytest source/scrape/wikitree/
-```
-
-Unit tests mock the API. Integration tests (for real API calls) are included but require network access.
+All output in `output/scrape/wikitree/`:
+- `results/task_1.csv` — WikiTree candidate matches
+- `results/edges_task_2.json` — Parent→child edges
+- `results/nodes_task_2.json` — Person nodes
+- `wikitree_bios.jsonl` — Full biographical profiles (one JSON per line)
 
 ### Notes
 
