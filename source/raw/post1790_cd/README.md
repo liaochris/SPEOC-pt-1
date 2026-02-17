@@ -12,7 +12,7 @@ XLSX spreadsheets transcribed from National Archives T-series microfilm, obtaine
 
 ### Description
 
-**State XLSX files** (one per state, in state-abbreviation subfolders):
+**`orig/`** — State XLSX files (one per state, in state-abbreviation subfolders):
 - `CT/CT_post1790_CD_ledger.xlsx`
 - `GA/T694_GA_Loan_Office_CD.xlsx`
 - `MD/MD_post1790_CD.xlsx`
@@ -27,11 +27,13 @@ XLSX spreadsheets transcribed from National Archives T-series microfilm, obtaine
 
 All state XLSX files are used by the cleaning pipeline (source/derived/post1790_cd/). Used by: standardize_geography.py via cd_raw.csv config.
 
-**`corrections/`** — Manually created correction and metadata files:
-- `cd_raw.csv` — Metadata mapping each state's raw XLSX file path, header row, Excel column ranges, and column count for automated import by the cleaning pipeline
+**`corrections/`** — Manually created correction files:
 - `town_fix.csv` — Manual corrections for town name standardization, created by comparing cleaning output against the USGS GNIS place name database
 - `company_names_fix.csv` — Manual corrections for company/partnership entity names identified during name deduplication
 - `occ_correction.csv` — Manual corrections for occupation field standardization across states
+
+**`docs/`** — Helper/reference files:
+- `cd_raw.csv` — Metadata mapping each state's raw XLSX file path, header row, Excel column ranges, and column count for automated import by the cleaning pipeline
 
 ### Terms of Use
 

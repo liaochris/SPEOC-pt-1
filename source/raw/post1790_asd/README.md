@@ -12,7 +12,7 @@ XLSX spreadsheets transcribed from National Archives T-series microfilm, obtaine
 
 ### Description
 
-**State XLSX files** (one per state, in state-abbreviation subfolders):
+**`orig/`** — State XLSX files (one per state, in state-abbreviation subfolders):
 - `CT/CT_post1790_ASD_ledger.xlsx`
 - `MD/MD_post1790_ASD.xlsx`
 - `NC/T695_R3_NC_ASD.xlsx`
@@ -21,6 +21,8 @@ XLSX spreadsheets transcribed from National Archives T-series microfilm, obtaine
 - `RI/T653_Rhode_Island_ASD.xlsx`
 - `SC/Post_1790_South_Carolina_ASD_transfers_removed.xlsx`
 - `VA/VA_ASD.xlsx`
+
+**`docs/`** — Documentation about the dataset (to be populated).
 
 ### Terms of Use
 

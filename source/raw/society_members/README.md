@@ -12,8 +12,11 @@ Text files obtained via the research team. One file per state plus an aggregated
 
 ### Description
 
+**`orig/`** — Original data files:
 - `all_officers_ari.txt` — Aggregated list of all officers
 - `{state}.txt` — State-level membership lists (connecticut, delaware, georgia, maryland, massachusetts, new_hampshire, new_jersey, new_york, north_carolina, pennsylvania, rhode_island, virginia)
+
+**`docs/`** — Documentation about the dataset (to be populated).
 
 ### Terms of Use
 

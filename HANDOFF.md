@@ -10,6 +10,7 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
 1. **Step 1.0**: Cloned JMSLab template — SConstruct, source/lib/, placeholder SConscripts
 2. **Step 1.1**: Cleaned up duplicates — deleted `family_tree copy/`, temp files, `__pycache__/`, archived Julia configs, updated `.gitignore`
 3. **Step 1.2**: Moved raw data to `source/raw/` — separated post1790 into `post1790_cd/` and `post1790_asd/` by state, moved correction CSVs with documentation, deleted `web_app/data_raw/` duplicate
+4. **Step 1.2 fixes**: Renamed `pre1790_cd/` → `pre1790/` (no ASD/CD split for pre-1790), separated corrections into `corrections/` subfolders, flattened nhgis nesting, fixed society_members doubled path, moved derived county_debt_total.csv out of raw
 
 ## Next Step
 4. **Step 1.3**: Move scraping code to `source/scrape/`
@@ -44,3 +45,7 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
 - SCons defines execution order
 - Archive stays as-is; future PR to delete once replicability confirmed
 - Raw data READMEs follow JMSLab template standard from docs/raw_directory_readme_template.md
+- Pre-1790 is just `pre1790/` (no ASD concept), corrections in `corrections/` subfolder
+- Notebook→script conversion must preserve all output logging (print statements, data shape checks)
+- Task 4 should include separating debt original owners from executors in corrections CSVs and outputs
+- Workflow: `git add` only — do not commit until user gives the go-ahead

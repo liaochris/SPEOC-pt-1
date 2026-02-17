@@ -12,8 +12,11 @@ XLSX spreadsheets obtained via Dropbox from the research team. Compiled from pub
 
 ### Description
 
-- `constitutional_convention_1787.xlsx` — Names of delegates to the 1787 Constitutional Convention in Philadelphia
-- `State Delegates.xlsx` — Names of delegates to each state's ratifying convention
+**`orig/`** — Original data files:
+- `constitutional_convention_1787.xlsx` — Names of delegates to the 1787 Constitutional Convention in Philadelphia. Used by: analysis notebooks.
+- `State Delegates.xlsx` — Names of delegates to each state's ratifying convention. Used by: analysis notebooks.
+
+**`docs/`** — Documentation about the dataset (to be populated).
 
 ### Terms of Use
 
