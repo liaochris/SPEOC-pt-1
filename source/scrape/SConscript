@@ -1,0 +1,5 @@
+Import('*')
+
+# Scraping targets will be added as code is moved into this directory.
+# Note: Many scraping scripts are interactive/long-running and may need
+# to be documented as manual steps rather than automated build targets.
