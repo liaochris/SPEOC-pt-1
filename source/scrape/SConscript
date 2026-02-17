@@ -1,5 +1,9 @@
 Import('*')
 
-# Scraping targets will be added as code is moved into this directory.
-# Note: Many scraping scripts are interactive/long-running and may need
-# to be documented as manual steps rather than automated build targets.
+# Scraping targets require external access (Ancestry, WikiTree API) and are
+# not part of the automated build. Run manually:
+#
+#   python source/scrape/ancestry_person_county_scraper/main.py CT --year 1790
+#   python source/scrape/wikitree/search_wikitree_candidates.py
+#   python source/scrape/wikitree/build_family_graph.py
+#   python source/scrape/wikitree/get_bios.py

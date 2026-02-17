@@ -12,15 +12,19 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
 3. **Step 1.2**: Moved raw data to `source/raw/` — separated post1790 into `post1790_cd/` and `post1790_asd/` by state, moved correction CSVs with documentation, deleted `web_app/data_raw/` duplicate
 4. **Step 1.2 fixes**: Renamed `pre1790_cd/` → `pre1790/` (no ASD/CD split for pre-1790), separated corrections into `corrections/` subfolders, flattened nhgis nesting, fixed society_members doubled path, moved derived county_debt_total.csv out of raw
 
-## Next Step
-4. **Step 1.3**: Move scraping code to `source/scrape/`
-   - `open_refine/ancestry_scraper/` → `source/scrape/ancestry_person_county_scraper/`
-   - `data_clean/Ancestry_Web_Scraper/web_scraper.ipynb` → convert to `source/scrape/ancestry_town_population_scraper/`
-   - `family_tree/` tasks 1-2, wikitree.py, get_bios.py → `source/scrape/wikitree/`
+5. **Step 1.2 subfolder**: Organized raw data into `orig/`, `corrections/`, `docs/` subfolders. Deleted empty corrections.json, moved derived files (occupations_states.csv, cd_info.csv) to output/derived/pre1790/. Moved cd_raw.csv to docs/ (helper file). Removed all empty directories.
+6. **Step 1.3**: Moved scraping code to `source/scrape/`
+   - `open_refine/ancestry_scraper/` → `source/scrape/ancestry_person_county_scraper/` (code + tests + output)
+   - `data_clean/Ancestry_Web_Scraper/web_scraper.ipynb` → converted via nbconvert to `source/scrape/ancestry_town_population_scraper/scrape_town_populations.py`
+   - `family_tree/` tasks 1-2, wikitree.py, get_bios.py, tests → `source/scrape/wikitree/`
    - `open_refine/reconciliation_services/` → `source/scrape/reconciliation_services/`
+   - Added READMEs for each scrape subfolder and updated SConscript
+
+## Next Step
+7. **Step 1.4**: Move derived/cleaning code → `source/derived/` (convert notebooks to scripts)
 
 ## Remaining Steps (Task 1)
-5. Step 1.4: Move derived/cleaning code → `source/derived/` (convert notebooks to scripts)
+8. Step 1.4: Move derived/cleaning code → `source/derived/` (convert notebooks to scripts)
 6. Step 1.5: Move analysis code → `source/analysis/` (convert notebooks to scripts)
 7. Step 1.6: Move web app → `source/webapp/`
 8. Step 1.7: Handle WIP (issue/), archive, documentation
@@ -49,3 +53,34 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
 - Notebook→script conversion must preserve all output logging (print statements, data shape checks)
 - Task 4 should include separating debt original owners from executors in corrections CSVs and outputs
 - Workflow: `git add` only — do not commit until user gives the go-ahead
+- Use `jupyter nbconvert --to script` for notebook→script conversion, then clean up for QUALITY.md
+- Path updates deferred to Step 1.9 — tracked below
+
+## Path Updates Needed (for Step 1.9)
+
+Accumulated list of internal file paths that reference old locations and need updating.
+
+### source/scrape/ancestry_person_county_scraper/
+- `create_names_lookup.py`: reads `loan_office_certificates_cleaned.csv` (was `data/loan_office_certificates_cleaned.csv`, now `output/scrape/ancestry_person_county_scraper/data/`)
+- `analyze_results.py`: reads results CSVs, shapefile (old relative paths to `results/`, `data/data/US_AtlasHCB_Counties_Gen01/`)
+- `ancestry_scraper/config.py`: may have hardcoded paths
+- `ancestry_scraper/auth.py`: hardcoded macOS Chrome profile path (user-specific, leave as-is)
+
+### source/scrape/ancestry_town_population_scraper/
+- `scrape_town_populations.py`: reads `final_data_CD.csv`, writes `town_pops.csv`, `town_pops_clean.csv`, `town_pops_2.csv` — all need path updates
+
+### source/scrape/wikitree/
+- `search_wikitree_candidates.py` (task_1): reads `data/loan_office_certificates_cleaned.csv` → now `output/scrape/wikitree/data/`; writes `results/task_1.csv` → `output/scrape/wikitree/results/`
+- `build_family_graph.py` (task_2): reads/writes from `results/` → `output/scrape/wikitree/results/`
+- `get_bios.py`: reads `results/task_1.csv`, writes `wikitree_bios.jsonl` → output paths
+- `tests/`: relative paths to `data/test.csv` and `results/`
+
+### source/scrape/reconciliation_services/
+- All 3 Flask services: fetch from Google Sheets (no local path issues), but service metadata URLs may need review
+
+### source/raw/post1790_cd/docs/
+- `cd_raw.csv`: contains `file` column with old paths like `../data_raw/post1790/CT/CT_post1790_CD_ledger.xlsx` → need to update to new `source/raw/post1790_cd/orig/CT/...` paths
+
+### Cleaning/derived code (to be added in Step 1.4)
+- `clean_1_geo.ipynb` → reads `clean_tools/cd_raw.csv`, `clean_tools/town_fix.csv`, etc.
+- All notebooks reference `../data_raw/`, `../data_clean/`, `clean_tools/` paths
