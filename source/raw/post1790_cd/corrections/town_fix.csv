@@ -1,0 +1,144 @@
+town,state,new_town,county,new_state,country,name_type
+Charleston South Carolina,,Charleston,Charleston County,SC,US,town
+Northumberland County Virginia,,,Northumberland County,VA,US,county
+Savannah,,Savannah,Chatham County,GA,US,town
+Portsmouth Virginia,,Portsmouth,Norfolk County,VA,US,town
+Burlington New Jersey,,Burlington,Burlington County,NJ,US,town
+Gloucester,,Gloucester,Providence County,RI,US,town
+Richmond,,Richmond,Washington County,RI,US,town
+St. Paul's,,,Clarendon County,SC,US,county
+Pee Dee,,,Marion County,SC,US,county
+St. George,,,Dorchester County,SC,US,county
+New River,,,Beaufort County,SC,US,county
+Winyaw,,,Georgetown County,SC,US,county
+Broad River,,,Beaufort County,SC,US,county
+Toogoodoo,,,Charleston County,SC,US,county
+St Pauls,,,Clarendon County,SC,US,county
+James Island,,,Charleston County,SC,US,county
+St Andrews,,,Richland County,SC,US,county
+Albany,,Albany,Albany County,NY,US,town
+Newark,,Newark,Essex County,NJ,US,town
+City of New York,,New York City,New York County,NY,US,town
+Long Island,,,,NY,US,state
+Massachusetts,,,,MA,US,state
+Rhode Island,,,,RI,US,state
+Connecticut,,,,CT,US,state
+New York,,,,NY,US,state
+New Jersey,,,,NJ,US,state
+Pennsylvania,,,,PA,US,state
+Delaware,,,,DE,US,state
+Maryland,,,,MD,US,state
+Virginia,,,,VA,US,state
+North Carolina,,,,NC,US,state
+South Carolina,,,,SC,US,state
+Georgia,,,,GA,US,state
+Vermont,,,,VT,US,state
+Gilmantown,,Gilmantown,Strafford County,NH,US,town
+Berlington New Jersey,,Burlington,Burlington County,NJ,US,town
+96 District,,Philadelphia,Philadelphia County,PA,US,town
+Ninety six District,,Philadelphia,Philadelphia County,PA,US,town
+Trenton New Jersey,,Trenton,Hunterdon County,NJ,US,town
+Princeton New Jersey,,Princeton,Middlesex County,NJ,US,town
+Newbury,,Newbury,Hillsborough County,NH,US,town
+Pembroke,,Pembroke,Hillsborough County,NH,US,town
+Hopkinton,,Hopkinton,Hillsborough County,NH,US,town
+Salisbury,,Salisbury,Hillsborough County,NH,US,town
+Canterbury,NH,Canterbury,Rockingham County,NH,US,town
+Concord,,Concord,Grafton County,NH,US,town
+Virginia and Philadelphia,,Philadelphia,Philadelphia County,PA,US,town
+Doden Maryland,,,Anne Arundel County,MD,US,county
+Huntington New Jersey,,Huntington,Hunterdon County,NJ,US,town
+Kittery,,Kittery,York County,MA,US,town
+York,,York,York County,MA,US,town
+Wells,,Wells,York County,MA,US,town
+James City County Virginia,,,James City County,VA,US,county
+Cumb County Pennsylvania,,,Cumberland County,PA,US,county
+Cumberland,PA,,Cumberland County,PA,US,county
+York Town Pennsylvania,,York Township,York County,PA,US,town
+Portsmouth New Hampshire,,Portsmouth,Rockingham County,NH,US,town
+Tulpehocken,,Tulpehocken,Berks County,PA,US,town
+Long Cames,,,Abbeville County,SC,US,county
+Springfield,,Springfield,Hampshire County,MA,US,town
+Chester County,,,Chester County,PA,US,county
+Chester County Pennsylvania,,,Chester County,PA,US,county
+Chester Co Pennsylvania,,,Chester County,PA,US,county
+Chester County Pennsylvaina,,,Chester County,PA,US,county
+Chester,,,Chester County,PA,US,county
+Chester and County,,,Chester County,PA,US,county
+County of Philadelphia,,,Philadelphia County,PA,US,county
+Paxton Tot Dauphin County,,Middle Paxton Township,Dauphin County,PA,US,town
+Somerset County New Jersey,,,Somerset County,NJ,US,county
+North Hampshire,,,,NH,US,state
+Carolina,,,,SC,US,state
+Isaac,,,,MD,US,state
+Glouster,,Gloucester,Essex County,MA,US,town
+W Callisters Town,,,,PA,US,state
+Richard Sennings,,,,SC,US,state
+Connecticutt,,,,CT,US,state
+State of Georgia,,,,GA,US,state
+New Castle Delaware,,New Castle,New Castle County,DE,US,county
+Northumb Country,,,Northumberland Country,PA,US,county
+Delaware Newcastle County,,,New Castle County,DE,US,county
+Wilmington,,"Wilmington Delaware,DE,Wilmington,New Castle County,DE,county",New Castle County,DE,US,county
+Richard County,,,Richland County,SC,US,county
+Prince Georges County,MD,,Prince George's County,MD,US,county
+St Marys County,MD,,St Mary's County,MD,US,county
+Calver County,MD,,Calvert County,MD,US,county
+Queen Annes County,MD,,Queen Anne's County,MD,US,county
+Talbot,MD,,Talbot County,MD,US,county
+Wilmington,NC,,New Castle County,DE,US,county
+New Castle Delaware,DE,,New Castle County,DE,US,county
+Louden County Virginia,VA,,Loudoun County,VA,US,county
+Northum County Pennsylvania,PA,,Northumberland County,PA,US,county
+Fredrick Co Maryland,MD,,Frederick County,MD,US,county
+Ohio County Virginia,VA,,Ohio County,VA,US,county
+Kent Company Delaware,DE,,Kent County,DE,US,county
+Wilmington Delaware,DE,,New Castle County,DE,US,county
+New Castle County Delaware State,DE,,New Castle County,DE,US,county
+Brintwood,NH,Brentwood,Rockingham County,NH,US,town
+Prince Georges County,MD,,Prince Georges County,MD,US,county
+Bladensburg,MD,Bladensburg,Prince Georges County,MD,,town
+St Marys County,MD,,St Marys County,MD,US,county
+Queen Annes County,MD,,Queen Annes County,MD,US,county
+*,CT,,,CT,US,state
+State of New York,,,,NY,US,state
+State of Vermont,,,,VT,US,state
+State Vermont,,,,VT,US,state
+State of New Hampshire,,,,NH,US,state
+Colchester,,Colchester,New London County,CT,US,town
+*,GA,,,GA,US,state
+Virgina,,,,VA,US,state
+*,MD,,,MD,US,state
+*,NC,,,NC,US,state
+*,NH,,,NH,US,state
+*,PA,,,PA,US,state
+State of Delaware,,,,DE,US,state
+*,VA,,,VA,US,state
+Philadelphia,,Philadelphia,Philadelphia County,PA,US,town
+Delaware State,,,,DE,US,state
+*,RI,,,RI,US,state
+*,SC,,,SC,US,state
+Rotterdam,,,,,NL,country
+London,,,,,GB,country
+Eustatia,BVI,,,,VI,country
+Barbadoes,,,,,BB,country
+Sta Croix,,,,,VI,country
+Maidenhead,,,,,GB,country
+St Eustalia,PA,,,,NL,country
+Bermuda,BM,,,,BM,country
+Register of the Treasury,US,,,,US,country
+,FR,,,,FR,country
+St. Thomas,VI,,,,VI,country
+St Thomas,BVI,,,,VI,country
+Great Britain,GB,,,,GB,country
+Edinburgh,GB,,,,GB,country
+Bourdeaux,FR,,,,FR,country
+The River May,VI,,,,VI,country
+Lebanon,CT,Lebanon,Windham County,CT,US,town
+Southhampton,CT,Southampton,Windham County,CT,US,town
+Conecticutt,,,,CT,US,state
+State of Delawere,,,,DE,US,state
+St Eustatia,PA,,,,NL,country
+Kensignton,PA,Kensington,Philadelphia County,PA,US,town
+North Kingstone,RI,North Kingston,Washington County,RI,US,town
+Little Compton,RI,Little Compton,Kent County,RI,US,town

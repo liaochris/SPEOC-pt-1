@@ -1,0 +1,12 @@
+state,file_path,first_row,last_row,year_col,dollars_col,cents_col,month_col
+ct,../../../data_raw/post1790/CT/CT_post1790_CD_ledger.xlsx,15,1021,"C,S,AI","N,AD,AT","O,AE,AU","D,T,AJ"
+ga,../../../data_raw/post1790/GA/T694_GA_Loan_Office_CD.xlsx ,12,76,C,AF,,D
+md,../../../data_raw/post1790/MD/MD_post1790_CD.xlsx,13,639,"C,Q,AE","L,Z,AN","M,AA,AO","D,R,AF"
+nc,../../../data_raw/post1790/NC/T695_R4_NC_CD.xlsx ,13,86,C,AF,,D
+nh,../../../data_raw/post1790/NH/T652_R6_New_Hampshire_CD.xlsx ,12,230,C,T,U,D
+nj,../../../data_raw/post1790/NJ/NJ_3_percent_stock_T698_R1_R2.xlsx ,13,988,H,L,M,I
+ny,../../../data_raw/post1790/NY/NY_1790_CD.xlsx,13,2205,AH,"M,AC,AR","N,AD,AS",AI
+pa,../../../data_raw/post1790/PA/PA_post1790_CD.xlsx,13,1293,"C,Q,AE","L,Z,AO","M,AA,AP","D,R,AF"
+ri,../../../data_raw/post1790/RI/T653_Rhode_Island_CD.xlsx,13,674,"C,Q,AE","L,Z,AN","M,AA,AO","D,R,AF"
+sc,../../../data_raw/post1790/SC/Post_1790_South_Carolina_CD.xlsx,13,440,"I,X,AM","M,AB,AQ","N,AC,AR","J,Y,AN"
+va,../../../data_raw/post1790/VA/VA_CD.xlsx,13,778,"C,P,AC","K,X,AK","L,Y,AL","D,Q,AD"

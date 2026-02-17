@@ -1,0 +1,13 @@
+state,file,header,usecols,numcols,dropcols,
+"CT","../data_raw/post1790/CT/CT_post1790_CD_ledger.xlsx",13,"H, I, J, K, L, N, O, X, Y, Z, AA, AB, AD, AE, AN, AO, AP, AQ, AR, AT, AU",3,"",
+"GA","../data_raw/post1790/GA/T694_GA_Loan_Office_CD.xlsx",10,"Q, R, S, T, U, Z, AA, AB, AC, AD, AE",1,"65,66",
+"MD","../data_raw/post1790/MD/MD_post1790_CD.xlsx",11,"G, H, I, J, K, L, M, U, V, W, X, Y, Z, AA, AI, AJ, AK, AL, AM, AN, AO",3,"",
+"NC","../data_raw/post1790/NC/T695_R4_NC_CD.xlsx",11,"J, K, L, M, N, W, X, Z, AA, AC, AD",1,"74,75",
+"NH","../data_raw/post1790/NH/T652_R6_New_Hampshire_CD.xlsx",10,"I, J, K, L, M, N, O, P, Q, R, S",1,"219,220",
+"PA","../data_raw/post1790/PA/PA_post1790_CD.xlsx",11,"G, H, I, J, K, L, M, U, V, W, X, Y, Z, AA, AJ, AK, AL, AM, AN, AO, AP",3,"",
+"RI","../data_raw/post1790/RI/T653_Rhode_Island_CD.xlsx",11,"G, H, I, J, K, L, M, U, V, W, X, Y, Z, AA, AI, AJ, AK, AL, AM, AN, AO",3,"",
+"SC","../data_raw/post1790/SC/Post_1790_South_Carolina_CD.xlsx",11,"D, E, F, G, H, M, N, S, T, U, V, W, AB, AC, AH, AI, AJ, AK, AL, AQ, AR",3,"",
+
+
+
+

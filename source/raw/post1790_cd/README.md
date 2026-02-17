@@ -25,7 +25,9 @@ XLSX spreadsheets transcribed from National Archives T-series microfilm, obtaine
 - `SC/Post_1790_South_Carolina_CD.xlsx`
 - `VA/VA_CD.xlsx`
 
-**Correction/metadata files** (manually created during cleaning):
+All state XLSX files are used by the cleaning pipeline (source/derived/post1790_cd/). Used by: standardize_geography.py via cd_raw.csv config.
+
+**`corrections/`** — Manually created correction and metadata files:
 - `cd_raw.csv` — Metadata mapping each state's raw XLSX file path, header row, Excel column ranges, and column count for automated import by the cleaning pipeline
 - `town_fix.csv` — Manual corrections for town name standardization, created by comparing cleaning output against the USGS GNIS place name database
 - `company_names_fix.csv` — Manual corrections for company/partnership entity names identified during name deduplication
