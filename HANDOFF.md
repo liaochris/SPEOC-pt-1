@@ -20,13 +20,26 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
    - `open_refine/reconciliation_services/` → `source/scrape/reconciliation_services/`
    - Added READMEs for each scrape subfolder and updated SConscript
 
+7. **Step 1.4**: Moved derived/cleaning code → `source/derived/`
+   - Post-1790 CD: 4 notebooks → scripts (standardize_geography, clean_names_and_deduplicate, integrate_scraped_data, aggregate_final_cd)
+   - Pre-1790: 8 notebooks → scripts (combine_certificate_types, clean_names, clean_imperfections, clean_names_individual, find_similar_names, integrate_ancestry_search, aggregate_debt, aggregate_debt_alternate)
+   - Family tree matching: 4 scripts with descriptive names
+   - OpenRefine data/projects → output/derived/open_refine/
+   - All intermediate CSVs → output/derived/
+   - Converted PDFs to markdown data dictionaries
+8. **Step 1.5**: Moved analysis code → `source/analysis/`
+   - Pre-1790: 1 Python + 2 Julia scripts (distribution, year, maps)
+   - Post-1790: 1 Python script (1790 Analysis)
+   - Debt analysis: 3 scripts (treasurers, Hamilton, notables), converted 2 PDF treasurer lists to markdown
+   - OpenRefine analysis: 1 script, converted reconciliation PDF to markdown
+   - Family tree analysis: 2 scripts
+   - All output CSVs/PNGs/SVGs → output/analysis/
+
 ## Next Step
-7. **Step 1.4**: Move derived/cleaning code → `source/derived/` (convert notebooks to scripts)
+9. **Step 1.6**: Move web app → `source/webapp/`
 
 ## Remaining Steps (Task 1)
-8. Step 1.4: Move derived/cleaning code → `source/derived/` (convert notebooks to scripts)
-6. Step 1.5: Move analysis code → `source/analysis/` (convert notebooks to scripts)
-7. Step 1.6: Move web app → `source/webapp/`
+9. Step 1.6: Move web app → `source/webapp/`
 8. Step 1.7: Handle WIP (issue/), archive, documentation
 9. Step 1.8: Set up source/lib/ SaveData
 10. Step 1.9: Fix all imports, finalize SConstruct
@@ -95,3 +108,23 @@ Accumulated list of internal file paths that reference old locations and need up
 - `filter_matches.py`: reads `results/` → `output/scrape/wikitree/results/`; imports `wikitree`, `task_3`
 - `drop_same_name.py`: similar to filter_matches
 - `finalize_matches.py`: reads/writes `results/` → `output/scrape/wikitree/results/`
+
+### source/analysis/pre1790/
+- `analyze_debt_distribution.py`: reads `data/agg_debt_grouped.csv` → `output/derived/pre1790/agg_debt_grouped.csv`; reads society_members data → `source/raw/society_members/orig/`; writes results → `output/analysis/pre1790/`
+- `analyze_by_year.jl`: reads pre1790 data → `output/derived/pre1790/`; writes SVGs → `output/analysis/pre1790/debt_per_year/`
+- `generate_pierce_maps.jl`: reads shapefiles → `source/raw/shapefiles/`; writes maps → `output/analysis/pre1790/pierce/`
+
+### source/analysis/post1790_cd/
+- `analyze_1790_debt.py`: reads `data_clean/final_data_CD.csv` → `output/derived/post1790_cd/final_data_CD.csv`; reads shapefiles → `source/raw/shapefiles/`
+
+### source/analysis/debt_analysis/
+- `match_treasurers.py`: reads `../data_clean/` → `output/derived/post1790_cd/`; reads `../data_raw/` → `source/raw/`
+- `analyze_hamilton_public_debt.py`: reads `../data_clean/` → `output/derived/post1790_cd/`
+- `analyze_notable_holdings.py`: reads `data_clean/` → `output/derived/post1790_cd/`; reads `data_raw/delegates/` → `source/raw/delegates/orig/`
+
+### source/analysis/open_refine_analysis/
+- `analyze_openrefine_results.py`: reads from `../` relative paths → `output/analysis/open_refine_analysis/` and `output/derived/`
+
+### source/analysis/family_tree_analysis/
+- `analyze_matches.py`: reads `results/` → `output/scrape/wikitree/results/`; reads `data/` → `output/derived/family_tree/`
+- `analyze_non_matched.py`: similar path updates
