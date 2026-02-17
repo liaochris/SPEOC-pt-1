@@ -81,6 +81,17 @@ Accumulated list of internal file paths that reference old locations and need up
 ### source/raw/post1790_cd/docs/
 - `cd_raw.csv`: contains `file` column with old paths like `../data_raw/post1790/CT/CT_post1790_CD_ledger.xlsx` → need to update to new `source/raw/post1790_cd/orig/CT/...` paths
 
-### Cleaning/derived code (to be added in Step 1.4)
-- `clean_1_geo.ipynb` → reads `clean_tools/cd_raw.csv`, `clean_tools/town_fix.csv`, etc.
-- All notebooks reference `../data_raw/`, `../data_clean/`, `clean_tools/` paths
+### source/derived/post1790_cd/
+- `standardize_geography.py`: reads `clean_tools/cd_raw.csv` → `source/raw/post1790_cd/docs/cd_raw.csv`; reads `clean_tools/town_fix.csv` → `source/raw/post1790_cd/corrections/town_fix.csv`; reads `../data_raw/post1790/` → `source/raw/post1790_cd/orig/`; writes to `../data_clean/` → `output/derived/post1790_cd/`
+- `clean_names_and_deduplicate.py`: reads `../data_clean/` → `output/derived/post1790_cd/`; reads `clean_tools/company_names_fix.csv` → `source/raw/post1790_cd/corrections/`
+- `integrate_scraped_data.py`: reads `../data_clean/` and `scrape_tools/` → `output/derived/post1790_cd/`
+- `aggregate_final_cd.py`: reads `../data_clean/` → `output/derived/post1790_cd/`; reads `clean_tools/occ_correction.csv` → `source/raw/post1790_cd/corrections/`
+
+### source/derived/pre1790/
+- All scripts: read `../data_raw/pre1790/` → `source/raw/pre1790/orig/`; read/write `data/` → `output/derived/pre1790/`; read `corrections/` → `source/raw/pre1790/corrections/`
+
+### source/derived/family_tree/
+- `match_candidates.py`: reads `results/` → `output/scrape/wikitree/results/`; reads `data/post_1790.csv` → `output/scrape/wikitree/data/`; imports from `wikitree` → `source.scrape.wikitree.wikitree`; imports from `task_3` (self-references)
+- `filter_matches.py`: reads `results/` → `output/scrape/wikitree/results/`; imports `wikitree`, `task_3`
+- `drop_same_name.py`: similar to filter_matches
+- `finalize_matches.py`: reads/writes `results/` → `output/scrape/wikitree/results/`
