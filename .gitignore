@@ -6,7 +6,7 @@ __pycache__/
 ~$*
 .~lock.*
 *.exe
-output/
+
 .env
 *.egg-info/
 .venv/
