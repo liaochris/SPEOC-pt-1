@@ -7,4 +7,5 @@
 
 ### `source/scrape`
 
-5. Understand in more detail what goes on in source/scrape
+5. Understand in more detail what goes on in `source/scrape`
+6. See if there's a way scripts can not use derived outputs... + 

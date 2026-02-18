@@ -36,9 +36,9 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
 - `source/scrape/ancestry_person_county_scraper/analyze_results.py` and `config.py` path updates not verified
 
 ## Future Tasks (separate PRs)
-- Task 2: Document dependencies, create virtual environment
-- Task 3: Complete SCons build scripts (add remaining targets, dependency chains)
-- Task 4: Code quality improvements (proper Main() functions for all notebook conversions, remove `get_ipython()` calls, deduplicate speculator lists in analyze_notable_holdings.py)
+- Task 2: Code quality improvements (proper Main() functions for all notebook conversions, remove `get_ipython()` calls, deduplicate speculator lists in analyze_notable_holdings.py). Also reorganize code so its written in a modular format, check whether non-scrapes run, have data be imported asopposed to defined in scripts. convert al julia to pyhton
+- Task 3: Document dependencies, create virtual environment
+- Task 4: Complete SCons build scripts (add remaining targets, dependency chains)
 
 ## Key Decisions Made
 - Post-1790 ASD and CD separated into distinct folders (raw/derived/analysis mirror each other)

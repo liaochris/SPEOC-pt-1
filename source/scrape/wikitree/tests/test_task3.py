@@ -2,7 +2,7 @@
 import json, csv
 import pandas as pd
 
-from task_3 import run_task3
+from source.derived.family_tree.match_candidates import run_task3
 
 def fake_get_profile(profile_key):
     # minimal stubs for 2 children

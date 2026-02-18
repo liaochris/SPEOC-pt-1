@@ -1,7 +1,7 @@
 import requests
 import pytest
-from wikitree import _year_from_date, search_profile_key, get_descendants, get_primary_location, search_candidates_for_name
-from task_1 import task1_write_candidates
+from source.scrape.wikitree.wikitree import _year_from_date, search_profile_key, get_descendants, get_primary_location, search_candidates_for_name
+from source.scrape.wikitree.search_wikitree_candidates import task1_write_candidates
 
 class DummyResponse:
     def __init__(self, json_data, status_code=200):

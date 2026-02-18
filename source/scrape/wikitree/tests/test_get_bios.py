@@ -1,4 +1,4 @@
-import get_bios as sbp 
+import source.scrape.wikitree.get_bios as sbp
 import json
 from pathlib import Path
 

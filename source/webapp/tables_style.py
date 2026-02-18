@@ -4,7 +4,7 @@ import pandas as pd
 # load the dataset.
 
 
-df = pd.read_csv('https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/data_clean/final_data_CD.csv', index_col = 0)
+df = pd.read_csv('https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/output/derived/post1790_cd/final_data_CD.csv', index_col = 0)
 df = df.drop(
     ['Group Match Index', 'Group Match Url', 'Full Search Name', 'assets', 'Name_Fix_Transfer', 'Name_Fix_Clean',
      'imputed_location', 'location conflict', 'Group Name Type',

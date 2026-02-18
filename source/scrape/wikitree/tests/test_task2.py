@@ -1,5 +1,5 @@
-from task_2 import get_children
-from wikitree import get_profile
+from source.scrape.wikitree.build_family_graph import get_children
+from source.scrape.wikitree.wikitree import get_profile
 
 def test_children_count():
     # Fake get_profile to avoid API calls
@@ -31,7 +31,7 @@ def test_children_count():
     tmp_csv.close()
 
     # Run the function
-    from task_2 import get_children  # replace with your actual import
+    from source.scrape.wikitree.build_family_graph import get_children
     nodes, edges = get_children(tmp_csv.name, fetch_profile=fake_get_profile)
 
     # Count edges per parent
