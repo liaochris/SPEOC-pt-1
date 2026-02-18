@@ -1,0 +1,27 @@
+Import('*')
+
+# Pre-1790 analysis
+env.Python(
+    target = ['#output/analysis/pre1790/debt_by_bracket.png'],
+    source = ['#source/analysis/pre1790/analyze_debt_distribution.py']
+)
+
+# Debt analysis
+env.Python(
+    target = ['#output/analysis/debt_analysis/matches_liquidated_debt_certificates.csv'],
+    source = ['#source/analysis/debt_analysis/match_treasurers.py']
+)
+
+env.Python(
+    target = ['#output/analysis/debt_analysis/speculator_matches_agg_debt_grouped.csv'],
+    source = ['#source/analysis/debt_analysis/analyze_notable_holdings.py']
+)
+
+env.Python(
+    target = ['#output/analysis/debt_analysis/debt_summary.csv'],
+    source = ['#source/analysis/debt_analysis/analyze_hamilton_public_debt.py']
+)
+
+# Julia scripts require manual execution:
+#   julia source/analysis/pre1790/analyze_by_year.jl
+#   julia source/analysis/pre1790/generate_pierce_maps.jl
