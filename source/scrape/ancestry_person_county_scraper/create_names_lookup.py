@@ -1,8 +1,10 @@
 import pandas as pd
 from pathlib import Path
 
+INDIR_DERIVED = Path("output/derived/pre1790")
+
 def create_all_state_lookups(
-    input_csv: Path = Path("data/loan_office_certificates_cleaned.csv"),
+    input_csv: Path = INDIR_DERIVED / "loan_office_certificates_cleaned.csv",
     output_dir: Path = Path("names_to_lookup")
 ):
     # 1) Read your master table

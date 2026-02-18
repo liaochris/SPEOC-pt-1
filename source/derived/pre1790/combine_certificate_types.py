@@ -29,6 +29,7 @@ import datetime
 import numpy as np
 import json
 import os
+from pathlib import Path
 from fuzzywuzzy import fuzz
 
 import nltk
@@ -42,12 +43,16 @@ import re
 import csv
 import ast
 
+INDIR_DERIVED = Path("output/derived/pre1790")
+INDIR_RAW = Path("source/raw/pre1790")
+OUTDIR = Path("output/derived/pre1790")
+
 
 # In[8]:
 
 
 #Dataframes
-agg_debt = pd.read_csv('data/final_agg_debt.csv')
+agg_debt = pd.read_csv(INDIR_DERIVED / "final_agg_debt.csv")
 
 name_changes = pd.DataFrame({'title_org': pd.Series(dtype='str'),
                        'title_new': pd.Series(dtype='str'),
@@ -60,10 +65,10 @@ name_changes = pd.DataFrame({'title_org': pd.Series(dtype='str'),
                        'org_index': pd.Series(dtype='int')})
 
 # retrieve manual corrections from csv file if they exist 
-manual_corrects_df = pd.read_csv('data/manual_corrections.csv')
+manual_corrects_df = pd.read_csv(INDIR_RAW / "corrections/manual_corrections.csv")
 manual_corrects_dict = manual_corrects_df.to_dict(orient='index')
 manual_corrects = {}
-# add manual corrections to manual_corrects dictionary 
+# add manual corrections to manual_corrects dictionary
 for correction in manual_corrects_dict.keys():
     manual_corrects[manual_corrects_dict[correction]['Unnamed: 0']] = [manual_corrects_dict[correction]['new first name'], manual_corrects_dict[correction]['new last name']]
 
@@ -301,10 +306,10 @@ agg_debt = agg_debt.apply(lambda row: handle_all_orgs(row), axis=1)
 
 # Company names
 # retrieve manual corrections from csv file if they exist 
-manual_corrects_df = pd.read_csv('data/manual_corrections.csv')
+manual_corrects_df = pd.read_csv(INDIR_RAW / "corrections/manual_corrections.csv")
 manual_corrects_dict = manual_corrects_df.to_dict(orient='index')
 manual_corrects = {}
-# add manual corrections to manual_corrects dictionary 
+# add manual corrections to manual_corrects dictionary
 for correction in manual_corrects_dict.keys():
     manual_corrects[manual_corrects_dict[correction]['Unnamed: 0']] = [manual_corrects_dict[correction]['new first name'], manual_corrects_dict[correction]['new last name']]
 
@@ -560,7 +565,7 @@ agg_debt = agg_debt.apply(lambda row: handle_two_name(row), axis=1)
 # save manual corrections 
 manual_corrects_df = pd.DataFrame.from_dict(manual_corrects, orient='index') 
 manual_corrects_df.columns = ['new first name', 'new last name']
-manual_corrects_df.to_csv('data/manual_corrections.csv')
+manual_corrects_df.to_csv(INDIR_RAW / 'corrections/manual_corrections.csv')
 
 # if there are debt entries with multiple individuals, split them into their own rows
 agg_debt = agg_debt.explode('to whom due | first name')
@@ -732,13 +737,13 @@ agg_debt = agg_debt.drop('index', axis=1)
 # In[ ]:
 
 
-agg_debt.to_csv('data/agg_debt_grouped.csv') # Save
+agg_debt.to_csv(OUTDIR / 'agg_debt_grouped.csv') # Save
 
 
 # In[ ]:
 
 
-name_changes.to_csv("name_changes.csv")
+name_changes.to_csv(OUTDIR / "name_changes.csv")
 
 
 # In[1]:
@@ -750,7 +755,7 @@ import pandas as pd
 # In[2]:
 
 
-final_data = pd.read_csv("data/agg_debt_grouped.csv")
+final_data = pd.read_csv(OUTDIR / "agg_debt_grouped.csv")
 final_data.dtypes
 
 

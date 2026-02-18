@@ -9,18 +9,22 @@
 
 
 # import all the necessary packages
-import pandas as pd 
+from pathlib import Path
+import pandas as pd
 import numpy as np
 import re
 import csv
 import ast
+
+INDIR_RAW = Path("source/raw/pre1790")
+OUTDIR = Path("output/derived/pre1790")
 
 
 # In[2]:
 
 
 # import aggregated debt file
-agg_debt = pd.read_csv('data/final_agg_debt.csv')
+agg_debt = pd.read_csv(OUTDIR / 'final_agg_debt.csv')
 
 
 # In[3]:
@@ -89,7 +93,7 @@ def add_changes(title_org, title_new, fn_org, ln_org, fn_new, ln_new, case, file
 
 
 # retrieve manual corrections from csv file if they exist 
-manual_corrects_df = pd.read_csv('data/manual_corrections.csv')
+manual_corrects_df = pd.read_csv(INDIR_RAW / 'corrections/manual_corrections.csv')
 manual_corrects_dict = manual_corrects_df.to_dict(orient='index')
 manual_corrects = {}
 # add manual corrections to manual_corrects dictionary 
@@ -406,7 +410,7 @@ agg_debt = agg_debt.apply(lambda row: handle_two_name(row), axis=1)
 # save manual corrections 
 manual_corrects_df = pd.DataFrame.from_dict(manual_corrects, orient='index') 
 manual_corrects_df.columns = ['new first name', 'new last name']
-manual_corrects_df.to_csv('data/manual_corrections.csv')
+manual_corrects_df.to_csv(INDIR_RAW / 'corrections/manual_corrections.csv')
 
 
 # In[17]:
@@ -527,7 +531,7 @@ agg_debt = agg_debt.drop('index', axis=1)
 # In[27]:
 
 
-agg_debt.to_csv('data/agg_debt_grouped.csv') # Save
+agg_debt.to_csv(OUTDIR / 'agg_debt_grouped.csv') # Save
 
 
 # In[28]:

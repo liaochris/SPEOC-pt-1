@@ -18,7 +18,11 @@
 
 
 # import all the necessary packages
-import pandas as pd 
+from pathlib import Path
+import pandas as pd
+
+INDIR_RAW = Path("source/raw/pre1790")
+OUTDIR = Path("output/derived/pre1790")
 
 
 # In[2]:
@@ -86,17 +90,17 @@ changes = {
 
 
 # handle the liquidated debt certificates first for each file and merge into 1 dataframe
-ct_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_CT.xlsx", header=[10,11])
-de_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_DE.xlsx", header=[9,10])
-ma_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_MA.xlsx", header=[10,11])
-nh_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_NH.xlsx", header=[10,11])
-nj_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_NJ.xlsx", header=[9,10])
-ny_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_NY.xlsx", header=[10,11])
-pa_stelle_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_PA_stelle.xlsx", header=[10,11])
-pa_story_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_PA_story.xlsx", header=[10,11])
-ri_debt = pd.read_excel("../../data_raw/pre1790/liquidated_debt_certificates_RI.xlsx", header=[10,11])
-loan_9_debt = pd.read_excel("../../data_raw/pre1790/loan_office_certificates_9_states.xlsx", header=0)
-marine_debt = pd.read_excel("../../data_raw/pre1790/Marine_Liquidated_Debt_Certificates.xlsx", header=[10, 11])
+ct_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_CT.xlsx", header=[10,11])
+de_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_DE.xlsx", header=[9,10])
+ma_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_MA.xlsx", header=[10,11])
+nh_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_NH.xlsx", header=[10,11])
+nj_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_NJ.xlsx", header=[9,10])
+ny_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_NY.xlsx", header=[10,11])
+pa_stelle_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_PA_stelle.xlsx", header=[10,11])
+pa_story_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_PA_story.xlsx", header=[10,11])
+ri_debt = pd.read_excel(INDIR_RAW / "orig/liquidated_debt_certificates_RI.xlsx", header=[10,11])
+loan_9_debt = pd.read_excel(INDIR_RAW / "orig/loan_office_certificates_9_states.xlsx", header=0)
+marine_debt = pd.read_excel(INDIR_RAW / "orig/Marine_Liquidated_Debt_Certificates.xlsx", header=[10, 11])
 
 # add a state column to each dataframe
 ct_debt['state'] = 'ct'
@@ -202,7 +206,7 @@ for column in agg_debt.columns:
 # In[9]:
 
 
-agg_debt.to_csv('data/agg_debt_david.csv')
+agg_debt.to_csv(OUTDIR / 'agg_debt_david.csv')
 
 
 # In[ ]:

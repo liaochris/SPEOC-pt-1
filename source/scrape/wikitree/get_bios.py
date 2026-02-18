@@ -1,11 +1,13 @@
+from pathlib import Path
 import csv, json, os, time
 from datetime import datetime, timezone
-from wikitree import get_profile  # your function
+from source.scrape.wikitree.wikitree import get_profile
 import logging
 log = logging.getLogger(__name__)
 
-INPUT_CSV = "results/task_1.csv"
-OUTPUT_JSONL = "wikitree_bios.jsonl"
+OUTDIR = Path("output/scrape/wikitree/results")
+INPUT_CSV = OUTDIR / "task_1.csv"
+OUTPUT_JSONL = OUTDIR / "wikitree_bios.jsonl"
 SLEEP_SEC = 0.5     # gentle on API
 MAX_RETRIES = 3
 

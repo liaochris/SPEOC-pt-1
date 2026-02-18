@@ -4,6 +4,7 @@
 # In[1]:
 
 
+from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,6 +13,9 @@ import time
 import pandas as pd
 import numpy as np
 from selenium.webdriver.common.keys import Keys
+
+INDIR_RAW = Path("source/raw/post1790_cd")
+OUTDIR = Path("output/derived/post1790_cd")
 
 
 # ## Helper Structures and Data
@@ -30,7 +34,7 @@ user = "Chris"
 # In[8]:
 
 
-final_name_list = pd.read_csv('scrape_tools/name_list.csv', index_col=0)[
+final_name_list = pd.read_csv(OUTDIR / 'name_list.csv', index_col=0)[
     ['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'country', 'name_type']].drop_duplicates()
 final_name_list.reset_index(inplace=True, drop=True)
 
@@ -488,8 +492,8 @@ for index in final_name_list.index:
     """if index < 4401: #3606:
         continue"""
     # save our data after each run
-    df_list_og.to_csv('scrape_tools/scrape_ids_prelim.csv')
-    match_list_og.to_csv('scrape_tools/scrape_results_prelim.csv')
+    df_list_og.to_csv(OUTDIR / 'scrape_ids_prelim.csv')
+    match_list_og.to_csv(OUTDIR / 'scrape_results_prelim.csv')
 
     # obtain attributes of data we want to use to search
     fn = final_name_list.loc[index, 'Fn_Fix']
@@ -669,22 +673,22 @@ df_list.loc[double_rep_ind, 'Match Status'] = 'Complete Match'
 pd.merge(final_name_list, df_list.drop_duplicates(),
          how='left',
          left_on=['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'name_type'],
-         right_on=['First Name', 'Last Name', 'Search Town', 'Search County', 'Search State', 'Name Type']).to_csv('scrape_tools/name_list_scraped.csv')
+         right_on=['First Name', 'Last Name', 'Search Town', 'Search County', 'Search State', 'Name Type']).to_csv(OUTDIR / 'name_list_scraped.csv')
 
-df_list.to_csv('scrape_tools/scrape_ids.csv')
-match_list.to_csv('scrape_tools/scrape_results.csv')
+df_list.to_csv(OUTDIR / 'scrape_ids.csv')
+match_list.to_csv(OUTDIR / 'scrape_results.csv')
 
 
 # In[19]:
 
 
-pd.read_csv('scrape_tools/scrape_results.csv', index_col = 0).loc[[0, 8, 9]]
+pd.read_csv(OUTDIR / 'scrape_results.csv', index_col = 0).loc[[0, 8, 9]]
 
 
 # In[20]:
 
 
 import pandas as pd
-print(pd.read_csv('scrape_tools/name_list_scraped.csv', index_col = 0).loc[[1, 9, 21]][['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'country','name_type', 'Match Index', 'Match Status']].to_markdown())
-print(pd.read_csv('scrape_tools/scrape_results.csv', index_col = 0).loc[[0, 8, 9]][['Name', 'Home in 1790 (City, County, State)','Free White Persons - Males - 16 and over','Free White Persons - Females', 'Number of Household Members','Free White Persons - Males - Under 16','Number of Slaves','Number of All Other Free Persons','Match Type']].to_markdown())
+print(pd.read_csv(OUTDIR / 'name_list_scraped.csv', index_col = 0).loc[[1, 9, 21]][['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'country','name_type', 'Match Index', 'Match Status']].to_markdown())
+print(pd.read_csv(OUTDIR / 'scrape_results.csv', index_col = 0).loc[[0, 8, 9]][['Name', 'Home in 1790 (City, County, State)','Free White Persons - Males - 16 and over','Free White Persons - Females', 'Number of Household Members','Free White Persons - Males - Under 16','Number of Slaves','Number of All Other Free Persons','Match Type']].to_markdown())
 

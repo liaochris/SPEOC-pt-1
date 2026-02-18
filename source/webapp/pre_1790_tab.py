@@ -1,10 +1,15 @@
+from pathlib import Path
 import pandas as pd
 from dash import html, dash_table
 from dash import Dash
 
+INDIR_RAW = Path("source/raw/pre1790")
+INDIR_DERIVED = Path("output/derived/pre1790")
+OUTDIR = Path("output/webapp")
+
 app = Dash(__name__)
 
-loan_excel_path = "data_raw/pre1790/loan_office_certificates_9_states.xlsx"
+loan_excel_path = INDIR_RAW / "orig/loan_office_certificates_9_states.xlsx"
 loan_df = pd.read_excel(loan_excel_path)
 
 loan_df.columns = loan_df.columns.str.strip()
@@ -13,22 +18,22 @@ _pre1790_loan_df = loan_df.drop_duplicates(subset=[
     "State", "Year", "Month", "Day", "Title 1", "First Name 1", "Last Name 1",
     "Title 2", "First Name 2", "Last Name 2", "Face Value", "Specie Value"
 ])
-loan_df.to_csv("data_raw/pre1790/loan_office_certificates_9_states.csv", index=False)
+loan_df.to_csv(OUTDIR / "loan_office_certificates_9_states.csv", index=False)
 
-_loan_office_df = pd.read_csv("data_raw/pre1790/loan_office_certificates_9_states.csv", low_memory=False)
+_loan_office_df = pd.read_csv(OUTDIR / "loan_office_certificates_9_states.csv", low_memory=False)
 
 
 
-excel_path = "data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx"
+excel_path = INDIR_RAW / "orig/Pierce_Certs_cleaned_2019.xlsx"
 pierce_df = pd.read_excel(excel_path)
 
 _pre1790_pierce_df = pierce_df.drop_duplicates(subset=["First", "Last", "Value", "Group", "To Whom Issued", "State", "Officer"])
-pierce_df.to_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv", index=False)
+pierce_df.to_csv(OUTDIR / "Pierce_Certs_cleaned_2019.csv", index=False)
 
 
 
 _pre1790_df = (
-    pd.read_csv("data_raw/pre1790/clean_files/liquidated_debt_certificates.csv", low_memory=False)
+    pd.read_csv(INDIR_DERIVED / "liquidated_debt_certificates.csv", low_memory=False)
     .drop_duplicates(subset="uid")
 )
 
@@ -67,7 +72,7 @@ def get_pre1790_liquidated_layout(page_size=10):
         )
     ])
 _pre1790_pierce_df = (
-    pd.read_csv("data_raw/pre1790/Pierce_Certs_cleaned_2019.csv", low_memory=False)
+    pd.read_csv(OUTDIR / "Pierce_Certs_cleaned_2019.csv", low_memory=False)
         .drop_duplicates(subset=["First", "Last", "Value", "Group", "To Whom Issued", "State", "Officer"])
 )
 

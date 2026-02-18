@@ -1,12 +1,16 @@
 import pandas as pd
 import json
 from pathlib import Path
-from wikitree import get_profile  # your existing method
-from task_3 import build_name, norm
+from source.scrape.wikitree.wikitree import get_profile
+from source.derived.family_tree.match_candidates import build_name, norm
 
-IN_CSV = "results/task_3_matches.csv"
-EDGES_JSON = "results/edges_task_2.json"
-OUT_CSV = "results/task_4_matches_filtered.csv"
+INDIR_WIKITREE = Path("output/scrape/wikitree")
+INDIR          = Path("output/derived/family_tree")
+OUTDIR         = Path("output/derived/family_tree")
+
+IN_CSV     = INDIR / "task_3_matches.csv"
+EDGES_JSON = INDIR_WIKITREE / "results" / "edges_task_2.json"
+OUT_CSV    = OUTDIR / "task_4_matches_filtered.csv"
 
 def to_year(val) -> int | None:
     s = str(val or "")[:4]

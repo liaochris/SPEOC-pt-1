@@ -1,3 +1,4 @@
+from pathlib import Path
 import csv
 import requests
 import re
@@ -5,6 +6,7 @@ from typing import Optional, Dict
 import logging
 log = logging.getLogger(__name__)
 
+INDIR_DERIVED = Path("output/derived/pre1790")
 WIKITREE_API = "https://api.wikitree.com/api.php"
 
 def _year_from_date(s: str) -> Optional[int]:
@@ -220,7 +222,7 @@ def search_candidates_for_name(
 
 
 if __name__ == "__main__":
-    with open("../data/loan_office_certificates_cleaned.csv") as f:
+    with open(INDIR_DERIVED / "loan_office_certificates_cleaned.csv") as f:
         for row in csv.DictReader(f):
             name  = row["raw_name"]
             state = row["state"]

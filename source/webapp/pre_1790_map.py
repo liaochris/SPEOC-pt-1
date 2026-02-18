@@ -1,3 +1,4 @@
+from pathlib import Path
 import json
 
 import dash_bootstrap_components as dbc
@@ -11,10 +12,14 @@ from dash.dependencies import Input, Output
 from shapely import wkt
 from app import app
 
+INDIR_SHAPEFILES = Path("source/raw/shapefiles")
+INDIR_CENSUS = Path("source/raw/census_data")
+INDIR_DERIVED = Path("output/derived/pre1790")
+
 def create_pop_map():
 
     # --- 1) Load NHGIS 1790 states ---
-    shp = "state_shape_files/nhgis0001_shapefile_tl2000_us_state_1790/US_state_1790.shp"
+    shp = INDIR_SHAPEFILES / "nhgis_state_1790/nhgis0001_shapefile_tl2000_us_state_1790/US_state_1790.shp"
     gdf = gpd.read_file(shp)
     # Reproject from Albers Equal Area to WGS84 lat/lon
     gdf = gdf.to_crs(epsg=4326)
@@ -27,7 +32,7 @@ def create_pop_map():
 
     # --- 2) Load population data and normalize names ---
     state_pops = pd.read_csv(
-        "data_raw/census_data/statePop.csv",
+        INDIR_CENSUS / "statePop.csv",
         header=0,
         usecols=[0, 1],
         low_memory=False
@@ -102,7 +107,7 @@ def create_debt_map(q=5):
     """
 
     # 1) Load NHGIS 1790 states and reproject to WGS84 (lon/lat for web maps)
-    shp = "state_shape_files/nhgis0001_shapefile_tl2000_us_state_1790/US_state_1790.shp"
+    shp = INDIR_SHAPEFILES / "nhgis_state_1790/nhgis0001_shapefile_tl2000_us_state_1790/US_state_1790.shp"
     states = gpd.read_file(shp).to_crs(epsg=4326)
 
     states["geometry"] = states.geometry.simplify(tolerance=0.05, preserve_topology=True)
@@ -129,7 +134,7 @@ def create_debt_map(q=5):
     states = states[states["state"].isin(colonies_1790)].copy()
 
     # 2) Load & clean the debt data
-    df = pd.read_csv("../cleaning_CD/pre1790/data/agg_debt_david.csv", header=0, low_memory=False)
+    df = pd.read_csv(INDIR_DERIVED / "agg_debt_david.csv", header=0, low_memory=False)
     df.columns = df.columns.str.strip()
 
     state_col  = "state"

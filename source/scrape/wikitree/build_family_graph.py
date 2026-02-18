@@ -1,6 +1,9 @@
+from pathlib import Path
 import csv, json
 from typing import Callable, Dict, Any, Tuple, List, Optional
-from wikitree import get_profile
+from source.scrape.wikitree.wikitree import get_profile
+
+OUTDIR = Path("output/scrape/wikitree/results")
 
 def get_children(
     input_csv: str,
@@ -76,10 +79,10 @@ def get_children(
 
 if __name__ == "__main__":
     nodes, edges = get_children(
-        input_csv="results/task_1.csv",
+        input_csv=OUTDIR / "task_1.csv",
         fetch_profile=get_profile,
-        nodes_path="results/nodes_task_2.json",
-        edges_path="results/edges_task_2.json"
+        nodes_path=OUTDIR / "nodes_task_2.json",
+        edges_path=OUTDIR / "edges_task_2.json"
     )    
 
     print(f"[DONE] Total nodes: {len(nodes)}, total edges: {len(edges)}")

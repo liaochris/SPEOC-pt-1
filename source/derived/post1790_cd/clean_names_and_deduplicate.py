@@ -4,7 +4,11 @@
 # In[1]:
 
 
+from pathlib import Path
 import pandas as pd
+
+INDIR_RAW = Path("source/raw/post1790_cd")
+OUTDIR = Path("output/derived/post1790_cd")
 
 
 # ## Helper Functions and Structures
@@ -63,7 +67,7 @@ def tNameList(lst):
 
 
 # import data
-CD_merged = pd.read_csv("../data_clean/aggregated_CD_post1790.csv", index_col=0)
+CD_merged = pd.read_csv(OUTDIR / "aggregated_CD_post1790.csv", index_col=0)
 
 # create name df
 names = CD_merged[
@@ -185,7 +189,7 @@ names.loc[s_ind, 'Name_Fix'] = newvals
 
 
 # import list of manual changes we make to names, then apply them
-df_comp = pd.read_csv('clean_tools/company_names_fix.csv', index_col=0)
+df_comp = pd.read_csv(INDIR_RAW / 'corrections/company_names_fix.csv', index_col=0)
 df_comp_dict = dict(zip(df_comp['original'].apply(lambda x: x.lower()), df_comp['new']))
 names['Name_Fix'] = names['Name_Fix'].apply(lambda x: df_comp_dict.get(x.lower(), x) if not pd.isnull(x) else x)
 
@@ -218,7 +222,7 @@ names.loc[names[names['Name_Fix'].apply(lambda x: 'dr ' in x.lower())].index, 'N
 change_index = names[names['Name'] != names['Name_Fix']].index
 exc_ind = names[names.apply(lambda x: (x['Name'] == x['Name_Fix'] and ' and ' in x['Name']) or (
         x['Name'] != x['Name_Fix'] and ' and ' in x['Name_Fix']), axis=1)].index
-names.drop(['First Name', 'Last Name'], axis = 1).loc[exc_ind].to_csv('../data_clean/check/company_research.csv')
+names.drop(['First Name', 'Last Name'], axis = 1).loc[exc_ind].to_csv(OUTDIR / 'check/company_research.csv')
 
 
 # ## Create Dataset with Names Formatted for Scraping
@@ -330,7 +334,7 @@ for ind in names.index:
 # In[17]:
 
 
-name_df.to_csv('clean_tools/name_list.csv')
+name_df.to_csv(OUTDIR / 'name_list.csv')
 
 
 # In[18]:
@@ -344,7 +348,7 @@ CD_merged_names.loc[CD_merged_names[CD_merged_names['Name_Fix'].isnull()].index,
 # In[19]:
 
 
-CD_merged_names.to_csv('../data_clean/aggregated_CD_post1790_names.csv')
+CD_merged_names.to_csv(OUTDIR / 'aggregated_CD_post1790_names.csv')
 
 
 # In[36]:

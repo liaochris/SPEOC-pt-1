@@ -4,9 +4,11 @@
 # In[8]:
 
 
+from pathlib import Path
 import pandas as pd
 
-data_path = 'data_clean/final_data_CD.csv'
+INDIR_DERIVED = Path("output/derived/post1790_cd")
+data_path = INDIR_DERIVED / 'final_data_CD.csv'
 debt_data = pd.read_csv(data_path)
 
 

@@ -2,12 +2,16 @@
 import json, csv, os
 import pandas as pd
 from pathlib import Path
-from wikitree import get_profile  # your existing method
+from source.scrape.wikitree.wikitree import get_profile
 
-EDGES_JSON   = "results/edges_task_2.json"
-POST1790_CSV = "data/post_1790.csv" 
-OUT_CSV      = "results/task_3_matches.csv"
-PROCESSED = Path("results/processed_children.txt")
+INDIR_WIKITREE = Path("output/scrape/wikitree")
+INDIR_POST1790 = Path("output/derived/post1790_cd")
+OUTDIR         = Path("output/derived/family_tree")
+
+EDGES_JSON   = INDIR_WIKITREE / "results" / "edges_task_2.json"
+POST1790_CSV = INDIR_POST1790 / "final_data_CD.csv"
+OUT_CSV      = OUTDIR / "task_3_matches.csv"
+PROCESSED    = OUTDIR / "processed_children.txt"
 
 STATE_FULL_TO_ABBR = {
     "CONNECTICUT": "CT",

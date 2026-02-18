@@ -159,7 +159,7 @@ p = canvas + worldmap
 using DataFrames, CSV, DataFramesMeta 
 
 # import pre-1790 debt data 
-pre1790 = DataFrame(CSV.File("../data/agg_debt_grouped.csv")) 
+pre1790 = DataFrame(CSV.File("output/derived/pre1790/agg_debt_grouped.csv"))
 
 # clean cents column and sum dollars and cents 
 pre1790[:, "amount | 90th"] = getindex.(split.(pre1790[:, "amount | 90th"], "."), 1)
@@ -216,7 +216,7 @@ usmap_d = @vlplot(
 p_d = canvas_d + usmap_d  
 
 # save
-save("results/p_pre1790_dollars.svg", p_d)
+save("output/analysis/pre1790/p_pre1790_dollars.svg", p_d)
 
 # map of states by percentage 
 pre1790_states.percentage = pre1790_states.total_amt ./ sum(pre1790_states.total_amt) * 100
@@ -253,10 +253,10 @@ usmap_p = @vlplot(
 p_p = canvas_p + usmap_p
 
 # save 
-save("results/p_pre1790_per.svg", p_p)
+save("output/analysis/pre1790/p_pre1790_per.svg", p_p)
 
 # compare to post-1790 debt data 
-post1790 = DataFrame(CSV.File("../../../data_clean/final_data_CD.csv"))
+post1790 = DataFrame(CSV.File("output/derived/post1790_cd/final_data_CD.csv"))
 
 # group by state and sum 
 post1790_states = @by(post1790, "Group State", :total_amt = sum(:final_total_adj))
@@ -298,13 +298,13 @@ usmap = @vlplot(
 p_post = canvas + usmap 
 
 
-save("results/p_post1790.svg", p_post)
+save("output/analysis/pre1790/p_post1790.svg", p_post)
 
 minimum(post1790_states.total_amt)
 
 using XLSX 
 
-pierce_certs_org = DataFrame(XLSX.readtable("../../../data_raw/pre1790/Pierce_Certs_cleaned_2019.xlsx", "Pierce_Certs_cleaned_2019"))
+pierce_certs_org = DataFrame(XLSX.readtable("source/raw/pre1790/orig/Pierce_Certs_cleaned_2019.xlsx", "Pierce_Certs_cleaned_2019"))
 # keep state and value columns 
 pierce_certs = select(pierce_certs_org, ["State", "Value"])
 # drop missing states
@@ -353,7 +353,7 @@ usmap = @vlplot(
 
 p = canvas + usmap 
 
-save("results/pierce/p_pierce_certs.png", p)
+save("output/analysis/pre1790/pierce/p_pierce_certs.png", p)
 
 pierce_certs_org.Value = coalesce.(pierce_certs_org.Value, 0)
 pierce_certs_reg = @by(pierce_certs_org, "To Whom Issued", :Value = sum(:Value), :Group = first(:Group), :State = first(:State))
@@ -369,6 +369,6 @@ pierce_certs_reg.percent_owned = (pierce_certs_reg.Value ./ sum(pierce_certs_reg
 sort!(pierce_certs_reg, :Value, rev = true) # sort by value descending
 
 # save 
-CSV.write("results/pierce/pierce_certs_reg.csv", pierce_certs_reg)
+CSV.write("output/analysis/pre1790/pierce/pierce_certs_reg.csv", pierce_certs_reg)
 
 # graph percent owned by regiment 

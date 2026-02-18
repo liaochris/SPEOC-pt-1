@@ -38,15 +38,18 @@ from itertools import zip_longest
 import time 
 import getpass
 import pickle
+from pathlib import Path
 import pandas as pd
 import numpy as np
 import ast
+
+OUTDIR = Path("output/derived/pre1790")
 
 
 # In[ ]:
 
 
-agg_debt = pd.read_csv('data/agg_debt_grouped.csv')
+agg_debt = pd.read_csv(OUTDIR / 'agg_debt_grouped.csv')
 
 
 # In[ ]:
@@ -66,7 +69,7 @@ agg_debt['to whom due | last name'] = agg_debt['to whom due | last name'].astype
 # In[ ]:
 
 
-name_changes = pd.read_csv('data/name_changes.csv')
+name_changes = pd.read_csv(OUTDIR / 'name_changes.csv')
 
 
 # In[ ]:
@@ -157,7 +160,7 @@ agg_debt_copy = agg_debt[(agg_debt['state'] != 'cs') & (agg_debt['state'] != 'f'
 # Store all similar_names files as Pandas Dataframes
 similar_names_dfs = {}
 for state in agg_debt_sp.groups:
-    similar_names_dfs[state] = pd.read_csv('data/similar names/similar_names_' + state + '.csv') 
+    similar_names_dfs[state] = pd.read_csv(OUTDIR / 'similar_names/similar_names_' + state + '.csv')
 
 print(len(similar_names_dfs))
 
@@ -433,7 +436,7 @@ results = Parallel(n_jobs=-1, backend="threading")(ancestry_calls)
 # Store the `ancestry_name_changes` list as a Pandas DataFrame
 ancestry_df = pd.DataFrame(ancestry_name_changes)
 # Store DataFrame as a .csv file 
-ancestry_df.to_csv('data/ancestry_name_changes.csv')
+ancestry_df.to_csv(OUTDIR / 'ancestry_name_changes.csv')
 
 
 # ## Cleaning Name Changes
@@ -502,7 +505,7 @@ ancestry_df = pd.DataFrame(ancestry_name_changes)
 ancestry_df.columns = ['Old Title', 'New Title', 'Old First Name', 'Old Last Name', 'New First Name', 'New Last Name', 
                        'Obj. Num.', 'Original File', 'Original Index', 'State']
 # Store DataFrame as a .csv file 
-ancestry_df.to_csv('data/ancestry_name_changes_clean.csv')
+ancestry_df.to_csv(OUTDIR / 'ancestry_name_changes_clean.csv')
 
 
 # ## Add Ancestry Name Changes to the Name Changes Table
@@ -546,7 +549,7 @@ name_changes.tail()
 
 
 # Save name_changes 
-name_changes.to_csv('data/name_changes_david.csv')
+name_changes.to_csv(OUTDIR / 'name_changes_david.csv')
 
 
 # ## Create a Final Debt Table
@@ -588,5 +591,5 @@ agg_debt = agg_debt.apply(lambda row: fix_names(row), axis=1)
 # In[ ]:
 
 
-agg_debt.to_csv('data/final_agg_debt_cleaned.csv')
+agg_debt.to_csv(OUTDIR / 'final_agg_debt_cleaned.csv')
 

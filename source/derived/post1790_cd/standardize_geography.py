@@ -4,9 +4,14 @@
 # In[1]:
 
 
+from pathlib import Path
 import numpy as np
 import pandas as pd
 from rapidfuzz import process
+
+INDIR_RAW = Path("source/raw/post1790_cd")
+INDIR_CENSUS = Path("source/raw/census_data")
+OUTDIR = Path("output/derived/post1790_cd")
 
 
 # ## Helper Functions
@@ -140,7 +145,7 @@ change_df_CD = pd.DataFrame(columns = ['old', 'new', 'type', 'state'])
 # NY loan data
 # new york data is formatted a bit differently so we have to handle it manually
 # in particular it has no occupation or town data
-NY_CD_raw = pd.read_excel("../data_raw/post1790/NY/NY_1790_CD.xlsx",
+NY_CD_raw = pd.read_excel(INDIR_RAW / "orig/NY/NY_1790_CD.xlsx",
                           header = 11, usecols = 'H, I, M, N, X, Y, AC, AD, AM, AN, AR, AS')
 NY_CD_raw.columns = ['First Name', 'Last Name', '6p_Dollar', '6p_Cents',
                      'First Name.1', 'Last Name.1', '6p_def_Dollar', '6p_def_Cents',
@@ -170,7 +175,7 @@ NY_CD = NY_CD_raw[['6p_Dollar', '6p_Cents', '6p_def_Dollar', '6p_def_Cents', '3p
 
 
 # import data, clean
-raw_params = pd.read_csv('clean_tools/cd_raw.csv', delimiter=',', header=0)
+raw_params = pd.read_csv(INDIR_RAW / 'docs/cd_raw.csv', delimiter=',', header=0)
 raw_params.drop('Unnamed: 6', inplace=True, axis=1)
 
 # iterate through each entry
@@ -358,7 +363,7 @@ def addType(towns, type='town'):
 
 
 # crosswalk of city-county matches (modern-day)
-city_county_cw = pd.read_excel('../data_raw/census_data/zip_code_database.xls')[['primary_city', 'acceptable_cities',
+city_county_cw = pd.read_excel(INDIR_CENSUS / 'orig/zip_code_database.xls')[['primary_city', 'acceptable_cities',
                                                                                  'unacceptable_cities', 'county',
                                                                                  'state']]
 
@@ -720,7 +725,7 @@ final_cw_all.reset_index(inplace=True, drop=True)
 
 
 # import dataset containing manual changes we make
-df_manual = pd.read_csv('clean_tools/town_fix.csv')
+df_manual = pd.read_csv(INDIR_RAW / 'corrections/town_fix.csv')
 for ind in df_manual.index:
     match_town = df_manual.loc[ind, 'town']
     match_state = df_manual.loc[ind, 'state']
@@ -785,7 +790,7 @@ CD_all.loc[CD_all[CD_all['state_data'] == 'NY'].index,'name_type'] = 'state'
 
 
 # data
-CD_all.to_csv('../data_clean/aggregated_CD_post1790.csv')
+CD_all.to_csv(OUTDIR / 'aggregated_CD_post1790.csv')
 # check aggregation of towns/occupations
-change_df_CD.to_csv('../data_clean/check/town_occ_agg_check.csv')
+change_df_CD.to_csv(OUTDIR / 'check/town_occ_agg_check.csv')
 

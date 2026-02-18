@@ -6,16 +6,16 @@
 # In[141]:
 
 
+from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 
+INDIR = Path("output/analysis/open_refine_analysis")
+OUTDIR = Path("output/analysis/open_refine_analysis")
 
-# In[142]:
-
-
-loan_office_certificates = pd.read_csv("loan_office_certificates_cleaned.csv")
-post_1790 = pd.read_csv("post_1790.csv")
+loan_office_certificates = pd.read_csv(INDIR / "loan_office_certificates_cleaned.csv")
+post_1790 = pd.read_csv(INDIR / "post_1790.csv")
 
 
 # In[143]:
@@ -172,7 +172,7 @@ post_1790.head()
 
 
 # save post-1790 file with matched_status for future use
-post_1790.to_csv("post_1790_with_matched_status.csv", index=False)
+post_1790.to_csv(OUTDIR / "post_1790_with_matched_status.csv", index=False)
 
 
 # In[161]:
@@ -626,7 +626,7 @@ print(f"{pct_women_loan_office:.2f}% of unique loan office certificate debtholde
 
 
 # do the same for liquidated debt certificates
-liquidated_debt_certificates = pd.read_csv("liquidated_debt_certificates.csv")
+liquidated_debt_certificates = pd.read_csv(INDIR / "liquidated_debt_certificates.csv")
 liquidated_debt_certificates.rename(columns={'uid': 'raw_name_state'}, inplace=True)
 print("before dropping duplicates: " + str(len(liquidated_debt_certificates)))
 liquidated_debt_certificates = liquidated_debt_certificates.drop_duplicates(subset="raw_name_state")
@@ -647,7 +647,7 @@ print(f"{pct_women_liquidated:.2f}% of unique liquidated debt certificate debtho
 
 
 # do the same for pierce certificates (we expect 0)
-pierce_certificates = pd.read_csv("pierce_certificates.csv")
+pierce_certificates = pd.read_csv(INDIR / "pierce_certificates.csv")
 print("before dropping duplicates: " + str(len(pierce_certificates)))
 pierce_certificates = pierce_certificates.drop_duplicates(subset="raw_name_state")
 pierce_certificates["is_female"] = pierce_certificates["raw_first_name_1"].apply(is_female_name)
@@ -671,7 +671,7 @@ def extract_first_name(full_name):
 
 
 # do the same for the post-1790 dataset
-post_1790 = pd.read_csv("post_1790.csv")
+post_1790 = pd.read_csv(INDIR / "post_1790.csv")
 post_1790["first_name"] = post_1790["Group Name"].apply(extract_first_name)
 print(post_1790["first_name"].head())
 

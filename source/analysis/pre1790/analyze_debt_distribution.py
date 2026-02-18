@@ -21,9 +21,16 @@
 # In[23]:
 
 
-# import necessary packages and import aggregated debt file 
-import pandas  
-agg_debt = pandas.read_csv("../data/agg_debt_grouped.csv")
+# import necessary packages and import aggregated debt file
+from pathlib import Path
+import pandas
+
+INDIR_DERIVED = Path("output/derived/pre1790")
+INDIR_DERIVED_POST1790 = Path("output/derived/post1790_cd")
+INDIR_MEMBERS = Path("source/raw/society_members/orig")
+INDIR_DELEGATES = Path("source/raw/delegates/orig")
+OUTDIR = Path("output/analysis/pre1790")
+agg_debt = pandas.read_csv(INDIR_DERIVED / "agg_debt_grouped.csv")
 
 # remove rows where no name exists 
 agg_debt.drop(agg_debt.loc[agg_debt["to whom due | first name"].isna() & agg_debt["to whom due | last name"].isna()].index, inplace=True)
@@ -68,7 +75,7 @@ plt.xlabel("Debt Bracket (percentile)")
 plt.ylabel("Amount of Debt (dollars in millions)")
 plt.bar_label(bars, padding=1)
 plt.title("Amount of Debt Held By Debt Bracket")
-plt.savefig("results/debt_by_bracket.png")
+plt.savefig(OUTDIR / "debt_by_bracket.png")
 
 boundary_0 = agg_debt_split[0]["amount_total"].iloc[0]
 boundary_1 = agg_debt_split[0]["amount_total"].iloc[-1]
@@ -88,7 +95,7 @@ labels = ["$" + str(agg_debt_split[0]["amount_total"].iloc[0]) + " - " + str(agg
 handles = [plt.Rectangle((0,0),1,1, color=c, ec="k") for c in ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3"]]
 
 plt.legend(handles=handles, labels=labels)
-plt.savefig("results/debt_by_bracket.png")
+plt.savefig(OUTDIR / "debt_by_bracket.png")
 plt.show()
 
 
@@ -107,7 +114,7 @@ plt.xlabel("Debt Bracket (percentile)")
 plt.ylabel("Percentage of Total Debt (%)")
 plt.bar_label(plt.bar(["75-100th", "50-75th", "25-50th", "0-25th"], percentages), padding=1)
 plt.title("Percentage of Total Debt by Debt Bracket")
-plt.savefig("results/percent_debt_by_debt_bracket.png")
+plt.savefig(OUTDIR / "percent_debt_by_debt_bracket.png")
 plt.show()
 
 
@@ -214,7 +221,7 @@ def clean(name_list):
 
 
 # open file with all members of the society
-all_officers = open("data/society_members/all_officers_ari.txt", "r") 
+all_officers = open(INDIR_MEMBERS / "all_officers_ari.txt", "r") 
 all_officers = all_officers.read().splitlines() 
 all_officers = [value for value in all_officers if value != '']
 
@@ -253,77 +260,77 @@ print(mass_officers)
 total_members = 0 
 meta_register = {} # store all members in a dictionary with state as key and list of members as value
 
-ct_file = open("data/society_members/connecticut.txt", "r")
+ct_file = open(INDIR_MEMBERS / "connecticut.txt", "r")
 ct_members = ct_file.read().split(",")
 ct_members = clean(ct_members)
 meta_register["ct"] = ct_members
 total_members += len(ct_members)
 #ct_members
 
-de_file = open("data/society_members/delaware.txt", "r") 
+de_file = open(INDIR_MEMBERS / "delaware.txt", "r") 
 de_members = de_file.read().split(",")
 de_members = clean(de_members)
 meta_register["de"] = de_members 
 total_members += len(de_members)
 #de_members
 
-ga_file = open("data/society_members/georgia.txt", "r")
+ga_file = open(INDIR_MEMBERS / "georgia.txt", "r")
 ga_members = ga_file.read().split(",")
 ga_members = clean(ga_members)
 meta_register["ga"] = ga_members 
 total_members += len(ga_members)
 #ga_members 
 
-md_file = open("data/society_members/maryland.txt", "r")
+md_file = open(INDIR_MEMBERS / "maryland.txt", "r")
 md_members = md_file.read().split(",")
 md_members = clean(md_members)
 meta_register["md"] = md_members
 total_members += len(md_members)
 #md_members
 
-nh_file = open("data/society_members/new_hampshire.txt", "r")
+nh_file = open(INDIR_MEMBERS / "new_hampshire.txt", "r")
 nh_members = nh_file.read().split(",")
 nh_members = clean(nh_members)
 meta_register["nh"] = nh_members
 total_members += len(nh_members)
 #nh_members
 
-nj_file = open("data/society_members/new_jersey.txt", "r")
+nj_file = open(INDIR_MEMBERS / "new_jersey.txt", "r")
 nj_members = nj_file.read().split(",")
 nj_members = clean(nj_members)
 meta_register["nj"] = nj_members
 total_members += len(nj_members)
 #nj_members 
 
-ny_file = open("data/society_members/new_york.txt", "r")
+ny_file = open(INDIR_MEMBERS / "new_york.txt", "r")
 ny_members = ny_file.read().split(",")
 ny_members = clean(ny_members)
 meta_register["ny"] = ny_members
 total_members += len(ny_members)
 #ny_members
 
-pa_file = open("data/society_members/pennsylvania.txt", "r")
+pa_file = open(INDIR_MEMBERS / "pennsylvania.txt", "r")
 pa_members = pa_file.read().split(",")
 pa_members = clean(pa_members)
 meta_register["pa"] = pa_members
 total_members += len(pa_members)
 #pa_members
 
-ri_file = open("data/society_members/rhode_island.txt", "r")
+ri_file = open(INDIR_MEMBERS / "rhode_island.txt", "r")
 ri_members = ri_file.read().split(",")
 ri_members = clean(ri_members)
 meta_register["ri"] = ri_members
 total_members += len(ri_members)
 #ri_members
 
-va_file = open("data/society_members/virginia.txt", "r")
+va_file = open(INDIR_MEMBERS / "virginia.txt", "r")
 va_members = va_file.read().split(",")
 va_members = clean(va_members)
 meta_register["va"] = va_members
 total_members += len(va_members)
 #va_members
 
-nc_file = open("data/society_members/north_carolina.txt", "r")
+nc_file = open(INDIR_MEMBERS / "north_carolina.txt", "r")
 nc_members = nc_file.read().split(",")
 nc_members = clean(nc_members)
 meta_register["nc"] = nc_members
@@ -383,7 +390,7 @@ members_owned_debt.tail()
 
 
 # save to csv
-members_owned_debt.to_csv("results/members/members_owned_debt.csv")
+members_owned_debt.to_csv(OUTDIR / "members/members_owned_debt.csv")
 
 
 # In[42]:
@@ -411,7 +418,7 @@ agg_debt
 # In[45]:
 
 
-const_delegates = pandas.read_excel("../../../data_raw/delegates/constitutional_convention_1787.xlsx", header=2)
+const_delegates = pandas.read_excel(INDIR_DELEGATES / "constitutional_convention_1787.xlsx", header=2)
 const_delegates["full_name"] = const_delegates["first name"] + " " + const_delegates["last name"]
 const_delegates["state"] = const_delegates["state"].str.strip()
 
@@ -449,7 +456,7 @@ const_delegates.head()
 
 
 # create dataframe with only state delegate members
-state_delegates = pandas.read_excel("../../../data_raw/delegates/State Delegates.xlsx", header=2)
+state_delegates = pandas.read_excel(INDIR_DELEGATES / "State Delegates.xlsx", header=2)
 state_delegates["First Name"] = state_delegates["First Name"].fillna("")
 state_delegates["Last Name"] = state_delegates["Last Name"].fillna("")
 state_delegates["full_name"] = state_delegates["First Name"] + " " + state_delegates["Last Name"] 
@@ -461,7 +468,7 @@ state_delegates.head()
 
 
 # check post 1790 data 
-agg_debt = pandas.read_csv("../../../data_clean/final_data_CD.csv")
+agg_debt = pandas.read_csv(INDIR_DERIVED_POST1790 / "final_data_CD.csv")
 agg_debt["state"] = agg_debt["Group State"].str.lower()
 agg_debt["full_name"] = agg_debt["Group Name"]
 agg_debt["amount_total"] = agg_debt["final_total_adj"]
@@ -476,7 +483,7 @@ exists_in_both = state_delegates.merge(agg_debt, on=["full_name", "state"], how=
 exists_in_both = exists_in_both[["full_name", "amount_total", "state"]]
 exists_in_both_gdf = exists_in_both.groupby(["full_name", "state"]).agg({"amount_total": "sum"}).reset_index()
 exists_in_both_gdf
-#exists_in_both_gdf.to_csv("results/members/state_delegates_owned_debt.csv")
+#exists_in_both_gdf.to_csv(OUTDIR / "members/state_delegates_owned_debt.csv")
 
 
 # In[52]:

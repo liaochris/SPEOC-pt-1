@@ -1,7 +1,11 @@
+from pathlib import Path
 import pandas as pd  # CHANGE: use pandas for grouping/dedup
 import csv
 import os
-from wikitree import search_candidates_for_name
+from source.scrape.wikitree.wikitree import search_candidates_for_name
+
+INDIR_DERIVED = Path("output/derived/pre1790")
+OUTDIR = Path("output/scrape/wikitree/results")
 
 STATE_NAMES = {
     "DE": "Delaware",
@@ -63,6 +67,6 @@ def task1_write_candidates(names_csv: str, out_csv: str, max_candidates: int = 1
 
 if __name__ == "__main__":
     task1_write_candidates(
-        names_csv="data/loan_office_certificates_cleaned.csv",
-        out_csv="results/task_1.csv"
+        names_csv=INDIR_DERIVED / "loan_office_certificates_cleaned.csv",
+        out_csv=OUTDIR / "task_1.csv"
     )

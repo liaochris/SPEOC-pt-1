@@ -11,7 +11,7 @@ SPEOC (Summer Project on the Economic Origins of the Constitution) analyzes whet
 Raw XLSX (National Archives transcriptions) → cleaning/derived scripts → cleaned CSVs → analysis figures/tables
 
 ## Repository Structure (JMSLab template)
-- `source/raw/` — Untouched original data, separated into `pre1790_cd/`, `post1790_cd/`, `post1790_asd/`
+- `source/raw/` — Untouched original data, separated into `pre1790/`, `post1790_cd/`, `post1790_asd/`
 - `source/scrape/` — Web scraping code (Ancestry.com, WikiTree)
 - `source/derived/` — Data cleaning pipelines, mirrors raw/ structure
 - `source/analysis/` — Figure and table generation, mirrors raw/ structure
@@ -38,6 +38,7 @@ Raw XLSX (National Archives transcriptions) → cleaning/derived scripts → cle
 - `scons` to build, `scons -n` for dry run
 
 ## Important Notes
-- Post-1790 ASD and CD raw data were originally co-located in `data_raw/post1790/{STATE}/` folders. Now separated into `source/raw/post1790_cd/` and `source/raw/post1790_asd/`. Current cleaning code only handles CD.
-- The `cleaning_asd/` notebook was an empty placeholder — ASD cleaning is a future task.
-- `web_app/data_raw/` was a duplicate of `data_raw/` and has been deleted. The webapp needs path updates to reference `source/raw/`.
+- Post-1790 ASD and CD raw data separated into `source/raw/post1790_cd/` and `source/raw/post1790_asd/`. Current cleaning code only handles CD.
+- ASD cleaning is not yet implemented — the old notebook was an empty placeholder.
+- Raw data organized into `orig/`, `corrections/`, `docs/` subfolders within each `source/raw/` subdirectory.
+- `source/analysis/post1790_cd/analyze_1790_debt.py` still needs deeper refactoring (notebook artifacts, bare CSV reads).

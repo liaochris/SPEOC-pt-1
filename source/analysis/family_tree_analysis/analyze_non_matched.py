@@ -1,5 +1,9 @@
+from pathlib import Path
 import pandas as pd
 import re
+
+INDIR_RESULTS = Path("output/scrape/wikitree/results")
+INDIR_DATA = Path("output/scrape/wikitree/data")
 
 def norm_name(s):
     if pd.isna(s): return None
@@ -13,8 +17,8 @@ def norm_state(s):
     return str(s).strip().upper()
 
 # --- Load
-task3 = pd.read_csv("../results/task_3_matches.csv")
-post1790 = pd.read_csv("../data/post_1790.csv")
+task3 = pd.read_csv(INDIR_RESULTS / "task_3_matches.csv")
+post1790 = pd.read_csv(INDIR_DATA / "post_1790.csv")
 
 # --- Filter to non-matches (boolean False)
 non_matches = task3[task3["in_post1790"] == False].copy()

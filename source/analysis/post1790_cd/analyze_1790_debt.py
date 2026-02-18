@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+from pathlib import Path
+from rapidfuzz import process, fuzz
 
-
-import pip
-get_ipython().system('pip install pandas')
-get_ipython().system('pip install rapidfuzz')
-from rapidfuzz import process
-from rapidfuzz import fuzz
-get_ipython().system('pip install python-Levenshtein')
+INDIR_POST1790_CD = Path("source/raw/post1790_cd/orig")
+INDIR_POST1790_ASD = Path("source/raw/post1790_asd/orig")
+INDIR_DERIVED_POST1790 = Path("output/derived/post1790_cd")
+INDIR_DERIVED_PRE1790 = Path("output/derived/pre1790")
+OUTDIR = Path("output/analysis/post1790_cd")
 
 
 # In[3]:
@@ -843,7 +842,7 @@ print(CT_fuzzy_matches)
 # In[70]:
 
 
-post1790 = pd.read_csv('aggregated_CD_post1790.csv')
+post1790 = pd.read_csv(INDIR_DERIVED_POST1790 / 'aggregated_CD_post1790.csv')
 
 
 # In[71]:
@@ -902,8 +901,8 @@ suspicious_post1790CT = post1790CT[post1790CT['suspicious row']]
 
 
 #save clean & suspicious just in case they need to be referred to when scanning errors
-clean_post1790CT.to_csv("cleaned_CT_post1790_CD_ledger.csv", index=False)
-suspicious_post1790CT.to_csv("suspicious_CT_post1790_CD_ledger.csv", index=False)
+clean_post1790CT.to_csv(OUTDIR / "cleaned_CT_post1790_CD_ledger.csv", index=False)
+suspicious_post1790CT.to_csv(OUTDIR / "suspicious_CT_post1790_CD_ledger.csv", index=False)
 
 
 # In[75]:
@@ -1109,8 +1108,8 @@ suspicious_post1790 = post1790[post1790['suspicious row']]
 
 
 #save clean & suspicious just in case they need to be referred to when scanning errors
-clean_post1790.to_csv("cleaned_aggregated_CD_post1790.csv", index=False)
-suspicious_post1790.to_csv("suspicious_aggregated_CD_post1790.csv", index=False)
+clean_post1790.to_csv(OUTDIR / "cleaned_aggregated_CD_post1790.csv", index=False)
+suspicious_post1790.to_csv(OUTDIR / "suspicious_aggregated_CD_post1790.csv", index=False)
 
 
 # In[95]:
@@ -1769,7 +1768,7 @@ print(Marine_fuzzy_matches)
 # In[145]:
 
 
-pre1790 = pd.read_csv('agg_debt_david.csv')
+pre1790 = pd.read_csv(INDIR_DERIVED_PRE1790 / 'agg_debt_david.csv')
 
 
 # In[146]:
@@ -1942,8 +1941,8 @@ suspicious_pre1790 = pre1790[pre1790['listed suspicious row']]
 
 
 #save clean & suspicious
-clean_pre1790.to_csv("cleaned_agg_debt_david.csv", index=False)
-suspicious_pre1790.to_csv("suspicious_agg_debt_david.csv", index=False)
+clean_pre1790.to_csv(OUTDIR / "cleaned_agg_debt_david.csv", index=False)
+suspicious_pre1790.to_csv(OUTDIR / "suspicious_agg_debt_david.csv", index=False)
 
 
 # In[ ]:

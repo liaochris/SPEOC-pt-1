@@ -40,7 +40,7 @@ function plot_debt(df::DataFrame, state, type)
             Guide.title(uppercase(state)*" Debt Redeemed Per Year"),
             Gadfly.Theme(background_color = "white")
         )
-        img = SVG("results/debt_per_year/year/" * uppercase(state) * "_debt_redeemed_per_year.svg", 40cm, 22.5cm) 
+        img = SVG("output/analysis/pre1790/debt_per_year/year/" * uppercase(state) * "_debt_redeemed_per_year.svg", 40cm, 22.5cm) 
         draw(img, p_debt_date)  
     elseif type == "year_month"
         p_debt_date = Gadfly.plot(
@@ -54,7 +54,7 @@ function plot_debt(df::DataFrame, state, type)
             Gadfly.Theme(background_color = "white")
         )
 
-        img = SVG("results/debt_per_year/year_month/" * uppercase(state) * "_debt_redeemed_per_year_month.svg", 40cm, 22.5cm) 
+        img = SVG("output/analysis/pre1790/debt_per_year/year_month/" * uppercase(state) * "_debt_redeemed_per_year_month.svg", 40cm, 22.5cm) 
         draw(img, p_debt_date)  
     end
 
@@ -88,7 +88,7 @@ function handle_missing_info(state_df)
 end 
 
 # import cd_info 
-cd_info = DataFrame(CSV.File("data/cd_info.csv"))
+cd_info = DataFrame(CSV.File("output/derived/pre1790/cd_info.csv"))
 # store total amount and years of all states in a new dataframe 
 all_states = DataFrame([[], []], [:year_month, :total_amt])
 
@@ -191,7 +191,7 @@ all_states = group_post1795(all_states) # filter out years before 1795
 # group by year - sum debt 
 # plot debt redeemed per year saved as svg 
 
-pre1790 = DataFrame(CSV.File("../data/agg_debt_grouped.csv"))
+pre1790 = DataFrame(CSV.File("output/derived/pre1790/agg_debt_grouped.csv"))
 pre1790.year = pre1790[:, "date of the certificate | year"]
 
 # fix cents column in agg_debt_grouped.csv 
@@ -232,7 +232,7 @@ p_bar = bar(pre1790_gdf.year, pre1790_gdf.total_amt,
 pre1790_gdf.total_amt = round.(pre1790_gdf.total_amt, digits=2)
 annotate!(pre1790_gdf.year, pre1790_gdf.total_amt, pre1790_gdf.total_amt, annotationfontsizes=8, annotationvalign=:bottom)
 
-savefig(p_bar, "results/debt_per_year/pre1790_debt_certificate_amts_per_year.svg")
+savefig(p_bar, "output/analysis/pre1790/debt_per_year/pre1790_debt_certificate_amts_per_year.svg")
 
 #plot 
 total_amt = sum(pre1790_gdf.total_amt)
@@ -252,4 +252,4 @@ p_bar = bar(pre1790_gdf.year, pre1790_gdf.percent,
 pre1790_gdf.percent = round.(pre1790_gdf.percent, digits=2)
 annotate!(pre1790_gdf.year, pre1790_gdf.percent, pre1790_gdf.percent, annotationfontsizes=8, annotationvalign=:bottom)
 
-savefig(p_bar, "results/debt_per_year/pre1790_debt_certificate_percent_per_year.svg")
+savefig(p_bar, "output/analysis/pre1790/debt_per_year/pre1790_debt_certificate_percent_per_year.svg")

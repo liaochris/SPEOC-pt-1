@@ -1,30 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
-
-
-import pandas as pd
-
-
-# In[9]:
-
-
-import os 
-
-
-# In[10]:
-
-
-file_path = '/Users/isabellasmojver/Downloads/'
-
-
-# In[93]:
-
-
+from pathlib import Path
 import pandas as pd
 import os
 import re
+
+INDIR_PRE1790 = Path("output/derived/pre1790")
+OUTDIR = Path("output/analysis/debt_analysis")
 
 # List of speculator names
 speculator_names = [
@@ -52,7 +35,7 @@ speculator_names = [
     "Dr. Robert Blackwell", "Thomas Willing"
 ]
 
-file_path = '/Applications/SPEOC-pt-1/cleaning_CD/pre1790/data/agg_debt_grouped.csv'
+file_path = INDIR_PRE1790 / 'agg_debt_grouped.csv'
 
 # Read the CSV file
 df = pd.read_csv(file_path, low_memory=False)
@@ -74,7 +57,7 @@ if not speculator_rows.empty:
     columns_to_display = ['to whom due | first name', 'to whom due | last name']
     
     # Save results to CSV
-    speculator_rows.to_csv('speculator_matches_agg_debt_grouped.csv', index=False)
+    speculator_rows.to_csv(OUTDIR / 'speculator_matches_agg_debt_grouped.csv', index=False)
     print("\nFull results saved to 'speculator_matches_agg_debt_grouped.csv'")
 else:
     print("No speculator names found in the file.")
@@ -85,13 +68,6 @@ for speculator in speculator_names:
     if count > 0:
         print(f"{speculator}: {count} potential matches")
 
-
-# In[26]:
-
-
-import pandas as pd
-import os
-import re
 
 speculators = [
     "Richard Platt", "William Duer", "William Constable", "Andrew Craigie",
@@ -137,7 +113,7 @@ csv_files = {
 }
 
 # Directory containing the CSV files
-directory = '/Users/isabellasmojver/Downloads/'
+directory = INDIR_PRE1790
 
 speculator_files = {name: set() for name in speculators}
 
@@ -198,17 +174,10 @@ for speculator, files in speculator_files.items():
         })
 
 results_df = pd.DataFrame(results)
-results_df.to_csv('speculator_file_matches.csv', index=False)
+results_df.to_csv(OUTDIR / 'speculator_file_matches.csv', index=False)
 print("\nResults saved to 'speculator_file_matches.csv'")
 
 
-# In[83]:
-
-
-import pandas as pd
-import re
-
-# List of speculator names
 speculators = [
     "Richard Platt", "William Duer", "William Constable", "Andrew Craigie",
     "Clement Biddle", "Elias Boudinot", "Robert Morris", "Gouverneur Morris",
@@ -235,7 +204,7 @@ speculators = [
 ]
 
 # File path
-file_path = '/Applications/SPEOC-pt-1/cleaning_CD/pre1790/data/agg_debt_grouped.csv'
+file_path = INDIR_PRE1790 / 'agg_debt_grouped.csv'
 
 # Read the CSV file
 df = pd.read_csv(file_path, low_memory=False)
@@ -262,21 +231,13 @@ for speculator, total_dollars in speculator_sums.items():
 
 # Save results to CSV
 results_df = pd.DataFrame({'Speculator': speculator_sums.index, 'Total Dollar Value': speculator_sums.values})
-results_df.to_csv('speculator_dollar_values.csv', index=False)
+results_df.to_csv(OUTDIR / 'speculator_dollar_values.csv', index=False)
 print("\nResults saved to 'speculator_dollar_values.csv'")
 
 print(f"\nTotal number of speculators found: {len(speculator_sums)}")
 print(f"Total dollar value across all speculators: ${speculator_sums.sum():.2f}")
 
 
-# In[81]:
-
-
-import pandas as pd
-import os
-import re
-
-# List of speculator names
 speculators = [
     "Richard Platt", "William Duer", "William Constable", "Andrew Craigie",
     "Clement Biddle", "Elias Boudinot", "Robert Morris", "Gouverneur Morris",
@@ -303,7 +264,7 @@ speculators = [
 ]
 
 # Directory containing the CSV files
-directory = '/Users/isabellasmojver/Downloads/'
+directory = INDIR_PRE1790
 
 # List of CSV files
 csv_files = {
@@ -368,14 +329,8 @@ for speculator, total in sorted(speculator_totals.items(), key=lambda x: x[1], r
 
 results_df = pd.DataFrame(list(speculator_totals.items()), columns=['Speculator', 'Total Dollar Value'])
 results_df = results_df[results_df['Total Dollar Value'] > 0].sort_values('Total Dollar Value', ascending=False)
-results_df.to_csv('speculator_dollar_values.csv', index=False)
+results_df.to_csv(OUTDIR / 'speculator_dollar_values.csv', index=False)
 
-
-# In[89]:
-
-
-import pandas as pd
-from IPython.display import display
 
 # Create an empty DataFrame with the specified columns
 df = pd.DataFrame(columns=[

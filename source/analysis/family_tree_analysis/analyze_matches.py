@@ -1,11 +1,11 @@
+from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load the provided CSV
-file_path = "../results/task_4_final.csv"
-df = pd.read_csv(file_path)
+INDIR_RESULTS = Path("output/scrape/wikitree/results")
 
-task_3_matches = pd.read_csv("../results/task_3_matches.csv")
+df = pd.read_csv(INDIR_RESULTS / "task_4_final.csv")
+task_3_matches = pd.read_csv(INDIR_RESULTS / "task_3_matches.csv")
 
 # Basic statistics
 stats = {}

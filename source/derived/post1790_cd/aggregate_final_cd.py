@@ -4,7 +4,11 @@
 # In[387]:
 
 
+from pathlib import Path
 import pandas as pd
+
+INDIR_RAW = Path("source/raw/post1790_cd")
+OUTDIR = Path("output/derived/post1790_cd")
 
 
 # ## Helper Structures
@@ -55,13 +59,13 @@ def tNameList(lst):
 
 
 # aggregated debt data
-CD_clean = pd.read_csv('../data_clean/aggregated_CD_post1790.csv', index_col=0).fillna("").drop_duplicates()
+CD_clean = pd.read_csv(OUTDIR / 'aggregated_CD_post1790.csv', index_col=0).fillna("").drop_duplicates()
 # all names that were scraped by the scraper
-scraped_names = pd.read_csv('scrape_tools/name_list_scraped.csv', index_col=0).fillna("").drop_duplicates()
+scraped_names = pd.read_csv(OUTDIR / 'name_list_scraped.csv', index_col=0).fillna("").drop_duplicates()
 # results of scraping
-match_df = pd.read_csv('scrape_tools/scrape_results.csv', index_col=0).fillna("").drop_duplicates()
+match_df = pd.read_csv(OUTDIR / 'scrape_results.csv', index_col=0).fillna("").drop_duplicates()
 # table that organizes results of scraping based off our list of names
-name_df = pd.read_csv('clean_tools/name_list.csv', index_col=0).fillna("").drop_duplicates()
+name_df = pd.read_csv(OUTDIR / 'name_list.csv', index_col=0).fillna("").drop_duplicates()
 
 
 # ## Add Missing Occupations
@@ -258,7 +262,7 @@ CD_merged_mind[CD_merged_mind.apply(lambda x: x['Group State'] == 'NY' and x['Gr
 # import names that we want to group together
 # these might not be names that have the same match index, or names that have match index == ""
 # contains location because we can only identify a person uniquely through name + location
-rep_names = pd.read_csv('clean_tools/name_agg.csv')
+rep_names = pd.read_csv(INDIR_RAW / 'corrections/name_agg.csv')
 rep_names['original'] = rep_names['original'].apply(lambda x: x.replace("\t", " "))
 rep_names['new'] = rep_names['new'].apply(lambda x: x.replace("\t", " "))
 rep_names['location'] = rep_names['location'].apply(lambda x: x.replace("\t", " ") if not pd.isnull(x) else x)
@@ -733,7 +737,7 @@ for name in df_final['Group Name'].value_counts()[df_final['Group Name'].value_c
 
 # next, we have people who are the same, but live in different states (have the same name). these people have different states because earlier when we were cleaning code (in the first notebook), we imputed the state that someone lived in when the state was missing as the state of the debt file but sometimeds, these people are not from that state
 # list of people
-state_group_names = pd.read_csv('clean_tools/group_name_state.csv')
+state_group_names = pd.read_csv(INDIR_RAW / 'corrections/group_name_state.csv')
 # in cases where we have people with the same name, and both names only have location information at the state level, we specify here which state we're choosing - basde off preliminary analysis
 pickstate = {'Samuel W Johnson': 'NY', 'Josiah Watson': 'VA', 'Gerrard Alexander': 'VA', 'Benjamin Tallmadge': 'CT',
              'Edward Chinn': 'NY', 'Forman Mount': 'PA', 'Josiah Watson': 'VA', 'Thomas Robinson': 'DE',
@@ -1185,7 +1189,7 @@ x['occupation'], axis=1)
 
 
 # import dictionary to clean occupations
-occ_data = pd.read_csv('clean_tools/occ_correction.csv')
+occ_data = pd.read_csv(INDIR_RAW / 'corrections/occ_correction.csv')
 occ_dict = dict(zip(occ_data['Original'], occ_data['Corrected']))
 # manual additions to occupation dictionary because we can't work with commas in a csv file
 occ_dict[''] = ''
@@ -1308,8 +1312,8 @@ df_final['Group County'] = df_final['Group County'].apply(lambda x: x.replace('C
 # In[778]:
 
 
-match_df.drop('index_temp', axis = 1).to_csv("../data_clean/match_data_CD.csv")
-df_final.reset_index(drop = True).to_csv("../data_clean/final_data_CD.csv")
+match_df.drop('index_temp', axis = 1).to_csv(OUTDIR / "match_data_CD.csv")
+df_final.reset_index(drop = True).to_csv(OUTDIR / "final_data_CD.csv")
 
 
 # In[781]:

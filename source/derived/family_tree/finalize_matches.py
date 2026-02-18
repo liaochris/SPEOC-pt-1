@@ -1,6 +1,10 @@
 import pandas as pd
+from pathlib import Path
 
-df = pd.read_csv("results/task_4_matches_filtered_nosamenames.csv")
+INDIR  = Path("output/derived/family_tree")
+OUTDIR = Path("output/derived/family_tree")
+
+df = pd.read_csv(INDIR / "task_4_matches_filtered_nosamenames.csv")
 
 # 1) Valid states only
 valid_states = {"CT","DE","MA","MD","NH","NJ","NY","PA","VA"}
@@ -17,7 +21,7 @@ review_mask = df["multi_parent"] | df["state"].isna()
 keep = df[~review_mask].copy()
 review = df[review_mask].copy()
 
-keep.to_csv("results/task_4_final.csv", index=False)
-review.to_csv("results/task_4_review.csv", index=False)
+keep.to_csv(OUTDIR / "task_4_final.csv", index=False)
+review.to_csv(OUTDIR / "task_4_review.csv", index=False)
 
 print(f"Final: {len(keep)} | Review: {len(review)}")

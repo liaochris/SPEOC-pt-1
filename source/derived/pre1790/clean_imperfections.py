@@ -23,6 +23,7 @@
 
 
 #Imports
+from pathlib import Path
 import pandas as pd
 import datetime
 import numpy as np
@@ -37,17 +38,19 @@ import ssl
 
 from nameparser import HumanName
 
+OUTDIR = Path("output/derived/pre1790")
+
 
 # In[2]:
 
 
 #Load the aggregated file
 #og_df = original dataframe
-og_df = pd.read_csv("../../cleaning_CD/pre1790/data/final_agg_debt.csv")
+og_df = pd.read_csv(OUTDIR / "final_agg_debt.csv")
 
 #Load the changes dataframe
 corrections_df = None
-if not os.path.exists("../../cleaning_CD/pre1790/name_changes_liam.csv"):
+if not os.path.exists(OUTDIR / "name_changes_liam.csv"):
     corrections_df = pd.DataFrame({'og_title': pd.Series(dtype='str'),
                        'og_fname': pd.Series(dtype='str'),
                        'og_lname': pd.Series(dtype='str'),
@@ -58,7 +61,7 @@ if not os.path.exists("../../cleaning_CD/pre1790/name_changes_liam.csv"):
                        'file_loc': pd.Series(dtype='str'),
                        'org_index': pd.Series(dtype='int')})
 else:
-    corrections_df = pd.read_csv("../../cleaning_CD/pre1790/name_changes_liam.csv")
+    corrections_df = pd.read_csv(OUTDIR / "name_changes_liam.csv")
 
 
 # ### Helper functions

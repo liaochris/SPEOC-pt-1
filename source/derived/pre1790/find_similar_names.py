@@ -4,17 +4,20 @@
 # In[14]:
 
 
+from pathlib import Path
 import pandas as pd
 import recordlinkage
 import numpy as np
 import timeit
 from rapidfuzz import process
 
+OUTDIR = Path("output/derived/pre1790")
+
 
 # In[15]:
 
 
-agg_debt = pd.read_csv('data/agg_debt_grouped.csv')
+agg_debt = pd.read_csv(OUTDIR / 'agg_debt_grouped.csv')
 agg_debt.head()
 
 
@@ -77,7 +80,7 @@ def remove_dup_matches(matches):
 # In[21]:
 
 
-get_ipython().run_cell_magic('timeit', '', "for state in agg_debt_sp.groups:\n    agg_debt_st = agg_debt_sp.get_group(state)\n    # Iterate through each state's dataframe and .extract all the matches for each row \n    agg_debt_st['matches'] = agg_debt_st['full name'].apply(lambda full_name: process.extract(full_name, agg_debt_st['full name'], score_cutoff=90))\n    print(state, str(len(agg_debt_st['matches'])))\n    # Remove matches that have a score of 100 \n    agg_debt_st['matches'] = agg_debt_st['matches'].apply(lambda matches: remove_exact_matches(matches))\n    # Remove duplicate matches\n    agg_debt_st['matches'] = agg_debt_st['matches'].apply(lambda matches: remove_dup_matches(matches)) \n    # Remove rows that have no matches \n    agg_debt_st_clean = agg_debt_st.loc[agg_debt_st.matches.str.len() > 0]\n    # Save as a .csv file\n    agg_debt_st_clean.to_csv('data/similar names/similar_names_' + state + '.csv') \n")
+get_ipython().run_cell_magic('timeit', '', "for state in agg_debt_sp.groups:\n    agg_debt_st = agg_debt_sp.get_group(state)\n    # Iterate through each state's dataframe and .extract all the matches for each row \n    agg_debt_st['matches'] = agg_debt_st['full name'].apply(lambda full_name: process.extract(full_name, agg_debt_st['full name'], score_cutoff=90))\n    print(state, str(len(agg_debt_st['matches'])))\n    # Remove matches that have a score of 100 \n    agg_debt_st['matches'] = agg_debt_st['matches'].apply(lambda matches: remove_exact_matches(matches))\n    # Remove duplicate matches\n    agg_debt_st['matches'] = agg_debt_st['matches'].apply(lambda matches: remove_dup_matches(matches)) \n    # Remove rows that have no matches \n    agg_debt_st_clean = agg_debt_st.loc[agg_debt_st.matches.str.len() > 0]\n    # Save as a .csv file\n    agg_debt_st_clean.to_csv(str(OUTDIR / 'similar_names/similar_names_') + state + '.csv')\n")
 
 
 # In[ ]:

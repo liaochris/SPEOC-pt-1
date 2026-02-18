@@ -1,13 +1,16 @@
 # task_4_drop_same_name.py
 import pandas as pd
 from pathlib import Path
-from wikitree import get_profile  # your existing method
-from task_3 import build_name, norm
+from source.scrape.wikitree.wikitree import get_profile
+from source.derived.family_tree.match_candidates import build_name, norm
 
-IN_CSV  = "results/task_4_matches_filtered.csv"
-OUT_CSV = "results/task_4_matches_filtered_nosamenames.csv"
+INDIR  = Path("output/derived/family_tree")
+OUTDIR = Path("output/derived/family_tree")
 
-def drop_same_parent_child_names(in_csv: str = IN_CSV, out_csv: str = OUT_CSV, fetch_profile=get_profile) -> pd.DataFrame:
+IN_CSV  = INDIR / "task_4_matches_filtered.csv"
+OUT_CSV = OUTDIR / "task_4_matches_filtered_nosamenames.csv"
+
+def drop_same_parent_child_names(in_csv=IN_CSV, out_csv=OUT_CSV, fetch_profile=get_profile) -> pd.DataFrame:
     df = pd.read_csv(in_csv)
 
     # Build a cache of parent_id -> parent_name (one API call per unique parent)
