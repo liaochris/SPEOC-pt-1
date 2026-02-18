@@ -15,7 +15,7 @@ Cleans and processes pre-1790 debt certificates (loan office, liquidated debt, P
 ### Input
 
 - `source/raw/pre1790/orig/*.xlsx` — Raw certificate XLSX files
-- `source/raw/pre1790/corrections/manual_corrections.csv` — Manual corrections
+- `source/raw/pre1790/corrections/name_fix.csv` — Manual name corrections
 
 ### Output
 

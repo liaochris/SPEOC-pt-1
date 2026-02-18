@@ -1189,7 +1189,7 @@ x['occupation'], axis=1)
 
 
 # import dictionary to clean occupations
-occ_data = pd.read_csv(INDIR_RAW / 'corrections/occ_correction.csv')
+occ_data = pd.read_csv(INDIR_RAW / 'corrections/occ_fix.csv')
 occ_dict = dict(zip(occ_data['Original'], occ_data['Corrected']))
 # manual additions to occupation dictionary because we can't work with commas in a csv file
 occ_dict[''] = ''
@@ -1198,7 +1198,7 @@ occ_dict['Notary, Scrivener & Broker'] = 'Broker'
 occ_dict['Notary, Scrivener, & Broker'] = 'Broker'
 # change occupations
 df_final['occupation'] = df_final['occupation'].apply(
-    lambda x: tNameList([str(occ_dict[ele]) for ele in x.split(" | ")]))
+    lambda x: tNameList([str(occ_dict.get(ele, ele)) for ele in x.split(" | ")]))
 
 
 # In[770]:

@@ -18,8 +18,8 @@ Downloaded from respective sources. Shapefiles in standard ESRI format (.shp, .d
 - `historicalcounties/` — 1790 county boundaries (COUNTY_1790_US_SL050_Coast_Clipped), clipped to coastline. Not used in active code (archive only).
 - `historicalstates/` — Historical state/territory boundaries (US_HistStateTerr_Gen001), with date range attributes. Not used in active code (archive only).
 - `stateshape/` — Modern US state boundaries (States_shapefile). Not used in active code (archive only).
-- `stateshape_1790/` — 1790 state and county boundaries (US_States_and_Counties_WFL1). Used by: web app (maps.py).
-- `nhgis_state_1790/` — NHGIS 1790 state boundaries (US_state_1790). Used by: web app (pre_1790_map.py).
+- `stateshape_1790/` — 1790 state and county boundaries (US_States_and_Counties_WFL1).
+- `nhgis_state_1790/` — NHGIS 1790 state boundaries (US_state_1790).
 
 **`docs/`** — Documentation about the dataset (to be populated).
 

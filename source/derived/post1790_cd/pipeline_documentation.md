@@ -23,7 +23,7 @@ Turn raw post-1790 continental debt (CD) security data into an organized table i
   2. Examples
      1. Connecticut: [CT_post1790_CD_ledger.xlsx](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/post1790/CT_post1790_CD_ledger.xlsx) 
      2. Georgia: [T694_GA_Loan_Office_CD.xlsx](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/post1790/GA/T694_GA_Loan_Office_CD.xlsx)
--  [cd_raw.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/cd_raw.csv): arguments for importing state CD files
+-  [cd_import_metadata.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/cd_import_metadata.csv): arguments for importing state CD files
 - [zip_code_database.xls](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/zip_code_database.xls): geograhical database matching towns to counties
   - Downloaded from https://www.unitedstateszipcodes.org/zip_code_database.xls?download_auth=7b5b7133a55eef6807fc6da56f62bf27 
 - [town_fix.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/town_fix.csv): database of changes to the gegographical classification
@@ -38,7 +38,7 @@ Turn raw post-1790 continental debt (CD) security data into an organized table i
 
 **Steps**:  
 
-1. Using the arguments in [cd_raw.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/cd_raw.csv), the raw CD data for each state is imported and aggregated into one table
+1. Using the arguments in [cd_import_metadata.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/cd_import_metadata.csv), the raw CD data for each state is imported and aggregated into one table
 2. Our raw data (except for NY) contains a town and state column denoting the place of residence for each debtholder
    1. When an entry for the state column is missing, we impute the state loan office that the debtholder redeemed debt from
    2. When there are multiple town or occupation values for one debtholder entry, we select the value with longest string length (since it likely contains the most information). The results of this selection are in [change_df_CD](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_clean/check/town_occ_agg_check.csv). 
@@ -196,7 +196,7 @@ print(pd.read_csv('scrape_tools/scrape_results.csv', index_col = 0).loc[[0, 8, 9
   1. Identities have not been aggregated (two slightly mispelled names representing the same identity are denoted as separate identities)
 - [name_agg.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/name_agg.csv): database of names spelled differently that correspond to the same identity
 - [group_name_state.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/group_name_state.csv): database of names with locations in multiple states that correspond to the same identity
-- [occ_correction.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/occ_correction.csv): database of occupation name changes for data cleaning purposes
+- [occ_fix.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/occ_fix.csv): database of occupation name changes for data cleaning purposes
 
 **Outputs (for future use)**: 
 
@@ -610,7 +610,7 @@ print(pd.read_csv('scrape_tools/scrape_results.csv', index_col = 0).loc[[0, 8, 9
     4. In cases where we have a location conflict at the county level (census county differs from given county), or a location conflict at the town level, we mark what level of location conflict we have and **do not** merge the ancestry.com location into our location for our final dataset
     5. In cases where we do not have a location conflict, and the census data was added, we **do** merge the ancestry.com location into our location for our final dataset
 
-17. In **Occupation Column Cleaning**, I clean the `occupation` column by unifying the name format using a mapping. We worked on this last year and explored using automated solutions, but there was still a large (too large) degree of manual input required so I just exported the manually craeted mapping as [occ_correction.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/occ_correction.csv) and used that. 
+17. In **Occupation Column Cleaning**, I clean the `occupation` column by unifying the name format using a mapping. We worked on this last year and explored using automated solutions, but there was still a large (too large) degree of manual input required so I just exported the manually craeted mapping as [occ_fix.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/occ_fix.csv) and used that. 
 
     1. We should look into using NLP solutions, which we did not do last year, to automate this process. 
 

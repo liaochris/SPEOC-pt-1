@@ -175,7 +175,7 @@ NY_CD = NY_CD_raw[['6p_Dollar', '6p_Cents', '6p_def_Dollar', '6p_def_Cents', '3p
 
 
 # import data, clean
-raw_params = pd.read_csv(INDIR_RAW / 'docs/cd_raw.csv', delimiter=',', header=0)
+raw_params = pd.read_csv(INDIR_RAW / 'docs/cd_import_metadata.csv', delimiter=',', header=0)
 raw_params.drop('Unnamed: 6', inplace=True, axis=1)
 
 # iterate through each entry

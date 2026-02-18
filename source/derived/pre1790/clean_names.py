@@ -93,7 +93,7 @@ def add_changes(title_org, title_new, fn_org, ln_org, fn_new, ln_new, case, file
 
 
 # retrieve manual corrections from csv file if they exist 
-manual_corrects_df = pd.read_csv(INDIR_RAW / 'corrections/manual_corrections.csv')
+manual_corrects_df = pd.read_csv(INDIR_RAW / 'corrections/name_fix.csv')
 manual_corrects_dict = manual_corrects_df.to_dict(orient='index')
 manual_corrects = {}
 # add manual corrections to manual_corrects dictionary 
@@ -410,7 +410,7 @@ agg_debt = agg_debt.apply(lambda row: handle_two_name(row), axis=1)
 # save manual corrections 
 manual_corrects_df = pd.DataFrame.from_dict(manual_corrects, orient='index') 
 manual_corrects_df.columns = ['new first name', 'new last name']
-manual_corrects_df.to_csv(INDIR_RAW / 'corrections/manual_corrections.csv')
+manual_corrects_df.to_csv(INDIR_RAW / 'corrections/name_fix.csv')
 
 
 # In[17]:

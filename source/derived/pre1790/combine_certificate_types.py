@@ -65,7 +65,7 @@ name_changes = pd.DataFrame({'title_org': pd.Series(dtype='str'),
                        'org_index': pd.Series(dtype='int')})
 
 # retrieve manual corrections from csv file if they exist 
-manual_corrects_df = pd.read_csv(INDIR_RAW / "corrections/manual_corrections.csv")
+manual_corrects_df = pd.read_csv(INDIR_RAW / "corrections/name_fix.csv")
 manual_corrects_dict = manual_corrects_df.to_dict(orient='index')
 manual_corrects = {}
 # add manual corrections to manual_corrects dictionary
@@ -306,7 +306,7 @@ agg_debt = agg_debt.apply(lambda row: handle_all_orgs(row), axis=1)
 
 # Company names
 # retrieve manual corrections from csv file if they exist 
-manual_corrects_df = pd.read_csv(INDIR_RAW / "corrections/manual_corrections.csv")
+manual_corrects_df = pd.read_csv(INDIR_RAW / "corrections/name_fix.csv")
 manual_corrects_dict = manual_corrects_df.to_dict(orient='index')
 manual_corrects = {}
 # add manual corrections to manual_corrects dictionary
@@ -565,7 +565,7 @@ agg_debt = agg_debt.apply(lambda row: handle_two_name(row), axis=1)
 # save manual corrections 
 manual_corrects_df = pd.DataFrame.from_dict(manual_corrects, orient='index') 
 manual_corrects_df.columns = ['new first name', 'new last name']
-manual_corrects_df.to_csv(INDIR_RAW / 'corrections/manual_corrections.csv')
+manual_corrects_df.to_csv(INDIR_RAW / 'corrections/name_fix.csv')
 
 # if there are debt entries with multiple individuals, split them into their own rows
 agg_debt = agg_debt.explode('to whom due | first name')

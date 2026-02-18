@@ -1,11 +1,11 @@
 # HANDOFF.md — Session Continuity
 
 ## Current Task
-Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
-- **Branch**: `reorganize/jmslab-structure`
-- **PR**: Not yet created (will be opened after all steps complete)
+Task 2: Code quality improvements across source/raw, source/scrape, source/derived, source/analysis, source/webapp.
+- **Branch**: `task2/code-quality`
 
 ## Completed Steps
+### Task 1 (branch: reorganize/jmslab-structure)
 1. **Step 1.0**: Cloned JMSLab template — SConstruct, source/lib/, placeholder SConscripts
 2. **Step 1.1**: Cleaned up duplicates — deleted `family_tree copy/`, temp files, `__pycache__/`, archived Julia configs, updated `.gitignore`
 3. **Step 1.2**: Moved raw data to `source/raw/` — separated post1790 into `post1790_cd/` and `post1790_asd/` by state, moved correction CSVs with documentation, deleted `web_app/data_raw/` duplicate
@@ -18,27 +18,33 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
 10. **Step 1.7**: Organized WIP into `issue/`, moved legacy files to `archive/`
 11. **Step 1.8**: Set up `source/lib/` with SaveData.py and `__init__.py`
 12. **Step 1.9**: Fixed all imports and paths across the codebase
-    - Analysis scripts: match_treasurers.py, analyze_notable_holdings.py, analyze_openrefine_results.py, analyze_matches.py, analyze_non_matched.py — added INDIR/OUTDIR Path constants, replaced bare filenames and relative paths
-    - Julia files: analyze_by_year.jl, generate_pierce_maps.jl — updated all `data/`, `results/`, `data_raw/`, `data_clean/` references to new `output/` and `source/raw/` paths
-    - Webapp: pre_1790_tab.py (raw XLSX → `source/raw/pre1790/orig/`, derived CSVs → `output/`), pre_1790_map.py (fixed `../cleaning_CD/` reference)
-    - Scrape: wikitree.py (fixed `../data/` reference)
-    - Post-1790 analysis: analyze_1790_debt.py — added path constants, fixed aggregated input/output paths (individual state CSV reads still need refactoring — they reference CSVs that only exist as XLSX in raw)
-    - Updated `source/analysis/SConscript` with build targets
-    - Verified no remaining `../` relative paths or `data_raw`/`data_clean` references in source/
 13. **Step 1.10**: Rewrote README.md to reflect new JMSLab structure
 
+### Task 2 (branch: task2/code-quality)
+14. **Step 2.1**: source/raw — Documentation and data cleanup
+    - Renamed `cd_raw.csv` → `cd_import_metadata.csv` (docs/), updated all references in standardize_geography.py and READMEs
+    - Renamed `manual_corrections.csv` → `name_fix.csv` (pre1790/corrections/), updated all references in 3 scripts
+    - Renamed `occ_correction.csv` → `occ_fix.csv` (post1790_cd/corrections/), updated reference in aggregate_final_cd.py
+    - Filtered `occ_fix.csv` to only include non-identity mappings (66 identity rows removed); updated aggregate_final_cd.py to use `.get(ele, ele)` fallback
+    - Cleaned `statepop.csv` (removed 13 trailing empty columns and empty rows)
+    - Updated all 7 source/raw/*/README.md files: added file origins (with ORIGIN UNKNOWN flags for unclear sources), corrections/ subfolder documentation, usage information, and fixed incorrect "via cd_raw.csv config" reference in pre1790 README
+    - Updated source/derived/post1790_cd/README.md, source/derived/pre1790/README.md, and pipeline_documentation.md with new filenames
+    - Society members: documented that 11 state .txt files are empty (all_officers_ari.txt is the only source)
+
 ## Next Step
-- **PR**: Create pull request for the reorganization branch
+- **Step 2.2**: source/scrape — Documentation and path fixes
 
-## Remaining Items (for future PRs)
-- `source/analysis/post1790_cd/analyze_1790_debt.py` needs deeper refactoring: still has `get_ipython()` calls, individual state reads use bare CSV filenames that don't exist as CSVs (only XLSX in raw)
-- `source/scrape/ancestry_town_population_scraper/scrape_town_populations.py` path updates not verified
-- `source/scrape/ancestry_person_county_scraper/analyze_results.py` and `config.py` path updates not verified
+## Remaining Items (Task 2)
+- Step 2.2: source/scrape — fix paths in scrape_town_populations.py and analyze_results.py, document tests
+- Step 2.3: source/derived — add Main() to 14 scripts, remove get_ipython(), externalize statedict
+- Step 2.4: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python
+- Step 2.5: source/webapp — light review and cleanup
 
-## Future Tasks (separate PRs)
-- Task 2: Code quality improvements (proper Main() functions for all notebook conversions, remove `get_ipython()` calls, deduplicate speculator lists in analyze_notable_holdings.py). Also reorganize code so its written in a modular format, check whether non-scrapes run, have data be imported asopposed to defined in scripts. convert al julia to pyhton
-- Task 3: Document dependencies, create virtual environment
-- Task 4: Complete SCons build scripts (add remaining targets, dependency chains)
+## Known Issues / Flags for User
+- `Marine_Liquidated_Debt_Certificates.xlsx` and `Pierce_Certs_cleaned_2019.xlsx` in pre1790/orig/ have unknown origin — marked `<!-- ORIGIN UNKNOWN -->` in README
+- `census.csv`, `countyPopulation.csv`, `zip_code_database.xls` in census_data/orig/ have unknown origin — marked `<!-- ORIGIN UNKNOWN -->`
+- `all_officers_ari.txt` compilation method is unclear — marked `<!-- ORIGIN UNKNOWN -->`
+- `clean_names.py`, `clean_names_individual.py`, `combine_certificate_types.py` all **write back** to `source/raw/pre1790/corrections/name_fix.csv` during the cleaning run — this modifies a raw file, which is a data integrity concern to fix in Step 2.3
 
 ## Key Decisions Made
 - Post-1790 ASD and CD separated into distinct folders (raw/derived/analysis mirror each other)
@@ -57,3 +63,5 @@ Reorganizing SPEOC-pt-1 codebase to follow the JMSLab/template structure.
 - Task 4 should include separating debt original owners from executors in corrections CSVs and outputs
 - Webapp CSV outputs go to `output/webapp/` (not written back to `source/raw/`)
 - Individual state CSV reads in analyze_1790_debt.py deferred to Task 4 refactoring
+- Correction files only contain non-identity mappings; scripts use fallback to original value
+- occ_fix.csv uses `.get(ele, ele)` fallback in aggregate_final_cd.py
