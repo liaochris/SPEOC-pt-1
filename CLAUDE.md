@@ -42,3 +42,10 @@ Raw XLSX (National Archives transcriptions) → cleaning/derived scripts → cle
 - ASD cleaning is not yet implemented — the old notebook was an empty placeholder.
 - Raw data organized into `orig/`, `corrections/`, `docs/` subfolders within each `source/raw/` subdirectory.
 - `source/analysis/post1790_cd/analyze_1790_debt.py` still needs deeper refactoring (notebook artifacts, bare CSV reads).
+- `scrape_cd.py` lives in `source/scrape/ancestry_cd_scraper/` (renamed from post1790_cd/integrate_scraped_data.py); outputs go to `output/scrape/ancestry_cd_scraper/`; `aggregate_final_cd.py` reads from there via `INDIR_SCRAPE`.
+- `ancestry_loan_office_scraper` outputs (`results_*.csv`) are analyzed by `source/analysis/pre1790/analyze_ancestry_results.py` — not consumed by any pipeline script.
+- `source/lib/ancestry_scraper/` — shared Selenium package (auth, config, parser, search, session, storage, worker) used by `ancestry_loan_office_scraper/`; all functions CamelCase.
+- `source/lib/selenium_base.py` — `GetChromeDriver(headless=True)` shared by both Ancestry scrapers.
+- `ancestry_town_population_scraper` outputs (`town_pops*.csv`) are not consumed downstream but preserved for potential future per-capita debt analysis.
+- Correction files contain only non-identity mappings; all scripts use `.get(key, key)` fallback pattern.
+- `clean_names.py`, `clean_names_individual.py`, `combine_certificate_types.py` write back to `source/raw/pre1790/corrections/name_fix.csv` — data integrity concern flagged for Task 3/4.

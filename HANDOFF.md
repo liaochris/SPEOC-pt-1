@@ -31,20 +31,94 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
     - Updated source/derived/post1790_cd/README.md, source/derived/pre1790/README.md, and pipeline_documentation.md with new filenames
     - Society members: documented that 11 state .txt files are empty (all_officers_ari.txt is the only source)
 
+15. **Step 2.2**: source/scrape — Restructuring, code quality, and documentation
+    - **Renamed folders**: `ancestry_person_county_scraper/` → `ancestry_loan_office_scraper/`; `post1790_cd/` → `ancestry_cd_scraper/`
+    - **Archived**: `reconciliation_services/` → `archive/reconciliation_services/` (all 3 services ran on port 5000; manual OpenRefine tool; no pipeline role)
+    - **Moved** `ancestry_scraper/` package → `source/lib/ancestry_scraper/` (shared library; enables future sharing between scrapers)
+    - **Moved** `analyze_results.py` → `source/analysis/pre1790/analyze_ancestry_results.py` (analysis code, not scraping)
+    - **Deleted** `script.py` (interactive debug tool, no pipeline role)
+    - **Renamed files**: `main.py` → `scrape_loan_office.py`; `create_names_lookup.py` → `generate_names.py`; `integrate_scraped_data.py` → `scrape_cd.py`
+    - **Created** `source/lib/selenium_base.py` with `GetChromeDriver(headless=True)` — shared Chrome setup for both Ancestry scrapers
+    - **CamelCase** all functions in `source/lib/ancestry_scraper/` (auth, parser, search, session, storage, worker); updated all relative imports
+    - `scrape_loan_office.py`: removed argparse, now loops all 9 states in a single run; imports from `source.lib.ancestry_scraper`
+    - `scrape_town_populations.py`: replaced `CHROME_OPTIONS` + `webdriver.Chrome(...)` with `GetChromeDriver()`; `FormatBrowseResults()` now takes dict directly (no intermediate `town_pops_browse.csv`)
+    - `scrape_cd.py`: `OUTDIR = Path("output/scrape/ancestry_cd_scraper")`; `aggregate_final_cd.py`: `INDIR_SCRAPE = Path("output/scrape/ancestry_cd_scraper")`
+    - `analyze_ancestry_results.py`: removed argparse; `Main()` loops COLONIES_13 and calls `PlotNationalChoropleth()` by default; updated all INDIR/OUTDIR paths
+    - Fixed all 8 test files in `ancestry_loan_office_scraper/tests/` (imports `→ source.lib.ancestry_scraper.*`, CamelCase function names); deleted `test_process_name.py` (duplicate of test_worker.py)
+    - `auth.py`: replaced hardcoded Chrome user-data-dir with `GetChromeDriver(headless=False)`; added `# TODO: update entry point URL in future step`; left proxy/login logic untouched
+    - Added `ancestry_loan_office_scraper/README.md` and `ancestry_cd_scraper/README.md`; updated `source/scrape/README.md` to reflect new folder names and archived reconciliation_services
+
+16. **Step 2.2.5**: source/scrape — Ancestry scraper unification
+    - **Created** `source/lib/ancestry_scraper/scraper.py` — central scraping module with `ScrapeLoanOffice` (multi-strategy loan office search) and `ScrapeCD` (wrapper for CD helpers); all CD helper functions moved here from `scrape_cd.py` (`FindMatches`, `NavigateTo`, `ListPeople`, `GetInfo`, `DetermineMatchList`, `SearchLocationString`, `ProcessLocationString`, `LOCATIONSUFFIX`)
+    - **`ScrapeLoanOffice` algorithm**: iterates `NAME_X_STRATEGIES = ["1_1", "s_s", "ps_ps"]` × `YEAR_OFFSETS = [0, 1, 3]`; stops early on first match; falls back on `Exception`; returns `MatchResult` namedtuple
+    - **`ScrapeCD`**: thin wrapper around `FindMatches` (unchanged algorithm)
+    - **Auth unified**: `scrape_cd.py` now uses `GetAuthenticatedDriver()` (Chrome via Galileo proxy) — Safari + UChicago Okta login block removed
+    - **Storage schema updated**: 6 columns — `name, name_x, year_offset, url, match_status, counties` (counties pipe-separated)
+    - **`FetchSearchPage`**: now accepts `name_x` parameter (default `"1_1"`)
+    - **`ParseAllResidenceCounties`**: new parser function returning list of all county strings across all result rows
+    - **`STATE_ABBREVIATIONS`** consolidated: replaces `STATEDICT` (scrape_cd.py), `statedict` (aggregate_final_cd.py), `STATE_CODES` (scrape_town_populations.py), `STATE_NAMES` (search_wikitree_candidates.py); canonical 15-state dict in `config.py`
+    - **Code quality fixes**: stale OUTDIR path in `generate_names.py` fixed; 3 bare `except:` → `except Exception:` in `scrape_town_populations.py`; `_YearFromDate` → `YearFromDate` in `wikitree.py`
+    - Updated `NAME_X_STRATEGIES`, `YEAR_OFFSETS` added to `config.py`
+    - All 4 unit test files updated for new API (ScrapeLoanOffice, 6-column schema, ParseAllResidenceCounties, name_x param)
+
 ## Next Step
-- **Step 2.2**: source/scrape — Documentation and path fixes
+- **Step 2.3**: source/derived/prescrape/ — reorganize + code quality for pre-scrape derived scripts
 
 ## Remaining Items (Task 2)
-- Step 2.2: source/scrape — fix paths in scrape_town_populations.py and analyze_results.py, document tests
-- Step 2.3: source/derived — add Main() to 14 scripts, remove get_ipython(), externalize statedict
-- Step 2.4: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python
-- Step 2.5: source/webapp — light review and cleanup
+- Step 2.3: source/derived/prescrape/ — reorganize + code quality for pre-scrape derived scripts
+- Step 2.4: source/derived/postscrape/ — reorganize + code quality for post-scrape derived scripts
+- Step 2.5: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python
+- Step 2.6: source/webapp — light review and cleanup
+
+## Planned derived/ Folder Reorganization (Steps 2.3–2.4)
+
+`source/derived/` will gain a two-level nesting: `prescrape/` and `postscrape/`, each preserving the existing `pre1790/`, `post1790_cd/`, `family_tree/` structure beneath. `output/derived/` mirrors the same layout.
+
+```
+source/derived/
+├── prescrape/
+│   ├── pre1790/          ← scripts that produce loan_office_certificates_cleaned.csv
+│   │   ├── aggregate_debt.py
+│   │   ├── aggregate_debt_alternate.py
+│   │   ├── clean_names.py
+│   │   ├── clean_names_individual.py
+│   │   ├── clean_imperfections.py
+│   │   ├── combine_certificate_types.py
+│   │   └── find_similar_names.py
+│   └── post1790_cd/      ← scripts that produce name_list.csv (CD scraper input)
+│       ├── standardize_geography.py
+│       └── clean_names_and_deduplicate.py
+└── postscrape/
+    ├── pre1790/           ← consumes loan office scraper output
+    │   └── integrate_ancestry_search.py
+    ├── post1790_cd/       ← consumes CD scraper output
+    │   └── aggregate_final_cd.py
+    └── family_tree/       ← consumes final_data_CD.csv + wikitree scraper output
+        ├── match_candidates.py
+        ├── filter_matches.py
+        ├── drop_same_name.py
+        └── finalize_matches.py
+```
+
+**Step 2.3 scope** (prescrape/ only — 9 scripts):
+- `git mv` all prescrape scripts into `source/derived/prescrape/`
+- Update all INDIR/OUTDIR path constants (output paths shift to `output/derived/prescrape/...`)
+- Add `Main()` to all 9 scripts, remove `get_ipython()` calls
+- Handle `name_fix.csv` stability check (see Known Issues)
+- Update SConscript
+
+**Step 2.4 scope** (postscrape/ only — 6 scripts):
+- `git mv` all postscrape scripts into `source/derived/postscrape/`
+- Update all INDIR/OUTDIR path constants; update `INDIR_SCRAPE` in `aggregate_final_cd.py`
+- Add `Main()`, remove `get_ipython()`
+- Second-pass verification of correction files (contextual, while refactoring)
+- Update SConscript
 
 ## Known Issues / Flags for User
 - `Marine_Liquidated_Debt_Certificates.xlsx` and `Pierce_Certs_cleaned_2019.xlsx` in pre1790/orig/ have unknown origin — marked `<!-- ORIGIN UNKNOWN -->` in README
 - `census.csv`, `countyPopulation.csv`, `zip_code_database.xls` in census_data/orig/ have unknown origin — marked `<!-- ORIGIN UNKNOWN -->`
 - `all_officers_ari.txt` compilation method is unclear — marked `<!-- ORIGIN UNKNOWN -->`
-- `clean_names.py`, `clean_names_individual.py`, `combine_certificate_types.py` all **write back** to `source/raw/pre1790/corrections/name_fix.csv` during the cleaning run — this modifies a raw file, which is a data integrity concern to fix in Step 2.3
+- `clean_names.py`, `clean_names_individual.py`, `combine_certificate_types.py` all **write back** to `source/raw/pre1790/corrections/name_fix.csv` during the cleaning run — this modifies a raw file, which is a data integrity concern to fix in Step 2.3. **Plan for Step 2.3**: (1) run each script and compare the output `name_fix.csv` to the input with a diff; (2) if the file is unchanged after a run, the process is idempotent and the write-back can be suppressed; (3) if the file changes, re-run until it stabilizes (finds the fixed point); (4) once stable, the final `name_fix.csv` becomes the canonical hand-off file — reads stay in `source/raw/`, writes get redirected to `output/derived/pre1790/name_fix_auto.csv` to stop mutating raw data. Note: `combine_certificate_types.py` reads `name_fix.csv` **twice** (lines 68 and 309) for two separate passes — both reads need to be checked for stability.
 
 ## Key Decisions Made
 - Post-1790 ASD and CD separated into distinct folders (raw/derived/analysis mirror each other)

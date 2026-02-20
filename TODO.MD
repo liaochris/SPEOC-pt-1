@@ -20,3 +20,16 @@
 1. Understand in more detail what goes on in `source/scrape` - please have it report where each of the scrapers are used to generate output
 2. See if there's a way scripts can not use derived outputs... +
 3. Understand what the tests do and if they're necessary...
+
+
+for source/scrape/ancestry_town_population_scraper
+4.     SaveResults(town_pops_browse, OUTDIR / "town_pops_browse.csv")
+
+    # Format Part II raw results into separate city/county/state columns
+    FormatBrowseResults()
+Do I need browse and brown_clean???
+5. Shouldn't i just save the brows_clean once???
+
+for source/scrape/ancestry_person_county_scraper
+1. IT's not clear what script names in source/scrape/ancestry_person_county_scraper represent and what's being done in source/scrape/ancestry_person_county_scraper. Can you make a plan that analyzes this, understands functionality and propose separatoin?
+2. Adapt all scripts in source/scrape to not use command line args, to run everything at once as opposed to by state, and update outputs accordingly. 

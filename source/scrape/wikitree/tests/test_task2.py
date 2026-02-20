@@ -1,8 +1,7 @@
-from source.scrape.wikitree.build_family_graph import get_children
-from source.scrape.wikitree.wikitree import get_profile
+from source.scrape.wikitree.build_family_graph import GetChildren
+from source.scrape.wikitree.wikitree import GetProfile
 
 def test_children_count():
-    # Fake get_profile to avoid API calls
     def fake_get_profile(profile_key):
         if profile_key == "Parent-1":
             return {
@@ -21,7 +20,6 @@ def test_children_count():
             }
         return {}
 
-    # Create a fake CSV for testing
     import tempfile, csv
     tmp_csv = tempfile.NamedTemporaryFile(mode="w+", newline="", delete=False)
     writer = csv.DictWriter(tmp_csv, fieldnames=["profile_key"])
@@ -30,11 +28,8 @@ def test_children_count():
     writer.writerow({"profile_key": "Parent-2"})
     tmp_csv.close()
 
-    # Run the function
-    from source.scrape.wikitree.build_family_graph import get_children
-    nodes, edges = get_children(tmp_csv.name, fetch_profile=fake_get_profile)
+    nodes, edges = GetChildren(tmp_csv.name, fetch_profile=fake_get_profile)
 
-    # Count edges per parent
     from collections import Counter
     edge_counts = Counter(e["parent_id"] for e in edges)
 

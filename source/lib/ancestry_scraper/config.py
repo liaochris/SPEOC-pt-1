@@ -1,3 +1,10 @@
+STATE_ABBREVIATIONS = {
+    'CT': 'Connecticut', 'DE': 'Delaware', 'GA': 'Georgia', 'MA': 'Massachusetts',
+    'MD': 'Maryland', 'ME': 'Maine', 'NH': 'New Hampshire', 'NJ': 'New Jersey',
+    'NY': 'New York', 'NC': 'North Carolina', 'PA': 'Pennsylvania', 'RI': 'Rhode Island',
+    'SC': 'South Carolina', 'VA': 'Virginia', 'VT': 'Vermont'
+}
+
 # BASE_SEARCH_URL = "https://www.ancestrylibrary.com/search/collections/61025/?name={name}"
 STATE_COLLECTION_URLS = {
     "PA": {
@@ -37,6 +44,9 @@ STATE_COLLECTION_URLS = {
         "residence":None
     }
 }
+
+NAME_X_STRATEGIES = ["1_1", "s_s", "ps_ps"]
+YEAR_OFFSETS = [0, 1, 3]
 
 RATE_LIMIT_SECONDS = 2
 MAX_RETRIES = 3

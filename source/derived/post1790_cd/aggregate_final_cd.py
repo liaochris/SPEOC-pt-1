@@ -6,9 +6,11 @@
 
 from pathlib import Path
 import pandas as pd
+from source.lib.ancestry_scraper.config import STATE_ABBREVIATIONS
 
 INDIR_RAW = Path("source/raw/post1790_cd")
 OUTDIR = Path("output/derived/post1790_cd")
+INDIR_SCRAPE = Path("output/scrape/ancestry_cd_scraper")
 
 
 # ## Helper Structures
@@ -16,11 +18,8 @@ OUTDIR = Path("output/derived/post1790_cd")
 # In[388]:
 
 
-# define dictionary to convert between different naming schematics
-statedict = {'PA': 'Pennsylvania', 'CT': 'Connecticut', 'MA': 'Massachusetts', 'NH': 'New Hampshire', 'DE': 'Delaware',
-             'NC': 'North Carolina', 'GA': 'Georgia', 'NY': 'New York', 'NJ': 'New Jersey', 'RI': 'Rhode Island',
-             'VA': 'Virginia', 'MD': 'Maryland', 'SC': 'South Carolina', 'VT': 'Vermont'}
-statedict_rev = dict(zip(statedict.values(), statedict.keys()))
+statedict = STATE_ABBREVIATIONS
+statedict_rev = {v: k for k, v in STATE_ABBREVIATIONS.items()}
 
 
 # ## Helper Functions
@@ -61,9 +60,9 @@ def tNameList(lst):
 # aggregated debt data
 CD_clean = pd.read_csv(OUTDIR / 'aggregated_CD_post1790.csv', index_col=0).fillna("").drop_duplicates()
 # all names that were scraped by the scraper
-scraped_names = pd.read_csv(OUTDIR / 'name_list_scraped.csv', index_col=0).fillna("").drop_duplicates()
+scraped_names = pd.read_csv(INDIR_SCRAPE / 'name_list_scraped.csv', index_col=0).fillna("").drop_duplicates()
 # results of scraping
-match_df = pd.read_csv(OUTDIR / 'scrape_results.csv', index_col=0).fillna("").drop_duplicates()
+match_df = pd.read_csv(INDIR_SCRAPE / 'scrape_results.csv', index_col=0).fillna("").drop_duplicates()
 # table that organizes results of scraping based off our list of names
 name_df = pd.read_csv(OUTDIR / 'name_list.csv', index_col=0).fillna("").drop_duplicates()
 
