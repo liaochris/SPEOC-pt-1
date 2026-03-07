@@ -363,7 +363,7 @@ def addType(towns, type='town'):
 
 
 # crosswalk of city-county matches (modern-day)
-city_county_cw = pd.read_excel(INDIR_CENSUS / 'orig/zip_code_database.xls')[['primary_city', 'acceptable_cities',
+city_county_cw = pd.read_csv(INDIR_CENSUS / 'orig/zip_code_database.csv')[['primary_city', 'acceptable_cities',
                                                                                  'unacceptable_cities', 'county',
                                                                                  'state']]
 
