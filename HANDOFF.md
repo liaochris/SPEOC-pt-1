@@ -61,14 +61,50 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
     - Updated `NAME_X_STRATEGIES`, `YEAR_OFFSETS` added to `config.py`
     - All 4 unit test files updated for new API (ScrapeLoanOffice, 6-column schema, ParseAllResidenceCounties, name_x param)
 
+17. **Step 2.3**: source/derived/prescrape/ — reorganize + code quality for pre-scrape derived scripts
+    - `git mv` all 9 prescrape scripts into `source/derived/prescrape/pre1790/` and `source/derived/prescrape/post1790_cd/`
+    - Updated all OUTDIR path constants: `output/derived/pre1790` → `output/derived/prescrape/pre1790`; `output/derived/post1790_cd` → `output/derived/prescrape/post1790_cd`
+    - Added `def Main():` wrapper with `if __name__ == "__main__": Main()` to all scripts
+    - Renamed all functions to CamelCase; moved NLTK setup into `SetupNltk()`, pure helpers to module level
+    - `find_similar_names.py`: removed `get_ipython().run_cell_magic('timeit', ...)` wrapper; removed unused imports
+    - `name_fix.csv` write-back redirected to `output/derived/prescrape/pre1790/name_fix_auto.csv`
+    - Updated `source/derived/SConscript`: replaced stale paths/targets
+    - **QUALITY.md compliance pass**: Added `SaveData` to all saves in all 9 scripts; removed dead code; removed inline comments
+    - **Dead scripts deleted**: `clean_names.py`, `clean_names_individual.py`, `clean_imperfections.py` — all three were superseded by `combine_certificate_types.py`, not registered in SConscript, and `clean_names.py` had interactive `input()` calls
+    - **Scripts combined**: `aggregate_debt.py` + `aggregate_debt_alternate.py` merged into single `aggregate_debt.py` that outputs `final_agg_debt.csv` directly; intermediate `agg_debt_david.csv` eliminated
+    - **`combine_certificate_types.py` modularized**: constants (`MANUAL_CORRECTIONS_OFS`, `MANUAL_CORRECTIONS_ORGS`, `CHANGES_COMP`, `CORP_KEY_WORDS`, `DECEASED_KEYWORDS`, `MANUAL_NO_MARK_LIST`, `ABBREVIATIONS`) and pure functions (`GetTags`, `CheckKeywordInString`, `SetupNltk`) moved to module level; dead first `manual_corrects` load removed; `ListToString` helper removed (replaced with `" ".join()` inline); `if True: try:` SSL pattern simplified; `type(x) != Tree` → `isinstance(x, Tree)`
+    - **`aggregate_debt.py` modularized**: `COLUMN_CHANGES` dict, `CleanTable`, `DeNaN`, `AddStrikeConf`, `LowercaseStateAbbr` moved to module level; `AddOrgIndex` stays inside `Main()` (uses `nonlocal oii`)
+    - **SConscript updated**: removed two-step `agg_debt_david.csv` → `final_agg_debt.csv` chain; now single step `aggregate_debt.py` → `final_agg_debt.csv`
+    - **Data dictionaries created**: `source/derived/prescrape/pre1790/DATA_DICTIONARY.md` and `source/derived/prescrape/post1790_cd/DATA_DICTIONARY.md` documenting all input/output columns for all pipeline scripts
+
 ## Next Step
-- **Step 2.3**: source/derived/prescrape/ — reorganize + code quality for pre-scrape derived scripts
+- **Step 2.4**: source/derived/postscrape/ — reorganize + code quality for post-scrape derived scripts (`integrate_ancestry_search.py`, `aggregate_final_cd.py`, `match_candidates.py`, `filter_matches.py`, `drop_same_name.py`, `finalize_matches.py`)
 
 ## Remaining Items (Task 2)
-- Step 2.3: source/derived/prescrape/ — reorganize + code quality for pre-scrape derived scripts
 - Step 2.4: source/derived/postscrape/ — reorganize + code quality for post-scrape derived scripts
-- Step 2.5: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python
-- Step 2.6: source/webapp — light review and cleanup
+- Step 2.5: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python, systematize PNG outputs
+- Step 2.6: source/webapp — light review, cleanup, and Heroku/alternate deployment decision
+
+## Broader Task Plan
+
+| Task | Description | Status |
+|------|-------------|--------|
+| Task 1 | Reorganize repo to JMSLab structure | DONE (branch: reorganize/jmslab-structure) |
+| Task 2 | Code quality improvements (source/raw, scrape, derived, analysis, webapp) | IN PROGRESS |
+| Task 3 | Document dependencies, create virtual environment | PENDING |
+| Task 4 | Complete SCons build scripts (add remaining targets, dependency chains) | PENDING |
+
+### Task 2 — GOALS_EOW.md Alignment
+
+| Goal | Step | Status |
+|------|------|--------|
+| source/raw in good state | 2.1 | DONE |
+| source/derived/prescrape runs + replicable | 2.3 | DONE |
+| source/scrape input/routine/output clear | 2.2, 2.2.5 | DONE (pending TODO items: driver unification, rerun scraper) |
+| source/derived/postscrape runs + produces output | 2.4 | NEXT |
+| Website: Heroku / alternate deployment | 2.6 | PENDING |
+| Systematize PNG outputs | 2.5 | PENDING |
+| Decide whether to integrate existing drafts | — | UNSCHEDULED |
 
 ## Planned derived/ Folder Reorganization (Steps 2.3–2.4)
 
@@ -77,12 +113,8 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
 ```
 source/derived/
 ├── prescrape/
-│   ├── pre1790/          ← scripts that produce loan_office_certificates_cleaned.csv
-│   │   ├── aggregate_debt.py
-│   │   ├── aggregate_debt_alternate.py
-│   │   ├── clean_names.py
-│   │   ├── clean_names_individual.py
-│   │   ├── clean_imperfections.py
+│   ├── pre1790/          ← scripts that produce agg_debt_grouped.csv (scraper input)
+│   │   ├── aggregate_debt.py          ← merged from aggregate_debt + aggregate_debt_alternate
 │   │   ├── combine_certificate_types.py
 │   │   └── find_similar_names.py
 │   └── post1790_cd/      ← scripts that produce name_list.csv (CD scraper input)
@@ -100,12 +132,7 @@ source/derived/
         └── finalize_matches.py
 ```
 
-**Step 2.3 scope** (prescrape/ only — 9 scripts):
-- `git mv` all prescrape scripts into `source/derived/prescrape/`
-- Update all INDIR/OUTDIR path constants (output paths shift to `output/derived/prescrape/...`)
-- Add `Main()` to all 9 scripts, remove `get_ipython()` calls
-- Handle `name_fix.csv` stability check (see Known Issues)
-- Update SConscript
+**Step 2.3 scope** (prescrape/ only — COMPLETE): see Completed Steps #17.
 
 **Step 2.4 scope** (postscrape/ only — 6 scripts):
 - `git mv` all postscrape scripts into `source/derived/postscrape/`
@@ -116,9 +143,8 @@ source/derived/
 
 ## Known Issues / Flags for User
 - `Marine_Liquidated_Debt_Certificates.xlsx` and `Pierce_Certs_cleaned_2019.xlsx` in pre1790/orig/ have unknown origin — marked `<!-- ORIGIN UNKNOWN -->` in README
-- `census.csv`, `countyPopulation.csv`, `zip_code_database.xls` in census_data/orig/ have unknown origin — marked `<!-- ORIGIN UNKNOWN -->`
+- `county_demographics_1790.csv` (NHGIS/IPUMS), `county_pop_fips.csv` (Social Explorer), `zip_code_database.csv` in census_data/orig/ — origins now documented in census_data/README.md
 - `all_officers_ari.txt` compilation method is unclear — marked `<!-- ORIGIN UNKNOWN -->`
-- `clean_names.py`, `clean_names_individual.py`, `combine_certificate_types.py` all **write back** to `source/raw/pre1790/corrections/name_fix.csv` during the cleaning run — this modifies a raw file, which is a data integrity concern to fix in Step 2.3. **Plan for Step 2.3**: (1) run each script and compare the output `name_fix.csv` to the input with a diff; (2) if the file is unchanged after a run, the process is idempotent and the write-back can be suppressed; (3) if the file changes, re-run until it stabilizes (finds the fixed point); (4) once stable, the final `name_fix.csv` becomes the canonical hand-off file — reads stay in `source/raw/`, writes get redirected to `output/derived/pre1790/name_fix_auto.csv` to stop mutating raw data. Note: `combine_certificate_types.py` reads `name_fix.csv` **twice** (lines 68 and 309) for two separate passes — both reads need to be checked for stability.
 
 ## Key Decisions Made
 - Post-1790 ASD and CD separated into distinct folders (raw/derived/analysis mirror each other)

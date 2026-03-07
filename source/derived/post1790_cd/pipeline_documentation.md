@@ -24,8 +24,8 @@ Turn raw post-1790 continental debt (CD) security data into an organized table i
      1. Connecticut: [CT_post1790_CD_ledger.xlsx](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/post1790/CT_post1790_CD_ledger.xlsx) 
      2. Georgia: [T694_GA_Loan_Office_CD.xlsx](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/post1790/GA/T694_GA_Loan_Office_CD.xlsx)
 -  [cd_import_metadata.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/cd_import_metadata.csv): arguments for importing state CD files
-- [zip_code_database.xls](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/zip_code_database.xls): geograhical database matching towns to counties
-  - Downloaded from https://www.unitedstateszipcodes.org/zip_code_database.xls?download_auth=7b5b7133a55eef6807fc6da56f62bf27 
+- [zip_code_database.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/zip_code_database.csv): geograhical database matching towns to counties
+  - Downloaded from https://www.unitedstateszipcodes.org/zip_code_database.csv?download_auth=7b5b7133a55eef6807fc6da56f62bf27 
 - [town_fix.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/town_fix.csv): database of changes to the gegographical classification
 
 **Outputs (for future use)**: 
@@ -48,9 +48,9 @@ Turn raw post-1790 continental debt (CD) security data into an organized table i
       1. GA_24 and GA_33 have the values `Charleston South Carolina` and `Charleston` in their respective town column values
    2. The listed "town" might be a town, state or column
       1. PA_115 and PA_655 have the values `Cumberland` and `Cumb County Pennsylvania` in their respective town column values
-4. Using fuzzy string matching with [zip_code_database.xls](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/zip_code_database.xls), we identify whether a "town" value is a town, county or state, and reformat it
+4. Using fuzzy string matching with [zip_code_database.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/zip_code_database.csv), we identify whether a "town" value is a town, county or state, and reformat it
    1. For towns, we also find the corresponding county name
-5. There are cases where we cannot use fuzzy string matching to clean our geographies (or less commonly, [zip_code_database.xls](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/zip_code_database.xls) makes a mistake). In this case, we use [town_fix.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/town_fix.csv) to make the required changes
+5. There are cases where we cannot use fuzzy string matching to clean our geographies (or less commonly, [zip_code_database.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/zip_code_database.csv) makes a mistake). In this case, we use [town_fix.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/cleaning_CD/clean_tools/town_fix.csv) to make the required changes
 6. Our final results are in [aggregated_CD_post1790.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_clean/aggregated_CD_post1790.csv) 
 
 `town`, `occupation` and `state`  are given columns from the raw data but post step 2
@@ -641,7 +641,7 @@ print(pd.read_csv('scrape_tools/scrape_results.csv', index_col = 0).loc[[0, 8, 9
 
 ## Other Things
 
-The following links to state population data ([statepop.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/statepop.csv): https://web.viu.ca/davies/H320/population.colonies.htm) and county population data ([countyPopulation.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/census_data/countyPopulation.csv): https://www.socialexplorer.com/tables/Census1790/R13347861) that may be helpful in understanding the proportion of individuals in a state who held debt. 
+The following links to county population data ([county_pop_fips.csv](https://github.com/liaochris/SPEOC-pt-1/blob/main/source/raw/census_data/orig/county_pop_fips.csv): https://www.socialexplorer.com/tables/Census1790/R13347861) that may be helpful in understanding the proportion of individuals in a state who held debt. 
 
 To make maps, we use shapefiles. We have shapefiles at the county and state level. 
 

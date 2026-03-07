@@ -47,7 +47,19 @@ state_map_df['state_abrev'] = state_map_df.loc[:, 'state']
 state_map_df.replace({"state_abrev": state_codes}, inplace=True)
 
 # list of states we include in dropdown menu
-states = pd.read_csv("https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/source/raw/census_data/statepop.csv")["State"].dropna()
+_state_abbrev_names = {
+    "CT": "Connecticut", "DE": "Delaware", "GA": "Georgia",
+    "MD": "Maryland", "MA": "Massachusetts", "NH": "New Hampshire",
+    "NJ": "New Jersey", "NY": "New York", "NC": "North Carolina",
+    "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina",
+    "VA": "Virginia",
+}
+_county_pop = pd.read_csv(INDIR_CENSUS / "orig/county_pop_fips.csv", header=1)
+statepop = _county_pop.groupby("Geo_STUSAB")["SE_T001_001"].sum().reset_index()
+statepop.columns = ["State", "Total Pop"]
+statepop["State"] = statepop["State"].map(_state_abbrev_names)
+statepop["Slave Pop"] = float("nan")
+states = statepop["State"].dropna()
 states = pd.concat([pd.Series(["All States"]), states]).tolist()
 # remove states that have no map data
 states.remove("Maine")
@@ -66,7 +78,7 @@ debt_by_county.reset_index(inplace=True)
 debt_by_county.columns = debt_by_county.columns.droplevel(1)
 debt_by_county.columns = ['county', 'state', 'count', 'final_total_adj']
 # county - import geography and population data
-county_pop_data_raw = pd.read_csv("https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/source/raw/census_data/countyPopulation.csv", header=1)
+county_pop_data_raw = pd.read_csv("https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/source/raw/census_data/orig/county_pop_fips.csv", header=1)
 county_geo_fips = county_pop_data_raw[county_pop_data_raw["SE_T001_001"].notna()]
 county_geo_fips = county_geo_fips.astype({"SE_T001_001": "int", "Geo_FIPS": "str"})
 county_geo_fips = county_geo_fips[["Geo_FIPS", "Geo_name", 'Geo_STUSAB', "SE_T001_001"]]
@@ -90,7 +102,7 @@ nat_debt_geo["mean_6p_total"] = state_debt_geo['final_total_adj'].sum()/state_de
 
 # SLAVE POPULATION - COUNTY + STATE LEVEL
 # county
-county_slaves = gpd.read_file(INDIR_CENSUS / "census.csv")
+county_slaves = gpd.read_file(INDIR_CENSUS / "orig/county_demographics_1790.csv")
 county_slaves = county_slaves[["GISJOIN", "slavePopulation"]].head(290)
 county_slaves['GISJOIN'] = county_slaves['GISJOIN'].str.replace('G0', '')
 county_slaves['GISJOIN'] = county_slaves['GISJOIN'].str.replace('G', '')  # convert to geo_fips
