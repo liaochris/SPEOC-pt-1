@@ -1,0 +1,472 @@
+row_id,state,town_original,town_preprocessed,new_town,county,new_state,match_method
+0,CT,Hartford,Hartford,Hartford,Hartford County,CT,crosswalk_primary_city
+1,CT,Bolton,Bolton,Bolton,Tolland County,CT,crosswalk_primary_city
+2,CT,Wethersfield,Wethersfield,Wethersfield,Hartford County,CT,crosswalk_primary_city
+3,CT,New Haven,New Haven,New Haven,New Haven County,CT,crosswalk_primary_city
+4,CT,Farmington,Farmington,Farmington,Hartford County,CT,crosswalk_primary_city
+5,CT,New London,New London,New London,New London County,CT,crosswalk_primary_city
+6,CT,Cornwall,Cornwall,Cornwall,Litchfield County,CT,crosswalk_primary_city
+7,CT,Stamford,Stamford,Stamford,Fairfield County,CT,crosswalk_primary_city
+8,CT,East Hartford,East Hartford,East Hartford,Hartford County,CT,crosswalk_primary_city
+9,CT,Bristol,Bristol,Bristol,Hartford County,CT,crosswalk_primary_city
+10,CT,Windsor,Windsor,Windsor,Hartford County,CT,crosswalk_primary_city
+11,CT,Suffield,Suffield,Suffield,Hartford County,CT,crosswalk_primary_city
+12,CT,Berlin,Berlin,Berlin,Hartford County,CT,crosswalk_primary_city
+13,CT,Glastonbury,Glastonbury,Glastonbury,Hartford County,CT,crosswalk_primary_city
+14,CT,Stafford,Stafford,Stafford,Tolland County,CT,crosswalk_primary_city
+15,CT,Hebron,Hebron,Hebron,Tolland County,CT,crosswalk_primary_city
+16,CT,Middletown,Middletown,Middletown,Middlesex County,CT,crosswalk_primary_city
+17,CT,East Windsor,East Windsor,East Windsor,Hartford County,CT,crosswalk_primary_city
+18,CT,Norwich,Norwich,Norwich,New London County,CT,crosswalk_primary_city
+19,CT,Preston,Preston,Preston,New London County,CT,crosswalk_primary_city
+20,CT,Sharon,Sharon,Sharon,Litchfield County,CT,crosswalk_primary_city
+21,CT,Somers,Somers,Somers,Tolland County,CT,crosswalk_primary_city
+22,CT,Goshen,Goshen,Goshen,Litchfield County,CT,crosswalk_primary_city
+23,CT,Torrington,Torrington,Torrington,Litchfield County,CT,crosswalk_primary_city
+24,CT,Watertown,Watertown,Watertown,Litchfield County,CT,crosswalk_primary_city
+25,CT,Stonington,Stonington,Stonington,New London County,CT,crosswalk_primary_city
+26,CT,Fairfield,Fairfield,Fairfield,Fairfield County,CT,crosswalk_primary_city
+27,CT,Guilford,Guilford,Guilford,New Haven County,CT,crosswalk_primary_city
+28,CT,Enfield,Enfield,Enfield,Hartford County,CT,crosswalk_primary_city
+29,CT,Plainfield,Plainfield,Plainfield,Windham County,CT,crosswalk_primary_city
+30,CT,Coventry,Coventry,Coventry,Tolland County,CT,crosswalk_primary_city
+31,CT,Groton,Groton,Groton,New London County,CT,crosswalk_primary_city
+32,CT,Bozrah,Bozrah,Bozrah,New London County,CT,crosswalk_primary_city
+33,CT,Derby,Derby,Derby,New Haven County,CT,crosswalk_primary_city
+34,CT,Woodstock,Woodstock,Woodstock,Windham County,CT,crosswalk_primary_city
+35,CT,Windham,Windham,Windham,Windham County,CT,crosswalk_primary_city
+36,CT,Stratford,Stratford,Stratford,Fairfield County,CT,crosswalk_primary_city
+37,CT,Brooklyn,Brooklyn,Brooklyn,Windham County,CT,crosswalk_primary_city
+38,CT,Haddam,Haddam,Haddam,Middlesex County,CT,crosswalk_primary_city
+39,CT,Tolland,Tolland,Tolland,Tolland County,CT,crosswalk_primary_city
+40,CT,Danbury,Danbury,Danbury,Fairfield County,CT,crosswalk_primary_city
+41,CT,Newington,Newington,Newington,Hartford County,CT,crosswalk_primary_city
+42,CT,Litchfield,Litchfield,Litchfield,Litchfield County,CT,crosswalk_primary_city
+43,CT,Milford,Milford,Milford,New Haven County,CT,crosswalk_primary_city
+44,CT,Pomfret,Pomfret,Pomfret,Windham County,CT,crosswalk_primary_city
+45,CT,Killingworth,Killingworth,Killingworth,Middlesex County,CT,crosswalk_primary_city
+46,CT,Granby,Granby,Granby,Hartford County,CT,crosswalk_primary_city
+47,CT,Roxbury,Roxbury,Roxbury,Litchfield County,CT,crosswalk_primary_city
+48,CT,New Hartford,New Hartford,New Hartford,Litchfield County,CT,crosswalk_primary_city
+49,CT,East Haddam,East Haddam,East Haddam,Middlesex County,CT,crosswalk_primary_city
+50,CT,Greenwich,Greenwich,Greenwich,Fairfield County,CT,crosswalk_primary_city
+51,CT,New Milford,New Milford,New Milford,Litchfield County,CT,crosswalk_primary_city
+52,CT,Canaan,Canaan,Canaan,Litchfield County,CT,crosswalk_primary_city
+53,CT,Montville,Montville,Montville,New London County,CT,crosswalk_primary_city
+54,CT,Norwalk,Norwalk,Norwalk,Fairfield County,CT,crosswalk_primary_city
+55,CT,Canterbury,Canterbury,Canterbury,Windham County,CT,crosswalk_primary_city
+56,CT,Branford,Branford,Branford,New Haven County,CT,crosswalk_primary_city
+57,CT,Ashford,Ashford,Ashford,Windham County,CT,crosswalk_primary_city
+58,CT,Willington,Willington,Willington,Tolland County,CT,crosswalk_primary_city
+59,CT,Southbury,Southbury,Southbury,New Haven County,CT,crosswalk_primary_city
+60,CT,North Haven,North Haven,North Haven,New Haven County,CT,crosswalk_primary_city
+61,CT,Woodbury,Woodbury,Woodbury,Litchfield County,CT,crosswalk_primary_city
+62,CT,Thompson,Thompson,Thompson,Windham County,CT,crosswalk_primary_city
+63,CT,Hampton,Hampton,Hampton,Windham County,CT,crosswalk_primary_city
+64,CT,Cheshire,Cheshire,Cheshire,New Haven County,CT,crosswalk_primary_city
+65,CT,Voluntown,Voluntown,Voluntown,New London County,CT,crosswalk_primary_city
+66,CT,Weston,Weston,Weston,Fairfield County,CT,crosswalk_primary_city
+67,CT,Wallingford,Wallingford,Wallingford,New Haven County,CT,crosswalk_primary_city
+68,CT,East Haven,East Haven,East Haven,New Haven County,CT,crosswalk_primary_city
+69,CT,Ellington,Ellington,Ellington,Tolland County,CT,crosswalk_primary_city
+70,CT,Durham,Durham,Durham,Middlesex County,CT,crosswalk_primary_city
+71,CT,Waterbury,Waterbury,Waterbury,New Haven County,CT,crosswalk_primary_city
+72,CT,Norfolk,Norfolk,Norfolk,Litchfield County,CT,crosswalk_primary_city
+73,CT,Ridgefield,Ridgefield,Ridgefield,Fairfield County,CT,crosswalk_primary_city
+74,CT,Lyme,Lyme,East Lyme,New London County,CT,fuzzy_city_name
+75,CT,Saybrook,Saybrook,Old Saybrook,Middlesex County,CT,fuzzy_city_name
+76,CT,Mansfield,Mansfield,Mansfield Center,Tolland County,CT,fuzzy_city_name
+77,CT,Reading,Reading,Redding,Fairfield County,CT,fuzzy_city_name
+78,CT,Symsbury,Symsbury,Simsbury,Hartford County,CT,fuzzy_city_name
+79,CT,Franklin,Franklin,North Franklin,New London County,CT,fuzzy_city_name
+80,CT,Cornwell,Cornwell,Cornwall,Litchfield County,CT,fuzzy_city_name
+81,CT,Brooklyne,Brooklyne,Brooklyn,Windham County,CT,fuzzy_city_name
+82,CT,Stonnington,Stonnington,Stonington,New London County,CT,fuzzy_city_name
+83,CT,Volentown,Volentown,Voluntown,New London County,CT,fuzzy_city_name
+84,CT,Chatham,East Hampton,East Hampton,Middlesex County,CT,fuzzy_city_name
+85,CT,Huntington,Shelton,Shelton,Fairfield County,CT,fuzzy_city_name
+86,GA,Augusta,Augusta,Augusta,Richmond County,GA,crosswalk_primary_city
+87,GA,Effingham County,Effingham County,Effingham County,Effingham County,GA,crosswalk_county_name
+88,GA,Columbia County,Columbia County,Columbia County,Columbia County,GA,crosswalk_county_name
+89,MD,Baltimore,Baltimore,Baltimore,Baltimore County,MD,crosswalk_primary_city
+90,MD,Annapolis,Annapolis,Annapolis,Anne Arundel County,MD,crosswalk_primary_city
+91,MD,Cambridge,Cambridge,Cambridge,Dorchester County,MD,crosswalk_primary_city
+92,MD,Frederick,Frederick,Frederick,Frederick County,MD,crosswalk_primary_city
+93,MD,Harford County,Harford County,Harford County,Harford County,MD,crosswalk_county_name
+94,MD,Baltimore County,Baltimore County,Baltimore County,Baltimore County,MD,crosswalk_county_name
+95,MD,Anne Arundel County,Anne Arundel County,Anne Arundel County,Anne Arundel County,MD,crosswalk_county_name
+96,MD,Frederick County,Frederick County,Frederick County,Frederick County,MD,crosswalk_county_name
+97,MD,Somerset County,Somerset County,Somerset County,Somerset County,MD,crosswalk_county_name
+98,MD,Caroline County,Caroline County,Caroline County,Caroline County,MD,crosswalk_county_name
+99,MD,Washington County,Washington County,Washington County,Washington County,MD,crosswalk_county_name
+100,MD,Kent County,Kent County,Kent County,Kent County,MD,crosswalk_county_name
+101,MD,Charles County,Charles County,Charles County,Charles County,MD,crosswalk_county_name
+102,MD,Montgomery County,Montgomery County,Montgomery County,Montgomery County,MD,crosswalk_county_name
+103,MD,Talbot County,Talbot County,Talbot County,Talbot County,MD,crosswalk_county_name
+104,MD,Calvert County,Calvert County,Calvert County,Calvert County,MD,crosswalk_county_name
+105,MD,Cecil County,Cecil County,Cecil County,Cecil County,MD,crosswalk_county_name
+106,MD,Dorchester County,Dorchester County,Dorchester County,Dorchester County,MD,crosswalk_county_name
+107,MD,Worcester County,Worcester County,Worcester County,Worcester County,MD,crosswalk_county_name
+108,MD,Allegany County,Allegany County,Allegany County,Allegany County,MD,crosswalk_county_name
+109,MD,Frederick County Maryland,Frederick County,Frederick County,Frederick County,MD,crosswalk_county_name
+110,MD,Montgomery County Maryland,Montgomery County,Montgomery County,Montgomery County,MD,crosswalk_county_name
+111,MD,Somerset County Maryland,Somerset County,Somerset County,Somerset County,MD,crosswalk_county_name
+112,MD,George Town,George Town,Georgetown,Cecil County,MD,fuzzy_city_name
+113,MD,Frederick Town,Frederick Town,Frederick,Frederick County,MD,fuzzy_city_name
+114,MD,Baltimore Town,Baltimore Town,Baltimore,Baltimore County,MD,fuzzy_city_name
+115,MD,George town,George town,Georgetown,Cecil County,MD,fuzzy_city_name
+116,NC,Edenton,Edenton,Edenton,Chowan County,NC,crosswalk_primary_city
+117,NC,Fayetteville,Fayetteville,Fayetteville,Cumberland County,NC,crosswalk_primary_city
+118,NC,Washington,Washington,Washington,Beaufort County,NC,crosswalk_primary_city
+119,NC,Hillsborough,Hillsborough,Hillsborough,Orange County,NC,crosswalk_primary_city
+120,NC,Wayne County,Wayne County,Wayne County,Wayne County,NC,crosswalk_county_name
+121,NC,Rowan County,Rowan County,Rowan County,Rowan County,NC,crosswalk_county_name
+122,NC,Warren County,Warren County,Warren County,Warren County,NC,crosswalk_county_name
+123,NC,Perquimans County,Perquimans County,Perquimans County,Perquimans County,NC,crosswalk_county_name
+124,NC,Mecklenburg County,Mecklenburg County,Mecklenburg County,Mecklenburg County,NC,crosswalk_county_name
+125,NC,Edgecombe County,Edgecombe County,Edgecombe County,Edgecombe County,NC,crosswalk_county_name
+126,NC,Pitt County,Pitt County,Pitt County,Pitt County,NC,crosswalk_county_name
+127,NC,Currituck County,Currituck County,Currituck County,Currituck County,NC,crosswalk_county_name
+128,NC,Rockingham County,Rockingham County,Rockingham County,Rockingham County,NC,crosswalk_county_name
+129,NC,Tarborugh,Tarboro,Tarboro,Edgecombe County,NC,fuzzy_city_name
+130,NC,Halifax,Halifax,Halifax,Halifax County,NC,fuzzy_city_name
+131,NC,Halifax ,Halifax,Halifax,Halifax County,NC,fuzzy_city_name
+132,NH,Exeter,Exeter,Exeter,Rockingham County,NH,crosswalk_primary_city
+133,NH,Deerfield,Deerfield,Deerfield,Rockingham County,NH,crosswalk_primary_city
+134,NH,Greenland,Greenland,Greenland,Rockingham County,NH,crosswalk_primary_city
+135,NH,Hampton,Hampton,Hampton,Rockingham County,NH,crosswalk_primary_city
+136,NH,North Hampton,North Hampton,North Hampton,Rockingham County,NH,crosswalk_primary_city
+137,NH,Candia,Candia,Candia,Rockingham County,NH,crosswalk_primary_city
+138,NH,Salem,Salem,Salem,Rockingham County,NH,crosswalk_primary_city
+139,NH,New Castle,New Castle,New Castle,Rockingham County,NH,crosswalk_primary_city
+140,NH,Pelham,Pelham,Pelham,Hillsborough County,NH,crosswalk_primary_city
+141,NH,Barrington,Barrington,Barrington,Strafford County,NH,crosswalk_primary_city
+142,NH,Tamworth,Tamworth,Tamworth,Carroll County,NH,crosswalk_primary_city
+143,NH,Amherst,Amherst,Amherst,Hillsborough County,NH,crosswalk_primary_city
+144,NH,Acworth,Acworth,Acworth,Sullivan County,NH,crosswalk_primary_city
+145,NH,Somersworth,Somersworth,Somersworth,Strafford County,NH,crosswalk_primary_city
+146,NH,Nottingham,Nottingham,Nottingham,Rockingham County,NH,crosswalk_primary_city
+147,NH,Charlestown,Charlestown,Charlestown,Sullivan County,NH,crosswalk_primary_city
+148,NH,Durham,Durham,Durham,Strafford County,NH,crosswalk_primary_city
+149,NH,Hollis,Hollis,Hollis,Hillsborough County,NH,crosswalk_primary_city
+150,NH,Dover,Dover,Dover,Strafford County,NH,crosswalk_primary_city
+151,NH,Keene,Keene,Keene,Cheshire County,NH,crosswalk_primary_city
+152,NH,Rye,Rye,Rye,Rockingham County,NH,crosswalk_primary_city
+153,NH,Kensington,Kensington,Kensington,Rockingham County,NH,crosswalk_acceptable_city
+154,NH,Sandwich,Sandwich,Sandwich,Carroll County,NH,crosswalk_acceptable_city
+155,NH,South Hampton,South Hampton,South Hampton,Rockingham County,NH,crosswalk_acceptable_city
+156,NH,Wakefield,Wakefield,Wakefield,Carroll County,NH,crosswalk_acceptable_city
+157,NH,Alexandria,Alexandria,Alexandria,Grafton County,NH,crosswalk_acceptable_city
+158,NH,Charleston State of New Hampshire,Charleston,Charlestown,Sullivan County,NH,fuzzy_city_name
+159,NH,Portsmouth,Portsmouth,Portsmouth,Rockingham County,NH,fuzzy_city_name
+160,NH,Merrimac,Merrimac,Merrimack,Hillsborough County,NH,fuzzy_city_name
+161,NH,Kingstown,Kingstown,Kingston,Rockingham County,NH,fuzzy_city_name
+162,NH,Marbury,Marbury,Madbury,Strafford County,NH,fuzzy_city_name
+163,NH,Newtown,Newtown,Newton,Rockingham County,NH,fuzzy_city_name
+164,NH,Londonberry,Londonberry,Londonderry,Rockingham County,NH,fuzzy_city_name
+165,NH,Newport in New Hampshire,Newport in,Newport,Sullivan County,NH,fuzzy_city_name
+166,NH,Rockingham,Rockingham County,Rockingham County,Rockingham County,NH,crosswalk_county_name
+167,NJ,Brunswick New Jersey,Brunswick,New Brunswick,Middlesex County,NJ,fuzzy_city_name
+168,NJ,Cape May New Jersey,Cape May,Cape May,Cape May County,NJ,fuzzy_city_name
+169,NJ,Cape May,Cape May,Cape May,Cape May County,NJ,fuzzy_city_name
+170,NJ,New Brunswick New Jersey,New Brunswick,New Brunswick,Middlesex County,NJ,fuzzy_city_name
+171,NJ,Mount Holley New Jersey,Mount Holley,Mount Holly,Burlington County,NJ,fuzzy_city_name
+172,NJ,Middlesex New Jersey,Middlesex,Middlesex,Middlesex County,NJ,fuzzy_city_name
+173,NJ,Newton Township New Jersey,Newton Township,Newton,Sussex County,NJ,fuzzy_city_name
+174,NJ,Monmouth County New Jersey,Monmouth County,Monmouth County,Monmouth County,NJ,crosswalk_county_name
+175,PA,Bethlehem,Bethlehem,Bethlehem,Northampton County,PA,crosswalk_primary_city
+176,PA,Montgomery,Montgomery,Montgomery,Lycoming County,PA,crosswalk_primary_city
+177,PA,Philadelphia County,Philadelphia County,Philadelphia County,Philadelphia County,PA,crosswalk_county_name
+178,PA,Franklin County,Franklin County,Franklin County,Franklin County,PA,crosswalk_county_name
+179,PA,Bucks County,Bucks County,Bucks County,Bucks County,PA,crosswalk_county_name
+180,PA,Montgomery County,Montgomery County,Montgomery County,Montgomery County,PA,crosswalk_county_name
+181,PA,Berks County,Berks County,Berks County,Berks County,PA,crosswalk_county_name
+182,PA,Dauphin County,Dauphin County,Dauphin County,Dauphin County,PA,crosswalk_county_name
+183,PA,Allegheny County,Allegheny County,Allegheny County,Allegheny County,PA,crosswalk_county_name
+184,PA,Westmoreland County,Westmoreland County,Westmoreland County,Westmoreland County,PA,crosswalk_county_name
+185,PA,Lancaster County,Lancaster County,Lancaster County,Lancaster County,PA,crosswalk_county_name
+186,PA,Northumberland County,Northumberland County,Northumberland County,Northumberland County,PA,crosswalk_county_name
+187,PA,Northampton County,Northampton County,Northampton County,Northampton County,PA,crosswalk_county_name
+188,PA,York County,York County,York County,York County,PA,crosswalk_county_name
+189,PA,Delaware County,Delaware County,Delaware County,Delaware County,PA,crosswalk_county_name
+190,PA,Bedford County,Bedford County,Bedford County,Bedford County,PA,crosswalk_county_name
+191,PA,Armstrong,Armstrong,Armstrong,Lycoming County,PA,crosswalk_acceptable_city
+192,PA,Bucks County Pennsylvania,Bucks County,Bucks County,Bucks County,PA,crosswalk_county_name
+193,PA,Dauphin County Pennsylvania,Dauphin County,Dauphin County,Dauphin County,PA,crosswalk_county_name
+194,PA,Allegheny County Pennsylvania,Allegheny County,Allegheny County,Allegheny County,PA,crosswalk_county_name
+195,PA,Berks County Pennsylvania,Berks County,Berks County,Berks County,PA,crosswalk_county_name
+196,PA,Pennsylvania Montgomery County,Montgomery County,Montgomery County,Montgomery County,PA,crosswalk_county_name
+197,PA,Franklin County Pennsylvania,Franklin County,Franklin County,Franklin County,PA,crosswalk_county_name
+198,PA,Lancaster County Pennsylvania,Lancaster County,Lancaster County,Lancaster County,PA,crosswalk_county_name
+199,PA,Fayette County Pennsylvania,Fayette County,Fayette County,Fayette County,PA,crosswalk_county_name
+200,PA,Delaware County Pennsylvania,Delaware County,Delaware County,Delaware County,PA,crosswalk_county_name
+201,PA,Northampton County Pennsylvania,Northampton County,Northampton County,Northampton County,PA,crosswalk_county_name
+202,PA,York County Pennsylvania,York County,York County,York County,PA,crosswalk_county_name
+203,PA,Westmoreland County Pennsylvania,Westmoreland County,Westmoreland County,Westmoreland County,PA,crosswalk_county_name
+204,PA,Montgomery County Pennsylvania,Montgomery County,Montgomery County,Montgomery County,PA,crosswalk_county_name
+205,PA,Northumberland County Pennsylvania,Northumberland County,Northumberland County,Northumberland County,PA,crosswalk_county_name
+206,PA,Carlisle Pennsylvania,Carlisle,Carlisle,Cumberland County,PA,fuzzy_city_name
+207,PA,Germantown,Germantown,New Germantown,Perry County,PA,fuzzy_city_name
+208,PA,Westmoreland,Westmoreland,Westmoreland City,Westmoreland County,PA,fuzzy_city_name
+209,PA,Reading,Reading,Reading,Berks County,PA,fuzzy_city_name
+210,PA,Reading Pennsylvania,Reading,Reading,Berks County,PA,fuzzy_city_name
+211,PA,Reading Berks County,Reading Berks County,Reading,Berks County,PA,fuzzy_city_name
+212,PA,Lancaster,Lancaster,Lancaster,Lancaster County,PA,fuzzy_city_name
+213,PA,Lancaster Pennsylvania,Lancaster,Lancaster,Lancaster County,PA,fuzzy_city_name
+214,PA,The N Lib of Philadelphia,The N Lib of Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+215,PA,Pittsburgh Pennsylvania,Pittsburgh,Pittsburgh,Allegheny County,PA,fuzzy_city_name
+216,PA,Pittsburgh,Pittsburgh,Pittsburgh,Allegheny County,PA,fuzzy_city_name
+217,PA,Chambersburgh Pennsylvania,Chambersburgh,Chambersburg,Franklin County,PA,fuzzy_city_name
+218,PA,Frankford Philadelphia County,Frankford Philadelphia County,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+219,PA,Dauphincoy Pennsylvania,Dauphin,Dauphin,Dauphin County,PA,fuzzy_city_name
+220,PA,Kensington,Kensington,New Kensington,Westmoreland County,PA,fuzzy_city_name
+221,PA,Dauphin and Company,Dauphin and Company,Dauphin,Dauphin County,PA,fuzzy_city_name
+222,PA,Hatter Philadelphia,Hatter Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+223,PA,Blockley,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+224,PA,Northan Liberties,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+225,PA,Borden Town,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+226,PA,Passyunk,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+227,PA,Northern Liberties,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+228,PA,German Town,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+229,PA,The Northern Libert,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+230,PA,Southwark,Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+231,PA,Sunbury Pennsylvania,Sunbury,Sunbury,Northumberland County,PA,fuzzy_city_name
+232,PA,Church on Philadelphia,Church on Philadelphia,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+233,PA,Philadelphila,Philadelphila,Philadelphia,Philadelphia County,PA,fuzzy_city_name
+234,PA,York Town,York Town,York,York County,PA,fuzzy_city_name
+235,RI,Providence,Providence,Providence,Providence County,RI,crosswalk_primary_city
+236,RI,Warren,Warren,Warren,Bristol County,RI,crosswalk_primary_city
+237,RI,East Greenwich,East Greenwich,East Greenwich,Kent County,RI,crosswalk_primary_city
+238,RI,Johnston,Johnston,Johnston,Providence County,RI,crosswalk_primary_city
+239,RI,Coventry,Coventry,Coventry,Kent County,RI,crosswalk_primary_city
+240,RI,Cumberland,Cumberland,Cumberland,Providence County,RI,crosswalk_primary_city
+241,RI,North Providence,North Providence,North Providence,Providence County,RI,crosswalk_primary_city
+242,RI,Foster,Foster,Foster,Providence County,RI,crosswalk_primary_city
+243,RI,Warwick,Warwick,Warwick,Kent County,RI,crosswalk_primary_city
+244,RI,Bristol,Bristol,Bristol,Bristol County,RI,crosswalk_primary_city
+245,RI,Smithfield,Smithfield,Smithfield,Providence County,RI,crosswalk_primary_city
+246,RI,Barrington,Barrington,Barrington,Bristol County,RI,crosswalk_primary_city
+247,RI,Cranston,Cranston,Cranston,Providence County,RI,crosswalk_primary_city
+248,RI,Charlestown,Charlestown,Charlestown,Washington County,RI,crosswalk_primary_city
+249,RI,West Greenwich,West Greenwich,West Greenwich,Kent County,RI,crosswalk_primary_city
+250,RI,Portsmouth,Portsmouth,Portsmouth,Newport County,RI,crosswalk_primary_city
+251,RI,Exeter,Exeter,Exeter,Washington County,RI,crosswalk_primary_city
+252,RI,Tiverton,Tiverton,Tiverton,Newport County,RI,crosswalk_primary_city
+253,RI,North Kingstown,North Kingstown,North Kingstown,Washington County,RI,crosswalk_primary_city
+254,RI,Newport State of Rhode Island,Newport,Newport,Newport County,RI,fuzzy_city_name
+255,RI,Newport,Newport,Newport,Newport County,RI,fuzzy_city_name
+256,RI,Scituate,Scituate,North Scituate,Providence County,RI,fuzzy_city_name
+257,RI,South Kingston,South Kingston,Kingston,Washington County,RI,fuzzy_city_name
+258,RI,South Kingstone,South Kingstone,Kingston,Washington County,RI,fuzzy_city_name
+259,RI,Johnson,Johnson,Johnston,Providence County,RI,fuzzy_city_name
+260,RI,North Kingston,North Kingston,North Kingstown,Washington County,RI,fuzzy_city_name
+261,RI,Stoughton now of Providence,Stoughton now  Providence,Providence,Providence County,RI,fuzzy_city_name
+262,RI,Smithfeild,Smithfeild,Smithfield,Providence County,RI,fuzzy_city_name
+263,SC,Georgetown,Georgetown,Georgetown,Georgetown County,SC,crosswalk_primary_city
+264,SC,Camden,Camden,Camden,Kershaw County,SC,crosswalk_primary_city
+265,SC,Columbia,Columbia,Columbia,Richland County,SC,crosswalk_primary_city
+266,SC,Abbeville,Abbeville,Abbeville,Abbeville County,SC,crosswalk_primary_city
+267,SC,Dorchester,Dorchester,Dorchester,Dorchester County,SC,crosswalk_primary_city
+268,SC,St Helena,St Helena,St Helena,Beaufort County,SC,crosswalk_acceptable_city
+269,SC,Charleston,Charleston,Charleston,Charleston County,SC,fuzzy_city_name
+270,SC,Charleston  South Carolina,Charleston,Charleston,Charleston County,SC,fuzzy_city_name
+271,SC,Camden Planter,Camden Planter,Camden,Kershaw County,SC,fuzzy_city_name
+272,SC,St Johns,St Johns,Johns Island,Charleston County,SC,fuzzy_city_name
+273,MA,Boston,Boston,Boston,Suffolk County,MA,crosswalk_primary_city
+274,MA,Pittsfield,Pittsfield,Pittsfield,Berkshire County,MA,crosswalk_primary_city
+275,MA,Andover,Andover,Andover,Essex County,MA,crosswalk_primary_city
+276,MA,Salem,Salem,Salem,Essex County,MA,crosswalk_primary_city
+277,MA,Beverly,Beverly,Beverly,Essex County,MA,crosswalk_primary_city
+278,MA,Ipswich,Ipswich,Ipswich,Essex County,MA,crosswalk_primary_city
+279,MA,Rowley,Rowley,Rowley,Essex County,MA,crosswalk_primary_city
+280,MA,Haverhill,Haverhill,Haverhill,Essex County,MA,crosswalk_primary_city
+281,MA,Stoughton,Stoughton,Stoughton,Norfolk County,MA,crosswalk_primary_city
+282,MA,Roxbury,Roxbury,Roxbury,Suffolk County,MA,crosswalk_primary_city
+283,MA,Rehoboth,Rehoboth,Rehoboth,Bristol County,MA,crosswalk_primary_city
+284,MA,Dighton,Dighton,Dighton,Bristol County,MA,crosswalk_primary_city
+285,MA,Littleton,Littleton,Littleton,Middlesex County,MA,crosswalk_primary_city
+286,MA,Sutton,Sutton,Sutton,Worcester County,MA,crosswalk_primary_city
+287,MA,Ludlow,Ludlow,Ludlow,Hampden County,MA,crosswalk_primary_city
+288,MA,Somerset,Somerset,Somerset,Bristol County,MA,crosswalk_primary_city
+289,MA,Swansea,Swansea,Swansea,Bristol County,MA,crosswalk_primary_city
+290,MA,Bridgewater,Bridgewater,Bridgewater,Plymouth County,MA,crosswalk_primary_city
+291,MA,Dudley,Dudley,Dudley,Worcester County,MA,crosswalk_primary_city
+292,MA,Westport,Westport,Westport,Bristol County,MA,crosswalk_primary_city
+293,MA,Norton,Norton,Norton,Bristol County,MA,crosswalk_primary_city
+294,MA,Sturbridge MA,Sturbridge,Sturbridge,Worcester County,MA,fuzzy_city_name
+295,MA,Tyringham MA,Tyringham,Tyringham,Berkshire County,MA,fuzzy_city_name
+296,MA,Tyringham Massachusetts,Tyringham,Tyringham,Berkshire County,MA,fuzzy_city_name
+297,MA,Hadley Massachusetts,Hadley,Hadley,Hampshire County,MA,fuzzy_city_name
+298,MA,Boston state Massachusetts,Boston state,Boston,Suffolk County,MA,fuzzy_city_name
+299,MA,Worcester State Massachusetts,Worcester,Worcester,Worcester County,MA,fuzzy_city_name
+300,MA,Granby Massachusetts,Granby,Granby,Hampshire County,MA,fuzzy_city_name
+301,MA,Long Meadow Massachusetts,Long Meadow,Longmeadow,Hampden County,MA,fuzzy_city_name
+302,MA,Newbury Port,Newbury Port,Newbury,Essex County,MA,fuzzy_city_name
+303,MA,Situate,Situate,Scituate,Plymouth County,MA,fuzzy_city_name
+304,MA,Almsbury,Almsbury,Amesbury,Essex County,MA,fuzzy_city_name
+305,MA,Cambridge,Cambridge,Cambridge,Middlesex County,MA,fuzzy_city_name
+306,MA,Cambridge Massachusetts,Cambridge,Cambridge,Middlesex County,MA,fuzzy_city_name
+307,MA,North Hampton,North Hampton,Northampton,Hampshire County,MA,fuzzy_city_name
+308,MA,Liecester,Liecester,Leicester,Worcester County,MA,fuzzy_city_name
+309,MA,Grafton Massachusetts,Grafton,Grafton,Worcester County,MA,fuzzy_city_name
+310,MA,Attleborough,Attleborough,Attleboro,Bristol County,MA,fuzzy_city_name
+311,MA,Falmouth Massachusetts,Falmouth,Falmouth,Barnstable County,MA,fuzzy_city_name
+312,MA,Chesterfield Massachusetts,Chesterfield,Chesterfield,Hampshire County,MA,fuzzy_city_name
+313,MA,Freetown,Freetown,East Freetown,Bristol County,MA,fuzzy_city_name
+314,VA,Alexandria State of Virginia,Alexandria  of,Alexandria,Fairfax County,VA,fuzzy_city_name
+315,VA,Richmond Virginia,Richmond,Richmond,Chesterfield County,VA,fuzzy_city_name
+316,VA,Petersburg Virginia,Petersburg,Petersburg,Grant County,VA,fuzzy_city_name
+317,VA,Alexandria Virginia,Alexandria,Alexandria,Fairfax County,VA,fuzzy_city_name
+318,VA,Fredericksburg Virginia,Fredericksburg,Fredericksburg,Spotsylvania County,VA,fuzzy_city_name
+319,VA,Accomack County Virginia,Accomack County,Accomac,Accomack County,VA,fuzzy_city_name
+320,VA,King George Co Virginia,King George Co,King George,King George County,VA,fuzzy_city_name
+321,VA,Williamsburgh,Williamsburgh,Williamsburg,James City County,VA,fuzzy_city_name
+322,SC,Charleston South Carolina,Charleston South Carolina,Charleston,Charleston County,SC,manual_override
+323,PA,Charleston South Carolina,Charleston South Carolina,Charleston,Charleston County,SC,manual_override
+324,PA,Northumberland County Virginia,Northumberland County Virginia,,Northumberland County,VA,manual_override
+325,GA,Savannah,Savannah,Savannah,Chatham County,GA,manual_override
+326,SC,Savannah,Savannah,Savannah,Chatham County,GA,manual_override
+327,VA,Portsmouth Virginia,Portsmouth Virginia,Portsmouth,Norfolk County,VA,manual_override
+328,PA,Burlington New Jersey,Burlington New Jersey,Burlington,Burlington County,NJ,manual_override
+329,NJ,Burlington New Jersey,Burlington New Jersey,Burlington,Burlington County,NJ,manual_override
+330,RI,Gloucester,Gloucester,Gloucester,Providence County,RI,manual_override
+331,RI,Richmond,Richmond,Richmond,Washington County,RI,manual_override
+332,SC,St. Paul's,St. Paul's,,Clarendon County,SC,manual_override
+333,SC,Pee Dee,Pee Dee,,Marion County,SC,manual_override
+334,SC,St. George,St. George,,Dorchester County,SC,manual_override
+335,SC,New River,New River,,Beaufort County,SC,manual_override
+336,SC,Winyaw,Winyaw,,Georgetown County,SC,manual_override
+337,SC,Broad River,Broad River,,Beaufort County,SC,manual_override
+338,SC,Toogoodoo,Toogoodoo,,Charleston County,SC,manual_override
+339,SC,St Pauls,St Pauls,,Clarendon County,SC,manual_override
+340,SC,James Island,James Island,,Charleston County,SC,manual_override
+341,SC,St Andrews,St Andrews,,Richland County,SC,manual_override
+342,NY,Albany,Albany,Albany,Albany County,NY,manual_override
+343,,Newark,Newark,Newark,Essex County,NJ,manual_override
+344,NY,City of New York,City of New York,New York City,New York County,NY,manual_override
+345,NY,Long Island,Long Island,,,NY,manual_override
+346,MA,Massachusetts,Massachusetts,,,MA,manual_override
+347,RI,Rhode Island,Rhode Island,,,RI,manual_override
+348,CT,Connecticut,Connecticut,,,CT,manual_override
+349,NY,New York,New York,,,NY,manual_override
+350,NJ,New York,New York,,,NY,manual_override
+351,NJ,New Jersey,New Jersey,,,NJ,manual_override
+352,PA,Pennsylvania,Pennsylvania,,,PA,manual_override
+353,PA,Delaware,Delaware,,,DE,manual_override
+354,MD,Maryland,Maryland,,,MD,manual_override
+355,VA,Virginia,Virginia,,,VA,manual_override
+356,NC,North Carolina,North Carolina,,,NC,manual_override
+357,SC,South Carolina,South Carolina,,,SC,manual_override
+358,GA,Georgia,Georgia,,,GA,manual_override
+359,CT,Vermont,Vermont,,,VT,manual_override
+360,NH,Gilmantown,Gilmantown,Gilmantown,Strafford County,NH,manual_override
+361,SC,96 District,96 District,Philadelphia,Philadelphia County,PA,manual_override
+362,SC,Ninety six District,Ninety six District,Philadelphia,Philadelphia County,PA,manual_override
+363,NJ,Trenton New Jersey,Trenton New Jersey,Trenton,Hunterdon County,NJ,manual_override
+364,NJ,Princeton New Jersey,Princeton New Jersey,Princeton,Middlesex County,NJ,manual_override
+365,NH,Newbury,Newbury,Newbury,Hillsborough County,NH,manual_override
+366,NH,Pembroke,Pembroke,Pembroke,Hillsborough County,NH,manual_override
+367,NH,Hopkinton,Hopkinton,Hopkinton,Hillsborough County,NH,manual_override
+368,CT,Salisbury,Salisbury,Salisbury,Hillsborough County,NH,manual_override
+369,NC,Salisbury,Salisbury,Salisbury,Hillsborough County,NH,manual_override
+370,NH,Salisbury,Salisbury,Salisbury,Hillsborough County,NH,manual_override
+371,NH,Canterbury,Canterbury,Canterbury,Rockingham County,NH,manual_override
+372,NH,Concord,Concord,Concord,Grafton County,NH,manual_override
+373,VA,Virginia and Philadelphia,Virginia and Philadelphia,Philadelphia,Philadelphia County,PA,manual_override
+374,MD,Doden Maryland,Doden Maryland,,Anne Arundel County,MD,manual_override
+375,NJ,Huntington New Jersey,Huntington New Jersey,Huntington,Hunterdon County,NJ,manual_override
+376,MA,Kittery,Kittery,Kittery,York County,MA,manual_override
+377,NH,York,York,York,York County,MA,manual_override
+378,NH,Wells,Wells,Wells,York County,MA,manual_override
+379,VA,James City County Virginia,James City County Virginia,,James City County,VA,manual_override
+380,PA,Cumb County Pennsylvania,Cumb County Pennsylvania,,Cumberland County,PA,manual_override
+381,PA,Cumberland,Cumberland,,Cumberland County,PA,manual_override
+382,PA,York Town Pennsylvania,York Town Pennsylvania,York Township,York County,PA,manual_override
+383,NH,Portsmouth New Hampshire,Portsmouth New Hampshire,Portsmouth,Rockingham County,NH,manual_override
+384,PA,Tulpehocken,Tulpehocken,Tulpehocken,Berks County,PA,manual_override
+385,SC,Long Cames,Long Cames,,Abbeville County,SC,manual_override
+386,MA,Springfield,Springfield,Springfield,Hampshire County,MA,manual_override
+387,RI,Springfield,Springfield,Springfield,Hampshire County,MA,manual_override
+388,PA,Chester County,Chester County,,Chester County,PA,manual_override
+389,PA,Chester County Pennsylvania,Chester County Pennsylvania,,Chester County,PA,manual_override
+390,PA,Chester Co Pennsylvania,Chester Co Pennsylvania,,Chester County,PA,manual_override
+391,PA,Chester County Pennsylvaina,Chester County Pennsylvaina,,Chester County,PA,manual_override
+392,PA,Chester,Chester,,Chester County,PA,manual_override
+393,PA,Chester and County,Chester and County,,Chester County,PA,manual_override
+394,PA,County of Philadelphia,County of Philadelphia,,Philadelphia County,PA,manual_override
+395,PA,Paxton Tot Dauphin County,Paxton Tot Dauphin County,Middle Paxton Township,Dauphin County,PA,manual_override
+396,NJ,Somerset County New Jersey,Somerset County New Jersey,,Somerset County,NJ,manual_override
+397,NH,North Hampshire,North Hampshire,,,NH,manual_override
+398,SC,Carolina,Carolina,,,SC,manual_override
+399,MD,Isaac,Isaac,,,MD,manual_override
+400,NH,Glouster,Glouster,Gloucester,Essex County,MA,manual_override
+401,PA,W Callisters Town,W Callisters Town,,,PA,manual_override
+402,SC,Richard Sennings,Richard Sennings,,,SC,manual_override
+403,CT,Connecticutt,Connecticutt,,,CT,manual_override
+404,GA,State of Georgia,State of Georgia,,,GA,manual_override
+405,PA,Northumb Country,Northumb Country,,Northumberland Country,PA,manual_override
+406,DE,Delaware Newcastle County,Delaware Newcastle County,,New Castle County,DE,manual_override
+407,SC,Richard County,Richard County,,Richland County,SC,manual_override
+408,MD,Calver County,Calver County,,Calvert County,MD,manual_override
+409,MD,Talbot,Talbot,,Talbot County,MD,manual_override
+410,NC,Wilmington,Wilmington,,New Castle County,DE,manual_override
+411,DE,New Castle Delaware,New Castle Delaware,,New Castle County,DE,manual_override
+412,VA,Louden County Virginia,Louden County Virginia,,Loudoun County,VA,manual_override
+413,PA,Northum County Pennsylvania,Northum County Pennsylvania,,Northumberland County,PA,manual_override
+414,MD,Fredrick Co Maryland,Fredrick Co Maryland,,Frederick County,MD,manual_override
+415,VA,Ohio County Virginia,Ohio County Virginia,,Ohio County,VA,manual_override
+416,DE,Kent Company Delaware,Kent Company Delaware,,Kent County,DE,manual_override
+417,DE,Wilmington Delaware,Wilmington Delaware,,New Castle County,DE,manual_override
+418,DE,New Castle County Delaware State,New Castle County Delaware State,,New Castle County,DE,manual_override
+419,NH,Brintwood,Brintwood,Brentwood,Rockingham County,NH,manual_override
+420,MD,Prince Georges County,Prince Georges County,,Prince Georges County,MD,manual_override
+421,MD,Bladensburg,Bladensburg,Bladensburg,Prince Georges County,MD,manual_override
+422,MD,St Marys County,St Marys County,,St Marys County,MD,manual_override
+423,MD,Queen Annes County,Queen Annes County,,Queen Annes County,MD,manual_override
+424,CT,,,,,CT,manual_override
+425,NY,State of New York,State of New York,,,NY,manual_override
+426,VT,State of Vermont,State of Vermont,,,VT,manual_override
+427,VT,State Vermont,State Vermont,,,VT,manual_override
+428,NH,State of New Hampshire,State of New Hampshire,,,NH,manual_override
+429,CT,Colchester,Colchester,Colchester,New London County,CT,manual_override
+430,,Colchester,Colchester,Colchester,New London County,CT,manual_override
+431,GA,,,,,GA,manual_override
+432,VA,Virgina,Virgina,,,VA,manual_override
+433,MD,,,,,MD,manual_override
+434,NC,,,,,NC,manual_override
+435,NH,,,,,NH,manual_override
+436,PA,,,,,PA,manual_override
+437,VA,,,,,VA,manual_override
+438,PA,Philadelphia,Philadelphia,Philadelphia,Philadelphia County,PA,manual_override
+439,,Philadelphia,Philadelphia,Philadelphia,Philadelphia County,PA,manual_override
+440,DE,Delaware State,Delaware State,,,DE,manual_override
+441,RI,,,,,RI,manual_override
+442,SC,,,,,SC,manual_override
+443,,Rotterdam,Rotterdam,,,,manual_override
+444,CT,London,London,,,,manual_override
+445,,London,London,,,,manual_override
+446,NH,London,London,,,,manual_override
+447,BVI,Eustatia,Eustatia,,,,manual_override
+448,,Barbadoes,Barbadoes,,,,manual_override
+449,,Sta Croix,Sta Croix,,,,manual_override
+450,,Maidenhead,Maidenhead,,,,manual_override
+451,BM,Bermuda,Bermuda,,,,manual_override
+452,US,Register of the Treasury,Register of the Treasury,,,,manual_override
+453,FR,,,,,,manual_override
+454,VI,St. Thomas,St. Thomas,,,,manual_override
+455,BVI,St Thomas,St Thomas,,,,manual_override
+456,GB,Great Britain,Great Britain,,,,manual_override
+457,GB,Edinburgh,Edinburgh,,,,manual_override
+458,FR,Bourdeaux,Bourdeaux,,,,manual_override
+459,VI,The River May,The River May,,,,manual_override
+460,CT,Lebanon,Lebanon,Lebanon,Windham County,CT,manual_override
+461,CT,Southhampton,Southhampton,Southampton,Windham County,CT,manual_override
+462,CT,Conecticutt,Conecticutt,,,CT,manual_override
+463,DE,State of Delawere,State of Delawere,,,DE,manual_override
+464,PA,St Eustatia,St Eustatia,,,,manual_override
+465,RI,North Kingstone,North Kingstone,North Kingston,Washington County,RI,manual_override
+466,RI,Little Compton,Little Compton,Little Compton,Kent County,RI,manual_override
+467,NC,Newbern,Newbern,New Bern,Craven County,NC,manual_override
+468,NC,Murfrees Borough,Murfrees Borough,Murfreesboro,Hertford County,NC,manual_override
+469,MD,Georges Town,Georges Town,Georgetown,Montgomery County,MD,manual_override
+470,CT,Northampton,Northampton,Northampton,Hampshire County,MA,manual_override

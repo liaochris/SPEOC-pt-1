@@ -1,5 +1,7 @@
 # CLAUDE.md — Project Context for Claude Code
 
+- Use python not python3 to test code
+
 ## Project Overview
 SPEOC (Summer Project on the Economic Origins of the Constitution) analyzes whether US constitutional and state convention delegates' debt holdings influenced their votes, using historical debt certificate records from the National Archives.
 

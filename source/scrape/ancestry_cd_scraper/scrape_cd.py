@@ -25,7 +25,7 @@ def Main():
 
 def LoadNameList():
     return pd.read_csv(INDIR_DERIVED / 'name_list.csv', index_col=0)[
-        ['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'country', 'name_type']
+        ['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'country', 'geo_level']
     ].drop_duplicates().reset_index(drop=True)
 
 
@@ -67,16 +67,16 @@ def ScrapeAllNames(final_name_list, driver):
         search_town = final_name_list.loc[index, 'new_town']
         search_county = final_name_list.loc[index, 'county']
         search_state = final_name_list.loc[index, 'new_state']
-        name_type = final_name_list.loc[index, 'name_type']
+        geo_level = final_name_list.loc[index, 'geo_level']
 
-        if name_type == "country":
+        if geo_level == "country":
             continue
 
-        key = f"{fn}|{ln}|{search_town}|{search_county}|{search_state}|{name_type}"
+        key = f"{fn}|{ln}|{search_town}|{search_county}|{search_state}|{geo_level}"
         if key in done:
             continue
 
-        location = ProcessLocationString(name_type, search_town, search_county, search_state)
+        location = ProcessLocationString(geo_level, search_town, search_county, search_state)
         if not isinstance(fn, str):
             fn = ""
         name = fn + " " + ln
@@ -86,17 +86,17 @@ def ScrapeAllNames(final_name_list, driver):
         tries = 0
         while not match and tries < 8:
             try:
-                res = ScrapeCD(fn, ln, driver, search_town, search_county, search_state, name_type)
+                res = ScrapeCD(fn, ln, driver, search_town, search_county, search_state, geo_level)
                 while res['Match Status'] == 'No Match' and PageHasResults(driver, res):
                     print("Need to obtain information again")
-                    res = ScrapeCD(fn, ln, driver, search_town, search_county, search_state, name_type)
+                    res = ScrapeCD(fn, ln, driver, search_town, search_county, search_state, geo_level)
                 match = True
             except Exception:
                 print("trying again")
                 tries += 1
 
         print(tries, res)
-        res = AddToResult(res, fn, ln, search_town, search_county, search_state, name_type)
+        res = AddToResult(res, fn, ln, search_town, search_county, search_state, geo_level)
         df_rows, match_rows = ParseResult(res, df_rows, match_rows)
         done.add(key)
         write_checkpoint()
@@ -198,7 +198,7 @@ def DeduplicateAndRemap(df_list, match_list):
 def WriteOutputs(final_name_list, df_list, match_list):
     pd.merge(
         final_name_list, df_list.drop_duplicates(), how='left',
-        left_on=['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'name_type'],
+        left_on=['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'geo_level'],
         right_on=['First Name', 'Last Name', 'Search Town', 'Search County', 'Search State', 'Name Type']
     ).to_csv(OUTDIR / 'name_list_scraped.csv')
     df_list.to_csv(OUTDIR / 'scrape_ids.csv')
@@ -209,13 +209,13 @@ def JoinNames(lst):
     return " | ".join(sorted(list(set([ele for ele in lst if ele != ""]))))
 
 
-def AddToResult(res, fn, ln, search_town, search_county, search_state, name_type):
+def AddToResult(res, fn, ln, search_town, search_county, search_state, geo_level):
     res['First Name'] = fn
     res['Last Name'] = ln
     res['Search Town'] = search_town
     res['Search County'] = search_county
     res['Search State'] = search_state
-    res['Name Type'] = name_type
+    res['Name Type'] = geo_level
     return res
 
 

@@ -1,4 +1,4 @@
-,Index,Original Name,Search Name,Name #,Match Status,Match Reason,Location,Family Size,Slavecount,url,town,county,state,name_type
+,Index,Original Name,Search Name,Name #,Match Status,Match Reason,Location,Family Size,Slavecount,url,town,county,state,geo_level
 0,0,['Samuel W Pomeroy'],"[""['Samuel W Pomeroy']""]",1,No Match,No Match Found,,,,https://www-ancestrylibrary-com.proxy.uchicago.edu/search/collections/5058/?name=Samuel+W_Pomeroy&name_x=ps_ps&residence=_hartford-hartford-connecticut-usa_999&residence_x=1-0_1-1,Hartford,Hartford County,CT,town
 1,1,['Benjamin Trumbull'],['Benjn Trumbull'],1,Match,Full Match,"Bolton, Tolland, Connecticut",2,,https://www-ancestrylibrary-com.proxy.uchicago.edu/search/collections/5058/?name=Benjamin_Trumbull&name_x=s_s&residence=_bolton-tolland-connecticut-usa_3409&residence_x=1-0_1-0,Bolton,Tolland County,CT,town
 2,2,['Richard Green'],['Richard Green'],1,Match,Full Match,"Foster, Providence, Rhode Island",5,,https://www-ancestrylibrary-com.proxy.uchicago.edu/search/collections/5058/?name=Richard_Green&name_x=1_1&residence=_Rhode Island-usa_42&residence_x=1-0_1-0,,,RI,state

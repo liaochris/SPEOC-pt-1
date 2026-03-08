@@ -418,7 +418,7 @@ agg_debt
 # In[45]:
 
 
-const_delegates = pandas.read_excel(INDIR_DELEGATES / "constitutional_convention_1787.xlsx", header=2)
+const_delegates = pandas.read_csv(INDIR_DELEGATES / "constitutional_convention_1787.csv")
 const_delegates["full_name"] = const_delegates["first name"] + " " + const_delegates["last name"]
 const_delegates["state"] = const_delegates["state"].str.strip()
 
@@ -456,7 +456,7 @@ const_delegates.head()
 
 
 # create dataframe with only state delegate members
-state_delegates = pandas.read_excel(INDIR_DELEGATES / "State Delegates.xlsx", header=2)
+state_delegates = pandas.read_csv(INDIR_DELEGATES / "state_delegates.csv")
 state_delegates["First Name"] = state_delegates["First Name"].fillna("")
 state_delegates["Last Name"] = state_delegates["Last Name"].fillna("")
 state_delegates["full_name"] = state_delegates["First Name"] + " " + state_delegates["Last Name"] 

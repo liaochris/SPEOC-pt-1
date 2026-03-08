@@ -132,7 +132,10 @@ source/derived/
         └── finalize_matches.py
 ```
 
-**Step 2.3 scope** (prescrape/ only — COMPLETE): see Completed Steps #17.
+**Step 2.3 scope** (prescrape/ only — complete):
+- All prescrape scripts moved, cleaned, and modularized
+- Dead scripts deleted; aggregate scripts combined
+- Data dictionaries written
 
 **Step 2.4 scope** (postscrape/ only — 6 scripts):
 - `git mv` all postscrape scripts into `source/derived/postscrape/`

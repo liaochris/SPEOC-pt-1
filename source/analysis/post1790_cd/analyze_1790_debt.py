@@ -24,7 +24,7 @@ import pandas as pd
 # In[4]:
 
 
-post1790VA = pd.read_csv('VA_ASD.csv')
+post1790VA = pd.read_excel(INDIR_POST1790_ASD / 'VA/VA_ASD.xlsx')
 
 
 # In[5]:
@@ -94,7 +94,7 @@ print(VA_fuzzy_matches)
 # In[9]:
 
 
-post1790SC = pd.read_csv('Post_1790_South_Carolina_CD.csv')
+post1790SC = pd.read_excel(INDIR_POST1790_CD / 'SC/SC_CD.xlsx')
 
 
 # In[10]:
@@ -165,7 +165,7 @@ print(SC_fuzzy_matches)
 # In[14]:
 
 
-post1790RI = pd.read_csv('T653_Rhode_Island_ASD.csv')
+post1790RI = pd.read_excel(INDIR_POST1790_ASD / 'RI/RI_ASD.xlsx')
 
 
 # In[15]:
@@ -235,7 +235,7 @@ print(RI_fuzzy_matches)
 # In[19]:
 
 
-post1790PA = pd.read_csv('PA_post1790_CD.csv')
+post1790PA = pd.read_excel(INDIR_POST1790_CD / 'PA/PA_CD.xlsx')
 
 
 # In[20]:
@@ -305,7 +305,7 @@ print(PA_fuzzy_matches)
 # In[24]:
 
 
-post1790NY = pd.read_csv('NY_1790_ASD.csv')
+post1790NY = pd.read_excel(INDIR_POST1790_ASD / 'NY/NY_ASD.xlsx')
 
 
 # In[25]:
@@ -375,7 +375,7 @@ print(NY_fuzzy_matches)
 # In[29]:
 
 
-post1790NJ = pd.read_csv('NJ_3_percent_stock_T698_R1_R2.csv')
+post1790NJ = pd.read_excel(INDIR_POST1790_CD / 'NJ/NJ_CD.xlsx')
 
 
 # In[30]:
@@ -425,7 +425,7 @@ print(NJ_fuzzy_matches)
 # In[33]:
 
 
-post1790NH = pd.read_csv('T652_New_Hampshire_ASD.csv')
+post1790NH = pd.read_excel(INDIR_POST1790_ASD / 'NH/NH_ASD.xlsx')
 
 
 # In[34]:
@@ -502,7 +502,7 @@ print(f'\nAmount of years before 1790: {NH_mask_strange_year}')
 # In[39]:
 
 
-post1790NC = pd.read_csv('T695_R3_NC_ASD.csv')
+post1790NC = pd.read_excel(INDIR_POST1790_ASD / 'NC/NC_ASD.xlsx')
 
 
 # In[40]:
@@ -567,7 +567,7 @@ print(f'\nAmount of year values under 1790: {NC_mask_strange_year}')
 # In[45]:
 
 
-post1790MD = pd.read_csv('MD_post1790_ASD.csv')
+post1790MD = pd.read_excel(INDIR_POST1790_ASD / 'MD/MD_ASD.xlsx')
 
 
 # In[46]:
@@ -646,7 +646,7 @@ print(f'\nAmount of year values under 1790: {MD_mask_strange_year}')
 # In[51]:
 
 
-post1790GA = pd.read_csv('T694_GA_Loan_Office_CD.csv')
+post1790GA = pd.read_excel(INDIR_POST1790_CD / 'GA/GA_CD.xlsx')
 
 
 # In[52]:
@@ -711,7 +711,7 @@ print(f'\nAmount of years listed as before 1790: {GA_mask_strange_year}')
 # In[57]:
 
 
-post1790CT = pd.read_csv('CT_post1790_CD_ledger.csv')
+post1790CT = pd.read_excel(INDIR_POST1790_CD / 'CT/CT_CD.xlsx')
 
 
 # In[58]:
@@ -842,7 +842,7 @@ print(CT_fuzzy_matches)
 # In[70]:
 
 
-post1790 = pd.read_csv(INDIR_DERIVED_POST1790 / 'aggregated_CD_post1790.csv')
+post1790 = pd.read_csv(INDIR_DERIVED_POST1790 / 'geo_standardized_CD_post1790.csv')
 
 
 # In[71]:
@@ -901,8 +901,8 @@ suspicious_post1790CT = post1790CT[post1790CT['suspicious row']]
 
 
 #save clean & suspicious just in case they need to be referred to when scanning errors
-clean_post1790CT.to_csv(OUTDIR / "cleaned_CT_post1790_CD_ledger.csv", index=False)
-suspicious_post1790CT.to_csv(OUTDIR / "suspicious_CT_post1790_CD_ledger.csv", index=False)
+clean_post1790CT.to_csv(OUTDIR / "cleaned_CT_CD.csv", index=False)
+suspicious_post1790CT.to_csv(OUTDIR / "suspicious_CT_CD.csv", index=False)
 
 
 # In[75]:
@@ -1108,8 +1108,8 @@ suspicious_post1790 = post1790[post1790['suspicious row']]
 
 
 #save clean & suspicious just in case they need to be referred to when scanning errors
-clean_post1790.to_csv(OUTDIR / "cleaned_aggregated_CD_post1790.csv", index=False)
-suspicious_post1790.to_csv(OUTDIR / "suspicious_aggregated_CD_post1790.csv", index=False)
+clean_post1790.to_csv(OUTDIR / "cleaned_geo_standardized_CD_post1790.csv", index=False)
+suspicious_post1790.to_csv(OUTDIR / "suspicious_geo_standardized_CD_post1790.csv", index=False)
 
 
 # In[95]:

@@ -1,4 +1,4 @@
-,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,3p_Cents,orig_town,state,occupation,Name,county,6p_total,town,name_type
+,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,3p_Cents,orig_town,state,occupation,Name,county,6p_total,town,geo_level
 0,1064.0,75.0,532.0,37.0,508.0,51.0,Hartford,CT,Merchant,['Samuel W Pomeroy'],Hartford County,1064.75,Hartford,town
 1,449.0,96.0,224.0,97.0,232.0,10.0,Bolton,CT,Farmer,['Benjamin Trumbull'],Tolland County,449.96,Bolton,town
 2,154.0,20.0,77.0,10.0,192.0,,Rhode Island,RI,Farmer,['Richard Green'],,154.2,,state

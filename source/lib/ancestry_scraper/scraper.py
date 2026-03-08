@@ -39,15 +39,15 @@ def ScrapeLoanOffice(name, state, event_year):
     return MatchResult([], "No Match", last_url, None, None)
 
 
-def ScrapeCD(fn, ln, driver, search_town, search_county, search_state, name_type):
-    return FindMatches(fn, ln, driver, search_town, search_county, search_state, name_type)
+def ScrapeCD(fn, ln, driver, search_town, search_county, search_state, geo_level):
+    return FindMatches(fn, ln, driver, search_town, search_county, search_state, geo_level)
 
 
-def DetermineMatchList(name_type, state):
-    if name_type == "town":
+def DetermineMatchList(geo_level, state):
+    if geo_level == "town":
         return ["name_x=1_1&residence_x=_1-0", "name_x=s_s&residence_x=_1-0", "name_x=ps_ps&residence_x=_1-0",
                 "name_x=ps_ps&residence_x=_1-1", "name_x=ps_ps&residence_x=_1-1-a"]
-    elif name_type == "county":
+    elif geo_level == "county":
         return ["name_x=1_1&residence_x=_1-0", "name_x=s_s&residence_x=_1-0", "name_x=ps_ps&residence_x=_1-0",
                 "name_x=ps_ps&residence_x=_1-0-a", "name_x=ps_ps&residence_x=_1-1"]
     else:
@@ -59,43 +59,43 @@ def DetermineMatchList(name_type, state):
                     "name_x=ps_ps&residence_x=_1-0"]
 
 
-def ProcessLocationString(name_type, town, county, state, keep_county=True):
-    if not keep_county and name_type != 'state':
+def ProcessLocationString(geo_level, town, county, state, keep_county=True):
+    if not keep_county and geo_level != 'state':
         county = county.replace(" County", "").strip()
-    if name_type == "town":
+    if geo_level == "town":
         return town + ", " + county + ", " + STATE_ABBREVIATIONS[state]
-    elif name_type == "county":
+    elif geo_level == "county":
         return county + ", " + STATE_ABBREVIATIONS[state]
     else:
         return STATE_ABBREVIATIONS[state]
 
 
-def FindMatches(fn, ln, driver, search_town, search_county, search_state, name_type):
-    max_searchind = 4 if name_type != "state" else 3
+def FindMatches(fn, ln, driver, search_town, search_county, search_state, geo_level):
+    max_searchind = 4 if geo_level != "state" else 3
     search_ind = 0
-    driver, url = NavigateTo(fn, ln, driver, search_ind, search_town, search_county, search_state, name_type, initial=True)
+    driver, url = NavigateTo(fn, ln, driver, search_ind, search_town, search_county, search_state, geo_level, initial=True)
     time.sleep(1)
-    val, search_ind = ListPeople(driver, search_ind, name_type)
+    val, search_ind = ListPeople(driver, search_ind, geo_level)
     while search_ind < max_searchind:
         search_ind += 1
-        driver, url = NavigateTo(fn, ln, driver, search_ind, search_town, search_county, search_state, name_type)
+        driver, url = NavigateTo(fn, ln, driver, search_ind, search_town, search_county, search_state, geo_level)
         time.sleep(1.5)
-        val, search_ind = ListPeople(driver, search_ind, name_type)
+        val, search_ind = ListPeople(driver, search_ind, geo_level)
     val['url'] = url
     return val
 
 
-def NavigateTo(fn, ln, driver, search_ind, search_town, search_county, search_state, name_type, initial=False):
+def NavigateTo(fn, ln, driver, search_ind, search_town, search_county, search_state, geo_level, initial=False):
     fn = fn.replace(" ", "+")
     ln = ln.replace(" ", "+")
-    searchstr = SearchLocationString(name_type, search_town, search_county, search_state)
-    search_params = DetermineMatchList(name_type, search_state)[search_ind]
+    searchstr = SearchLocationString(geo_level, search_town, search_county, search_state)
+    search_params = DetermineMatchList(geo_level, search_state)[search_ind]
     namesuffix = search_params.split("&")[0].replace("name_x=", "")
     locsuffix = search_params.split("&")[1].replace("residence_x=", "")
 
     if initial:
-        locationstr_keep = ProcessLocationString(name_type, search_town, search_county, search_state, True)
-        locationstr_disc = ProcessLocationString(name_type, search_town, search_county, search_state, False)
+        locationstr_keep = ProcessLocationString(geo_level, search_town, search_county, search_state, True)
+        locationstr_disc = ProcessLocationString(geo_level, search_town, search_county, search_state, False)
         if locationstr_disc in LOCATIONSUFFIX:
             locationstr = locationstr_disc
         else:
@@ -142,8 +142,8 @@ def NavigateTo(fn, ln, driver, search_ind, search_town, search_county, search_st
     return driver, url
 
 
-def ListPeople(driver, search_ind, name_type):
-    max_searchind = 4 if name_type != "state" else 3
+def ListPeople(driver, search_ind, geo_level):
+    max_searchind = 4 if geo_level != "state" else 3
     info = dict()
     try:
         count_text = driver.find_element(By.XPATH, "//*[@id=\"results-footer\"]/h3").text
@@ -197,14 +197,14 @@ def GetInfo(driver, i):
     return info
 
 
-def SearchLocationString(name_type, town, county, state):
+def SearchLocationString(geo_level, town, county, state):
     if not pd.isnull(county):
         county = county.replace('County', '').strip().replace(' ', '+').replace('\'', '+').lower()
-    if name_type == "town":
+    if geo_level == "town":
         return town.lower() + "-" + county + "-" + STATE_ABBREVIATIONS[state].lower() + "-usa"
-    elif name_type == "county":
+    elif geo_level == "county":
         return county + "-" + STATE_ABBREVIATIONS[state].lower() + "-usa"
-    elif name_type == "state" or name_type == "state_flag":
+    elif geo_level == "state" or geo_level == "state_flag":
         return STATE_ABBREVIATIONS[state] + "-usa"
     else:
         return "usa"

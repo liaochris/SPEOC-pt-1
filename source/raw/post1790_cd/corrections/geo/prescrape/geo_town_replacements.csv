@@ -1,0 +1,44 @@
+state,old,new,sort_order
+CT,Huntington,Shelton,1
+CT,Chatham,East Hampton,1
+MD,Maryland,,1
+MD,Co ,County,1
+NC,North Carolina,,1
+NC,Tarborugh,Tarboro,1
+NH,State,,1
+NH,New Hampshire,,1
+NH,of ,,1
+NH,Rockingham,Rockingham County,2
+NJ,New Jersey,,1
+PA,Co ,County,1
+PA,Delaware,Delaware County,1
+PA,Pennsylvania,,2
+PA,County County,County,2
+PA,Country,County,2
+PA,Dauphincoy,Dauphin,2
+PA,Tulpehocken,Berks County,2
+PA,Blockley,Philadelphia,3
+PA,Northan Liberties,Philadelphia,3
+PA,Northern Liberties,Philadelphia,3
+PA,The Northern Libert,Philadelphia,3
+PA,Passyunk,Philadelphia,3
+PA,German Town,Philadelphia,3
+PA,Southwark,Philadelphia,3
+PA,Borden Town,Philadelphia,3
+RI,Rhode Island,,1
+RI,State ,,1
+RI,of,,1
+SC,South Carolina,,1
+SC,96,Ninety six,1
+MA,MA,,1
+MA,Massachusetts,,1
+MA,State,,1
+VA,VA,,1
+VA,Virginia,,1
+VA,Virgina,,1
+VA,State,,2
+VA, of ,,2
+DE,Delaware,,1
+DE,State,,1
+DE, of ,,1
+DE,Kent Company,Kent County,1

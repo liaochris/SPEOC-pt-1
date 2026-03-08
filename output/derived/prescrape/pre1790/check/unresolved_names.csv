@@ -1,0 +1,4 @@
+row_id,name,context
+0,corporation for the relief,HandleCompName startswith
+19,corporation for relief,HandleCompName startswith
+33,michael schubert for st michael and zeus,HandleCompName endswith

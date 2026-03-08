@@ -1,0 +1,36 @@
+original,new
+to whom due (if second name) | first name,to whom due | first name.1
+to whom due (if second name) | last name,to whom due | last name.1
+to whom due (if second name) | title,to whom due | title.1
+time when the debt became due | dollars,amount | dollars
+time when the debt became due | 90th,amount | 90th
+time when the debt became due | date,time when the debt became due | day
+line strike thorugh? | yes?,line strike through? | yes?
+line strike thorugh? | notes,notes
+line strike through? | notes,notes
+line strike thorugh? | note,line strike through? | note
+line strike through?,line strike through? | note
+date of the certificate | date,date of the certificate | day
+to whom issued | title,to whom due | title
+to whom issued | first name,to whom due | first name
+to whom issued | last name,to whom due | last name
+comm of interest | year,time when the debt became due | year
+comm of interest | month,time when the debt became due | month
+comm of interest | date,time when the debt became due | day
+comm of interest | dollars,amount | dollars
+comm of interest | 90th,amount | 90th
+comm of interest | 10th,amount | 10th
+w | dollars,amount | dollars
+w | 90th,amount | 90th
+w | 8th,amount | 8th
+year,date of the certificate | year
+month,date of the certificate | month
+day,date of the certificate | day
+title 1,to whom due | title
+first name 1,to whom due | first name
+last name 1,to whom due | last name
+title 2,to whom due | title.1
+first name 2,to whom due | first name.1
+last name 2,to whom due | last name.1
+specie value,amount in specie | dollars
+face value,amount | dollars
