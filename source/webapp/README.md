@@ -10,6 +10,9 @@ Built with [Plotly Dash](https://dash.plotly.com/).
 python source/webapp/web_app.py
 ```
 
+Hosted on https://hamilton-web-app-60729c77f777.herokuapp.com/
+
+
 ### Code
 
 - `app.py` — Dash app initialization
@@ -33,12 +36,7 @@ python source/webapp/web_app.py
 - `assets/map_df.csv` — Map data
 - `assets/*.{png,jpg,jpeg,webp}` — Team member photos
 
-### Input
-
-- `output/derived/post1790_cd/final_data_CD.csv`
-- `output/derived/pre1790/pre1790_cleaned.csv`
-- `source/raw/shapefiles/`
 
 ### Notes
 
-The app currently has hardcoded data paths that need updating (tracked in HANDOFF.md for Step 1.9).
+Contact chrisliao@uchicago.edu for the link to an explanatory video on the webapp.
