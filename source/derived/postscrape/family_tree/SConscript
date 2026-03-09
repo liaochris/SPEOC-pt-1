@@ -1,26 +1,36 @@
 Import('*')
 
 env.Python(
-    target = ['#output/derived/postscrape/family_tree/candidate_matches.csv'],
+    target = ['#output/derived/postscrape/family_tree/candidate_matches.csv',
+              '#output/derived/postscrape/family_tree/candidate_matches.log'],
     source = ['#source/derived/postscrape/family_tree/match_candidates.py',
-              '#output/derived/postscrape/post1790_cd/final_data_CD.csv']
+              '#output/derived/postscrape/post1790_cd/final_data_CD.csv',
+              '#output/scrape/wikitree/family_graph_edges.json',
+              '#output/scrape/wikitree/wikitree_profiles.csv']
 )
 
 env.Python(
-    target = ['#output/derived/postscrape/family_tree/filtered_matches.csv'],
+    target = ['#output/derived/postscrape/family_tree/filtered_matches.csv',
+              '#output/derived/postscrape/family_tree/filtered_matches.log'],
     source = ['#source/derived/postscrape/family_tree/filter_matches.py',
-              '#output/derived/postscrape/family_tree/candidate_matches.csv']
+              '#output/derived/postscrape/family_tree/candidate_matches.csv',
+              '#output/scrape/wikitree/family_graph_edges.json',
+              '#output/scrape/wikitree/wikitree_profiles.csv']
 )
 
 env.Python(
-    target = ['#output/derived/postscrape/family_tree/filtered_matches_no_same_name.csv'],
+    target = ['#output/derived/postscrape/family_tree/filtered_matches_no_same_name.csv',
+              '#output/derived/postscrape/family_tree/filtered_matches_no_same_name.log'],
     source = ['#source/derived/postscrape/family_tree/drop_same_name.py',
-              '#output/derived/postscrape/family_tree/filtered_matches.csv']
+              '#output/derived/postscrape/family_tree/filtered_matches.csv',
+              '#output/scrape/wikitree/wikitree_profiles.csv']
 )
 
 env.Python(
     target = ['#output/derived/postscrape/family_tree/final_matches.csv',
-              '#output/derived/postscrape/family_tree/review_matches.csv'],
+              '#output/derived/postscrape/family_tree/final_matches.log',
+              '#output/derived/postscrape/family_tree/review_matches.csv',
+              '#output/derived/postscrape/family_tree/review_matches.log'],
     source = ['#source/derived/postscrape/family_tree/finalize_matches.py',
               '#output/derived/postscrape/family_tree/filtered_matches_no_same_name.csv']
 )

@@ -1,6 +1,6 @@
 File: output/derived/prescrape/post1790_cd/geo_standardized_CD_post1790.csv
 
-MD5 hash: 76c99c8a4c85d725357038df81f59a90
+MD5 hash: e4f54c3da776d74b5f87e8a0e160e8c6
 
 Keys: state_data state_data_index 
 
@@ -13,9 +13,9 @@ state_data_index   object  6,548  2,193.000
 6p_def_Cents       object  4,136    166.000                                                    
 3p_Dollar          object  5,867  1,880.000                                                    
 3p_Cents           object  5,451    155.000                                                    
-town               object  3,734        435                                                    
+town               object  3,734        431                                                    
 state              object  6,537         20                                                    
-occupation         object  2,132        270                                                    
+occupation         object  2,132        269                                                    
 Name               object  6,548      3,880                                                    
 First Name         object  4,377        741                                                    
 Last Name          object  4,150      1,691                                                    

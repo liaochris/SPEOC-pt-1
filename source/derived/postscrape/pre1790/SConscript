@@ -1,7 +1,14 @@
 Import('*')
 
 env.Python(
-    target = ['#output/derived/postscrape/pre1790/final_agg_debt_cleaned.csv'],
+    target = ['#output/derived/postscrape/pre1790/ancestry_name_changes_clean.csv',
+              '#output/derived/postscrape/pre1790/ancestry_name_changes_clean.log',
+              '#output/derived/postscrape/pre1790/name_changes_david.csv',
+              '#output/derived/postscrape/pre1790/name_changes_david.log',
+              '#output/derived/postscrape/pre1790/final_agg_debt_cleaned.csv',
+              '#output/derived/postscrape/pre1790/final_agg_debt_cleaned.log'],
     source = ['#source/derived/postscrape/pre1790/integrate_ancestry_search.py',
-              '#output/derived/prescrape/pre1790/pre1790_cleaned.csv']
+              '#output/derived/prescrape/pre1790/pre1790_cleaned.csv',
+              '#output/derived/prescrape/pre1790/check/name_changes_list.csv',
+              '#output/scrape/pre1790/ancestry_name_changes_raw.csv']
 )

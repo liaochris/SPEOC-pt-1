@@ -2,8 +2,14 @@ Import('*')
 
 env.Python(
     target = ['#output/derived/postscrape/post1790_cd/final_data_CD.csv',
-              '#output/derived/postscrape/post1790_cd/match_data_CD.csv'],
+              '#output/derived/postscrape/post1790_cd/final_data_CD.log',
+              '#output/derived/postscrape/post1790_cd/match_data_CD.csv',
+              '#output/derived/postscrape/post1790_cd/match_data_CD.log'],
     source = ['#source/derived/postscrape/post1790_cd/aggregate_final_cd.py',
               '#output/derived/prescrape/post1790_cd/geo_standardized_CD_post1790.csv',
-              '#output/derived/prescrape/post1790_cd/check/name_changes_list.csv']
+              '#output/derived/prescrape/post1790_cd/check/name_changes_list.csv',
+              '#output/scrape/post1790_cd_census_match/name_list_scraped.csv',
+              '#output/scrape/post1790_cd_census_match/scrape_results.csv',
+              '#source/raw/post1790_cd/corrections/name/postscrape/name_agg.csv',
+              '#source/raw/post1790_cd/corrections/occ/postscrape/occ_fix.csv']
 )

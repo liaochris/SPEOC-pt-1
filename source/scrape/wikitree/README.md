@@ -1,13 +1,16 @@
 ### WikiTree Scraper
 
+> **Status: `fetch_wikitree_profiles.py` NOT YET RUN.** `output/scrape/wikitree/wikitree_profiles.csv` does not exist. Until this script is run, all `source/derived/postscrape/family_tree/` scripts cannot build.
+
 Searches WikiTree for historical persons matching pre-1790 debt certificate holders, fetches their family trees, and collects biographical data via the WikiTree API.
 
 ### Code
 
-- `wikitree.py` — WikiTree API client (`search_candidates_for_name()`, `get_profile()`, `get_descendants()`)
+- `wikitree.py` — WikiTree API client (`search_candidates_for_name()`, `GetProfile()`, `get_descendants()`)
 - `search_wikitree_candidates.py` — Searches WikiTree for matching profiles filtered by birth year range and state
 - `build_family_graph.py` — Fetches children for each candidate, builds parent→child edge graph
 - `get_bios.py` — Fetches full biographical profiles, supports resume via deduplication
+- `fetch_wikitree_profiles.py` — Fetches profiles for all IDs (children + parents) in `family_graph_edges.json`; outputs `wikitree_profiles.csv`; checkpoint-safe (resume on crash). **Must be run before any `source/derived/postscrape/family_tree/` script.**
 - `tests/` — Unit tests (mocked API) and integration tests (live API)
 
 ### Input
@@ -21,10 +24,11 @@ All output in `output/scrape/wikitree/`:
 - `family_graph_nodes.json` — Person nodes
 - `family_graph_edges.json` — Parent→child edges
 - `wikitree_bios.jsonl` — Full biographical profiles (one JSON per line)
+- `wikitree_profiles.csv` — Name, birth/death location, birth date for all child+parent IDs in the edge graph (**not yet produced**; run `fetch_wikitree_profiles.py`)
 
 ### Downstream Usage
 
-- `candidates.csv`, `family_graph_nodes.json`, `family_graph_edges.json` → consumed by `source/derived/family_tree/` (match_candidates.py, filter_matches.py, finalize_matches.py)
+- `candidates.csv`, `family_graph_nodes.json`, `family_graph_edges.json`, `wikitree_profiles.csv` → consumed by `source/derived/postscrape/family_tree/` (match_candidates.py, filter_matches.py, drop_same_name.py, finalize_matches.py)
 
 ### Tests
 
