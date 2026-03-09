@@ -63,7 +63,7 @@ scons -n     # Dry run (show what would execute)
 
 Python scripts follow a `Main()` entry point convention — each can be run standalone:
 ```bash
-python source/derived/pre1790/combine_certificate_types.py
+python source/derived/pre1790/clean_names.py
 ```
 
 Julia scripts (pre-1790 maps and year analysis) are run manually:

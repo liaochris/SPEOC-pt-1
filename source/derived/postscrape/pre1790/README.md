@@ -5,8 +5,8 @@ Integrates Ancestry.com search results with the pre-cleaned pre-1790 debt data t
 ## Pipeline
 
 ```
-output/derived/prescrape/pre1790/agg_debt_grouped.csv
-output/scrape/ancestry_loan_office_scraper/results/
+output/derived/prescrape/pre1790/pre1790_cleaned.csv
+output/scrape/pre1790_census_match/results/
     └─► integrate_ancestry_search.py → output/derived/postscrape/pre1790/final_agg_debt_cleaned.csv
                                      → ancestry_name_changes.csv
                                      → ancestry_name_changes_clean.csv
@@ -16,7 +16,7 @@ output/scrape/ancestry_loan_office_scraper/results/
 
 | Script | Input | Output |
 |---|---|---|
-| `integrate_ancestry_search.py` | `agg_debt_grouped.csv`, `similar_names/{state}.csv`, Ancestry scrape results | `final_agg_debt_cleaned.csv`, `ancestry_name_changes.csv`, `ancestry_name_changes_clean.csv` |
+| `integrate_ancestry_search.py` | `pre1790_cleaned.csv`, `similar_names/{state}.csv`, Ancestry scrape results | `final_agg_debt_cleaned.csv`, `ancestry_name_changes.csv`, `ancestry_name_changes_clean.csv` |
 
 ## Notes
 

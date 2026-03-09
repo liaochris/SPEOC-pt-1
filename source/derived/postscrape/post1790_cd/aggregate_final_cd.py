@@ -11,7 +11,7 @@ from source.lib.ancestry_scraper.config import STATE_ABBREVIATIONS
 INDIR_RAW = Path("source/raw/post1790_cd")
 INDIR_PRESCRAPE = Path("output/derived/prescrape/post1790_cd")
 OUTDIR = Path("output/derived/postscrape/post1790_cd")
-INDIR_SCRAPE = Path("output/scrape/ancestry_cd_scraper")
+INDIR_SCRAPE = Path("output/scrape/post1790_cd_census_match")
 
 
 # ## Helper Structures

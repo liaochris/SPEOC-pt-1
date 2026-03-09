@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 
 INDIR_RESULTS = Path("output/scrape/wikitree/results")
 
-df = pd.read_csv(INDIR_RESULTS / "task_4_final.csv")
-task_3_matches = pd.read_csv(INDIR_RESULTS / "task_3_matches.csv")
+df = pd.read_csv(INDIR_RESULTS / "final_matches.csv")
+task_3_matches = pd.read_csv(INDIR_RESULTS / "candidate_matches.csv")
 
 # Basic statistics
 stats = {}

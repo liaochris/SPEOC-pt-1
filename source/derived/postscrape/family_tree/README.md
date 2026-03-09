@@ -5,12 +5,12 @@ Matches WikiTree-scraped family tree data against the post-1790 CD dataset to id
 ## Pipeline
 
 ```
-output/scrape/wikitree/results/ (edges, nodes, task_1.csv)
+output/scrape/wikitree/ (family_graph_edges.json, family_graph_nodes.json, candidates.csv)
 output/derived/postscrape/post1790_cd/final_data_CD.csv
-    └─► match_candidates.py → output/derived/postscrape/family_tree/task_3_matches.csv
-            └─► filter_matches.py → task_4_matches_filtered.csv
-                    └─► drop_same_name.py → task_4_matches_filtered_nosamenames.csv
-                            └─► finalize_matches.py → task_4_final.csv, task_4_review.csv
+    └─► match_candidates.py → output/derived/postscrape/family_tree/candidate_matches.csv
+            └─► filter_matches.py → filtered_matches.csv
+                    └─► drop_same_name.py → filtered_matches_no_same_name.csv
+                            └─► finalize_matches.py → final_matches.csv, review_matches.csv
 ```
 
 ## Scripts
@@ -25,8 +25,8 @@ output/derived/postscrape/post1790_cd/final_data_CD.csv
 ## Output
 
 All results stored in `output/derived/postscrape/family_tree/`:
-- `task_3_matches.csv` — Raw post-1790 match results
-- `task_4_matches_filtered.csv` — Birth-year filtered matches
-- `task_4_matches_filtered_nosamenames.csv` — Same-name artifacts removed
-- `task_4_final.csv` — Clean final matches
-- `task_4_review.csv` — Multi-parent/uncertain cases for manual review
+- `candidate_matches.csv` — Raw post-1790 match results
+- `filtered_matches.csv` — Birth-year filtered matches
+- `filtered_matches_no_same_name.csv` — Same-name artifacts removed
+- `final_matches.csv` — Clean final matches
+- `review_matches.csv` — Multi-parent/uncertain cases for manual review

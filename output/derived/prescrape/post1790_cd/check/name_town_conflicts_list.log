@@ -1,0 +1,14 @@
+File: output/derived/prescrape/post1790_cd/check/name_town_conflicts_list.csv
+
+MD5 hash: 4c17d2100f65600796e8f5d78d422fb2
+
+Keys: row_id 
+
+             type count unique    mean     std    min     50%     max
+row_id      int64    84         41.500  24.393  0.000  41.500  83.000
+Name_Fix   object    84     73                                       
+Fn_Fix     object    84     50                                       
+Ln_Fix     object    84     23                                       
+new_town   object    84     30                                       
+new_state  object    84     10                                       
+

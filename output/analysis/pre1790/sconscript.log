@@ -1,0 +1,26 @@
+*** Builder log created: {2026-03-08 17:06:06}
+*** Builder log completed: {2026-03-08 17:06:13}
+Python did not run successfully. Please check that the executable, source, and target files are correctly specified. Check output/analysis/pre1790/sconscript.log and sconstruct.log for errors. 
+Command tried: "python"  source/analysis/pre1790/analyze_debt_distribution.py  > output/analysis/pre1790/sconscript.log
+Traceback (most recent call last):
+  File "/Users/cliao/Documents/GitHub/SPEOC-pt-1/source/analysis/pre1790/analyze_debt_distribution.py", line 33, in <module>
+    agg_debt = pandas.read_csv(INDIR_DERIVED / "pre1790_cleaned.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/common.py", line 926, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/derived/pre1790/pre1790_cleaned.csv'
+
+

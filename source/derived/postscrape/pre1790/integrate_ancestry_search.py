@@ -50,7 +50,7 @@ OUTDIR = Path("output/derived/postscrape/pre1790")
 # In[ ]:
 
 
-agg_debt = pd.read_csv(INDIR_PRESCRAPE / 'agg_debt_grouped.csv')
+agg_debt = pd.read_csv(INDIR_PRESCRAPE / 'pre1790_cleaned.csv')
 
 
 # In[ ]:

@@ -1,0 +1,45 @@
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ga.csv
+
+MD5 hash: 3b0f8383660089ca14f7220741b8ac7c
+
+Keys: row_id 
+
+                                          type count unique       mean        std      min        50%        max
+row_id                                   int64     4             1.500      1.291    0.000      1.500      3.000
+org_file                                   str     4      1                                                     
+org_index                                  str     4      4                                                     
+state                                      str     4      1                                                     
+date of the certificate | year         float64     0                                                            
+date of the certificate | month        float64     0                                                            
+date of the certificate | day          float64     0                                                            
+to whom due | title                        str     0      0                                                     
+to whom due | first name                   str     4      3                                                     
+to whom due | last name                    str     4      3                                                     
+to whom due | title.1                      str     0      0                                                     
+to whom due | first name.1                 str     0      0                                                     
+to whom due | last name.1                  str     0      0                                                     
+amount | dollars                       float64     4         1,823.630  1,047.003  351.000  2,103.950  2,735.620
+amount in specie | dollars             float64     0                                                            
+letter                                     str     0      0                                                     
+time when the debt became due | month  float64     0                                                            
+time when the debt became due | day     object     0      0                                                     
+time when the debt became due | year    object     0      0                                                     
+amount | 90th                           object     4  1.000                                                     
+line strike through? | yes?            float64     0                                                            
+line strike through? | note                str     0      0                                                     
+notes                                      str     0      0                                                     
+amount | 10th                          float64     0                                                            
+exchange                                   str     0      0                                                     
+amount in specie | cents               float64     0                                                            
+amount | 8th                           float64     0                                                            
+delivered | month                      float64     0                                                            
+delivered | day                        float64     0                                                            
+delivered | year                       float64     0                                                            
+total dollars | notes                      str     0      0                                                     
+total dollars | notes.1                float64     0                                                            
+organization?                             bool     4      1                                                     
+final_agg_debt index                       str     4      4                                                     
+deceased?                                 bool     4      1                                                     
+full name                                  str     4      4                                                     
+matches                                    str     4      4                                                     
+

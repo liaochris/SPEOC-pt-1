@@ -1,0 +1,26 @@
+Import('*')
+
+env.Python(
+    target = ['#output/derived/postscrape/family_tree/candidate_matches.csv'],
+    source = ['#source/derived/postscrape/family_tree/match_candidates.py',
+              '#output/derived/postscrape/post1790_cd/final_data_CD.csv']
+)
+
+env.Python(
+    target = ['#output/derived/postscrape/family_tree/filtered_matches.csv'],
+    source = ['#source/derived/postscrape/family_tree/filter_matches.py',
+              '#output/derived/postscrape/family_tree/candidate_matches.csv']
+)
+
+env.Python(
+    target = ['#output/derived/postscrape/family_tree/filtered_matches_no_same_name.csv'],
+    source = ['#source/derived/postscrape/family_tree/drop_same_name.py',
+              '#output/derived/postscrape/family_tree/filtered_matches.csv']
+)
+
+env.Python(
+    target = ['#output/derived/postscrape/family_tree/final_matches.csv',
+              '#output/derived/postscrape/family_tree/review_matches.csv'],
+    source = ['#source/derived/postscrape/family_tree/finalize_matches.py',
+              '#output/derived/postscrape/family_tree/filtered_matches_no_same_name.csv']
+)

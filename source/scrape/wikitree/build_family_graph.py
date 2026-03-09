@@ -2,15 +2,15 @@ from pathlib import Path
 import csv, json
 from source.scrape.wikitree.wikitree import GetProfile
 
-OUTDIR = Path("output/scrape/wikitree/results")
+OUTDIR = Path("output/scrape/wikitree")
 
 
 def Main():
     nodes, edges = GetChildren(
-        input_csv=OUTDIR / "task_1.csv",
+        input_csv=OUTDIR / "candidates.csv",
         fetch_profile=GetProfile,
-        nodes_path=OUTDIR / "nodes_task_2.json",
-        edges_path=OUTDIR / "edges_task_2.json"
+        nodes_path=OUTDIR / "family_graph_nodes.json",
+        edges_path=OUTDIR / "family_graph_edges.json"
     )
     print(f"[DONE] Total nodes: {len(nodes)}, total edges: {len(edges)}")
 

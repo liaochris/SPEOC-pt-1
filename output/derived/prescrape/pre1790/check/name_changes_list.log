@@ -1,0 +1,18 @@
+File: output/derived/prescrape/pre1790/check/name_changes_list.csv
+
+MD5 hash: d02b9c28ca9a2606bb069949f949a3a1
+
+Keys: change_id 
+
+                 type  count unique        mean         std    min         50%         max
+change_id       int64  5,942          2,970.500   1,715.452  0.000   2,970.500   5,941.000
+title_org         str     32      8                                                       
+title_new         str     32      8                                                       
+first_name_org    str  5,942  1,702                                                       
+last_name_org     str  4,850    181                                                       
+first_name_new    str  5,942    874                                                       
+last_name_new     str  4,850  1,004                                                       
+cleaning case     str  5,942      4                                                       
+file_loc          str  5,942     11                                                       
+org_index       int64  5,942         48,306.286  31,422.276  1.000  61,989.500  92,925.000
+

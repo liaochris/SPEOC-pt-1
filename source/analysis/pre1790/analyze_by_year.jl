@@ -191,10 +191,10 @@ all_states = group_post1795(all_states) # filter out years before 1795
 # group by year - sum debt 
 # plot debt redeemed per year saved as svg 
 
-pre1790 = DataFrame(CSV.File("output/derived/pre1790/agg_debt_grouped.csv"))
+pre1790 = DataFrame(CSV.File("output/derived/pre1790/pre1790_cleaned.csv"))
 pre1790.year = pre1790[:, "date of the certificate | year"]
 
-# fix cents column in agg_debt_grouped.csv 
+# fix cents column in pre1790_cleaned.csv 
 pre1790[:, "amount | 90th"] = getindex.(split.(pre1790[:, "amount | 90th"], "."), 1)
 pre1790[:, "amount | 90th"] = replace.(pre1790[:, "amount | 90th"], "/" => "")
 pre1790.cents = parse.(Float64, pre1790[:, "amount | 90th"]) ./ 100

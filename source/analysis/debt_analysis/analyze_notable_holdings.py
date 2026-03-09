@@ -35,7 +35,7 @@ speculator_names = [
     "Dr. Robert Blackwell", "Thomas Willing"
 ]
 
-file_path = INDIR_PRE1790 / 'agg_debt_grouped.csv'
+file_path = INDIR_PRE1790 / 'pre1790_cleaned.csv'
 
 # Read the CSV file
 df = pd.read_csv(file_path, low_memory=False)
@@ -57,8 +57,8 @@ if not speculator_rows.empty:
     columns_to_display = ['to whom due | first name', 'to whom due | last name']
     
     # Save results to CSV
-    speculator_rows.to_csv(OUTDIR / 'speculator_matches_agg_debt_grouped.csv', index=False)
-    print("\nFull results saved to 'speculator_matches_agg_debt_grouped.csv'")
+    speculator_rows.to_csv(OUTDIR / 'speculator_matches_pre1790_cleaned.csv', index=False)
+    print("\nFull results saved to 'speculator_matches_pre1790_cleaned.csv'")
 else:
     print("No speculator names found in the file.")
 
@@ -204,7 +204,7 @@ speculators = [
 ]
 
 # File path
-file_path = INDIR_PRE1790 / 'agg_debt_grouped.csv'
+file_path = INDIR_PRE1790 / 'pre1790_cleaned.csv'
 
 # Read the CSV file
 df = pd.read_csv(file_path, low_memory=False)

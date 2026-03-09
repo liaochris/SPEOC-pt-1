@@ -1,0 +1,15 @@
+File: output/derived/prescrape/pre1790/name_list.csv
+
+MD5 hash: 8f9204a5e3d300d5c35790a043a4981f
+
+Keys: row_id 
+
+               type   count  unique        mean         std    min         50%         max
+row_id        int64  66,194          33,096.500  19,108.706  0.000  33,096.500  66,193.000
+first name      str  66,194   6,123                                                       
+last name       str  66,194  23,964                                                       
+state           str  66,194      14                                                       
+title           str   2,014      80                                                       
+org_index       str  66,194  56,592                                                       
+name_cleaned   bool  66,194       1                                                       
+

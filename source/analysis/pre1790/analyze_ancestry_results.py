@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.patheffects as pe
 
-INDIR_RESULTS = Path("output/scrape/ancestry_loan_office_scraper/results")
-INDIR_NAMES = Path("output/scrape/ancestry_loan_office_scraper/names_to_lookup")
+INDIR_RESULTS = Path("output/scrape/pre1790_census_match/results")
+INDIR_NAMES = Path("output/scrape/pre1790_census_match/names_to_lookup")
 OUTDIR_MAPS = Path("output/analysis/pre1790/ancestry_loan_office")
-INDIR_SHAPEFILE = Path("source/raw/shapefiles/orig/historicalcounties/COUNTY_1790_US_SL050_Coast_Clipped.shp")
+INDIR_SHAPEFILE = Path("source/raw/shapefiles/orig/historicalcounties_1790/COUNTY_1790_US_SL050_Coast_Clipped.shp")
 CERT_YEAR = 1777
 
 STATE_NAMES = {

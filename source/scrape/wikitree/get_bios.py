@@ -6,8 +6,8 @@ import logging
 
 log = logging.getLogger(__name__)
 
-OUTDIR = Path("output/scrape/wikitree/results")
-INPUT_CSV = OUTDIR / "task_1.csv"
+OUTDIR = Path("output/scrape/wikitree")
+INPUT_CSV = OUTDIR / "candidates.csv"
 OUTPUT_JSONL = OUTDIR / "wikitree_bios.jsonl"
 SLEEP_SEC = 0.5
 MAX_RETRIES = 3
@@ -21,7 +21,7 @@ def Main():
          open(OUTPUT_JSONL, "a", encoding="utf-8") as fout:
         reader = csv.DictReader(fin)
         if "profile_key" not in reader.fieldnames:
-            raise ValueError("task_1.csv must include a 'profile_key' column.")
+            raise ValueError("candidates.csv must include a 'profile_key' column.")
 
         for row in reader:
             pk = (row.get("profile_key") or "").strip()

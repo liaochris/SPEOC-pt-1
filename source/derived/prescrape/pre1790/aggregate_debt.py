@@ -55,7 +55,8 @@ def Main():
     final = pd.concat(all_dfs, ignore_index=True)
 
     OUTDIR.mkdir(parents=True, exist_ok=True)
-    SaveData(final, ['org_file', 'org_index'], OUTDIR / 'combined_pre1790.csv')
+    SaveData(final, ['org_file', 'org_index'], OUTDIR / 'combined_pre1790.csv',
+             log_file=OUTDIR / 'combined_pre1790.log')
 
 
 def LoadColumnRenames():

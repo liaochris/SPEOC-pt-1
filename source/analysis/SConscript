@@ -13,7 +13,7 @@ env.Python(
 )
 
 env.Python(
-    target = ['#output/analysis/debt_analysis/speculator_matches_agg_debt_grouped.csv'],
+    target = ['#output/analysis/debt_analysis/speculator_matches.csv'],
     source = ['#source/analysis/debt_analysis/analyze_notable_holdings.py']
 )
 

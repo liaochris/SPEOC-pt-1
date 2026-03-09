@@ -7,8 +7,8 @@ from source.derived.postscrape.family_tree.match_candidates import build_name, n
 INDIR  = Path("output/derived/postscrape/family_tree")
 OUTDIR = Path("output/derived/postscrape/family_tree")
 
-IN_CSV  = INDIR / "task_4_matches_filtered.csv"
-OUT_CSV = OUTDIR / "task_4_matches_filtered_nosamenames.csv"
+IN_CSV  = INDIR / "filtered_matches.csv"
+OUT_CSV = OUTDIR / "filtered_matches_no_same_name.csv"
 
 def drop_same_parent_child_names(in_csv=IN_CSV, out_csv=OUT_CSV, fetch_profile=get_profile) -> pd.DataFrame:
     df = pd.read_csv(in_csv)

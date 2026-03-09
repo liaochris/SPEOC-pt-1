@@ -4691,9 +4691,9 @@ PA,505,81.0,90.0,40.0,96.0,22.0,11.0,Chester Co Pennsylvania,PA,,Anne Jones,Anne
 PA,506,259.0,70.0,129.0,85.0,109.0,83.0,,PA,,Joshua Jones,Joshua,Jones,,,PA,US,state,259.7,129.85,109.83
 PA,507,538.0,92.0,269.0,46.0,252.0,65.0,The N Lib of Philadelphia,PA,Tanner,George Leib | George Leib of the N L,George,Leib,Philadelphia,Philadelphia County,PA,US,town,538.92,269.46,252.65
 PA,508,7.0,83.0,3.0,92.0,,,Philadelphia,PA,,John McCleland,John,McCleland,Philadelphia,Philadelphia County,PA,US,town,7.83,3.92,0.0
-PA,509,80.0,28.0,40.0,15.0,28.0,90.0,Berks County Pennsylvania,PA,,Peter Nagle,Peter,Nagle,Berks County,Berks County,PA,US,county,80.28,40.15,28.9
-PA,510,511.0,63.0,255.0,81.0,230.0,13.0,Berks County Pennsylvania,PA,,Christian Ruth | Christina Ruth,Christina,Ruth,Berks County,Berks County,PA,US,county,511.63,255.81,230.13
-PA,511,233.0,10.0,116.0,55.0,112.0,8.0,Pennsylvania Montgomery County,PA,,Henry Smith | Kenry Smith,Henry,Smith,Montgomery County,Montgomery County,PA,US,county,233.1,116.55,112.08
+PA,509,80.0,28.0,40.0,15.0,28.0,90.0,Pennsylvania Berks County,PA,,Peter Nagle,Peter,Nagle,Berks County,Berks County,PA,US,county,80.28,40.15,28.9
+PA,510,511.0,63.0,255.0,81.0,230.0,13.0,Pennsylvania Berks County,PA,,Christian Ruth | Christina Ruth,Christina,Ruth,Berks County,Berks County,PA,US,county,511.63,255.81,230.13
+PA,511,233.0,10.0,116.0,55.0,112.0,8.0,Montgomery County Pennsylvania,PA,,Henry Smith | Kenry Smith,Henry,Smith,Montgomery County,Montgomery County,PA,US,county,233.1,116.55,112.08
 PA,512,585.0,83.0,292.0,92.0,158.0,10.0,,PA,,Rebecca Weiss,Rebecca,Weiss,,,PA,US,state,585.83,292.92,158.1
 PA,513,1284.0,34.0,642.0,17.0,346.0,76.0,Philadelphia County,PA,,Joseph Crawford,Joseph,Crawford,Philadelphia County,Philadelphia County,PA,US,county,1284.34,642.17,346.76
 PA,514,214.0,36.0,107.0,19.0,106.0,44.0,Franklin County Pennsylvania,PA,,Samuel Downey,Samuel,Downey,Franklin County,Franklin County,PA,US,county,214.36,107.19,106.44
@@ -4722,7 +4722,7 @@ PA,536,161.0,74.0,80.0,87.0,72.0,83.0,Brunswick New Jersey,NJ,,John D Alvey,John
 PA,537,951.0,28.0,475.0,65.0,256.0,83.0,Philadelphia,PA,,John Dupuy,John,Dupuy,Philadelphia,Philadelphia County,PA,US,town,951.28,475.65,256.83
 PA,538,997.0,32.0,498.0,66.0,359.0,26.0,Philadelphia,PA,,John Gartley,John,Gartley,Philadelphia,Philadelphia County,PA,US,town,997.32,498.66,359.26
 PA,539,166.0,36.0,83.0,19.0,96.0,34.0,Reading Berks County,PA,,Joseph Heister,Joseph,Heister,Reading,Berks County,PA,US,town,166.36,83.19,96.34
-PA,540,92.0,4.0,46.0,2.0,93.0,92.0,St Eustatia,PA,,Mary Jennings,Mary,Jennings,,,,NL,country,92.04,46.02,93.92
+PA,540,92.0,4.0,46.0,2.0,93.0,92.0,St Eustalia,PA,,Mary Jennings,Mary,Jennings,,,,NL,country,92.04,46.02,93.92
 PA,541,933.0,33.0,466.0,67.0,504.0,,Philadelphia,PA,Widow,Elizabeth Parry,Elizabeth,Parry,Philadelphia,Philadelphia County,PA,US,town,933.33,466.67,504.0
 PA,542,719.0,65.0,359.0,82.0,354.0,94.0,Berks County Pennsylvania,PA,,Valentine Hahn | Valetine Hahn,Valetine,Hahn,Berks County,Berks County,PA,US,county,719.65,359.82,354.94
 PA,543,206.0,39.0,103.0,19.0,94.0,14.0,Philadelphia,PA,Druggist,William Smith,William,Smith,Philadelphia,Philadelphia County,PA,US,town,206.39,103.19,94.14
@@ -5193,7 +5193,7 @@ PA,1008,,,,,115.0,,,PA,,Henry Huttenstein,,,,,PA,US,state,0.0,0.0,115.0
 PA,1009,307.0,48.0,153.0,74.0,123.0,27.0,Philadelphia,PA,,John Keble,John,Keble,Philadelphia,Philadelphia County,PA,US,town,307.48,153.74,123.27
 PA,1010,91.0,80.0,45.0,90.0,83.0,64.0,Berks County Pennsylvania,PA,,Christopher Lash,Christopher,Lash,Berks County,Berks County,PA,US,county,91.8,45.9,83.64
 PA,1011,27.0,74.0,13.0,87.0,22.0,80.0,Philadelphia,PA,Merchant,Benjamin Morgan,Benjamin,Morgan,Philadelphia,Philadelphia County,PA,US,town,27.74,13.87,22.8
-PA,1012,20.0,,10.0,,17.0,6.0,Burlington New Jersey,NJ,,Jacob Myers,Jacob,Myers,Burlington,Burlington County,NJ,US,town,20.0,10.0,17.06
+PA,1012,20.0,,10.0,,17.0,6.0,Berlington New Jersey,NJ,,Jacob Myers,Jacob,Myers,Burlington,Burlington County,NJ,US,town,20.0,10.0,17.06
 PA,1013,984.0,76.0,492.0,38.0,369.0,50.0,Philadelphia,PA,Merchant,Berdd and Pryor | Budd Pryor | Budd and Pryor,Budd,Pryor,Philadelphia,Philadelphia County,PA,US,town,984.76,492.38,369.5
 PA,1014,435.0,4.0,217.0,52.0,195.0,98.0,Franklin County Pennsylvania,PA,Farmer,William Rannals,William,Rannals,Franklin County,Franklin County,PA,US,county,435.04,217.52,195.98
 PA,1015,303.0,89.0,151.0,95.0,198.0,80.0,New Jersey,NJ,,Jebediah Swan | Jedediah Swan,Jebediah,Swan,,,NJ,US,state,303.89,151.95,198.8
@@ -6411,7 +6411,7 @@ SC,289,153.0,54.0,76.0,77.0,,,Charleston,SC,Shipwright,Paul Pritchard,Paul,Pritc
 SC,290,37.0,74.0,18.0,87.0,,,,SC,Executor of Humphry Sommers,Edmund Petrie,Edmund,Petrie,,,SC,US,state,37.74,18.87,0.0
 SC,291,24.0,96.0,12.0,48.0,,,Charleston,SC,,Thomas Lehre,Thomas,Lehre,Charleston,Charleston County,SC,US,town,24.96,12.48,0.0
 SC,292,54.0,36.0,27.0,19.0,,,Charleston,SC,Merchant,John Splatt Cripps,John Splatt,Cripps,Charleston,Charleston County,SC,US,town,54.36,27.19,0.0
-SC,293,105.0,40.0,52.0,71.0,,,Charleston,SC,Merchant,James Theus,James,Theus,Charleston,Charleston County,SC,US,town,105.4,52.71,0.0
+SC,293,105.0,40.0,52.0,71.0,,,Charlestom,SC,Merchant,James Theus,James,Theus,Charleston,Charleston County,SC,US,town,105.4,52.71,0.0
 SC,294,113.0,86.0,56.0,94.0,,,Charleston,SC,Merchant,Thomas Jones,Thomas,Jones,Charleston,Charleston County,SC,US,town,113.86,56.94,0.0
 SC,295,20.0,14.0,10.0,8.0,,,Charleston,SC,Attorney at Law,Jacob Read,Jacob,Read,Charleston,Charleston County,SC,US,town,20.14,10.08,0.0
 SC,296,29.0,48.0,14.0,74.0,,,St. Thomas,VI,Planter,Hopson Pinckney,Hopson,Pinckney,,,,VI,country,29.48,14.74,0.0

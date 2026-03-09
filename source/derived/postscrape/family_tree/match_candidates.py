@@ -8,9 +8,9 @@ INDIR_WIKITREE = Path("output/scrape/wikitree")
 INDIR_POST1790 = Path("output/derived/postscrape/post1790_cd")
 OUTDIR         = Path("output/derived/postscrape/family_tree")
 
-EDGES_JSON   = INDIR_WIKITREE / "results" / "edges_task_2.json"
+EDGES_JSON   = INDIR_WIKITREE / "family_graph_edges.json"
 POST1790_CSV = INDIR_POST1790 / "final_data_CD.csv"
-OUT_CSV      = OUTDIR / "task_3_matches.csv"
+OUT_CSV      = OUTDIR / "candidate_matches.csv"
 PROCESSED    = OUTDIR / "processed_children.txt"
 
 STATE_FULL_TO_ABBR = {

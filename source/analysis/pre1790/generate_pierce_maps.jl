@@ -159,7 +159,7 @@ p = canvas + worldmap
 using DataFrames, CSV, DataFramesMeta 
 
 # import pre-1790 debt data 
-pre1790 = DataFrame(CSV.File("output/derived/pre1790/agg_debt_grouped.csv"))
+pre1790 = DataFrame(CSV.File("output/derived/pre1790/pre1790_cleaned.csv"))
 
 # clean cents column and sum dollars and cents 
 pre1790[:, "amount | 90th"] = getindex.(split.(pre1790[:, "amount | 90th"], "."), 1)

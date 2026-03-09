@@ -12,20 +12,19 @@ Searches WikiTree for historical persons matching pre-1790 debt certificate hold
 
 ### Input
 
-- `output/scrape/wikitree/data/loan_office_certificates_cleaned.csv`
-- `output/scrape/wikitree/data/post_1790.csv`
+- `output/derived/pre1790/loan_office_certificates_cleaned.csv`
 
 ### Output
 
 All output in `output/scrape/wikitree/`:
-- `results/task_1.csv` — WikiTree candidate matches
-- `results/edges_task_2.json` — Parent→child edges
-- `results/nodes_task_2.json` — Person nodes
+- `candidates.csv` — WikiTree candidate matches per person
+- `family_graph_nodes.json` — Person nodes
+- `family_graph_edges.json` — Parent→child edges
 - `wikitree_bios.jsonl` — Full biographical profiles (one JSON per line)
 
 ### Downstream Usage
 
-- `results/task_1.csv`, `edges_task_2.json`, `nodes_task_2.json` → consumed by `source/derived/family_tree/` (match_candidates.py, filter_matches.py, finalize_matches.py)
+- `candidates.csv`, `family_graph_nodes.json`, `family_graph_edges.json` → consumed by `source/derived/family_tree/` (match_candidates.py, filter_matches.py, finalize_matches.py)
 
 ### Tests
 

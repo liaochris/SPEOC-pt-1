@@ -1,0 +1,7 @@
+Import('*')
+
+env.Python(
+    target = ['#output/derived/postscrape/pre1790/final_agg_debt_cleaned.csv'],
+    source = ['#source/derived/postscrape/pre1790/integrate_ancestry_search.py',
+              '#output/derived/prescrape/pre1790/pre1790_cleaned.csv']
+)

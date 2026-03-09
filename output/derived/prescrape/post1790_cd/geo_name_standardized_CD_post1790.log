@@ -1,0 +1,31 @@
+File: output/derived/prescrape/post1790_cd/geo_name_standardized_CD_post1790.csv
+
+MD5 hash: 55e95a3dcb7467be4222665d0f7746e8
+
+Keys: row_id 
+
+                     type  count unique       mean         std    min        50%          max
+row_id              int64  6,548         3,273.500   1,890.389  0.000  3,273.500    6,547.000
+state_data_index    int64  6,548           651.774     550.955  1.000    498.000    2,193.000
+6p_Dollar          object  6,548  1,676                                                      
+6p_Cents           object  6,548    168                                                      
+6p_def_Dollar      object  6,548  1,258                                                      
+6p_def_Cents       object  6,548    167                                                      
+3p_Dollar          object  6,548  1,881                                                      
+3p_Cents           object  6,548    156                                                      
+town                  str  6,548    436                                                      
+state                 str  6,548     21                                                      
+occupation            str  6,548    271                                                      
+Name               object  6,548  3,880                                                      
+First Name            str  6,548    741                                                      
+Last Name             str  6,548  1,691                                                      
+new_town           object  6,548    277                                                      
+county             object  6,548    107                                                      
+new_state          object  6,548     15                                                      
+country            object  6,548      7                                                      
+geo_level          object  6,548      4                                                      
+6p_total          float64  6,548         1,058.080  12,290.070  0.000     69.130  803,985.330
+6p_def_total      float64  6,548           532.589   6,172.854  0.000     31.545  401,992.670
+3p_total          float64  6,548         1,207.680   6,332.191  0.000    189.030  241,195.600
+Name_Fix           object  6,548  3,797                                                      
+

@@ -66,7 +66,8 @@ def Main():
     CD_all.loc[CD_all[CD_all['state_data'] == 'NY'].index, 'geo_level'] = 'state'
 
     OUTDIR.mkdir(parents=True, exist_ok=True)
-    SaveData(CD_all, ['state_data', 'state_data_index'], OUTDIR / 'geo_standardized_CD_post1790.csv')
+    SaveData(CD_all, ['state_data', 'state_data_index'], OUTDIR / 'geo_standardized_CD_post1790.csv',
+             log_file=OUTDIR / 'geo_standardized_CD_post1790.log')
 
     # town_occ_agg_check.csv: rows where town/state/occupation had conflicting values
     # across the three sub-columns (e.g. town1 != town2), the longest value was kept.
@@ -75,14 +76,16 @@ def Main():
     change_df_CD = change_df_CD.reset_index(drop=True)
     change_df_CD['old'] = change_df_CD['old'].apply(lambda x: str(x) if isinstance(x, set) else x)
     change_df_CD['row_id'] = change_df_CD.index
-    SaveData(change_df_CD, ['row_id'], OUTDIR / 'check/town_occupation_aggregation_list.csv')
+    SaveData(change_df_CD, ['row_id'], OUTDIR / 'check/town_occupation_aggregation_list.csv',
+             log_file=OUTDIR / 'check/town_occupation_aggregation_list.log')
 
     # Keep only the last log entry per (state, town_original): later entries (e.g. manual_override)
     # supersede earlier intermediate ones (e.g. unmatched logged before ApplyTownFixes runs).
     match_log_df = pd.DataFrame(match_log)
     match_log_df = match_log_df.drop_duplicates(subset=['state', 'town_original'], keep='last').reset_index(drop=True)
     match_log_df['row_id'] = match_log_df.index
-    SaveData(match_log_df, ['row_id'], OUTDIR / 'check/town_changes_list.csv')
+    SaveData(match_log_df, ['row_id'], OUTDIR / 'check/town_changes_list.csv',
+             log_file=OUTDIR / 'check/town_changes_list.log')
 
 
 def LoadRawCDData(indir, raw_params):
@@ -529,7 +532,7 @@ def DirectCountyMatch(state_cw, towns, towncol='town', match_log=None, state=Non
     counties = state_cw['county'].unique()
     nanindex = towns[towns['county'].apply(lambda x: pd.isnull(x))].index
     towns.loc[nanindex, 'county'] = towns.loc[nanindex, towncol].apply(
-        lambda x: x if x in counties.tolist() else np.nan)
+        lambda x: x if x in counties.tolist() else pd.NA)
     towns2 = towns.loc[nanindex]
     nanindex2 = towns2[towns2['county'].apply(lambda x: not pd.isnull(x))].index
     if match_log is not None:

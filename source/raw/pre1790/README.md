@@ -26,7 +26,7 @@ XLSX spreadsheets transcribed from National Archives microfilm records, obtained
 
 **`corrections/`** — Manually curated correction lookup tables applied by the derived cleaning scripts. Organized by type (`name/`) and pipeline stage (`prescrape/`). Each file only contains rows where a correction is needed (identity mappings are omitted; scripts fall back to the original value when no entry is found):
 
-`name/prescrape/` — Name corrections used by `combine_certificate_types.py`:
+`name/prescrape/` — Name corrections used by `clean_names.py`:
 - `name_remove_words.csv` — Suffix and prefix stripping rules. `suffix` type removes the phrase from the end of the name; `prefix` type removes it from the start (e.g. `estate of`). Columns: `value`, `type`.
 - `name_known_partners.csv` — Explicit name-to-person-list mappings. Each `original` (raw name or phrase) maps to a pipe-separated `new` value listing the canonical individual names. Used to resolve joint holders, companies, executors, and guardians. Columns: index, `original`, `new`.
 - `name_unknown_partners.csv` — Institution names whose holders cannot be individually identified. Rows matching this list are flagged but not split. The script also writes newly detected suspicious names to `output/.../check/name_unknown_partners.csv` for human review. Column: `name`.

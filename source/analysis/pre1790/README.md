@@ -10,7 +10,7 @@ Distribution, temporal, and geographic analysis of pre-1790 debt certificates.
 
 ### Input
 
-- `output/derived/pre1790/agg_debt_grouped.csv`
+- `output/derived/pre1790/pre1790_cleaned.csv`
 - `source/raw/society_members/` (society membership data)
 - `source/raw/shapefiles/`
 

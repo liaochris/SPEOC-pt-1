@@ -3,7 +3,7 @@ from pathlib import Path
 from json import JSONDecodeError
 
 
-OUTDIR = Path("output/scrape/ancestry_loan_office_scraper")
+OUTDIR = Path("output/scrape/pre1790_census_match")
 PROGRESS_DIR = OUTDIR / "progress"
 RESULTS_DIR  = OUTDIR / "results"
 

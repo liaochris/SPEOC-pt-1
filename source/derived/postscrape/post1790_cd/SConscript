@@ -1,0 +1,9 @@
+Import('*')
+
+env.Python(
+    target = ['#output/derived/postscrape/post1790_cd/final_data_CD.csv',
+              '#output/derived/postscrape/post1790_cd/match_data_CD.csv'],
+    source = ['#source/derived/postscrape/post1790_cd/aggregate_final_cd.py',
+              '#output/derived/prescrape/post1790_cd/geo_standardized_CD_post1790.csv',
+              '#output/derived/prescrape/post1790_cd/check/name_changes_list.csv']
+)

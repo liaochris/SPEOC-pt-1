@@ -70,9 +70,9 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
     - `name_fix.csv` write-back redirected to `output/derived/prescrape/pre1790/name_fix_auto.csv`
     - Updated `source/derived/SConscript`: replaced stale paths/targets
     - **QUALITY.md compliance pass**: Added `SaveData` to all saves in all 9 scripts; removed dead code; removed inline comments
-    - **Dead scripts deleted**: `clean_names.py`, `clean_names_individual.py`, `clean_imperfections.py` — all three were superseded by `combine_certificate_types.py`, not registered in SConscript, and `clean_names.py` had interactive `input()` calls
+    - **Dead scripts deleted**: `clean_names.py`, `clean_names_individual.py`, `clean_imperfections.py` — all three were superseded by `clean_names.py`, not registered in SConscript, and `clean_names.py` had interactive `input()` calls
     - **Scripts combined**: `aggregate_debt.py` + `aggregate_debt_alternate.py` merged into single `aggregate_debt.py` that outputs `final_agg_debt.csv` directly; intermediate `agg_debt_david.csv` eliminated
-    - **`combine_certificate_types.py` modularized**: constants (`MANUAL_CORRECTIONS_OFS`, `MANUAL_CORRECTIONS_ORGS`, `CHANGES_COMP`, `CORP_KEY_WORDS`, `DECEASED_KEYWORDS`, `MANUAL_NO_MARK_LIST`, `ABBREVIATIONS`) and pure functions (`GetTags`, `CheckKeywordInString`, `SetupNltk`) moved to module level; dead first `manual_corrects` load removed; `ListToString` helper removed (replaced with `" ".join()` inline); `if True: try:` SSL pattern simplified; `type(x) != Tree` → `isinstance(x, Tree)`
+    - **`clean_names.py` modularized**: constants (`MANUAL_CORRECTIONS_OFS`, `MANUAL_CORRECTIONS_ORGS`, `CHANGES_COMP`, `CORP_KEY_WORDS`, `DECEASED_KEYWORDS`, `MANUAL_NO_MARK_LIST`, `ABBREVIATIONS`) and pure functions (`GetTags`, `CheckKeywordInString`, `SetupNltk`) moved to module level; dead first `manual_corrects` load removed; `ListToString` helper removed (replaced with `" ".join()` inline); `if True: try:` SSL pattern simplified; `type(x) != Tree` → `isinstance(x, Tree)`
     - **`aggregate_debt.py` modularized**: `COLUMN_CHANGES` dict, `CleanTable`, `DeNaN`, `AddStrikeConf`, `LowercaseStateAbbr` moved to module level; `AddOrgIndex` stays inside `Main()` (uses `nonlocal oii`)
     - **SConscript updated**: removed two-step `agg_debt_david.csv` → `final_agg_debt.csv` chain; now single step `aggregate_debt.py` → `final_agg_debt.csv`
     - **Data dictionaries created**: `source/derived/prescrape/pre1790/DATA_DICTIONARY.md` and `source/derived/prescrape/post1790_cd/DATA_DICTIONARY.md` documenting all input/output columns for all pipeline scripts
@@ -113,9 +113,9 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
 ```
 source/derived/
 ├── prescrape/
-│   ├── pre1790/          ← scripts that produce agg_debt_grouped.csv (scraper input)
+│   ├── pre1790/          ← scripts that produce pre1790_cleaned.csv (scraper input)
 │   │   ├── aggregate_debt.py          ← merged from aggregate_debt + aggregate_debt_alternate
-│   │   ├── combine_certificate_types.py
+│   │   ├── clean_names.py
 │   │   └── find_similar_names.py
 │   └── post1790_cd/      ← scripts that produce name_list.csv (CD scraper input)
 │       ├── standardize_geography.py

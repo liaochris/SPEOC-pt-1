@@ -17,7 +17,7 @@ def norm_state(s):
     return str(s).strip().upper()
 
 # --- Load
-task3 = pd.read_csv(INDIR_RESULTS / "task_3_matches.csv")
+task3 = pd.read_csv(INDIR_RESULTS / "candidate_matches.csv")
 post1790 = pd.read_csv(INDIR_DATA / "post_1790.csv")
 
 # --- Filter to non-matches (boolean False)

@@ -30,7 +30,7 @@ INDIR_DERIVED_POST1790 = Path("output/derived/post1790_cd")
 INDIR_MEMBERS = Path("source/raw/society_members/orig")
 INDIR_DELEGATES = Path("source/raw/delegates/orig")
 OUTDIR = Path("output/analysis/pre1790")
-agg_debt = pandas.read_csv(INDIR_DERIVED / "agg_debt_grouped.csv")
+agg_debt = pandas.read_csv(INDIR_DERIVED / "pre1790_cleaned.csv")
 
 # remove rows where no name exists 
 agg_debt.drop(agg_debt.loc[agg_debt["to whom due | first name"].isna() & agg_debt["to whom due | last name"].isna()].index, inplace=True)

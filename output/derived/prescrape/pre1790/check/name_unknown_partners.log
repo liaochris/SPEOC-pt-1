@@ -1,0 +1,13 @@
+File: output/derived/prescrape/pre1790/check/name_unknown_partners.csv
+
+MD5 hash: ceaa2cbfaae00a4330e3711873f3423e
+
+Keys: row_id 
+
+                           type count unique        mean         std    min         50%         max
+row_id                    int64   251            125.000      72.602  0.000     125.000     250.000
+to whom due | first name    str   251    251                                                       
+state                       str   245      9                                                       
+org_file                    str   251      8                                                       
+org_index                 int64   251         37,731.753  29,044.371  1.000  48,274.000  80,799.000
+

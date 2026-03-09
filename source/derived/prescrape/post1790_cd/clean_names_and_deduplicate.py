@@ -156,14 +156,16 @@ def Main():
         lambda x: (x['Name'] == x['Name_Fix'] and ' and ' in x['Name']) or 
         (x['Name'] != x['Name_Fix'] and ' and ' in x['Name_Fix']), axis=1)].index
     unknown_company_names = names.drop(['First Name', 'Last Name'], axis=1).loc[company_name_ind].drop_duplicates()
-    SaveData(unknown_company_names, ['Name', 'Name_Fix'], OUTDIR / 'check/companies_unidentified_partners.csv')
+    SaveData(unknown_company_names, ['Name', 'Name_Fix'], OUTDIR / 'check/companies_unidentified_partners.csv',
+             log_file=OUTDIR / 'check/companies_unidentified_partners.log')
 
     name_df = SplitNameIntoFirstLast(names, institution_names)
 
     OUTDIR.mkdir(parents=True, exist_ok=True)
     name_df = name_df.reset_index(drop=True)
     name_df['row_id'] = name_df.index
-    SaveData(name_df, ['row_id'], OUTDIR / 'check/name_changes_list.csv')
+    SaveData(name_df, ['row_id'], OUTDIR / 'check/name_changes_list.csv',
+             log_file=OUTDIR / 'check/name_changes_list.log')
 
     us_state_names = {
         'connecticut', 'delaware', 'georgia', 'maryland', 'massachusetts',
@@ -176,14 +178,16 @@ def Main():
     if not town_conflicts.empty:
         town_conflicts = town_conflicts.reset_index(drop=True)
         town_conflicts['row_id'] = town_conflicts.index
-        SaveData(town_conflicts, ['row_id'], OUTDIR / 'check/name_town_conflicts_list.csv')
+        SaveData(town_conflicts, ['row_id'], OUTDIR / 'check/name_town_conflicts_list.csv',
+                 log_file=OUTDIR / 'check/name_town_conflicts_list.log')
 
     CD_merged_names = pd.merge(CD_merged.fillna(""), name_df[['Name', 'Name_Fix', 'new_town', 'county', 'new_state', 'country', 'geo_level']].drop_duplicates(), how='left')
     CD_merged_names.loc[CD_merged_names[CD_merged_names['Name_Fix'].isnull()].index, 'Name_Fix'] = CD_merged_names.loc[CD_merged_names[CD_merged_names['Name_Fix'].isnull()].index, 'Name']
 
     CD_merged_names = CD_merged_names.reset_index(drop=True)
     CD_merged_names['row_id'] = CD_merged_names.index
-    SaveData(CD_merged_names, ['row_id'], OUTDIR / 'geo_name_standardized_CD_post1790.csv')
+    SaveData(CD_merged_names, ['row_id'], OUTDIR / 'geo_name_standardized_CD_post1790.csv',
+             log_file=OUTDIR / 'geo_name_standardized_CD_post1790.log')
 
 
 if __name__ == "__main__":

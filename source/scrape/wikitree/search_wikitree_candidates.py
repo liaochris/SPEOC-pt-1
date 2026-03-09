@@ -5,13 +5,13 @@ from source.scrape.wikitree.wikitree import SearchCandidatesForName
 from source.lib.ancestry_scraper.config import STATE_ABBREVIATIONS
 
 INDIR_DERIVED = Path("output/derived/pre1790")
-OUTDIR = Path("output/scrape/wikitree/results")
+OUTDIR = Path("output/scrape/wikitree")
 
 
 def Main():
     WriteCandidates(
         names_csv=INDIR_DERIVED / "loan_office_certificates_cleaned.csv",
-        out_csv=OUTDIR / "task_1.csv"
+        out_csv=OUTDIR / "candidates.csv"
     )
 
 

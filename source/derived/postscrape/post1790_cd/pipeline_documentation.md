@@ -645,6 +645,6 @@ The following links to county population data ([county_pop_fips.csv](https://git
 
 To make maps, we use shapefiles. We have shapefiles at the county and state level. 
 
-- [historicalcounties](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/shapefiles/historicalcounties): IPUMS NHGIS, 1790 census data, 1790 County 2000 Tiger/Line GIS
+- [historicalcounties_1790](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/shapefiles/historicalcounties_1790): IPUMS NHGIS, 1790 census data, 1790 County 2000 Tiger/Line GIS
 
 - [historicalstates](https://github.com/liaochris/SPEOC-pt-1/blob/main/data_raw/shapefiles/historicalstates): https://digital.newberry.org/ahcb/downloads/gis/US_AtlasHCB_StateTerr_Gen001.zip

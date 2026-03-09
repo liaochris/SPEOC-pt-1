@@ -8,9 +8,9 @@ INDIR_WIKITREE = Path("output/scrape/wikitree")
 INDIR          = Path("output/derived/postscrape/family_tree")
 OUTDIR         = Path("output/derived/postscrape/family_tree")
 
-IN_CSV     = INDIR / "task_3_matches.csv"
-EDGES_JSON = INDIR_WIKITREE / "results" / "edges_task_2.json"
-OUT_CSV    = OUTDIR / "task_4_matches_filtered.csv"
+IN_CSV     = INDIR / "candidate_matches.csv"
+EDGES_JSON = INDIR_WIKITREE / "family_graph_edges.json"
+OUT_CSV    = OUTDIR / "filtered_matches.csv"
 
 def to_year(val) -> int | None:
     s = str(val or "")[:4]

@@ -1,0 +1,18 @@
+File: output/derived/prescrape/post1790_cd/check/name_changes_list.csv
+
+MD5 hash: b2d0c654db0de68a9ae0d057f028194f
+
+Keys: row_id 
+
+             type  count unique       mean        std    min        50%        max
+row_id      int64  4,920         2,459.500  1,420.426  0.000  2,459.500  4,919.000
+Name       object  4,920  3,840                                                   
+Fn_Fix     object  4,920    839                                                   
+Ln_Fix     object  4,920  2,310                                                   
+new_town   object  4,920    277                                                   
+county     object  4,920    107                                                   
+new_state  object  4,920     15                                                   
+country    object  4,920      7                                                   
+geo_level  object  4,920      4                                                   
+Name_Fix   object  4,920  3,757                                                   
+

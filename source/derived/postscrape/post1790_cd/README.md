@@ -7,7 +7,7 @@ Merges Ancestry.com scrape results with the pre-cleaned post-1790 CD data to pro
 ```
 output/derived/prescrape/post1790_cd/geo_standardized_CD_post1790.csv
 output/derived/prescrape/post1790_cd/name_list.csv
-output/scrape/ancestry_cd_scraper/
+output/scrape/post1790_cd_census_match/
     └─► aggregate_final_cd.py → output/derived/postscrape/post1790_cd/final_data_CD.csv
                               → match_data_CD.csv
 ```
