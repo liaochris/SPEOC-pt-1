@@ -77,11 +77,25 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
     - **SConscript updated**: removed two-step `agg_debt_david.csv` → `final_agg_debt.csv` chain; now single step `aggregate_debt.py` → `final_agg_debt.csv`
     - **Data dictionaries created**: `source/derived/prescrape/pre1790/DATA_DICTIONARY.md` and `source/derived/prescrape/post1790_cd/DATA_DICTIONARY.md` documenting all input/output columns for all pipeline scripts
 
+18. **Step 2.4**: source/derived/postscrape/ — reorganize + code quality for post-scrape derived scripts
+    - **Split** `integrate_ancestry_search.py`: Ancestry scraping → `source/scrape/pre1790/scrape_name_resolution.py` (Emory credentials, parallel Selenium, pickle checkpoints); derive/integrate stays in `source/derived/postscrape/pre1790/integrate_ancestry_search.py`
+    - **Modularized** `aggregate_final_cd.py` into 23 named functions (`Main`, `ParseLocationString`, `JoinNameList`, `AddOccupationsFromTitle`, `MergeScrapedData`, `GroupByAncestryMatchIndex`, `GroupByFuzzyCorrections`, `UnifyLocationWithinState`, `AggregateIntoPersonTable`, `ImputeLocationFromPartners`, `BuildNameChangeDictionary`, `UnifyNameSpellings`, `ApplyManualAdjustments`, `CorrectWrongStateAssignments`, `AddVillageInfo`, `ExtractOccupationsFromCensus`, `ResolveMultipleMatches`, `EliminateBroadLocationMatches`, `SameLocation`, `ImputeLocationFromCensus`, `StandardizeOccupations`, `ReindexMatchData`, `AggregateDebtTotals`); added non-obvious inline comments (`ASDSD` sentinel, `max(x, key=len)` rep name rationale, assets format, partner imputation loop logic, co-holder count for adjusted totals)
+    - **Fixed** `INDIR_SCRAPE`: `output/scrape/post1790_cd_census_match` → `output/scrape/ancestry_cd_scraper`
+    - **Renamed** globals: `statedict` → `STATEDICT`, `tNameList` → `JoinNameList`, `parseLocationString` → `ParseLocationString`
+    - **Revised** `match_candidates.py`: `run_task3` → `Main`, all functions CamelCase, AppendRow kept with checkpoint comment
+    - **Revised** `filter_matches.py`: `refine_matches` → `Main`, module-level constants (`CENTER_YEAR`, `YEAR_WINDOW`, `DROP_IF_MISSING_YEAR`), `ChildToParentMaps`, `ToYear`, `SaveData`
+    - **Revised** `drop_same_name.py`: `drop_same_parent_child_names` → `Main`, updated imports to `BuildName`/`Norm`, `SaveData`
+    - **Revised** `finalize_matches.py`: wrapped in `Main()`, `VALID_STATES` constant, `SaveData`
+    - **Deleted** `output/derived/census/` (orphaned — `county_debt_total.csv` had no producer or consumer)
+    - **Created** `source/scrape/pre1790/README.md` documenting the scraper, auth, checkpoints, run order
+    - **Updated** `source/scrape/README.md`: corrected directory names, downstream usage table, run order
+    - **Updated** `QUALITY.md`: checkpoint exception to SaveData rule, MODULARIZATION bullet, Notebook-to-script conversions section
+    - **Updated** `source/derived/postscrape/pre1790/SConscript`: added `ancestry_name_changes_raw.csv` as manual dependency
+
 ## Next Step
-- **Step 2.4**: source/derived/postscrape/ — reorganize + code quality for post-scrape derived scripts (`integrate_ancestry_search.py`, `aggregate_final_cd.py`, `match_candidates.py`, `filter_matches.py`, `drop_same_name.py`, `finalize_matches.py`)
+- **Step 2.5**: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python, systematize PNG outputs
 
 ## Remaining Items (Task 2)
-- Step 2.4: source/derived/postscrape/ — reorganize + code quality for post-scrape derived scripts
 - Step 2.5: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python, systematize PNG outputs
 - Step 2.6: source/webapp — light review, cleanup, and Heroku/alternate deployment decision
 
@@ -101,7 +115,7 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
 | source/raw in good state | 2.1 | DONE |
 | source/derived/prescrape runs + replicable | 2.3 | DONE |
 | source/scrape input/routine/output clear | 2.2, 2.2.5 | DONE (pending TODO items: driver unification, rerun scraper) |
-| source/derived/postscrape runs + produces output | 2.4 | NEXT |
+| source/derived/postscrape runs + produces output | 2.4 | DONE |
 | Website: Heroku / alternate deployment | 2.6 | PENDING |
 | Systematize PNG outputs | 2.5 | PENDING |
 | Decide whether to integrate existing drafts | — | UNSCHEDULED |
