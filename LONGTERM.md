@@ -56,7 +56,8 @@ The following scrape scripts have **not yet been run** and their outputs are mis
    punctuation, suffixes like Jr/Sr, accented characters). Because all match/no-match decisions
    in `source/derived/postscrape/family_tree/` depend on it, any undocumented behavior is a silent
    source of missed or spurious matches. 
-
+4. Remove `archive` after chekcing that nothing there isneeded
+5. Integrate `issue/speculation` into `source/analysis`
 
 ## Architecture
 
