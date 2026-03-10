@@ -2,12 +2,11 @@ from dash import html
 from dash import dcc
 
 
-# Project description tab
 project_desc = html.Div(className='box', children=[
     html.H1("Data Description", style={'marginBottom': '5px'}, className='section-title'),
     dcc.Markdown('''
     This page provides more detail on the data that is used to create maps and tables''', style = {'font-size':'3vh'}),
-    html.Hr(style={"height": "2px", "background-color": "black"}),  # Black line separator
+    html.Hr(style={"height": "2px", "background-color": "black"}),
     html.H2("Data Sources", style={'marginBottom': '5px'}, className='subsection-title'),
     dcc.Markdown('''
     In this web app, we only consider debt entries from ledger records for the Continental Congress's debt. As of September 2023, we have not cleaned the ledgers containing records for debt that the national government assumed. Our data team is currently working on cleaning data on debt certificates that people received for providing goods or services during the Revolution. While the ledgers for the debt either incurred by Congress or the states date to after 1790, when Hamilton’s plan was first proposed, the aforementioned certificates are from the Revolutionary war era. 
@@ -22,7 +21,6 @@ project_desc = html.Div(className='box', children=[
 
     ])
 
-    # Create the layout
 data_layout = html.Div([
     project_desc,
     

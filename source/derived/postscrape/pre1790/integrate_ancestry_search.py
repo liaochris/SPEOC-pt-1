@@ -5,6 +5,7 @@ from source.lib.SaveData import SaveData
 INDIR_PRESCRAPE = Path("output/derived/prescrape/pre1790")
 INDIR_SCRAPE    = Path("output/scrape/pre1790")
 OUTDIR          = Path("output/derived/postscrape/pre1790")
+OUTDIR.mkdir(parents=True, exist_ok=True)
 
 
 def Main():
@@ -17,10 +18,6 @@ def Main():
 
     ancestry_df = DeduplicateNameChanges(raw_changes)
 
-    OUTDIR.mkdir(parents=True, exist_ok=True)
-    SaveData(ancestry_df, list(ancestry_df.columns[:1]),
-             OUTDIR / 'ancestry_name_changes_clean.csv',
-             log_file=OUTDIR / 'ancestry_name_changes_clean.log')
 
     name_changes.drop(columns=['Unnamed: 0'], inplace=True, errors='ignore')
     name_changes = pd.concat([
@@ -31,12 +28,15 @@ def Main():
                      'Obj. Num.', 'Original File', 'Original Index']]
     ], ignore_index=True)
 
-    SaveData(name_changes, list(name_changes.columns[:1]),
+    agg_debt = ApplyNameFixes(agg_debt, ancestry_df)
+    
+    SaveData(ancestry_df, ['Old Title'],
+             OUTDIR / 'ancestry_name_changes_clean.csv',
+             log_file=OUTDIR / 'ancestry_name_changes_clean.log')
+    SaveData(name_changes, ['change_id'],
              OUTDIR / 'name_changes_david.csv',
              log_file=OUTDIR / 'name_changes_david.log')
-
-    agg_debt = ApplyNameFixes(agg_debt, ancestry_df)
-    SaveData(agg_debt, list(agg_debt.columns[:1]),
+    SaveData(agg_debt, ['row_id'],
              OUTDIR / 'final_agg_debt_cleaned.csv',
              log_file=OUTDIR / 'final_agg_debt_cleaned.log')
 
@@ -52,14 +52,10 @@ def DeduplicateNameChanges(raw_df):
     key_cols = ['Old First Name', 'Old Last Name', 'New First Name', 'New Last Name', 'State']
     raw_df = raw_df.drop_duplicates(subset=key_cols).reset_index(drop=True)
 
-    raw_df['Old First Name'] = raw_df['Old First Name'].astype(str)
-    raw_df['Old Last Name']  = raw_df['Old Last Name'].astype(str)
-    raw_df['New First Name'] = raw_df['New First Name'].astype(str)
-    raw_df['New Last Name']  = raw_df['New Last Name'].astype(str)
-    raw_df['Obj. Num.']      = raw_df['Obj. Num.'].astype(int)
-    raw_df['Original File']  = raw_df['Original File'].astype(str)
-    raw_df['Original Index'] = raw_df['Original Index'].astype(int)
-    raw_df['State']          = raw_df['State'].astype(str)
+    for col in ['Old First Name', 'Old Last Name', 'New First Name', 'New Last Name', 'Original File', 'State']:
+        raw_df[col] = raw_df[col].astype(str)
+    for col in ['Obj. Num.', 'Original Index']:
+        raw_df[col] = raw_df[col].astype(int)
     return raw_df
 
 

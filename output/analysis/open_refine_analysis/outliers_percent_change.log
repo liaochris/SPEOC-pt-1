@@ -1,0 +1,13 @@
+File: output/analysis/open_refine_analysis/outliers_percent_change.csv
+
+MD5 hash: 7c9bfa61d6fa7cbb3e64f3ff76f56483
+
+Keys: recon_id raw_name_state 
+
+                   type count unique        mean         std        min         50%         max
+recon_id            str    10     10                                                           
+raw_name_state      str    10     10                                                           
+pre_value         int64    10            540.000     503.764    200.000     300.000   1,600.000
+post_value      float64    10         19,738.821  14,387.430  2,781.950  20,118.355  38,453.050
+percent_change  float64    10          4,111.404   2,594.843  1,290.975   3,633.000   8,102.643
+

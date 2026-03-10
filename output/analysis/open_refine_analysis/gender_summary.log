@@ -1,0 +1,10 @@
+File: output/analysis/open_refine_analysis/gender_summary.csv
+
+MD5 hash: 4466c988b7245046da44d7ed2df2e597
+
+Keys: dataset 
+
+              type count unique   mean    std    min    50%    max
+dataset        str     4      4                                   
+pct_women  float64     4         4.064  3.995  0.069  4.241  7.706
+

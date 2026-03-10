@@ -86,16 +86,9 @@ def PlotChoropleth(state_code, county_counts, cert_year, shapefile_path=INDIR_SH
     state_name = STATE_NAMES[state_code]
 
     gdf = gpd.read_file(shapefile_path)
-    gdf["START_YEAR"] = gdf["START_DATE"].str.split("/").str[0].astype(int)
-    gdf["END_YEAR"] = gdf["END_DATE"].str.split("/").str[0].astype(int)
 
-    sel = (
-        (gdf["STATE_TERR"] == state_name)
-        & (gdf["START_YEAR"] <= cert_year)
-        & ((gdf["END_YEAR"] >= cert_year) | (gdf["END_YEAR"] == 9999))
-    )
-    sub = gdf[sel]
-    sub["NAME"] = sub["NAME"].astype(str).str.upper().str.strip()
+    sub = gdf[gdf["STATENAM"] == state_name].copy()
+    sub["NAME"] = sub["NHGISNAM"].astype(str).str.upper().str.strip()
     sub = sub.dissolve(by="NAME", as_index=False)
 
     merged = sub.merge(county_counts, left_on="NAME", right_on="county", how="left").fillna({"count": 0})
@@ -131,7 +124,7 @@ def PlotChoropleth(state_code, county_counts, cert_year, shapefile_path=INDIR_SH
 
     out = Path(map_out_dir) / f"{state_code.lower()}_choropleth_{cert_year}.png"
     plt.savefig(out, dpi=300, bbox_inches="tight")
-    plt.show()
+    plt.close()
     print(f"Map saved to {out}")
 
 
@@ -189,18 +182,12 @@ def PlotNationalChoropleth(cert_year, shapefile_path=INDIR_SHAPEFILE,
     county_counts = BuildNationalCounts(states, results_dir=results_dir)
 
     gdf = gpd.read_file(shapefile_path)
-    gdf["START_YEAR"] = gdf["START_DATE"].str.split("/").str[0].astype(int)
-    gdf["END_YEAR"] = gdf["END_DATE"].str.split("/").str[0].astype(int)
 
-    want_states = {STATE_NAMES[s].upper() for s in [s.upper() for s in states]}
-    sub = gdf[
-        (gdf["STATE_TERR"].str.upper().isin(want_states))
-        & (gdf["START_YEAR"] <= cert_year)
-        & ((gdf["END_YEAR"] >= cert_year) | (gdf["END_YEAR"] == 9999))
-    ].copy()
+    want_states = {STATE_NAMES[s] for s in [s.upper() for s in states]}
+    sub = gdf[gdf["STATENAM"].isin(want_states)].copy()
 
-    sub["STATE_TERR"] = sub["STATE_TERR"].astype(str).str.upper().str.strip()
-    sub["NAME"] = sub["NAME"].astype(str).str.upper().str.strip()
+    sub["STATE_TERR"] = sub["STATENAM"].astype(str).str.upper().str.strip()
+    sub["NAME"] = sub["NHGISNAM"].astype(str).str.upper().str.strip()
     sub = sub.dissolve(by=["STATE_TERR", "NAME"], as_index=False)
 
     counts = county_counts.rename(columns={"state_name": "STATE_TERR", "county": "NAME"})
@@ -213,7 +200,6 @@ def PlotNationalChoropleth(cert_year, shapefile_path=INDIR_SHAPEFILE,
                      legend_kwds={"fmt": "{:.0f}", "title": "Residents"})
 
     sub_states = sub.copy()
-    sub_states["STATE_TERR"] = sub_states["STATE_TERR"].astype(str).str.upper().str.strip()
     sub_states = sub_states.dissolve(by="STATE_TERR", as_index=False)
     sub_states.boundary.plot(ax=ax, color="black", linewidth=1.0)
 
@@ -221,7 +207,7 @@ def PlotNationalChoropleth(cert_year, shapefile_path=INDIR_SHAPEFILE,
     ax.set_axis_off()
     plt.tight_layout()
     plt.savefig(OUTDIR_MAPS / "national_13_colonies.png", dpi=300, bbox_inches="tight")
-    plt.show()
+    plt.close()
 
 
 if __name__ == "__main__":

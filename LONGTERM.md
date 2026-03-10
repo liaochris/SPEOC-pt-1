@@ -20,13 +20,36 @@ The following scrape scripts have **not yet been run** and their outputs are mis
   - there should be a 
 5. Reduce reundancy
   - Can I consolidate stateshape_1790 and nhgis_state_1790
+6. I want claude to write a DATA_APPENDIX.MD that documents
+  - different data sources being used (lightly describe this since source/raw provides more detail)
+  - key data decisions made when cleaning and scraping (can I broadly summarize these into a few princples, and point people to the corrections docs that contain omre info?)
+
 
 ## Cleaning
 
-1. One aspect of the cleaning process is to aggregate names that may be similar. This is done with the `pre1790` and `post1790` data. I think there are a few aspects of this that could be cleaner
-  - I think that the aggregation should be done `postscrape`, once we have more information about how different names might map to the same identity in a census database. This is done `postscrape` for the `post1790_cd` data but `prescrape` (in part) for the `pre1790` data, see `source/derived/prescrape/pre1790/find_similar_names.py`
-  - I think we should also use a principled way of determining when two names spelled differently correspond to the same person. Right now, we adopt a mix of a) fuzzy matching, b) manual work, and c) reliance on the census data. This principled way should also be applied in the same way to the `pre1790` and `post1790` data.
-2. Another aspect of the cleaning process is to separate text descriptions of debtholders into the names of the debtholder within that text. I think it would be helpful, for ease of understanding how the data is cleaned, to standardize the corrections made (if possible).
+1. There is no unified, principled system for name aggregation — deciding (a) when two
+   differently-spelled names refer to the same person, and (b) which spelling to use as the
+   canonical form. The current pipeline uses three overlapping mechanisms with no documented
+   decision rule or priority order:
+   - A heuristic (longest-name-wins) in `GroupByAncestryMatchIndex()` that fails often enough
+     to require many hardcoded exceptions
+   - A manual corrections file (`name_agg.csv`) that renames variants to a target spelling
+   - Hardcoded overrides and drops scattered in code
+   This produces silent errors: the wrong canonical spelling can be chosen, two records for
+   the same person can remain split, or two distinct people can be merged. The fix should
+   consolidate all name-identity decisions into a single auditable corrections CSV with an
+   explicit documented rule, applied consistently across both `pre1790` and `post1790_cd`
+   data. Note: `post1790_cd` currently does this `postscrape` using Ancestry match indices;
+   `pre1790` does it `prescrape` (partly) in `source/derived/prescrape/pre1790/find_similar_names.py`
+   — the two pipelines should be brought into alignment.
+2. `pre1790` has no postscrape aggregation step. After the Ancestry scrape returns name
+   resolution results, there is no pipeline equivalent to `aggregate_final_cd.py` that
+   uses those results to disambiguate names, impute locations, and produce a person-level
+   table. `source/derived/postscrape/post1790_cd/aggregate_final_cd.py` should serve as
+   the template (GroupByAncestryMatchIndex, GroupByFuzzyCorrections, UnifyLocationWithinState,
+   ImputeLocationFromPartners, ImputeLocationFromCensus, etc.).
+
+3. Another aspect of the cleaning process is to separate text descriptions of debtholders into the names of the debtholder within that text. I think it would be helpful, for ease of understanding how the data is cleaned, to standardize the corrections made (if possible).
   - From the list of all names, see which ones are "suspicious" names that don't seem like names but could become names (if you remove extraneous text or separate out other names for example), and update the relevant file in source/raw/pre1790/corrections to turn the "suspicious" names into actual names
 3. `Norm()` in `source/lib/wikitree_utils.py` is the sole name normalization function used throughout
    all family tree matching but has no docstring specifying what transformations it applies (casing,
@@ -38,6 +61,13 @@ The following scrape scripts have **not yet been run** and their outputs are mis
 ## Architecture
 
 1. All code should be written in python
+2. OpenRefine CSVs — manually exported inputs (not script outputs)
+- These 4 files live in output/analysis/open_refine_analysis/ and are read by analysis scripts, not produced by them They're manually exported from OpenRefine:
+  - liquidated_debt_certificates.csv
+  - loan_office_certificates_cleaned.csv
+  - pierce_certificates.csv
+  - post_1790.csv
+- These are essentially source data and arguably belong in source/raw/ rather than output/.
 
 ## Code Quality
 
@@ -47,30 +77,43 @@ The following scrape scripts have **not yet been run** and their outputs are mis
    `aggregate_locations.py`, `aggregate_occupations.py`, `aggregate_debts.py`, with
    `aggregate_final_cd.py` as the orchestrator. In addition, within each module, the code should be rewritten to disambiguate what's being done. 
 
-2. `DeduplicateNameChanges()` in `source/derived/postscrape/pre1790/integrate_ancestry_search.py`
-   uses hard-coded positional column indices (`row.iloc[2]`, `row.iloc[3]`, etc.) that will
-   silently misalign if the upstream raw CSV schema changes. Fix by referencing columns by
-   name — audit the raw CSV header in `output/scrape/pre1790/ancestry_name_changes_raw.csv`
-   first (this file requires manual scraping and may not be present locally).
-
-3. `ApplyManualAdjustments()` in `source/derived/postscrape/post1790_cd/aggregate_final_cd.py`
+2. `ApplyManualAdjustments()` in `source/derived/postscrape/post1790_cd/aggregate_final_cd.py`
    overrides records for four specific persons (Love Stone, John Gale, Nathaniel Irwin, Peleg
    Sanford) directly in code. This makes corrections invisible to auditors and hard to update.
    Externalize to a CSV under `source/raw/post1790_cd/corrections/` (analogous to `name_agg.csv`)
    that maps person identifiers to corrected field values.
 
-4. The `PICKSTATE` dict in `source/derived/postscrape/post1790_cd/aggregate_final_cd.py` maps
+3. The `PICKSTATE` dict in `source/derived/postscrape/post1790_cd/aggregate_final_cd.py` maps
    nine person names to a preferred state when they appear in multiple states. Embedding this
    in the script body makes it hard to audit or extend. Move to a CSV correction file under
-   `source/raw/post1790_cd/corrections/`.
+   `source/raw/post1790_cd/corrections/name/postscrape/state_preferences.csv`.
 
-5. `GroupByAncestryMatchIndex()` in `source/derived/postscrape/post1790_cd/aggregate_final_cd.py`
+4. `GroupByAncestryMatchIndex()` in `source/derived/postscrape/post1790_cd/aggregate_final_cd.py`
    selects the longest name spelling as the canonical form when multiple variants map to the same
    Ancestry profile. The numerous hardcoded exceptions in the same function (`'Israel Joseph'`,
    `'William Larned'`, etc.) confirm this heuristic fails regularly. Document the failure rate or
-   replace with a frequency-based heuristic (most commonly observed spelling).
+   replace with a frequency-based heuristic (most commonly observed spelling). Externalize the
+   name override and drop entries to a corrections CSV.
 
-6. `filter_matches.py` in `source/derived/postscrape/family_tree/` selects the first
+5. `AddOccupationsFromTitle()` and `ExtractOccupationsFromCensus()` in
+   `source/derived/postscrape/post1790_cd/aggregate_final_cd.py` hardcode keyword→occupation
+   mappings (treasurer, adm, guard, school; Esq, Col, Rev, Dr, Major, etc.) inline. Externalize
+   to `source/raw/post1790_cd/corrections/occ/prescrape/title_keywords.csv`.
+
+6. Go through all `SaveData` calls across `source/analysis/` and rethink which keys are used,
+   so that the conceptual meaning of each saved file aligns with the key choice. Some current
+   keys (e.g. `original_row`, composite name+state pairs) are technically unique but do not
+   reflect a meaningful identifier for the observation.
+
+7. The `assets` column in `aggregate_final_cd.py` encodes structured per-record debt data
+   as a pipe-delimited string (`"{data_index}_{N} : {6p},{6p_def},{3p} | ..."`). It is
+   built in `AggregateIntoPersonTable()` (line ~259) and then parsed back via repeated
+   string splitting in `AggregateDebtTotals()` (lines ~756–762). This is fragile and
+   obscures what the data represents. Replace with a list of dicts (or a tidy long-format
+   DataFrame) that carries `data_index`, `count`, `6p`, `6p_def`, `3p` as named fields,
+   eliminating the string encode/decode round-trip.
+
+8. `filter_matches.py` in `source/derived/postscrape/family_tree/` selects the first
    alphabetically-sorted parent ID when a WikiTree child has multiple parents. If both parents
    are in the post-1790 CD dataset the correct link could be silently discarded. Replace with
    logic that checks which parent(s) appear in `final_data_CD.csv` and prefers those; flag
@@ -96,3 +139,4 @@ The following scrape scripts have **not yet been run** and their outputs are mis
 
 1. Ensure that the relevant additions from summer 2025 can be viewed on the web app
 2. Update the app's hardcoded data paths
+3. Review web app code. 

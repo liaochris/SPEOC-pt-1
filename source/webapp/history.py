@@ -2,14 +2,13 @@ from dash import html
 from dash import dcc
 
 
-# Project description tab
 project_desc = html.Div(className='box', children=[
     html.H1("Historical Background", style={'marginBottom': '5px'}, className='section-title'),
     dcc.Markdown('''
     This page provides a summary on the origins of American national debt and its relevance for us today. \
         For a more detailed treatment, see this [exposition](/assets/Hamilton_Exposition.pdf)
     ''', style = {'font-size':'3vh'}),
-    html.Hr(style={"height": "2px", "background-color": "black"}),  # Black line separator
+    html.Hr(style={"height": "2px", "background-color": "black"}),
     html.H2("Origins of the National Debt", style={'marginBottom': '5px'}, className='subsection-title'),
     dcc.Markdown('''
     During the Revolutionary War, the Continental Congress and state governments accumulated debt to fund the war effort. The Conti​nental Congress issued two types of debt - interest-bearing debts and paper monies, called “Continental Dollars” - for goods and services that individuals provided to the Revolutionary cause. The interest-bearing debts promised to repay the original principal at a later date and periodically pay interest to the debtholder (until the principal was repaid). The Continental government was unable to repay most of the interest or principal on these debts; instead, sometimes it would issue new certificates that pushed back the payment date. In this project, we’re interested in interest-bearing debts, because debt ownership records exist. By 1781, two years before the end of the Revolutionary War and the Treaty of Paris, the Continental Congress owed 41 million Spanish Dollars, more than $1.6 billion today, and by 1789 the debt amount had grown 29% to 53 million Spanish dollars due to unpaid interest. In 1784, the Continental Congress owed $2 million in interest payments for just that year but raised less than $1 million in revenue, because the Articles of Confederation limited the Continental Congress’ ability to raise revenue through taxation. Congress’ inability to make interest payments on its debt, never mind the principal debt amount, ruined its financial credibility. This caused debt to trade at market values far lower than its face value (the promised principal payment). 
@@ -28,8 +27,6 @@ project_desc = html.Div(className='box', children=[
     ''', style = {'font-size':'3vh'}),
     ])
 
-
-    # Create the layout
 history_layout = html.Div([
     project_desc,
     

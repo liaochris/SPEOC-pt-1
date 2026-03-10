@@ -11,6 +11,7 @@ OUT_FINAL     = OUTDIR / "final_matches.csv"
 OUT_REVIEW    = OUTDIR / "review_matches.csv"
 
 VALID_STATES = set(STATE_COLLECTION_URLS.keys())
+OUTDIR.mkdir(parents=True, exist_ok=True)
 
 
 def Main():
@@ -24,7 +25,6 @@ def Main():
     keep   = df[~review_mask].copy()
     review = df[review_mask].copy()
 
-    OUTDIR.mkdir(parents=True, exist_ok=True)
     SaveData(keep,   ["child_id"], OUT_FINAL,  log_file=OUTDIR / "final_matches.log")
     SaveData(review, ["child_id"], OUT_REVIEW, log_file=OUTDIR / "review_matches.log")
 

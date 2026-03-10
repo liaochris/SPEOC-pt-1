@@ -1,0 +1,17 @@
+File: output/derived/postscrape/family_tree/review_matches.csv
+
+MD5 hash: 312c9bb9c828e90bba4b1befa176f63c
+
+Keys: child_id 
+
+                   type count unique mean std min 50% max
+child_id            str    18     18                     
+child_name          str    18     17                     
+state               str    18      3                     
+in_post1790        bool    18      1                     
+error           float64     0                            
+parent_id           str    18     13                     
+parent_ids_all      str    18     13                     
+parent_name         str    18     13                     
+multi_parent       bool    18      1                     
+

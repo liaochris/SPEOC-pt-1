@@ -1,0 +1,10 @@
+File: output/analysis/family_tree_analysis/matching_rates.csv
+
+MD5 hash: a30081f930f125fa7c48e871d9785ead
+
+Keys: state 
+
+               type count unique   mean    std    min    50%    max
+state           str     9      9                                   
+match_rate  float64     9         1.313  1.204  0.177  0.771  3.430
+

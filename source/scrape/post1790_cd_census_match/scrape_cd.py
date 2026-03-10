@@ -24,7 +24,7 @@ def Main():
 
 
 def LoadNameList():
-    return pd.read_csv(INDIR_DERIVED / 'name_list.csv', index_col=0)[
+    return pd.read_csv(INDIR_DERIVED / 'name_changes_list.csv', index_col=0)[
         ['Fn_Fix', 'Ln_Fix', 'new_town', 'county', 'new_state', 'country', 'geo_level']
     ].drop_duplicates().reset_index(drop=True)
 

@@ -10,6 +10,7 @@ OUTDIR         = Path("output/derived/postscrape/family_tree")
 PROFILES_CSV = INDIR_WIKITREE / "wikitree_profiles.csv"
 IN_CSV       = INDIR / "filtered_matches.csv"
 OUT_CSV      = OUTDIR / "filtered_matches_no_same_name.csv"
+OUTDIR.mkdir(parents=True, exist_ok=True)
 
 
 def Main():
@@ -28,7 +29,6 @@ def Main():
 
     print(f"[DONE] Input rows: {before} | Removed same-name rows: {removed} | Output rows: {len(filtered)}")
 
-    OUTDIR.mkdir(parents=True, exist_ok=True)
     SaveData(filtered, ["child_id"], OUT_CSV, log_file=OUTDIR / "filtered_matches_no_same_name.log")
 
 

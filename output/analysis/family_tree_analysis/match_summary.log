@@ -1,0 +1,10 @@
+File: output/analysis/family_tree_analysis/match_summary.csv
+
+MD5 hash: 88704c46a8d07afc1af81fb706d92d1c
+
+Keys: Statistic 
+
+            type count unique     mean      std    min      50%      max
+Statistic    str     4      4                                           
+Value      int64     4         211.000  244.429  0.000  199.000  446.000
+

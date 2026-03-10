@@ -69,7 +69,7 @@ def Main():
     SaveData(CD_all, ['state_data', 'state_data_index'], OUTDIR / 'geo_standardized_CD_post1790.csv',
              log_file=OUTDIR / 'geo_standardized_CD_post1790.log')
 
-    # town_occ_agg_check.csv: rows where town/state/occupation had conflicting values
+    # town_occupation_aggregation_list.csv: rows where town/state/occupation had conflicting values
     # across the three sub-columns (e.g. town1 != town2), the longest value was kept.
     # this file lets a researcher review all such conflicts.
     (OUTDIR / 'check').mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,10 @@
+File: output/analysis/family_tree_analysis/match_by_state.csv
+
+MD5 hash: a15dc36199d6a87f34771aad187f9061
+
+Keys: State 
+
+        type count unique    mean     std    min     50%      max
+State    str     9      9                                        
+Count  int64     9         49.556  71.680  1.000  25.000  206.000
+

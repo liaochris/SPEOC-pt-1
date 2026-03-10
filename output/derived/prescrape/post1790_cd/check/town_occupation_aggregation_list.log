@@ -1,13 +1,13 @@
 File: output/derived/prescrape/post1790_cd/check/town_occupation_aggregation_list.csv
 
-MD5 hash: 895e522e60cd2bf6e0162e7f248a1e27
+MD5 hash: 43e71382c3a0594675294eee2df4a16a
 
 Keys: row_id 
 
           type count unique    mean     std    min     50%      max
-row_id   int64   128         63.500  37.094  0.000  63.500  127.000
-old        str   128    128                                        
-new     object   128    105                                        
-type    object   128      2                                        
-state   object   128      4                                        
+row_id   int64   127         63.000  36.806  0.000  63.000  126.000
+old        str   127    127                                        
+new     object   127    107                                        
+type    object   127      2                                        
+state   object   127      4                                        
 

@@ -1,0 +1,10 @@
+File: output/analysis/debt_analysis/speculator_dollar_values.csv
+
+MD5 hash: d41d8cd98f00b204e9800998ecf8427e
+
+Keys: Speculator 
+
+                     type count unique mean std min 50% max
+Speculator            str     0      0                     
+Total Dollar Value  int64     0                            
+

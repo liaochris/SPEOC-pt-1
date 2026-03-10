@@ -4314,7 +4314,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 4312,129,246.0,88.0,123.0,44.0,91.0,8.0,,PA,,David Lownes,David,Lownes,,,PA,US,state,246.88,123.44,91.08,David Lownes
 4313,130,11.0,98.0,5.0,99.0,12.0,65.0,,PA,,George Lownes,George,Lownes,,,PA,US,state,11.98,5.99,12.65,George Lownes
 4314,131,238.0,,119.0,,22.0,91.0,Philadelphia,PA,,Solomon Lyons,Solomon,Lyons,Philadelphia,Philadelphia County,PA,US,town,238.0,119.0,22.91,Solomon Lyons
-4315,132,1480.0,33.0,740.0,16.0,399.0,68.0,State of Delawere,DE,,Thomas Robinson,Thomas,Robinson,,,DE,US,state,1480.33,740.16,399.68,Thomas Robinson
+4315,132,1480.0,33.0,740.0,16.0,399.0,68.0,State of Delaware,DE,,Thomas Robinson,Thomas,Robinson,,,DE,US,state,1480.33,740.16,399.68,Thomas Robinson
 4316,133,140.0,10.0,70.0,5.0,68.0,82.0,,PA,For the Estate Abraham Robinson,Thomas Robinson,Thomas,Robinson,,,PA,US,state,140.1,70.05,68.82,Thomas Robinson
 4317,134,2763.0,89.0,1381.0,95.0,768.0,32.0,Philadelphia,PA,,Andrew Summers,Andrew,Summers,Philadelphia,Philadelphia County,PA,US,town,2763.89,1381.95,768.32,andrew Summers
 4318,135,7.0,12.0,3.0,56.0,,,,PA,,Allen Boys,Allen,Boys,,,PA,US,state,7.12,3.56,0.0,Allen Boys
@@ -4354,7 +4354,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 4352,169,3908.0,,1954.0,,2594.0,14.0,Philadelphia,PA,,Andrew Summers,Andrew,Summers,Philadelphia,Philadelphia County,PA,US,town,3908.0,1954.0,2594.14,andrew Summers
 4353,170,2623.0,70.0,1311.0,85.0,708.0,40.0,Philadelphia,PA,Merchant,Isaac Wharton,Isaac,Wharton,Philadelphia,Philadelphia County,PA,US,town,2623.7,1311.85,708.4,Isaac Wharton
 4354,171,3185.0,52.0,1592.0,76.0,1051.0,65.0,,PA,,John Wharton,John,Wharton,,,PA,US,state,3185.52,1592.76,1051.65,John Wharton
-4355,172,393.0,95.0,196.0,97.0,106.0,36.0,,PA,Executer,John Whitman,John,Whitman,,,PA,US,state,393.95,196.97,106.36,John Whitman
+4355,172,393.0,95.0,196.0,97.0,106.0,36.0,,PA,Executor,John Whitman,John,Whitman,,,PA,US,state,393.95,196.97,106.36,John Whitman
 4356,173,6951.0,55.0,3475.0,77.0,4664.0,50.0,,PA,,Edward Chinn,Edward,Chinn,,,PA,US,state,6951.55,3475.77,4664.5,Edward Chinn
 4357,174,2837.0,33.0,1418.0,67.0,1473.0,60.0,,PA,,Edward Chinn,Edward,Chinn,,,PA,US,state,2837.33,1418.67,1473.6,Edward Chinn
 4358,175,1567.0,75.0,783.0,87.0,923.0,71.0,,PA,,Enoch Edward | Enoch Edwards,Enoch,Edwards,,,PA,US,state,1567.75,783.87,923.71,Enoch Edward | Enoch Edwards
@@ -4459,7 +4459,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 4457,274,1921.0,50.0,960.0,75.0,518.0,80.0,Philadelphia,PA,Merchants,Morris and Swanwick Willing | William Morris and Swanwick,William Morris and Swanwick,,Philadelphia,Philadelphia County,PA,US,town,1921.5,960.75,518.8,John Swanwick | Robert Morris | Thomas Willing
 4458,275,376.0,30.0,188.0,15.0,182.0,46.0,,PA,,Stephen Burrowes | Stephen Burrows,Stephen,Burrowes,,,PA,US,state,376.3,188.15,182.46,Stephen Burrowes | Stephen Burrows
 4459,276,2135.0,63.0,1067.0,82.0,1661.0,86.0,,PA,,Hezekiah B Pierpont,Hezekiah B,Pierpont,,,PA,US,state,2135.63,1067.82,1661.86,Hezekiah B Pierpont
-4460,277,397.0,52.0,198.0,76.0,118.0,32.0,Reading Pennsylvania,PA,,John Otto,John,Otto,Reading,Berks County,PA,US,town,397.52,198.76,118.32,John Otto
+4460,277,397.0,52.0,198.0,76.0,118.0,32.0,Reading Berks County,PA,,John Otto,John,Otto,Reading,Berks County,PA,US,town,397.52,198.76,118.32,John Otto
 4461,278,56.0,21.0,28.0,11.0,15.0,17.0,County of Philadelphia,PA,Sheriff,James Ash,James,Ash,,Philadelphia County,PA,US,county,56.21,28.11,15.17,James Ash
 4462,279,1463.0,95.0,731.0,97.0,395.0,25.0,Philadelphia,PA,,Rebaecca Ash | Rebeca Ash | Rebecca Ash,Rebecca,Ash,Philadelphia,Philadelphia County,PA,US,town,1463.95,731.97,395.25,Rebaecca Ash | Rebeca Ash | Rebecca Ash
 4463,280,11958.0,37.0,5979.0,19.0,7242.0,51.0,,PA,Executive Estate of Thomas Satter deceased,Thomas Britton,Thomas,Britton,,,PA,US,state,11958.37,5979.19,7242.51,Thomas Britton
@@ -4693,7 +4693,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 4691,508,7.0,83.0,3.0,92.0,,,Philadelphia,PA,,John McCleland,John,McCleland,Philadelphia,Philadelphia County,PA,US,town,7.83,3.92,0.0,John Mccleland
 4692,509,80.0,28.0,40.0,15.0,28.0,90.0,Berks County Pennsylvania,PA,,Peter Nagle,Peter,Nagle,Berks County,Berks County,PA,US,county,80.28,40.15,28.9,Peter Nagle
 4693,510,511.0,63.0,255.0,81.0,230.0,13.0,Berks County Pennsylvania,PA,,Christian Ruth | Christina Ruth,Christina,Ruth,Berks County,Berks County,PA,US,county,511.63,255.81,230.13,Christian Ruth | Christina Ruth
-4694,511,233.0,10.0,116.0,55.0,112.0,8.0,Montgomery County Pennsylvania,PA,,Henry Smith | Kenry Smith,Henry,Smith,Montgomery County,Montgomery County,PA,US,county,233.1,116.55,112.08,Henry Smith | Kenry Smith
+4694,511,233.0,10.0,116.0,55.0,112.0,8.0,Pennsylvania Montgomery County,PA,,Henry Smith | Kenry Smith,Henry,Smith,Montgomery County,Montgomery County,PA,US,county,233.1,116.55,112.08,Henry Smith | Kenry Smith
 4695,512,585.0,83.0,292.0,92.0,158.0,10.0,,PA,,Rebecca Weiss,Rebecca,Weiss,,,PA,US,state,585.83,292.92,158.1,Rebecca Weiss
 4696,513,1284.0,34.0,642.0,17.0,346.0,76.0,Philadelphia County,PA,,Joseph Crawford,Joseph,Crawford,Philadelphia County,Philadelphia County,PA,US,county,1284.34,642.17,346.76,Joseph Crawford
 4697,514,214.0,36.0,107.0,19.0,106.0,44.0,Franklin County Pennsylvania,PA,,Samuel Downey,Samuel,Downey,Franklin County,Franklin County,PA,US,county,214.36,107.19,106.44,Samuel Downey
@@ -4897,7 +4897,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 4895,712,758.0,65.0,379.0,33.0,460.0,91.0,Philadelphia,PA,Merchant,Philip Wager,Philip,Wager,Philadelphia,Philadelphia County,PA,US,town,758.65,379.33,460.91,Philip Wager
 4896,713,400.0,,200.0,,108.0,,,PA,,Mary Cash,Mary,Cash,,,PA,US,state,400.0,200.0,108.0,Mary Cash
 4897,714,612.0,2.0,306.0,2.0,165.0,24.0,Philadelphia,PA,,Rebecca Doz,Rebecca,Doz,Philadelphia,Philadelphia County,PA,US,town,612.02,306.02,165.24,Rebecca Doz
-4898,715,1241.0,76.0,620.0,88.0,345.0,66.0,Kensington,PA,Ship Wright,Manuel Eyre,Manuel,Eyre,New Kensington,Westmoreland County,PA,US,town,1241.76,620.88,345.66,Manuel Eyre
+4898,715,1241.0,76.0,620.0,88.0,345.0,66.0,Kensignton,PA,Ship Wright,Manuel Eyre,Manuel,Eyre,Kensington,Philadelphia County,PA,US,town,1241.76,620.88,345.66,Manuel Eyre
 4899,716,612.0,2.0,306.0,2.0,165.0,24.0,Philadelphia,PA,,Martha Flower,Martha,Flower,Philadelphia,Philadelphia County,PA,US,town,612.02,306.02,165.24,Martha Flower
 4900,717,3619.0,53.0,1809.0,77.0,979.0,26.0,Philadelphia,PA,Merchant,John Fromberger,John,Fromberger,Philadelphia,Philadelphia County,PA,US,town,3619.53,1809.77,979.26,John Fromberger
 4901,718,166.0,,83.0,1.0,109.0,52.0,Philadelphia,PA,Merchant,James Glentworth,James,Glentworth,Philadelphia,Philadelphia County,PA,US,town,166.0,83.01,109.52,James Glentworth
@@ -5193,7 +5193,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 5191,1009,307.0,48.0,153.0,74.0,123.0,27.0,Philadelphia,PA,,John Keble,John,Keble,Philadelphia,Philadelphia County,PA,US,town,307.48,153.74,123.27,John Keble
 5192,1010,91.0,80.0,45.0,90.0,83.0,64.0,Berks County Pennsylvania,PA,,Christopher Lash,Christopher,Lash,Berks County,Berks County,PA,US,county,91.8,45.9,83.64,Christopher Lash
 5193,1011,27.0,74.0,13.0,87.0,22.0,80.0,Philadelphia,PA,Merchant,Benjamin Morgan,Benjamin,Morgan,Philadelphia,Philadelphia County,PA,US,town,27.74,13.87,22.8,Benjamin Morgan
-5194,1012,20.0,,10.0,,17.0,6.0,Burlington New Jersey,NJ,,Jacob Myers,Jacob,Myers,Burlington,Burlington County,NJ,US,town,20.0,10.0,17.06,Jacob Myers
+5194,1012,20.0,,10.0,,17.0,6.0,Berlington New Jersey,NJ,,Jacob Myers,Jacob,Myers,Burlington,Burlington County,NJ,US,town,20.0,10.0,17.06,Jacob Myers
 5195,1013,984.0,76.0,492.0,38.0,369.0,50.0,Philadelphia,PA,Merchant,Berdd and Pryor | Budd Pryor | Budd and Pryor,Budd,Pryor,Philadelphia,Philadelphia County,PA,US,town,984.76,492.38,369.5,John Budd | Norton Pryor
 5196,1014,435.0,4.0,217.0,52.0,195.0,98.0,Franklin County Pennsylvania,PA,Farmer,William Rannals,William,Rannals,Franklin County,Franklin County,PA,US,county,435.04,217.52,195.98,William Rannals
 5197,1015,303.0,89.0,151.0,95.0,198.0,80.0,New Jersey,NJ,,Jebediah Swan | Jedediah Swan,Jebediah,Swan,,,NJ,US,state,303.89,151.95,198.8,Jebediah Swan | Jedediah Swan
@@ -5318,7 +5318,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 5316,1135,209.0,32.0,104.0,66.0,166.0,83.0,Philadelphia,PA,Broker,Patrick Duffey,Patrick,Duffey,Philadelphia,Philadelphia County,PA,US,town,209.32,104.66,166.83,Patrick Duffey
 5317,1136,204.0,98.0,102.0,49.0,185.0,58.0,Philadelphia,PA,Merchant,Robert Henderson,Robert,Henderson,Philadelphia,Philadelphia County,PA,US,town,204.98,102.49,185.58,Robert Henderson
 5318,1137,12452.0,34.0,6226.0,17.0,7482.0,,Philadelphia,PA,Esquier,John Nicholson,John ,Nicholson,Philadelphia,Philadelphia County,PA,US,town,12452.34,6226.17,7482.0,John Nicholson
-5319,1138,58.0,32.0,29.0,16.0,157.0,72.0,State of Delawere,DE,,Thomas Robinson,Thomas,Robinson,,,DE,US,state,58.32,29.16,157.72,Thomas Robinson
+5319,1138,58.0,32.0,29.0,16.0,157.0,72.0,State of Delaware,DE,,Thomas Robinson,Thomas,Robinson,,,DE,US,state,58.32,29.16,157.72,Thomas Robinson
 5320,1139,48.0,4.0,24.0,23.0,44.0,88.0,Philadelphia,PA,,John Thompson | John Thomson,John,Thompson,Philadelphia,Philadelphia County,PA,US,town,48.04,24.23,44.88,John Thompson | John Thomson
 5321,1140,164.0,96.0,82.0,48.0,159.0,55.0,,PA,,Hannah Hay,Hannah,Hay,,,PA,US,state,164.96,82.48,159.55,Hannah Hay
 5322,1141,66.0,67.0,33.0,33.0,49.0,6.0,Philadelphia,PA,Esquire,Jacob Bankson | Jaocb Bankson,Jaocb,Bankson,Philadelphia,Philadelphia County,PA,US,town,66.67,33.33,49.06,Jacob Bankson | Jaocb Bankson
@@ -6411,7 +6411,7 @@ row_id,state_data_index,6p_Dollar,6p_Cents,6p_def_Dollar,6p_def_Cents,3p_Dollar,
 6409,290,37.0,74.0,18.0,87.0,,,,SC,Executor of Humphry Sommers,Edmund Petrie,Edmund,Petrie,,,SC,US,state,37.74,18.87,0.0,Edmund Petrie
 6410,291,24.0,96.0,12.0,48.0,,,Charleston,SC,,Thomas Lehre,Thomas,Lehre,Charleston,Charleston County,SC,US,town,24.96,12.48,0.0,Thomas Lehre
 6411,292,54.0,36.0,27.0,19.0,,,Charleston,SC,Merchant,John Splatt Cripps,John Splatt,Cripps,Charleston,Charleston County,SC,US,town,54.36,27.19,0.0,John Splatt Cripps
-6412,293,105.0,40.0,52.0,71.0,,,Charleston,SC,Merchant,James Theus,James,Theus,Charleston,Charleston County,SC,US,town,105.4,52.71,0.0,James Theus
+6412,293,105.0,40.0,52.0,71.0,,,Charlestom,SC,Merchant,James Theus,James,Theus,Charleston,Charleston County,SC,US,town,105.4,52.71,0.0,James Theus
 6413,294,113.0,86.0,56.0,94.0,,,Charleston,SC,Merchant,Thomas Jones,Thomas,Jones,Charleston,Charleston County,SC,US,town,113.86,56.94,0.0,Thomas Jones
 6414,295,20.0,14.0,10.0,8.0,,,Charleston,SC,Attorney at Law,Jacob Read,Jacob,Read,Charleston,Charleston County,SC,US,town,20.14,10.08,0.0,Jacob Read
 6415,296,29.0,48.0,14.0,74.0,,,St. Thomas,VI,Planter,Hopson Pinckney,Hopson,Pinckney,,,,VI,country,29.48,14.74,0.0,Hopson Pinckney

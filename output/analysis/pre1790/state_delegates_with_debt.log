@@ -1,0 +1,11 @@
+File: output/analysis/pre1790/state_delegates_with_debt.csv
+
+MD5 hash: c8078c2b223aeecc846bbb2173c0d691
+
+Keys: full_name state 
+
+                 type count unique       mean         std    min      50%          max
+full_name         str   106    106                                                    
+state             str   106      9                                                    
+amount_total  float64   106         3,471.526  11,013.439  0.000  678.880  108,024.380
+

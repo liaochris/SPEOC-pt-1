@@ -1,0 +1,10 @@
+File: output/analysis/pre1790/gender_distribution.csv
+
+MD5 hash: f096a76114b515abb9d958fa241fa29d
+
+Keys: gender_prediction 
+
+                      type count unique    mean     std    min     50%     max
+gender_prediction      str     3      3                                       
+percentage         float64     3         33.333  37.858  2.059  22.519  75.422
+

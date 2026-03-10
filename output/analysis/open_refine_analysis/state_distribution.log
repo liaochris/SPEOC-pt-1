@@ -1,0 +1,12 @@
+File: output/analysis/open_refine_analysis/state_distribution.csv
+
+MD5 hash: 17ee81187daa2685cdf2dbbe4240287a
+
+Keys: state 
+
+                    type count unique    mean      std    min     50%      max
+state                str     9      9                                         
+debtholders        int64     9         86.889  105.724  1.000  46.000  271.000
+percent_matched  float64     9         11.111   13.520  0.128   5.882   34.655
+percent_total    float64     9         11.111   11.575  1.054   8.041   38.813
+

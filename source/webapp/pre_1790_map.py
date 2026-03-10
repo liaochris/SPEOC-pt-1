@@ -1,25 +1,23 @@
 from pathlib import Path
 import json
 
-import dash_bootstrap_components as dbc
 import geopandas as gpd
-import numpy as np
 import pandas as pd
 import plotly.express as px
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-from shapely import wkt
 from app import app
 
-INDIR_SHAPEFILES = Path("source/raw/shapefiles")
-INDIR_CENSUS = Path("source/raw/census_data")
-INDIR_DERIVED = Path("output/derived/pre1790")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+INDIR_SHAPEFILES = REPO_ROOT / "source/raw/shapefiles"
+INDIR_CENSUS = REPO_ROOT / "source/raw/census_data"
+INDIR_DERIVED = REPO_ROOT / "output/derived/prescrape/pre1790"
 
-def create_pop_map():
+def CreatePopMap():
 
     # --- 1) Load NHGIS 1790 states ---
-    shp = INDIR_SHAPEFILES / "nhgis_state_1790/nhgis0001_shapefile_tl2000_us_state_1790/US_state_1790.shp"
+    shp = INDIR_SHAPEFILES / "orig/nhgis_state_1790/US_state_1790.shp"
     gdf = gpd.read_file(shp)
     # Reproject from Albers Equal Area to WGS84 lat/lon
     gdf = gdf.to_crs(epsg=4326)
@@ -31,35 +29,18 @@ def create_pop_map():
     gdf["geometry"] = gdf["geometry"].simplify(0.01).buffer(0)
 
     # --- 2) Load population data and normalize names ---
-    state_pops = pd.read_csv(
-        INDIR_CENSUS / "statePop.csv",
-        header=0,
-        usecols=[0, 1],
-        low_memory=False
-    )
-    state_pops.columns = ["state", "population"]
-    state_pops["state"] = state_pops["state"].astype(str).str.strip().str.title()
-    state_pops["population"] = pd.to_numeric(state_pops["population"], errors="coerce")
-
-    # If your CSV has a 'year' column, uncomment the filter below:
-    # state_pops = state_pops[state_pops["year"] == 1790]
-
-    # --- 3) 1790 reporting units: MA includes Maine; VA includes Kentucky ---
-    # Safeguard: if NHGIS already has Maine inside Massachusetts (usual), nothing changes.
-    # If Maine/Kentucky appear as separate features in the CSV, roll them up here:
-    state_pops["state"] = state_pops["state"].replace({
-        "Maine": "Massachusetts",
-        "Kentucky": "Virginia",
-    })
-
-    # Keep only the 1790 census-reporting states (Vermont admitted 1791)
-    colonies_1790 = {
-        "Connecticut","Delaware","Georgia","Maryland","Massachusetts",
-        "New Hampshire","New Jersey","New York","North Carolina",
-        "Pennsylvania","Rhode Island","South Carolina","Virginia"
+    _abbrev_to_state = {
+        "CT": "Connecticut", "DE": "Delaware", "GA": "Georgia",
+        "MD": "Maryland", "MA": "Massachusetts", "ME": "Massachusetts",
+        "NH": "New Hampshire", "NJ": "New Jersey", "NY": "New York",
+        "NC": "North Carolina", "PA": "Pennsylvania", "RI": "Rhode Island",
+        "SC": "South Carolina", "VA": "Virginia", "KY": "Virginia",
     }
-    state_pops = (state_pops[state_pops["state"].isin(colonies_1790)]
-                  .groupby("state", as_index=False)["population"].sum())
+    _county_pop_raw = pd.read_csv(INDIR_CENSUS / "orig/county_pop_fips.csv", header=1)
+    state_pops = _county_pop_raw.groupby("Geo_STUSAB")["SE_T001_001"].sum().reset_index()
+    state_pops.columns = ["state", "population"]
+    state_pops["state"] = state_pops["state"].map(_abbrev_to_state)
+    state_pops = state_pops.dropna(subset=["state"]).groupby("state", as_index=False)["population"].sum()
 
     # If (rare) the NHGIS layer has separate Maine/Kentucky polygons, merge them visually too.
     if {"Maine", "Massachusetts"}.issubset(set(gdf["state"])):
@@ -70,6 +51,7 @@ def create_pop_map():
         gdf = gdf.dissolve(by="state", as_index=False)
 
     # Finally, keep only the reporting units (NHGIS may already be limited, this is safe)
+    colonies_1790 = set(_abbrev_to_state.values())
     gdf = gdf[gdf["state"].isin(colonies_1790)].copy()
 
     # --- 4) Merge population onto shapes ---
@@ -96,18 +78,13 @@ def create_pop_map():
 
 pop_layout = html.Div([
     html.H3("1790 Population Map"),
-    dcc.Graph(figure=create_pop_map())
+    dcc.Graph(figure=CreatePopMap())
 ])
 
-def create_debt_map(q=5):
-    """
-    Choropleth of ca. 1790 state debt using NHGIS 1790 state boundaries.
-    - Uses quantile bins (q), robust to ties.
-    - Converts Interval bins to strings so GeoJSON serialization works.
-    """
+def CreateDebtMap(q=5):
 
     # 1) Load NHGIS 1790 states and reproject to WGS84 (lon/lat for web maps)
-    shp = INDIR_SHAPEFILES / "nhgis_state_1790/nhgis0001_shapefile_tl2000_us_state_1790/US_state_1790.shp"
+    shp = INDIR_SHAPEFILES / "orig/nhgis_state_1790/US_state_1790.shp"
     states = gpd.read_file(shp).to_crs(epsg=4326)
 
     states["geometry"] = states.geometry.simplify(tolerance=0.05, preserve_topology=True)
@@ -134,7 +111,7 @@ def create_debt_map(q=5):
     states = states[states["state"].isin(colonies_1790)].copy()
 
     # 2) Load & clean the debt data
-    df = pd.read_csv(INDIR_DERIVED / "agg_debt_david.csv", header=0, low_memory=False)
+    df = pd.read_csv(INDIR_DERIVED / "pre1790_cleaned.csv", header=0, low_memory=False)
     df.columns = df.columns.str.strip()
 
     state_col  = "state"
@@ -206,7 +183,7 @@ def create_debt_map(q=5):
 
 debt_layout = html.Div([
     html.H3("1790 Debt Map"),
-    dcc.Graph(figure=create_debt_map(q=5))
+    dcc.Graph(figure=CreateDebtMap(q=5))
 ])
 
 DESCRIPTION_COUNT = 2
@@ -233,40 +210,30 @@ title = {
     1: 'Driving Questions',
 }
 
-pre_project_desc = html.Div([
-    html.Div(id='description-text'),
-    dcc.Slider(
-        id='description-slider',
-        min=0,
-        max=DESCRIPTION_COUNT - 1,
-        value=0,
-        marks={i: f"Part {i + 1}" for i in range(DESCRIPTION_COUNT)},
-        step=None,
-        tooltip={"placement": "bottom", "always_visible": True},
-    )
+pre_project_desc = html.Div(className='box', children=[
+    html.H2(id='pre1790_desc_title', className='box-title', style={'marginBottom': '20px'}),
+    html.Div(className='slider-container', children=[
+        html.Button('\u25C0', id='pre1790_left_arrow', className='slider-button',
+                    style={'float': 'left', 'marginRight': '10px', 'flex': 1}),
+        dcc.Markdown(id='pre1790_desc_text', style={'textAlign': 'center'}),
+        html.Button('\u25B6', id='pre1790_right_arrow', className='slider-button',
+                    style={'float': 'right', 'marginLeft': '10px', 'flex': 1}),
+    ]),
 ])
 
-"""
-app.layout = html.Div([
-    pre_project_desc,
-    html.Hr(),
-    pop_layout,
-    html.Hr(),
-    debt_layout
-])
-"""
 
 @app.callback(
-    Output('description-text', 'children'),
-    Input('description-slider', 'value')
+    Output('pre1790_desc_text', 'children'),
+    Output('pre1790_desc_title', 'children'),
+    [Input('pre1790_left_arrow', 'n_clicks'), Input('pre1790_right_arrow', 'n_clicks')]
 )
-def update_description(value):
-    return html.Div([
-        html.H3(title.get(value, "")),   
-        html.P(description.get(value, ""))  
-    ])
+def UpdateDescription(left_clicks, right_clicks):
+    left_clicks = left_clicks or 0
+    right_clicks = right_clicks or 0
+    number = (right_clicks - left_clicks) % DESCRIPTION_COUNT
+    return description[number], title[number]
 
-def layout():
+def Layout():
     return html.Div([
         pre_project_desc,
         html.Hr(),

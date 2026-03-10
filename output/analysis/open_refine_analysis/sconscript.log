@@ -1,0 +1,10 @@
+*** Builder log created: {2026-03-10 09:05:38}
+*** Builder log completed: {2026-03-10 09:05:40}
+File 'output/analysis/open_refine_analysis/post_1790_with_matched_status.csv' saved successfully.
+File 'output/analysis/open_refine_analysis/top5_debtholders.csv' saved successfully.
+File 'output/analysis/open_refine_analysis/state_distribution.csv' saved successfully.
+File 'output/analysis/open_refine_analysis/outliers_percent_change.csv' saved successfully.
+File 'output/analysis/open_refine_analysis/occupation_counts.csv' saved successfully.
+File 'output/analysis/open_refine_analysis/gender_summary.csv' saved successfully.
+Fraction matching within ±0.5%-points: 0.903
+File 'output/analysis/open_refine_analysis/ratio_analysis.csv' saved successfully.

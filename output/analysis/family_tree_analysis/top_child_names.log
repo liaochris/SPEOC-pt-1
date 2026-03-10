@@ -1,0 +1,10 @@
+File: output/analysis/family_tree_analysis/top_child_names.csv
+
+MD5 hash: faa0a1a5efbc12482ce12caf0c5fbce6
+
+Keys: Child Name 
+
+             type count unique   mean    std    min    50%     max
+Child Name    str    10     10                                    
+Count       int64    10         7.200  2.098  5.000  6.500  11.000
+

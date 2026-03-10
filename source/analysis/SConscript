@@ -2,26 +2,115 @@ Import('*')
 
 # Pre-1790 analysis
 env.Python(
-    target = ['#output/analysis/pre1790/debt_by_bracket.png'],
-    source = ['#source/analysis/pre1790/analyze_debt_distribution.py']
+    target=[
+        '#output/analysis/pre1790/debt_by_bracket.png',
+        '#output/analysis/pre1790/percent_debt_by_debt_bracket.png',
+        '#output/analysis/pre1790/gender_distribution.csv',
+        '#output/analysis/pre1790/top10_debtholders.csv',
+        '#output/analysis/pre1790/const_delegates_with_debt.csv',
+        '#output/analysis/pre1790/state_delegates_with_debt.csv',
+        '#output/analysis/pre1790/society_delegate_summary.csv',
+    ],
+    source=['#source/analysis/debt_analysis/analyze_debt_distribution.py'],
+)
+
+env.Python(
+    target=[
+        '#output/analysis/pre1790/debt_per_year/pre1790_debt_certificate_amts_per_year.png',
+        '#output/analysis/pre1790/debt_per_year/pre1790_debt_certificate_percent_per_year.png',
+    ],
+    source=['#source/analysis/pre1790/analyze_by_year.py'],
+)
+
+env.Python(
+    target=[
+        '#output/analysis/pre1790/pierce/pierce_certs_reg.csv',
+        '#output/analysis/pre1790/pierce/pierce_certs_by_state.png',
+        '#output/analysis/pre1790/pierce/pre1790_debt_by_state.png',
+        '#output/analysis/pre1790/pierce/post1790_debt_by_state.png',
+    ],
+    source=['#source/analysis/pre1790/generate_pierce_maps.py'],
+)
+
+env.Python(
+    target=[
+        '#output/analysis/pre1790/fuzzy_matches_pre1790.csv',
+        '#output/analysis/pre1790/validation_report_pre1790.csv',
+        '#output/analysis/pre1790/clean_pre1790.csv',
+        '#output/analysis/pre1790/suspicious_pre1790.csv',
+    ],
+    source=['#source/analysis/pre1790/validate_pre1790_data.py'],
+)
+
+# Post-1790 CD analysis
+env.Python(
+    target=[
+        '#output/analysis/post1790_cd/fuzzy_matches_post1790.csv',
+        '#output/analysis/post1790_cd/validation_report_post1790.csv',
+        '#output/analysis/post1790_cd/clean_geo_standardized_post1790.csv',
+        '#output/analysis/post1790_cd/suspicious_geo_standardized_post1790.csv',
+    ],
+    source=['#source/analysis/post1790_cd/validate_post1790_data.py'],
 )
 
 # Debt analysis
 env.Python(
-    target = ['#output/analysis/debt_analysis/matches_liquidated_debt_certificates.csv'],
-    source = ['#source/analysis/debt_analysis/match_treasurers.py']
+    target=['#output/analysis/debt_analysis/matches_liquidated_debt_certificates.csv'],
+    source=['#source/analysis/debt_analysis/match_treasurers.py'],
 )
 
 env.Python(
-    target = ['#output/analysis/debt_analysis/speculator_matches.csv'],
-    source = ['#source/analysis/debt_analysis/analyze_notable_holdings.py']
+    target=['#output/analysis/debt_analysis/speculator_matches_pre1790_cleaned.csv'],
+    source=['#source/analysis/debt_analysis/analyze_notable_holdings.py'],
 )
 
 env.Python(
-    target = ['#output/analysis/debt_analysis/debt_summary.csv'],
-    source = ['#source/analysis/debt_analysis/analyze_hamilton_public_debt.py']
+    target=['#output/analysis/debt_analysis/debt_summary.csv'],
+    source=['#source/analysis/debt_analysis/analyze_hamilton_public_debt.py'],
 )
 
-# Julia scripts require manual execution:
-#   julia source/analysis/pre1790/analyze_by_year.jl
-#   julia source/analysis/pre1790/generate_pierce_maps.jl
+# Family tree analysis
+env.Python(
+    target=[
+        '#output/analysis/family_tree_analysis/match_summary.csv',
+        '#output/analysis/family_tree_analysis/match_by_state.csv',
+        '#output/analysis/family_tree_analysis/top_child_names.csv',
+        '#output/analysis/family_tree_analysis/matching_rates.csv',
+        '#output/analysis/family_tree_analysis/matching_rate_by_state.png',
+    ],
+    source=['#source/analysis/family_tree_analysis/analyze_matches.py'],
+)
+
+env.Python(
+    target=['#output/analysis/family_tree_analysis/non_match_reasons.csv'],
+    source=['#source/analysis/family_tree_analysis/analyze_non_matched.py'],
+)
+
+# OpenRefine analysis (inputs are pre-existing OpenRefine outputs, not SCons-produced)
+env.Python(
+    target=[
+        '#output/analysis/open_refine_analysis/post_1790_with_matched_status.csv',
+        '#output/analysis/open_refine_analysis/top5_debtholders.csv',
+        '#output/analysis/open_refine_analysis/state_distribution.csv',
+        '#output/analysis/open_refine_analysis/outliers_percent_change.csv',
+        '#output/analysis/open_refine_analysis/percent_change_distribution.png',
+        '#output/analysis/open_refine_analysis/occupation_counts.csv',
+        '#output/analysis/open_refine_analysis/gender_summary.csv',
+        '#output/analysis/open_refine_analysis/ratio_analysis.csv',
+        '#output/analysis/open_refine_analysis/pct_matched_by_state.png',
+    ],
+    source=['#source/analysis/open_refine_analysis/analyze_openrefine_results.py'],
+)
+
+# Ancestry results analysis (inputs are scraper outputs, not SCons-produced)
+env.Python(
+    target=[
+        '#output/analysis/pre1790/ancestry_loan_office/ct_choropleth_1777.png',
+        '#output/analysis/pre1790/ancestry_loan_office/ma_choropleth_1777.png',
+        '#output/analysis/pre1790/ancestry_loan_office/md_choropleth_1777.png',
+        '#output/analysis/pre1790/ancestry_loan_office/nh_choropleth_1777.png',
+        '#output/analysis/pre1790/ancestry_loan_office/nj_choropleth_1777.png',
+        '#output/analysis/pre1790/ancestry_loan_office/national_13_colonies.png',
+    ],
+    source=['#source/analysis/pre1790/analyze_ancestry_results.py'],
+)

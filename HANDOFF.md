@@ -92,19 +92,57 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
     - **Updated** `QUALITY.md`: checkpoint exception to SaveData rule, MODULARIZATION bullet, Notebook-to-script conversions section
     - **Updated** `source/derived/postscrape/pre1790/SConscript`: added `ancestry_name_changes_raw.csv` as manual dependency
 
+19. **Step 2.4 continued**: source/derived/postscrape/ — code quality follow-up
+    - Moved `OUTDIR.mkdir` to module level in all 4 family_tree scripts and `aggregate_final_cd.py`
+    - Fixed explicit `SaveData` keys in `integrate_ancestry_search.py` (`['Old Title']`, `['change_id']`, `['row_id']`)
+    - Used loops for repeated `.astype()` calls in `integrate_ancestry_search.py`
+    - Moved three notary-variant spellings from `StandardizeOccupations()` into `occ_fix.csv`; removed `# TODO` comment
+    - Added TODO comments flagging hardcoded corrections in `AddOccupationsFromTitle`, `GroupByAncestryMatchIndex`, `ExtractOccupationsFromCensus`
+    - Updated `LONGTERM.md`: added principled name aggregation item (Cleaning 1), pre1790 postscrape gap item (Cleaning 2), `assets` string encode/decode item (Code Quality 7), `ReindexMatchData` readability note
+    - Build verified: `scons output/derived/postscrape/post1790_cd/final_data_CD.csv` passes (3917 rows)
+
 ## Next Step
-- **Step 2.5**: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python, systematize PNG outputs
+- **Task 3**: Document dependencies, create virtual environment
+
+## Completed Steps (continued)
+21. **Step 2.6**: source/webapp — QUALITY.md compliance + path fixes + Procfile
+    - **Removed all GitHub URL data loads**: replaced with `REPO_ROOT`-anchored local paths in `maps.py`, `tables_style.py`, `pre_1790_tab.py`, `pre_1790_map.py`
+    - **Removed all URL shapefile reads** (WKT+requests): replaced with `gpd.read_file()` on local shapefiles; fixed `orig/` prefix for `stateshape_1790` and `nhgis_state_1790`
+    - **Removed dead code**: `app = Dash(__name__)` / `app.layout` blocks in `pre_1790_data_description.py` and `pre_1790_tab.py`; write-then-read CSV pattern in `pre_1790_tab.py`
+    - **Eliminated duplicate function name** `change_map_display` in `maps.py` → renamed to `ChangeMapDisplay` and `ChangeStatisticDescription`
+    - **Removed unused imports**: `requests`, `shapely.wkt`, `Group` (dash_table), `State` (dash), `numpy` (pre_1790_map)
+    - **CamelCased all callbacks/helpers** across `maps.py`, `tables.py`, `pre_1790_map.py`, `pre_1790_tab.py`; renamed `about_us_layout` → `AboutUsLayout`
+    - **Layout exports** standardized: static pages use module-level `Layout = html.Div([...])` variable; `web_app.py` imports updated accordingly
+    - **Removed section-header `########` dividers** and debug `print()` calls throughout
+    - **Created `Procfile`**: `web: cd source/webapp && gunicorn web_app:server`
+    - **Replaced missing `statePop.csv`** in `pre_1790_map.py` with inline derivation from `county_pop_fips.csv`
+
+## Completed Steps (continued)
+20. **Step 2.5**: source/analysis — QUALITY.md compliance pass
+    - **Added Main()** to all 7 notebook-style scripts; removed all `# In[N]:` markers, HTML heading comments, `display()` calls
+    - **Created** `source/analysis/debt_analysis/speculators.csv` — canonical deduplicated list (~80 names); `analyze_notable_holdings.py` now reads from it
+    - **Replaced `to_csv()`** with `SaveData(..., log_file=...)` in all scripts; removed all `plt.show()` → `plt.savefig()` + `plt.close()`
+    - **Print statements**: meaningful outputs exported via SaveData; intermediate/debug prints removed
+    - **Fixed path**: `output/derived/pre1790` → `output/derived/prescrape/pre1790` in analyze_debt_distribution.py and analyze_notable_holdings.py; `output/derived/post1790_cd` → `output/derived/postscrape/post1790_cd` in analyze_hamilton_public_debt.py and analyze_debt_distribution.py
+    - **Replaced plotly** choropleth in analyze_openrefine_results.py with matplotlib bar chart
+    - **Split** analyze_1790_debt.py (1955-line notebook, deleted) into:
+      - `source/analysis/post1790_cd/validate_post1790_data.py` — per-state ASD/CD raw validation + aggregated geo_standardized checks; exports fuzzy_matches, validation_report, clean/suspicious CSVs
+      - `source/analysis/pre1790/validate_pre1790_data.py` — per-state pre-1790 raw XLSX validation + combined pre1790_cleaned.csv checks; exports same structure
+    - **Converted Julia to Python**:
+      - `analyze_by_year.jl` → `analyze_by_year.py` (Gadfly/SVG → matplotlib/PNG; reads cd_info.csv + per-state XLSX; plots year/month barplots)
+      - `generate_pierce_maps.jl` → `generate_pierce_maps.py` (VegaLite → geopandas + matplotlib; uses nhgis_state_1790 shapefile; exports pierce_certs_reg.csv + 4 PNG choropleth maps)
+    - **Updated SConscript**: registered all new targets; fixed `speculator_matches.csv` → `speculator_matches_pre1790_cleaned.csv`; analyze_openrefine_results.py and analyze_ancestry_results.py left out (depend on manual OpenRefine/scraper outputs)
+    - **Note**: analyze_by_year.py requires cd_info.csv at `output/derived/prescrape/pre1790/cd_info.csv` — this file was moved to `output/derived/pre1790/` in Step 1.2 but that directory was later reorganized; cd_info.csv may need to be regenerated or moved as part of Task 4
 
 ## Remaining Items (Task 2)
-- Step 2.5: source/analysis — add Main() to 7 scripts, deduplicate speculator list → CSV, convert Julia to Python, systematize PNG outputs
-- Step 2.6: source/webapp — light review, cleanup, and Heroku/alternate deployment decision
+- None — Task 2 complete
 
 ## Broader Task Plan
 
 | Task | Description | Status |
 |------|-------------|--------|
 | Task 1 | Reorganize repo to JMSLab structure | DONE (branch: reorganize/jmslab-structure) |
-| Task 2 | Code quality improvements (source/raw, scrape, derived, analysis, webapp) | IN PROGRESS |
+| Task 2 | Code quality improvements (source/raw, scrape, derived, analysis, webapp) | DONE |
 | Task 3 | Document dependencies, create virtual environment | PENDING |
 | Task 4 | Complete SCons build scripts (add remaining targets, dependency chains) | PENDING |
 
@@ -116,8 +154,8 @@ Task 2: Code quality improvements across source/raw, source/scrape, source/deriv
 | source/derived/prescrape runs + replicable | 2.3 | DONE |
 | source/scrape input/routine/output clear | 2.2, 2.2.5 | DONE (pending TODO items: driver unification, rerun scraper) |
 | source/derived/postscrape runs + produces output | 2.4 | DONE |
-| Website: Heroku / alternate deployment | 2.6 | PENDING |
-| Systematize PNG outputs | 2.5 | PENDING |
+| Website: Heroku / alternate deployment | 2.6 | DONE |
+| Systematize PNG outputs | 2.5 | IN PROGRESS |
 | Decide whether to integrate existing drafts | — | UNSCHEDULED |
 
 ## Planned derived/ Folder Reorganization (Steps 2.3–2.4)

@@ -9,11 +9,13 @@ INDIR_RAW      = Path("source/raw/post1790_cd")
 INDIR_PRESCRAPE = Path("output/derived/prescrape/post1790_cd")
 INDIR_SCRAPE   = Path("output/scrape/post1790_cd_census_match")
 OUTDIR         = Path("output/derived/postscrape/post1790_cd")
+OUTDIR.mkdir(parents=True, exist_ok=True)
 
 STATEDICT     = STATE_ABBREVIATIONS
 STATEDICT_REV = {v: k for k, v in STATE_ABBREVIATIONS.items()}
 
 # State abbreviation preferences when same name appears in multiple states at state-level only
+# TODO: externalize to source/raw/post1790_cd/corrections/name/postscrape/state_preferences.csv
 PICKSTATE = {
     'Samuel W Johnson': 'NY', 'Josiah Watson': 'VA', 'Gerrard Alexander': 'VA',
     'Benjamin Tallmadge': 'CT', 'Edward Chinn': 'NY', 'Forman Mount': 'PA',
@@ -22,8 +24,6 @@ PICKSTATE = {
 
 
 def Main():
-    OUTDIR.mkdir(parents=True, exist_ok=True)
-
     cd_clean      = pd.read_csv(INDIR_PRESCRAPE / 'geo_standardized_CD_post1790.csv', index_col=0).fillna("").drop_duplicates().reset_index()
     scraped_names = pd.read_csv(INDIR_SCRAPE / 'name_list_scraped.csv', index_col=0).fillna("").drop_duplicates()
     match_df      = pd.read_csv(INDIR_SCRAPE / 'scrape_results.csv', index_col=0).fillna("").drop_duplicates()
@@ -79,6 +79,7 @@ def Main():
 
 
 def AddOccupationsFromTitle(df):
+    # TODO: externalize keyword→occupation mapping to source/raw/post1790_cd/corrections/occ/prescrape/title_keywords.csv
     for keyword, title in [
         ('treasurer', 'Treasurer'),
         (' adm', 'Administrator'), ('adm ', 'Administrator'),
@@ -118,19 +119,25 @@ def GroupByAncestryMatchIndex(df):
     ).reset_index()
     group_name_df = grouped[grouped['Full Search Name'].apply(lambda x: len(x) > 1)]
     # Use longest name as representative — more characters usually means a more complete spelling
-    group_name_df['Rep Name'] = group_name_df['Full Search Name'].apply(lambda x: max(x, key=len))
+    # sorted() ensures deterministic tiebreaking: pick lexicographically smallest when lengths tie
+    group_name_df['Rep Name'] = group_name_df['Full Search Name'].apply(lambda x: max(sorted(x), key=len))
     group_name_df = group_name_df.explode('Full Search Name').reset_index(drop=True)
 
+    # TODO: externalize these name canonical overrides and drops to a corrections CSV
     group_name_df.loc[group_name_df[group_name_df['Full Search Name'].apply(
         lambda x: 'Israel Joseph' in x)].index, 'Rep Name'] = 'Israel Joseph'
     group_name_df.loc[group_name_df[group_name_df['Full Search Name'].apply(
         lambda x: 'William Larned' in x or 'William Learned' in x)].index, 'Rep Name'] = 'William Larned'
     group_name_df.loc[group_name_df[group_name_df['Full Search Name'].apply(
         lambda x: 'Mathew Watson' in x or 'Matthew Watson' in x)].index, 'Rep Name'] = 'Mathew Watson'
+    group_name_df.loc[group_name_df[group_name_df['Full Search Name'].apply(
+        lambda x: 'Thomas M Willing' in x or 'Thomas Mcwilling' in x)].index, 'Rep Name'] = 'Thomas M Willing'
+    group_name_df.loc[group_name_df[group_name_df['Full Search Name'].apply(
+        lambda x: 'Elijah Austin' in x or 'Elijah Auston' in x)].index, 'Rep Name'] = 'Elijah Austin'
+    group_name_df.loc[group_name_df[group_name_df['Full Search Name'].apply(
+        lambda x: 'Thomas Lloyd Halsey' in x or 'Thomas Cloyd Halsey' in x)].index, 'Rep Name'] = 'Thomas Lloyd Halsey'
     group_name_df.drop(group_name_df[group_name_df['Rep Name'] + group_name_df[
         'Full Search Name'] == 'Samuel Vernon 2NdSamuel Vernon Ii'].index, inplace=True)
-    group_name_df.drop(group_name_df[group_name_df['Rep Name'] + group_name_df[
-        'Full Search Name'] == 'Thomas Cloyd HalseyThomas Lloyd Halsey'].index, inplace=True)
 
     group_name_df = group_name_df[group_name_df['Full Search Name'] != group_name_df['Rep Name']]
 
@@ -304,22 +311,23 @@ def ImputeLocationFromPartners(df_final):
 
         for ind in dup_state_2[dup_state_2.apply(lambda x: x['Group County'] > 1 and x['Group Name'] > 1, axis=1)].index:
             name, state = dup_state_2.loc[ind, ['Name_Fix', 'Group State']]
-            vals    = df_final[df_final.apply(lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state, axis=1)]['Group Name Type'].drop_duplicates().tolist()
-            towns   = [ele for ele in df_final[df_final.apply(lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state, axis=1)]['Group Town'].drop_duplicates().tolist() if ele != ""]
-            counties = [ele for ele in df_final[df_final.apply(lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state, axis=1)]['Group County'].drop_duplicates().tolist() if ele != ""]
+            matched = df_final[NameInState(df_final, name, state)]
+            vals    = matched['Group Name Type'].drop_duplicates().tolist()
+            towns   = [ele for ele in matched['Group Town'].drop_duplicates().tolist() if ele != ""]
+            counties = [ele for ele in matched['Group County'].drop_duplicates().tolist() if ele != ""]
 
             if len(towns) <= 1 and len(counties) == 1:
                 if 'town' in vals:
-                    change_val = df_final.loc[df_final.apply(lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state and x['Group Name Type'] == 'town', axis=1),
+                    change_val = matched.loc[matched['Group Name Type'] == 'town',
                                              ['Group Town', 'Group County', 'Group State', 'Group Name Type']].drop_duplicates().values
                 elif 'county' in vals:
-                    change_val = df_final.loc[df_final.apply(lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state and x['Group Name Type'] == 'county', axis=1),
+                    change_val = matched.loc[matched['Group Name Type'] == 'county',
                                              ['Group Town', 'Group County', 'Group State', 'Group Name Type']].drop_duplicates().values
                 else:
-                    change_val = df_final.loc[df_final.apply(lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state and x['Group Name Type'] == 'state', axis=1),
+                    change_val = matched.loc[matched['Group Name Type'] == 'state',
                                              ['Group Town', 'Group County', 'Group State', 'Group Name Type']].drop_duplicates().values
 
-                change_ind = df_final[df_final.apply(lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state, axis=1)].index
+                change_ind = matched.index
                 assert len(change_val) == 1
                 df_final.loc[change_ind, ['Group Town', 'Group County', 'Group State', 'Group Name Type']] = change_val[0]
             else:
@@ -327,6 +335,11 @@ def ImputeLocationFromPartners(df_final):
                     exception_names.append([name, state])
 
     return df_final, exception_names
+
+
+def NameInState(df, name, state):
+    return df.apply(
+        lambda x: any(name in ele for ele in x['Name_Fix']) and x['Group State'] == state, axis=1)
 
 
 def BuildNameChangeDictionary(df_final, exception_names):
@@ -343,8 +356,7 @@ def BuildNameChangeDictionary(df_final, exception_names):
 
     for ele in exception_names:
         name, state = ele[0], ele[1]
-        vals = df_final[df_final.apply(
-            lambda x: any([name in ele for ele in x['Name_Fix']]) and x['Group State'] == state, axis=1)][
+        vals = df_final[NameInState(df_final, name, state)][
             ['Group Town', 'Group County', 'Group State']].drop_duplicates()
         for ind in vals.index:
             town, county, state = vals.loc[ind, 'Group Town'], vals.loc[ind, 'Group County'], vals.loc[ind, 'Group State']
@@ -374,6 +386,7 @@ def UnifyNameSpellings(df_final, namechange_dict):
 
 
 def ApplyManualAdjustments(df_final):
+    # TODO: externalize these four person overrides to source/raw/post1790_cd/corrections/name/postscrape/manual_adjustments.csv
     df_final.loc[df_final[df_final['Group Name'] == 'Love Stone'].index,
                  ['Group Match Url', 'Name_Fix_Clean', 'Name_Fix_Transfer', 'assets', 'occupation']] = [
         'https://www.ancestrylibrary.com/search/collections/5058/?name=Love_Stone&name_x=1_1&residence=_charleston-south carolina-usa_552&residence_x=_1-0',
@@ -472,6 +485,7 @@ def AddVillageInfo(match_df):
 
 
 def ExtractOccupationsFromCensus(match_df):
+    # TODO: externalize title→occupation keyword table to source/raw/post1790_cd/corrections/occ/prescrape/title_keywords.csv
     opt_one_ind = match_df[match_df['Name'].apply(lambda x: '(' in x and ',' not in x)].index
     match_df.loc[opt_one_ind, 'Occupation'] = match_df.loc[opt_one_ind, 'Name'].apply(
         lambda x: JoinNameList([ele[ele.find("(") + 1:ele.find(")")] for ele in x.split(" | ") if '(' in ele]))
@@ -590,55 +604,61 @@ def EliminateBroadLocationMatches(df_final, match_df):
 
 
 def ImputeLocationFromCensus(df_final, match_df):
-    ordering_dict = {'state': 0, 'county': 1, 'town': 2, 'village': 3, '': -1}
+    LOCATION_SPECIFICITY = {'state': 0, 'county': 1, 'town': 2, 'village': 3, '': -1}
     df_final['imputed_location'] = ''
     df_final['location conflict'] = ''
 
-    single_ind = df_final[df_final.apply(
-        lambda x: 'Unsearchable' not in x['Group Match Index'] and x['Group Match Index'] != ''
-                  and len(x['Group Match Index'].split(" | ")) == 1, axis=1)].index
+    has_match  = (~df_final['Group Match Index'].str.contains('Unsearchable', na=False)) & (df_final['Group Match Index'] != '')
+    single_ind = df_final[has_match & ~df_final['Group Match Index'].str.contains(r' \| ', na=False)].index
+    mult_ind   = df_final[has_match &  df_final['Group Match Index'].str.contains(r' \| ', na=False)].index
+
     df_final.loc[single_ind, 'temp'] = df_final.loc[single_ind].apply(
         lambda x: match_df.loc[int(x['Group Match Index'])][['Match State', 'Match County', 'Match Town', 'Match Village']].values.tolist()
-        if ordering_dict[x['Group Name Type']] < ordering_dict[match_df.loc[int(x['Group Match Index']), 'Match Type']]
+        if LOCATION_SPECIFICITY[x['Group Name Type']] < LOCATION_SPECIFICITY[match_df.loc[int(x['Group Match Index']), 'Match Type']]
         else "", axis=1)
 
-    mult_ind = df_final[df_final.apply(
-        lambda x: 'Unsearchable' not in x['Group Match Index'] and x['Group Match Index'] != ''
-                  and len(x['Group Match Index'].split(" | ")) > 1, axis=1)].index
     df_final.loc[mult_ind, 'temp'] = df_final.loc[mult_ind].apply(
         lambda x: SameLocation(match_df.loc[[int(ele) for ele in x['Group Match Index'].split(" | ")],
                                             ['Match State', 'Match County', 'Match Town', 'Match Village']].values.tolist()), axis=1)
     df_final.loc[mult_ind, 'temp status'] = df_final.loc[mult_ind, 'temp'].apply(lambda x: x[1] if len(x) > 1 else '')
     df_final.loc[mult_ind, 'temp'] = df_final.loc[mult_ind].apply(
-        lambda x: x['temp'][0] if ordering_dict[x['temp status']] > ordering_dict[x['Group Name Type']] else '', axis=1)
+        lambda x: x['temp'][0] if LOCATION_SPECIFICITY[x['temp status']] > LOCATION_SPECIFICITY[x['Group Name Type']] else '', axis=1)
 
-    rem_ind = df_final[df_final.fillna("")['temp'] != ""][df_final[df_final.fillna("")['temp'] != ""].apply(
-        lambda x: STATEDICT[x['Group State']] != x['temp'][0] and x['Group State'] != 'NY', axis=1)].index
-    df_final.loc[rem_ind, 'Group Match Index'] = ''
+    # Drop rows where the census state doesn't match the group state (NY is exempted)
+    temp_idx = df_final.index[df_final['temp'].fillna('') != '']
+    rem_mask = df_final.loc[temp_idx].apply(
+        lambda x: STATEDICT[x['Group State']] != x['temp'][0] and x['Group State'] != 'NY', axis=1)
+    df_final.loc[rem_mask[rem_mask].index, 'Group Match Index'] = ''
 
-    county_conflict = df_final[df_final.fillna("")['temp'] != ""][df_final[df_final.fillna("")['temp'] != ""].apply(
-        lambda x: x['Group County'] != x['temp'][1] and x['Group County'] != '' and x['Group Match Index'] != '', axis=1)].index
+    # Refresh after clearing mismatched match indices
+    temp_idx = df_final.index[df_final['temp'].fillna('') != '']
+
+    county_conflict = df_final.loc[temp_idx][
+        (df_final.loc[temp_idx, 'Group County'] != '') &
+        (df_final.loc[temp_idx, 'Group Match Index'] != '') &
+        df_final.loc[temp_idx].apply(lambda x: x['Group County'] != x['temp'][1], axis=1)
+    ].index
     df_final.loc[county_conflict, 'location conflict'] = 'county'
 
-    town_conflict = df_final[df_final.fillna("")['temp'] != ""][df_final[df_final.fillna("")['temp'] != ""].apply(
-        lambda x: x['Group Town'] != x['temp'][2] and x['Group Town'] != '' and x['Group Match Index'] != ''
-                  and x['location conflict'] == '', axis=1)].index
+    town_conflict = df_final.loc[temp_idx][
+        (df_final.loc[temp_idx, 'Group Town'] != '') &
+        (df_final.loc[temp_idx, 'Group Match Index'] != '') &
+        (df_final.loc[temp_idx, 'location conflict'] == '') &
+        df_final.loc[temp_idx].apply(lambda x: x['Group Town'] != x['temp'][2], axis=1)
+    ].index
     df_final.loc[town_conflict, 'location conflict'] = 'town'
 
-    town_conflict2 = df_final[df_final.fillna("")['temp'] != ""][df_final[df_final.fillna("")['temp'] != ""].apply(
-        lambda x: x['Group Town'] != x['temp'][2] and x['Group Town'] != '' and x['Group Match Index'] != ''
-                  and x['location conflict'] == '', axis=1)].index
-    df_final.loc[town_conflict2, 'location conflict'] = 'town'
-
-    rep_ind = df_final[df_final.fillna("")['temp'] != ""][df_final[df_final.fillna("")['temp'] != ""].apply(
-        lambda x: x['location conflict'] == '' and x['Group Match Index'] != '', axis=1)].index
+    rep_ind = df_final.loc[temp_idx][
+        (df_final.loc[temp_idx, 'location conflict'] == '') &
+        (df_final.loc[temp_idx, 'Group Match Index'] != '')
+    ].index
     df_final.loc[rep_ind, 'imputed_location'] = df_final.loc[rep_ind].apply(
         lambda x: match_df.loc[int(x['Group Match Index'])]['Match Type'] if pd.isnull(x.get('temp status')) else x.get('temp status', ''), axis=1)
 
     rep_ind = rep_ind[df_final.loc[rep_ind, 'temp'].apply(lambda x: x[0] in STATEDICT_REV)]
-    df_final.loc[rep_ind, 'Group State']  = df_final.loc[rep_ind, 'temp'].apply(lambda x: STATEDICT_REV[x[0]])
-    df_final.loc[rep_ind, 'Group County'] = df_final.loc[rep_ind, 'temp'].apply(lambda x: x[1] + ' County')
-    df_final.loc[rep_ind, 'Group Town']   = df_final.loc[rep_ind, 'temp'].apply(lambda x: x[2])
+    df_final.loc[rep_ind, 'Group State']   = df_final.loc[rep_ind, 'temp'].apply(lambda x: STATEDICT_REV[x[0]])
+    df_final.loc[rep_ind, 'Group County']  = df_final.loc[rep_ind, 'temp'].apply(lambda x: x[1] + ' County')
+    df_final.loc[rep_ind, 'Group Town']    = df_final.loc[rep_ind, 'temp'].apply(lambda x: x[2])
     df_final.loc[rep_ind, 'Group Village'] = df_final.loc[rep_ind, 'temp'].apply(lambda x: x[3])
 
     df_final.fillna("", inplace=True)
@@ -672,9 +692,6 @@ def StandardizeOccupations(df_final, match_df, occ_data):
 
     occ_dict = dict(zip(occ_data['Original'], occ_data['Corrected']))
     occ_dict[''] = ''
-    occ_dict['Notary, Scrivenor & Broker'] = 'Broker'
-    occ_dict['Notary, Scrivener & Broker'] = 'Broker'
-    occ_dict['Notary, Scrivener, & Broker'] = 'Broker'
     df_final['occupation'] = df_final['occupation'].apply(
         lambda x: JoinNameList([str(occ_dict.get(ele, ele)) for ele in x.split(" | ")]))
     return df_final

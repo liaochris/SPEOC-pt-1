@@ -1,0 +1,13 @@
+File: output/analysis/pre1790/pierce/pierce_certs_reg.csv
+
+MD5 hash: eee17b320481fa68c2f8a0689410f20b
+
+Keys: Group 
+
+                  type count unique        mean         std      min         50%          max
+Group          float64    84             64.488      38.676    1.000      68.000      131.000
+Value          float64    84         95,360.399  84,838.500  920.600  62,776.140  414,407.220
+regiment           str    84     82                                                          
+State              str    84     12                                                          
+percent_owned  float64    84              1.190       1.059    0.011       0.784        5.173
+

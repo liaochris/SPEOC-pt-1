@@ -1,0 +1,45 @@
+File: output/analysis/pre1790/clean_pre1790.csv
+
+MD5 hash: d41d8cd98f00b204e9800998ecf8427e
+
+Keys: row_id 
+
+                                          type count unique mean std min 50% max
+row_id                                   int64     0                            
+org_file                                   str     0      0                     
+org_index                                  str     0      0                     
+state                                      str     0      0                     
+date of the certificate | year         float64     0                            
+date of the certificate | month        float64     0                            
+date of the certificate | day          float64     0                            
+to whom due | title                        str     0      0                     
+to whom due | first name                   str     0      0                     
+to whom due | last name                    str     0      0                     
+to whom due | title.1                      str     0      0                     
+to whom due | first name.1                 str     0      0                     
+to whom due | last name.1                  str     0      0                     
+amount | dollars                       float64     0                            
+amount in specie | dollars             float64     0                            
+letter                                     str     0      0                     
+time when the debt became due | month  float64     0                            
+time when the debt became due | day     object     0      0                     
+time when the debt became due | year    object     0      0                     
+amount | 90th                          float64     0                            
+line strike through? | yes?            float64     0                            
+line strike through? | note                str     0      0                     
+notes                                      str     0      0                     
+amount | 10th                          float64     0                            
+exchange                                   str     0      0                     
+amount in specie | cents               float64     0                            
+amount | 8th                           float64     0                            
+delivered | month                      float64     0                            
+delivered | day                        float64     0                            
+delivered | year                       float64     0                            
+total dollars | notes                      str     0      0                     
+total dollars | notes.1                float64     0                            
+organization?                             bool     0      0                     
+final_agg_debt index                       str     0      0                     
+deceased?                                 bool     0      0                     
+suspicious_row                            bool     0      0                     
+suspicious_reason                          str     0      0                     
+

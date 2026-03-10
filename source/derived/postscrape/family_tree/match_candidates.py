@@ -12,6 +12,7 @@ EDGES_JSON   = INDIR_WIKITREE / "family_graph_edges.json"
 PROFILES_CSV = INDIR_WIKITREE / "wikitree_profiles.csv"
 POST1790_CSV = INDIR_POST1790 / "final_data_CD.csv"
 OUT_CSV      = OUTDIR / "candidate_matches.csv"
+OUTDIR.mkdir(parents=True, exist_ok=True)
 
 
 def Main():
@@ -40,7 +41,6 @@ def Main():
 
     result = profiles[["id", "child_name", "state", "in_post1790", "error"]].rename(columns={"id": "child_id"})
 
-    OUTDIR.mkdir(parents=True, exist_ok=True)
     SaveData(result, ["child_id"], OUT_CSV, log_file=OUTDIR / "candidate_matches.log")
 
     hits = result["in_post1790"].sum()

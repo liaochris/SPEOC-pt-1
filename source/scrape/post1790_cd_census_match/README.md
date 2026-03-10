@@ -12,7 +12,7 @@ Requires Ancestry Library Edition access. Authentication is handled by `source/l
 
 ## Code
 
-- `scrape_cd.py` — Main entry point. Reads `name_list.csv` from derived output, loops all names, calls `ScrapeCD` from `source/lib/ancestry_scraper/scraper.py`, writes scraped results
+- `scrape_cd.py` — Main entry point. Reads `name_changes_list.csv` from derived output, loops all names, calls `ScrapeCD` from `source/lib/ancestry_scraper/scraper.py`, writes scraped results
 
 **Shared libraries** (in `source/lib/`):
 - `source/lib/ancestry_scraper/scraper.py` — Central scraping module: `ScrapeCD` + `ScrapeLoanOffice` + CD helper functions (`FindMatches`, `NavigateTo`, `ListPeople`, `GetInfo`, `DetermineMatchList`, `SearchLocationString`, `ProcessLocationString`)
@@ -20,14 +20,14 @@ Requires Ancestry Library Edition access. Authentication is handled by `source/l
 
 ## Input
 
-- `output/derived/post1790_cd/name_list.csv` — cleaned name list from `source/derived/post1790_cd/clean_names_and_deduplicate.py`
+- `output/derived/post1790_cd/name_changes_list.csv` — cleaned name list from `source/derived/post1790_cd/clean_names_and_deduplicate.py`
 
 ## Output
 
 All output in `output/scrape/ancestry_cd_scraper/`:
 - `scrape_ids.csv` — search metadata (name, location, url, match index, match status) per scrape attempt
 - `scrape_results.csv` — census record data (name, location, household info) for each matched person
-- `name_list_scraped.csv` — merged view of `name_list.csv` with scrape match results
+- `name_list_scraped.csv` — merged view of `name_changes_list.csv` with scrape match results
 - `scrape_ids_prelim.csv`, `scrape_results_prelim.csv` — checkpoint saves written during scraping
 
 ## Downstream Usage

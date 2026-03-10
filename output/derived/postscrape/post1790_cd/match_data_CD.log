@@ -1,23 +1,23 @@
 File: output/derived/postscrape/post1790_cd/match_data_CD.csv
 
-MD5 hash: 5ca39abfe2b1dcc421d42d12c0654df6
+MD5 hash: 009c4329948fe041aa3511c31f79a97f
 
 Keys: index_new 
 
                                          type  count unique
-index_new                                 str  3,260  3,260
-Name                                      str  3,260  2,785
-Home in 1790 (City, County, State)        str  3,260    495
-Free White Persons - Males - 16 and over  str  3,260     15
-Free White Persons - Females              str  3,260     15
-Number of Household Members               str  3,260     71
-Free White Persons - Males - Under 16     str  3,260     12
-Number of Slaves                          str  3,260     67
-Number of All Other Free Persons          str  3,260     12
-Match Type                                str  3,260      2
-Match Town                                str  3,260    379
-Match County                              str  3,260     93
-Match State                               str  3,260     11
-Match Village                             str  3,260     32
-Occupation                                str  3,260    153
+index_new                                 str  3,258  3,258
+Name                                      str  3,258  2,783
+Home in 1790 (City, County, State)        str  3,258    495
+Free White Persons - Males - 16 and over  str  3,258     15
+Free White Persons - Females              str  3,258     15
+Number of Household Members               str  3,258     71
+Free White Persons - Males - Under 16     str  3,258     12
+Number of Slaves                          str  3,258     67
+Number of All Other Free Persons          str  3,258     12
+Match Type                                str  3,258      2
+Match Town                                str  3,258    379
+Match County                              str  3,258     93
+Match State                               str  3,258     11
+Match Village                             str  3,258     32
+Occupation                                str  3,258    153
 

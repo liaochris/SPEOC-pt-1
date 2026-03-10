@@ -3482,7 +3482,7 @@ row_id,Name,Fn_Fix,Ln_Fix,new_town,county,new_state,country,geo_level,Name_Fix
 3480,John Salter,John,Salter,Philadelphia County,Philadelphia County,PA,US,county,John Salter
 3481,Mary Cash,Mary,Cash,,,PA,US,state,Mary Cash
 3482,Rebecca Doz,Rebecca,Doz,Philadelphia,Philadelphia County,PA,US,town,Rebecca Doz
-3483,Manuel Eyre,Manuel,Eyre,New Kensington,Westmoreland County,PA,US,town,Manuel Eyre
+3483,Manuel Eyre,Manuel,Eyre,Kensington,Philadelphia County,PA,US,town,Manuel Eyre
 3484,Martha Flower,Martha,Flower,Philadelphia,Philadelphia County,PA,US,town,Martha Flower
 3485,Henry Huttenstein,Henry,Huttenstein,Lancaster,Lancaster County,PA,US,town,Henry Huttenstein
 3486,Lawrence Seckel,Lawrence,Seckel,Philadelphia,Philadelphia County,PA,US,town,Lawrence Seckel

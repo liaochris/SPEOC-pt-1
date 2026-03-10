@@ -1,26 +1,24 @@
 import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 
 # import web app
 from app import app
 
 # import info from other pages
-from about_us import about_us_layout
+from about_us import AboutUsLayout
 from history import history_layout
 from data_page import data_layout
 from future import future_layout
 
 from maps import maps_layout
 from tables import tables_layout
-from pre_1790_tab import layout as pre1790_layout
-from pre_1790_data_description import layout as pre1790_description_layout
-from pre_1790_map import layout as pre1790_map_layout
+from pre_1790_tab import Layout as pre1790_layout
+from pre_1790_data_description import Layout as pre1790_description_layout
+from pre_1790_map import Layout as pre1790_map_layout
 
-########################################################################################################################
-######################################### Define App Components ########################################################
-########################################################################################################################
+
 # Title Bar
 title = html.H1(children='The Price of Liberty: Hamilton\'s Resolution of the National Debt', style={'textAlign': 'left'}, className='title')
 
@@ -71,13 +69,13 @@ app.layout = html.Div(className='app-container', children=[
 # Callback to update the page content based on the URL
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
-def display_page(pathname):
+def DisplayPage(pathname):
     if pathname == '/about_us':
-        return html.Div([about_us_layout()])
+        return html.Div([AboutUsLayout()])
     elif pathname == '/pre1790/raw':                                 
         return html.Div(pre1790_layout())
     elif pathname == '/pre1790/desc':                                 
-        return html.Div(pre1790_description_layout())
+        return html.Div(pre1790_description_layout)
     elif pathname == '/pre1790/maps':                                 
         return html.Div(pre1790_map_layout())
     elif pathname == '/tables':
@@ -92,6 +90,9 @@ def display_page(pathname):
         return html.Div(maps_layout)
 
 server = app.server
-# run app
-if __name__ == '__main__':
+
+def Main():
     app.run(debug=True, host='localhost')
+
+if __name__ == '__main__':
+    Main()

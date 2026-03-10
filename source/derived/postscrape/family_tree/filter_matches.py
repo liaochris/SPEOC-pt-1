@@ -15,6 +15,7 @@ OUT_CSV      = OUTDIR / "filtered_matches.csv"
 CENTER_YEAR          = 1760
 YEAR_WINDOW          = 20
 DROP_IF_MISSING_YEAR = True
+OUTDIR.mkdir(parents=True, exist_ok=True)
 
 
 def Main():
@@ -42,7 +43,6 @@ def Main():
     print(f"Initial matches: {len(tmp)}")
     print(f"After birth-year filter [{lo}-{hi}]: {len(filtered)}")
 
-    OUTDIR.mkdir(parents=True, exist_ok=True)
     SaveData(filtered, ["child_id"], OUT_CSV, log_file=OUTDIR / "filtered_matches.log")
 
 
