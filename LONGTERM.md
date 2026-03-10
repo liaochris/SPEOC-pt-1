@@ -68,6 +68,7 @@ The following scrape scripts have **not yet been run** and their outputs are mis
   - pierce_certificates.csv
   - post_1790.csv
 - These are essentially source data and arguably belong in source/raw/ rather than output/.
+3. `output/analysis` is poorly organized 
 
 ## Code Quality
 

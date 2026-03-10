@@ -68,7 +68,7 @@ This project uses a conda environment called `SPEOC` (Python 3.11).
 
 ```bash
 conda activate SPEOC
-export PYTHONPATH=.   # must be set; all imports assume project root
+export PYTHONPATH=.   # must be set before running python scripts; all imports assume project root
 ```
 
 Key packages: `pandas`, `geopandas`, `matplotlib`, `scons`, `selenium`, `rapidfuzz`, `nameparser`, `dash`, `openpyxl`, `scipy`, `scikit-learn`.
@@ -103,14 +103,12 @@ scons
 
 Individual scripts can also be run standalone:
 ```bash
+export PYTHONPATH=.
 python source/derived/prescrape/pre1790/clean_names.py
 python source/analysis/pre1790/analyze_debt_distribution.py
 ```
 
-## Code Conventions
+## References
 
-See `QUALITY.md` for full details. Key points:
-- Functions: CamelCase; Variables: snake_case
-- Global paths: CAPITALIZED `Path` objects (`INDIR_*`, `OUTDIR_*`)
-- Every script has `Main()` with `if __name__ == "__main__": Main()`
-- Save data with `SaveData` from `source/lib/SaveData.py`
+See `QUALITY.md` for full details. 
+See `LONGTERM.md` for long-term steps
