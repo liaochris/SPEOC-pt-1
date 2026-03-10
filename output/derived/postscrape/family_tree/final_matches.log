@@ -1,0 +1,17 @@
+File: output/derived/postscrape/family_tree/final_matches.csv
+
+MD5 hash: ca79e4c51eb34708bdd6229e97991b7c
+
+Keys: child_id 
+
+                   type count unique mean std min 50% max
+child_id            str   446    446                     
+child_name          str   446    281                     
+state               str   446      9                     
+in_post1790        bool   446      1                     
+error           float64     0                            
+parent_id           str   446    398                     
+parent_ids_all      str   446    398                     
+parent_name         str   446    351                     
+multi_parent       bool   446      1                     
+

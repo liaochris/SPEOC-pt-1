@@ -1,39 +1,4 @@
 Import('*')
 
-# Post-1790 CD cleaning pipeline
-env.Python(
-    target = ['#output/derived/post1790_cd/final_data_CD.csv'],
-    source = ['#source/derived/post1790_cd/standardize_geography.py']
-)
-
-env.Python(
-    target = ['#output/derived/post1790_cd/aggregated_CD_post1790_names.csv'],
-    source = ['#source/derived/post1790_cd/clean_names_and_deduplicate.py']
-)
-
-env.Python(
-    target = ['#output/derived/post1790_cd/match_data_CD.csv'],
-    source = ['#source/derived/post1790_cd/integrate_scraped_data.py']
-)
-
-env.Python(
-    target = ['#output/derived/post1790_cd/aggregated_CD_post1790.csv'],
-    source = ['#source/derived/post1790_cd/aggregate_final_cd.py']
-)
-
-# Pre-1790 cleaning pipeline
-env.Python(
-    target = ['#output/derived/pre1790/loan_office_certificates_cleaned.csv'],
-    source = ['#source/derived/pre1790/combine_certificate_types.py']
-)
-
-# Family tree matching (depends on scrape output and post1790 cleaning)
-env.Python(
-    target = ['#output/scrape/wikitree/results/task_3_matches.csv'],
-    source = ['#source/derived/family_tree/match_candidates.py']
-)
-
-env.Python(
-    target = ['#output/scrape/wikitree/results/task_4_final.csv'],
-    source = ['#source/derived/family_tree/filter_matches.py']
-)
+SConscript('prescrape/SConscript')
+SConscript('postscrape/SConscript')

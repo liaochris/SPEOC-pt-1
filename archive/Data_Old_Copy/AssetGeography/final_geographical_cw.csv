@@ -1,4 +1,4 @@
-,orig_town,town,county,state,name_type
+,orig_town,town,county,state,geo_level
 0,Hartford,Hartford,Hartford County,CT,town
 1,Bolton,Bolton,Tolland County,CT,town
 2,Rhode Island,,,RI,state

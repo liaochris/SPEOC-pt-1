@@ -1,41 +1,42 @@
 from pathlib import Path
 import csv, json
-from typing import Callable, Dict, Any, Tuple, List, Optional
-from source.scrape.wikitree.wikitree import get_profile
+from source.scrape.wikitree.wikitree import GetProfile
 
-OUTDIR = Path("output/scrape/wikitree/results")
+OUTDIR = Path("output/scrape/wikitree")
 
-def get_children(
-    input_csv: str,
-    fetch_profile: Callable[[str], Dict[str, Any]],
-    nodes_path: Optional[str] = None,
-    edges_path: Optional[str] = None
-) -> Tuple[Dict[str, Dict[str, Any]], List[Dict[str, Any]]]:
-    nodes: Dict[str, Dict[str, Any]] = {}
-    edges: List[Dict[str, Any]] = []
+
+def Main():
+    nodes, edges = GetChildren(
+        input_csv=OUTDIR / "candidates.csv",
+        fetch_profile=GetProfile,
+        nodes_path=OUTDIR / "family_graph_nodes.json",
+        edges_path=OUTDIR / "family_graph_edges.json"
+    )
+    print(f"[DONE] Total nodes: {len(nodes)}, total edges: {len(edges)}")
+
+
+def ToYear(val):
+    s = str(val or "")[:4]
+    return int(s) if s.isdigit() else None
+
+
+def GetChildren(input_csv, fetch_profile, nodes_path=None, edges_path=None):
+    nodes = {}
+    edges = []
 
     with open(input_csv, newline='', encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            # get profile key from each row in task_1.csv
             pid = (row.get("profile_key") or "").strip()
             if not pid:
                 continue
 
-            def to_year(val) -> Optional[int]:
-                s = str(val or "")[:4]
-                return int(s) if s.isdigit() else None
-            
-            # checkpoint
             print(f"[INFO] Processing {pid} ({row.get('query_name', 'Unknown')})...")
 
-            # get profile
             p = fetch_profile(profile_key=pid) or {}
-
             if not p:
                 print(f"[WARN] No profile data returned for {pid}")
 
-            p_birth = to_year(p.get("BirthDate")) # isolate birth date
-            # add person to nodes dictionary
+            p_birth = ToYear(p.get("BirthDate"))
             parent_id = (p.get("Name") or pid).strip()
             nodes[parent_id] = {
                 "person_id": parent_id,
@@ -77,12 +78,6 @@ def get_children(
 
     return nodes, edges
 
-if __name__ == "__main__":
-    nodes, edges = get_children(
-        input_csv=OUTDIR / "task_1.csv",
-        fetch_profile=get_profile,
-        nodes_path=OUTDIR / "nodes_task_2.json",
-        edges_path=OUTDIR / "edges_task_2.json"
-    )    
 
-    print(f"[DONE] Total nodes: {len(nodes)}, total edges: {len(edges)}")
+if __name__ == "__main__":
+    Main()

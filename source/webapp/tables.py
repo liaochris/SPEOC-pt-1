@@ -1,4 +1,3 @@
-# import packages
 import dash_bootstrap_components as dbc
 import pandas as pd
 from dash import Input, Output, State
@@ -6,7 +5,6 @@ from dash import dash_table
 from dash import dcc
 from dash import html
 from dash.dash_table import DataTable, FormatTemplate
-from dash.dash_table.Format import Group
 
 # import info from other pages
 from app import app
@@ -20,9 +18,6 @@ metric_type_dict = {
     '3p':'3% Coupons',
     '6p_all':"All 6% Debt",
 }
-########################################################################################################################
-######################################### Define App Components ########################################################
-########################################################################################################################
 # Project description tab
 table_desc = html.Div(className='box', children=[
     html.H2(children='Table Guide', className='box-title', style={'marginBottom': '20px'}),
@@ -192,8 +187,8 @@ tables_layout = [table_desc, display_more_tab, display_tab, grouped_charts]
 )
 
 
-def update_graphs(rows, derived_virtual_selected_rows, dropdown_value, aggregation_method, chart_type, state_n,
-                  county_n, town_n, occupation_n, checkbox_values, metric_type):
+def UpdateGraphs(rows, derived_virtual_selected_rows, dropdown_value, aggregation_method, chart_type, state_n,
+                 county_n, town_n, occupation_n, checkbox_values, metric_type):
     global agg_columns
     if derived_virtual_selected_rows is None:
         derived_virtual_selected_rows = []
@@ -248,22 +243,22 @@ def update_graphs(rows, derived_virtual_selected_rows, dropdown_value, aggregati
     # state
     if dropdown_value == 'state':
         if chart_type in ['bar', 'pie']:
-            charts = generateGraph(dff_group_state, 'State', chart_type, state_n, colors, dff, metric_type)
+            charts = GenerateGraph(dff_group_state, 'State', chart_type, state_n, colors, dff, metric_type)
     # county
     elif dropdown_value == 'county':
         # Code for county grouping
         if chart_type in ['bar', 'pie']:
-            charts = generateGraph(dff_group_county, 'County', chart_type, state_n, colors, dff, metric_type)
+            charts = GenerateGraph(dff_group_county, 'County', chart_type, state_n, colors, dff, metric_type)
     # town
     elif dropdown_value == 'town':
         # Code for county grouping
         if chart_type in ['bar', 'pie']:
-            charts = generateGraph(dff_group_town, 'Town', chart_type, state_n, colors, dff, metric_type)
+            charts = GenerateGraph(dff_group_town, 'Town', chart_type, state_n, colors, dff, metric_type)
     # occupation
     elif dropdown_value == 'occupation':
         # Code for county grouping
         if chart_type in ['bar', 'pie']:
-            charts = generateGraph(dff_occupation, dropdown_value, chart_type, state_n, colors, dff, metric_type)
+            charts = GenerateGraph(dff_occupation, dropdown_value, chart_type, state_n, colors, dff, metric_type)
 
     # generate grouped tables
     if dropdown_value == 'state':
@@ -320,7 +315,7 @@ def update_graphs(rows, derived_virtual_selected_rows, dropdown_value, aggregati
      Output('town-slider-container', 'style')],
     [Input('dropdown', 'value')]
 )
-def toggle_slider(dropdown_value):
+def ToggleSlider(dropdown_value):
     if dropdown_value == 'state':
         return {'display': 'block'}, {'display': 'none'}, {'display': 'none'}, {'display': 'none'}
     elif dropdown_value == 'occupation':
@@ -336,7 +331,7 @@ def toggle_slider(dropdown_value):
     Output("toggle-button", "children"),
     [Input("toggle-button", "n_clicks")]
 )
-def toggle_guide(n):
+def ToggleGuide(n):
     if n % 2 == 0:
         # If the button has been clicked an even number of times, hide the guide
         return {"display": "none"}, "Show Guide"
@@ -350,7 +345,7 @@ def toggle_guide(n):
     [Input("open-button", "n_clicks"), Input("close-button", "n_clicks")],
     [State("modal", "is_open")],
 )
-def toggle_modal(open_clicks, close_clicks, is_open):
+def ToggleModal(open_clicks, close_clicks, is_open):
     if open_clicks or close_clicks:
         return not is_open
     return is_open
@@ -361,7 +356,7 @@ def toggle_modal(open_clicks, close_clicks, is_open):
     Output('DataTable', 'data'),
     [Input('DataTable', 'filter_query')]
 )
-def update_table(filter_query):
+def UpdateTable(filter_query):
     if filter_query is None:
         # No filters applied
         return df.to_dict('records')
@@ -369,14 +364,13 @@ def update_table(filter_query):
     df_filtered = df.copy()
     filtering_expressions = filter_query.split(' && ')
     for filter_part in filtering_expressions:
-        col_name, operator, filter_value = split_filter_part(filter_part)
+        col_name, operator, filter_value = SplitFilterPart(filter_part)
         if filter_value is None:
             continue
 
         if df[col_name].dtype != 'object':  # If it's a numeric column
             if '-' in str(filter_value):
                 low, high = [float(v) for v in filter_value.split('-')]
-                print(low, high, df_filtered[col_name])
                 df_filtered = df_filtered.loc[(df_filtered[col_name] >= low) & (df_filtered[col_name] <= high)]
             elif operator in ('gt'):
                 df_filtered = df_filtered.loc[df_filtered[col_name] > filter_value]
@@ -409,7 +403,7 @@ def update_table(filter_query):
 
 
 # This function parses the filter string into column name, operator and filter value
-def split_filter_part(filter_part):
+def SplitFilterPart(filter_part):
     for operator_type, operator_string in [('eq', '=='),
                                            ('ne', '!='),
                                            ('lt', '< '),
@@ -437,7 +431,7 @@ def split_filter_part(filter_part):
 
 
 
-def generateGraph(df, col, type, max_count, colors, dff, metric_type):
+def GenerateGraph(df, col, type, max_count, colors, dff, metric_type):
     if type == 'pie':
         charts = [dcc.Graph(
             id=column if type != 'occupation' else column + '-occupation',

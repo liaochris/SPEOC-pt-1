@@ -1,0 +1,16 @@
+File: output/derived/prescrape/post1790_cd/check/town_changes_list.csv
+
+MD5 hash: 60afc05ddc7e2f724b9ee2918eb1afdc
+
+Keys: row_id 
+
+                    type count unique     mean      std    min      50%      max
+row_id             int64   472         235.500  136.399  0.000  235.500  471.000
+state                str   464     20                                           
+town_original        str   462    435                                           
+town_preprocessed    str   462    397                                           
+new_town             str   374    276                                           
+county               str   415    106                                           
+new_state            str   454     14                                           
+match_method         str   472      5                                           
+

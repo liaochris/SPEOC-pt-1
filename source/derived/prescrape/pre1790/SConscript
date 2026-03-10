@@ -1,0 +1,23 @@
+Import('*')
+
+STATES = ['ct', 'ga', 'ma', 'md', 'nc', 'nh', 'nj', 'ny', 'pa', 'ri', 'va']
+
+env.Python(
+    target = ['#output/derived/prescrape/pre1790/combined_pre1790.csv'],
+    source = ['#source/derived/prescrape/pre1790/aggregate_debt.py']
+)
+
+env.Python(
+    target = ['#output/derived/prescrape/pre1790/pre1790_cleaned.csv',
+              '#output/derived/prescrape/pre1790/name_list.csv'],
+    source = ['#source/derived/prescrape/pre1790/clean_names.py',
+              '#output/derived/prescrape/pre1790/combined_pre1790.csv']
+)
+
+for state in STATES:
+    env.Python(
+        target  = ['#output/derived/prescrape/pre1790/similar_names/similar_names_%s.csv' % state],
+        source  = ['#source/derived/prescrape/pre1790/find_similar_names.py',
+                   '#output/derived/prescrape/pre1790/pre1790_cleaned.csv'],
+        CL_ARG  = state
+    )

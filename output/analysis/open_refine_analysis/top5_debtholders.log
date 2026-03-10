@@ -1,0 +1,10 @@
+File: output/analysis/open_refine_analysis/top5_debtholders.csv
+
+MD5 hash: 54bcdedebfc3c8b1748036bf71fc13bf
+
+Keys: raw_name_state 
+
+                 type count unique         mean          std          min          50%          max
+raw_name_state    str     5      5                                                                 
+face_value      int64     5         509,600.000  128,144.547  379,100.000  483,400.000  680,000.000
+

@@ -1,0 +1,13 @@
+File: output/analysis/pre1790/fuzzy_matches_pre1790.csv
+
+MD5 hash: 605f35c582037efc5df1c4501926ed37
+
+Keys: source_file column original match 
+
+                type  count unique    mean    std     min     50%      max
+source_file      str  9,663      1                                        
+column           str  9,663      2                                        
+original         str  9,663  6,936                                        
+match            str  9,663  6,907                                        
+score        float64  9,663         92.406  1.807  90.000  92.308  100.000
+

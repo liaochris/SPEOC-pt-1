@@ -1,0 +1,39 @@
+File: output/derived/prescrape/pre1790/combined_pre1790.csv
+
+MD5 hash: 0e182a8015b7ee943cb34471fce21d63
+
+Keys: org_file org_index 
+
+                                          type    count      unique        mean         std     min         50%          max
+org_file                                   str  203,071          12                                                         
+org_index                                int64  203,071              37,984.314  27,609.743   0.000  36,342.000   93,306.000
+state                                      str  184,857          14                                                         
+date of the certificate | year          object  203,056          14                                                         
+date of the certificate | month         object  203,055          13                                                         
+date of the certificate | day           object  203,037          38                                                         
+to whom due | title                        str  101,658          94                                                         
+to whom due | first name                   str  203,006       7,658                                                         
+to whom due | last name                 object  198,398      25,360                                                         
+to whom due | title.1                   object   94,111           2                                                         
+to whom due | first name.1                 str   95,431         128                                                         
+to whom due | last name.1                  str   95,427         209                                                         
+amount | dollars                        object  201,999  11,744.000                                                         
+amount in specie | dollars             float64   81,869                 125.598     490.849   0.694      46.604  130,846.000
+letter                                  object  121,917          28                                                         
+time when the debt became due | month   object  121,905          39                                                         
+time when the debt became due | day     object  121,903          54                                                         
+time when the debt became due | year    object  121,873          62                                                         
+amount | 90th                           object  113,959         100                                                         
+line strike through? | yes?             object  111,411           4                                                         
+line strike through? | note             object  120,398       4,349                                                         
+notes                                   object   94,452         159                                                         
+amount | 10th                          float64       10               1,321.550   2,655.896  30.000      72.000    6,572.000
+exchange                                object      109      35.000                                                         
+amount in specie | cents               float64      778                  43.278      23.140   1.000      41.500       89.000
+amount | 8th                           float64      918                   3.950       1.627   1.000       4.000        7.000
+delivered | month                      float64    1,518                   6.143       3.482   1.000       6.000       12.000
+delivered | day                        float64    1,518                  16.061       9.464   1.000      16.000      123.000
+delivered | year                       float64    1,518               1,794.652     415.997   7.000   1,785.000   17,894.000
+total dollars | notes                   object      367         178                                                         
+total dollars | notes.1                float64        3                  45.333       6.110  40.000      44.000       52.000
+

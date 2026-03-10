@@ -1,0 +1,188 @@
+*** Builder log created: {2026-03-10 09:16:08}
+*** Builder log completed: {2026-03-10 09:16:34}
+MA - 2842 names, 1341 with counties (47.2%)
+
+Per-county counts:
+    county  count
+     ESSEX    332
+ WORCESTER    225
+ MIDDLESEX    156
+   SUFFOLK    149
+ BERKSHIRE    128
+   BRISTOL    126
+ HAMPSHIRE     85
+  PLYMOUTH     66
+BARNSTABLE     61
+ NANTUCKET      7
+     DUKES      6
+[QA] Missing in shapefile: set()
+[QA] Expected total: 1341
+[QA] Matched total:  1341.0
+[QA] Missing people: 0.0
+[QA] Counties plotted with 0: ['CUMBERLAND', 'HANCOCK', 'LINCOLN', 'WASHINGTON', 'YORK']
+Map saved to output/analysis/pre1790/ancestry_loan_office/ma_choropleth_1777.png
+NH - 531 names, 283 with counties (53.3%)
+
+Per-county counts:
+      county  count
+  ROCKINGHAM    139
+    CHESHIRE     61
+HILLSBOROUGH     43
+     GRAFTON     23
+   STRAFFORD     17
+[QA] Missing in shapefile: set()
+[QA] Expected total: 283
+[QA] Matched total:  283
+[QA] Missing people: 0
+[QA] Counties plotted with 0: []
+Map saved to output/analysis/pre1790/ancestry_loan_office/nh_choropleth_1777.png
+CT - 2545 names, 52 with counties (2.0%)
+
+Per-county counts:
+    county  count
+ FAIRFIELD     23
+LITCHFIELD     19
+ NEW HAVEN      6
+  HARTFORD      3
+   WINDHAM      1
+[QA] Missing in shapefile: set()
+[QA] Expected total: 52
+[QA] Matched total:  52.0
+[QA] Missing people: 0.0
+[QA] Counties plotted with 0: ['MIDDLESEX', 'NEW LONDON', 'TOLLAND']
+Map saved to output/analysis/pre1790/ancestry_loan_office/ct_choropleth_1777.png
+NY - 1391 names, 549 with counties (39.5%)
+
+Per-county counts:
+     county  count
+     ALBANY    263
+     ULSTER     78
+   NEW YORK     57
+   DUTCHESS     45
+ MONTGOMERY     31
+   COLUMBIA     30
+     ORANGE     13
+WESTCHESTER     12
+    CLINTON      6
+ WASHINGTON      6
+     QUEENS      3
+      KINGS      2
+    SUFFOLK      2
+   RICHMOND      1
+[QA] Missing in shapefile: set()
+[QA] Expected total: 549
+[QA] Matched total:  549.0
+[QA] Missing people: 0.0
+[QA] Counties plotted with 0: ['INDIAN LANDS (NO DATA)', 'ONTARIO']
+Map saved to output/analysis/pre1790/ancestry_loan_office/ny_choropleth_1777.png
+NJ - 1856 names, 374 with counties (20.2%)
+
+Per-county counts:
+                         county  count
+                     BURLINGTON     98
+                      HUNTERDON     47
+                         BERGEN     45
+           EAST AND WEST JERSEY     39
+                       MONMOUTH     32
+                          ESSEX     15
+                      MIDDLESEX     15
+                         MORRIS     15
+                     NEW JERSEY     11
+                         SUSSEX      7
+                     CUMBERLAND      6
+                    PERTH AMBOY      6
+                    WEST JERSEY      6
+MIDDLESEX AND SOMERSET COUNTIES      5
+                  NEW BRUNSWICK      5
+                        TRENTON      5
+   ESSEX AND MIDDLESEX COUNTIES      4
+                          SALEM      4
+                     GLOUCESTER      3
+                      ELIZABETH      2
+                       SOMERSET      2
+                      PRINCETON      1
+            WOODBRIDGE TOWNSHIP      1
+[QA] Missing in shapefile: {'PERTH AMBOY', 'NEW BRUNSWICK', 'ESSEX AND MIDDLESEX COUNTIES', 'EAST AND WEST JERSEY', 'MIDDLESEX AND SOMERSET COUNTIES', 'TRENTON', 'ELIZABETH', 'PRINCETON', 'WOODBRIDGE TOWNSHIP', 'NEW JERSEY', 'WEST JERSEY'}
+[QA] Expected total: 374
+[QA] Matched total:  289.0
+[QA] Missing people: 85.0
+[QA] Counties plotted with 0: ['CAPE MAY']
+Map saved to output/analysis/pre1790/ancestry_loan_office/nj_choropleth_1777.png
+PA - 6862 names, 3037 with counties (44.3%)
+
+Per-county counts:
+        county  count
+  PHILADELPHIA   1035
+    CUMBERLAND    432
+     LANCASTER    333
+         BERKS    230
+       CHESTER    228
+          YORK    184
+         BUCKS    150
+       BEDFORD    101
+   NORTHAMPTON     99
+    WASHINGTON     63
+NORTHUMBERLAND     54
+  WESTMORELAND     41
+    MONTGOMERY     33
+       DAUPHIN     19
+       FAYETTE     13
+      FRANKLIN     10
+    HUNTINGDON      8
+     ALLEGHENY      4
+[QA] Missing in shapefile: set()
+[QA] Expected total: 3037
+[QA] Matched total:  3037.0
+[QA] Missing people: 0.0
+[QA] Counties plotted with 0: ['DELAWARE', 'ERIE TRIANGLE (NO DATA)', 'LUZERNE', 'MIFFLIN']
+Map saved to output/analysis/pre1790/ancestry_loan_office/pa_choropleth_1777.png
+DE - 189 names, 102 with counties (54.0%)
+
+Per-county counts:
+    county  count
+NEW CASTLE     78
+      KENT     14
+    SUSSEX     10
+[QA] Missing in shapefile: set()
+[QA] Expected total: 102
+[QA] Matched total:  102
+[QA] Missing people: 0
+[QA] Counties plotted with 0: []
+Map saved to output/analysis/pre1790/ancestry_loan_office/de_choropleth_1777.png
+MD - 989 names, 332 with counties (33.6%)
+
+Per-county counts:
+        county  count
+  ANNE ARUNDEL     80
+       CHARLES     46
+   QUEEN ANNES     35
+      CAROLINE     33
+PRINCE GEORGES     30
+    MONTGOMERY     27
+     FREDERICK     22
+       HARFORD     18
+    WASHINGTON     14
+    DORCHESTER     12
+      SOMERSET      7
+     BALTIMORE      4
+        TALBOT      3
+ PRINCEGEORGES      1
+[QA] Missing in shapefile: {'PRINCEGEORGES'}
+[QA] Expected total: 332
+[QA] Matched total:  331.0
+[QA] Missing people: 1.0
+[QA] Counties plotted with 0: ['ALLEGANY', 'BALTIMORE CITY', 'CALVERT', 'CECIL', 'KENT', 'ST MARYS', 'WORCESTER']
+Map saved to output/analysis/pre1790/ancestry_loan_office/md_choropleth_1777.png
+VA - 499 names, 32 with counties (6.4%)
+
+Per-county counts:
+       county  count
+    ALBEMARLE     15
+     ACCOMACK     14
+PRINCE EDWARD      3
+[QA] Missing in shapefile: set()
+[QA] Expected total: 32
+[QA] Matched total:  32.0
+[QA] Missing people: 0.0
+[QA] Counties plotted with 0: ['AMELIA', 'AMHERST', 'AUGUSTA', 'BEDFORD', 'BERKELEY', 'BOTETOURT', 'BOURBON', 'BRUNSWICK', 'BUCKINGHAM', 'CAMPBELL', 'CAROLINE', 'CHARLES CITY', 'CHARLOTTE', 'CHESTERFIELD', 'CULPEPER', 'CUMBERLAND', 'DINWIDDIE', 'ELIZABETH CITY', 'ESSEX', 'FAIRFAX', 'FAUQUIER', 'FAYETTE (OLD)', 'FLUVANNA', 'FRANKLIN', 'FREDERICK', 'GLOUCESTER', 'GOOCHLAND', 'GREENBRIER', 'GREENSVILLE', 'HALIFAX', 'HAMPSHIRE', 'HANOVER', 'HARDY', 'HARRISON', 'HENRICO', 'HENRY', 'ISLE OF WIGHT', 'JAMES CITY', 'JEFFERSON (OLD)', 'KING AND QUEEN', 'KING GEORGE', 'KING WILLIAM', 'LANCASTER', 'LINCOLN', 'LOUDOUN', 'LOUISA', 'LUNENBURG', 'MADISON (OLD)', 'MASON (OLD)', 'MECKLENBURG', 'MERCER (OLD)', 'MIDDLESEX', 'MONONGALIA', 'MONTGOMERY', 'NANSEMOND', 'NELSON (OLD)', 'NEW KENT', 'NORFOLK', 'NORTHAMPTON', 'NORTHUMBERLAND', 'OHIO', 'ORANGE', 'PENDELTON', 'PITTSYLVANIA', 'POWHATAN', 'PRINCE GEORGE', 'PRINCE WILLIAM', 'PRINCESS ANNE', 'RANDOLPH', 'RICHMOND', 'ROCKBRIDGE', 'ROCKINGHAM', 'RUSSELL', 'SHENANDOAH', 'SOUTHAMPTON', 'SPOTSYLVANIA', 'STAFFORD', 'SURRY', 'SUSSEX', 'WARWICK', 'WASHINGTON', 'WESTMORELAND', 'WOODFORD', 'YORK']
+Map saved to output/analysis/pre1790/ancestry_loan_office/va_choropleth_1777.png

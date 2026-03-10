@@ -1,0 +1,18 @@
+File: output/analysis/open_refine_analysis/ratio_analysis.csv
+
+MD5 hash: 96ccef013c9d94575a219307e9fdd3f6
+
+Keys: recon_id 
+
+                          type count unique       mean        std      min        50%         max
+recon_id                   str   782    782                                                      
+six_percent_amt        float64   782         1,667.845  4,150.200    0.000    400.000  62,341.780
+deferred_amt           float64   782           832.673  2,089.949    0.000    200.450  31,170.890
+post_total             float64   782         2,500.518  6,232.392    0.000    601.250  93,512.670
+ratio_six              float64   721             0.666      0.040    0.000      0.667       1.000
+ratio_deferred         float64   721             0.334      0.040    0.000      0.333       1.000
+pre_total                int64   782         3,049.246  5,775.849  200.000  1,100.000  86,800.000
+expected_six_amt       float64   782         2,032.830  3,850.566  133.333    733.333  57,866.667
+expected_deferred_amt  float64   782         1,016.415  1,925.283   66.667    366.667  28,933.333
+in_ratio_tolerance        bool   782      2                                                      
+

@@ -1,0 +1,12 @@
+state,file_path,first_row,last_row,year_col,dollars_col,cents_col,month_col
+ct,source/raw/post1790_cd/orig/CT/CT_CD.xlsx,15,1021,"C,S,AI","N,AD,AT","O,AE,AU","D,T,AJ"
+ga,source/raw/post1790_cd/orig/GA/GA_CD.xlsx,12,76,C,AF,,D
+md,source/raw/post1790_cd/orig/MD/MD_CD.xlsx,13,639,"C,Q,AE","L,Z,AN","M,AA,AO","D,R,AF"
+nc,source/raw/post1790_cd/orig/NC/NC_CD.xlsx,13,86,C,AF,,D
+nh,source/raw/post1790_cd/orig/NH/NH_CD.xlsx,12,230,C,T,U,D
+nj,source/raw/post1790_cd/orig/NJ/NJ_CD.xlsx,13,988,H,L,M,I
+ny,source/raw/post1790_cd/orig/NY/NY_CD.xlsx,13,2205,AH,"M,AC,AR","N,AD,AS",AI
+pa,source/raw/post1790_cd/orig/PA/PA_CD.xlsx,13,1293,"C,Q,AE","L,Z,AO","M,AA,AP","D,R,AF"
+ri,source/raw/post1790_cd/orig/RI/RI_CD.xlsx,13,674,"C,Q,AE","L,Z,AN","M,AA,AO","D,R,AF"
+sc,source/raw/post1790_cd/orig/SC/SC_CD.xlsx,13,440,"I,X,AM","M,AB,AQ","N,AC,AR","J,Y,AN"
+va,source/raw/post1790_cd/orig/VA/VA_CD.xlsx,13,778,"C,P,AC","K,X,AK","L,Y,AL","D,Q,AD"

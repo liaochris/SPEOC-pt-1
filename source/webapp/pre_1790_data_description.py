@@ -1,8 +1,5 @@
 from dash import html
 from dash import dcc
-from dash import Dash
-
-app = Dash(__name__)
 
 pre1790_description = html.Div(className='box', children=[
     html.H1("Pre1790 Data Overview", style={'marginBottom': '5px'}, className='section-title'),
@@ -45,12 +42,6 @@ Through interactive maps and tables, this website offers a data-driven perspecti
     ])
 
 
-pre_data_layout = html.Div([
-    pre1790_description,    
+Layout = html.Div([
+    pre1790_description,
 ])
-
-app.layout = pre_data_layout
-
-def layout():
-    return pre_data_layout
-    

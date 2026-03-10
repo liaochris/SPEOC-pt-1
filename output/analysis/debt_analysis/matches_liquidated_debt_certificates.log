@@ -1,0 +1,13 @@
+File: output/analysis/debt_analysis/matches_liquidated_debt_certificates.csv
+
+MD5 hash: 79a02a337106a4a5c3bd374236ef12c7
+
+Keys: raw_name state 
+
+               type count unique       mean std        min        50%        max
+raw_name        str     1      1                                                
+state           str     1      1                                                
+original_row  int64     1         5,602.000      5,602.000  5,602.000  5,602.000
+Dollars         str     0      0                                                
+90th            str     1      1                                                
+

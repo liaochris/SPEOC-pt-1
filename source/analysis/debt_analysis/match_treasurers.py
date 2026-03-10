@@ -3,9 +3,11 @@
 
 from pathlib import Path
 import pandas as pd
+from source.lib.SaveData import SaveData
 
-INDIR_PRE1790 = Path("output/derived/pre1790")
+INDIR_OPENREFINE = Path("output/analysis/open_refine_analysis")
 OUTDIR = Path("output/analysis/debt_analysis")
+OUTDIR.mkdir(parents=True, exist_ok=True)
 
 TREASURERS = pd.DataFrame(
     [("WILLIAM GARDNER","NH"),
@@ -31,7 +33,7 @@ def Main():
 
 
 def SearchLiquidatedDebt():
-    input_csv = INDIR_PRE1790 / "liquidated_debt_certificates_combined.csv"
+    input_csv = INDIR_OPENREFINE / "liquidated_debt_certificates.csv"
     output_csv = OUTDIR / "matches_liquidated_debt_certificates.csv"
 
     df = pd.read_csv(input_csv, usecols=["raw_name", "state", "Dollars", "90th"], low_memory=False)
@@ -41,11 +43,11 @@ def SearchLiquidatedDebt():
     matches = df[mask].assign(original_row=df.index[mask]+1)[["original_row", "raw_name", "state", "Dollars", "90th"]]
 
     print(matches)
-    matches.to_csv(output_csv, index=False)
+    SaveData(matches, ['raw_name', 'state'], output_csv, log_file=output_csv.with_suffix('.log'))
 
 
 def SearchLoanOfficeCerts():
-    input_csv = INDIR_PRE1790 / "loan_office_certificates_cleaned.csv"
+    input_csv = INDIR_OPENREFINE / "loan_office_certificates_cleaned.csv"
     output_csv = OUTDIR / "matches_loan_office_certificates.csv"
     totals_csv = OUTDIR / "matches_loan_office_certificates_totals.csv"
 
@@ -56,7 +58,7 @@ def SearchLoanOfficeCerts():
     matches = df[mask].assign(original_row=df.index[mask]+1)[["original_row", "raw_name", "state", "Face Value", "Specie Value"]]
 
     print(matches)
-    matches.to_csv(output_csv, index=False)
+    SaveData(matches, ['raw_name', 'state', 'original_row'], output_csv, log_file=output_csv.with_suffix('.log'))
 
     totals_per_person = (
         matches.groupby(["raw_name", "state"], as_index=False)
@@ -67,7 +69,7 @@ def SearchLoanOfficeCerts():
                })
     )
 
-    totals_per_person.to_csv(totals_csv, index=False)
+    SaveData(totals_per_person, ['raw_name', 'state'], totals_csv, log_file=totals_csv.with_suffix('.log'))
     print(totals_per_person)
 
 

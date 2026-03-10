@@ -1,0 +1,15 @@
+File: output/derived/prescrape/post1790_cd/check/companies_unidentified_partners.csv
+
+MD5 hash: 818542d19b77003cc1a55438a93fe4b5
+
+Keys: Name Name_Fix 
+
+          type count unique
+Name       str    27     27
+Name_Fix   str    27     27
+new_town   str    27      9
+county     str    27      9
+new_state  str    27      8
+country    str    27      1
+geo_level  str    27      2
+

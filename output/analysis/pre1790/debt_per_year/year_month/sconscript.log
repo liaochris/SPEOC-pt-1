@@ -1,0 +1,28 @@
+*** Builder log created: {2026-03-10 09:16:08}
+*** Builder log completed: {2026-03-10 09:16:09}
+Python did not run successfully. Please check that the executable, source, and target files are correctly specified. Check output/analysis/pre1790/debt_per_year/year_month/sconscript.log and sconstruct.log for errors. 
+Command tried: "python"  source/analysis/pre1790/analyze_by_year.py  > output/analysis/pre1790/debt_per_year/year_month/sconscript.log
+Traceback (most recent call last):
+  File "/Users/cliao/Documents/GitHub/SPEOC-pt-1/source/analysis/pre1790/analyze_by_year.py", line 187, in <module>
+    Main()
+  File "/Users/cliao/Documents/GitHub/SPEOC-pt-1/source/analysis/pre1790/analyze_by_year.py", line 15, in Main
+    cd_info = pd.read_csv(INDIR_CD_INFO / "cd_info.csv")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/anaconda3/envs/SPEOC/lib/python3.11/site-packages/pandas/io/common.py", line 926, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/derived/prescrape/pre1790/cd_info.csv'
+
+

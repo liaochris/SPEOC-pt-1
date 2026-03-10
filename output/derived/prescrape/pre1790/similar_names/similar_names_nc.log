@@ -1,0 +1,45 @@
+File: output/derived/prescrape/pre1790/similar_names/similar_names_nc.csv
+
+MD5 hash: 318258e58f173fffe0a8eb0e1749bb65
+
+Keys: row_id 
+
+                                          type count unique     mean      std     min     50%        max
+row_id                                   int64   157          78.000   45.466   0.000  78.000    156.000
+org_file                                   str   157      1                                             
+org_index                                  str   157    157                                             
+state                                      str   157      1                                             
+date of the certificate | year         float64     0                                                    
+date of the certificate | month        float64     0                                                    
+date of the certificate | day          float64     0                                                    
+to whom due | title                        str     0      0                                             
+to whom due | first name                   str   157     53                                             
+to whom due | last name                    str   157    138                                             
+to whom due | title.1                      str     0      0                                             
+to whom due | first name.1                 str     0      0                                             
+to whom due | last name.1                  str     0      0                                             
+amount | dollars                       float64   157         437.100  853.723  10.000  80.000  4,987.450
+amount in specie | dollars             float64     0                                                    
+letter                                     str     0      0                                             
+time when the debt became due | month  float64     0                                                    
+time when the debt became due | day     object     0      0                                             
+time when the debt became due | year    object     0      0                                             
+amount | 90th                           object   157  2.000                                             
+line strike through? | yes?            float64     0                                                    
+line strike through? | note                str     0      0                                             
+notes                                      str     0      0                                             
+amount | 10th                          float64     0                                                    
+exchange                                   str     0      0                                             
+amount in specie | cents               float64     0                                                    
+amount | 8th                           float64     0                                                    
+delivered | month                      float64     0                                                    
+delivered | day                        float64     0                                                    
+delivered | year                       float64     0                                                    
+total dollars | notes                      str     0      0                                             
+total dollars | notes.1                float64     0                                                    
+organization?                             bool   157      1                                             
+final_agg_debt index                       str   157    157                                             
+deceased?                                 bool   157      1                                             
+full name                                  str   157    157                                             
+matches                                    str   157    155                                             
+

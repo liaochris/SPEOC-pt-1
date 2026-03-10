@@ -1,0 +1,11 @@
+File: output/analysis/family_tree_analysis/non_match_reasons.csv
+
+MD5 hash: fa1dbebcfb1e4525abd5850c90539bad
+
+Keys: reason 
+
+               type count unique        mean std         min         50%         max
+reason          str     1      1                                                    
+count         int64     1         74,890.000      74,890.000  74,890.000  74,890.000
+proportion  float64     1            100.000         100.000     100.000     100.000
+

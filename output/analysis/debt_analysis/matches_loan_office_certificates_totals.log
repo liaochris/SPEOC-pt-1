@@ -1,0 +1,12 @@
+File: output/analysis/debt_analysis/matches_loan_office_certificates_totals.csv
+
+MD5 hash: 78a7cc8690e6e3efdd652e05fcb96ac5
+
+Keys: raw_name state 
+
+                       type count unique        mean         std        min        50%         max
+raw_name                str     5      5                                                          
+state                   str     5      5                                                          
+Total Face Value      int64     5         16,360.000  17,243.202  3,000.000  5,800.000  42,600.000
+Total Specie Value  float64     5          7,634.369  10,986.335    125.000    277.169  24,671.109
+

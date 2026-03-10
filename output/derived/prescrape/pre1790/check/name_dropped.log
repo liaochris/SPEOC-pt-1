@@ -1,0 +1,13 @@
+File: output/derived/prescrape/pre1790/check/name_dropped.csv
+
+MD5 hash: fece461b1d7d4c101da9baf956488bf4
+
+Keys: row_id 
+
+                           type count unique        mean         std      min         50%         max
+row_id                    int64   103             51.000      29.878    0.000      51.000     102.000
+org_file                    str   103      4                                                         
+org_index                 int64   103         37,627.039  14,196.445  956.000  40,474.000  61,970.000
+to whom due | first name    str   103     29                                                         
+to whom due | last name     str     0      0                                                         
+

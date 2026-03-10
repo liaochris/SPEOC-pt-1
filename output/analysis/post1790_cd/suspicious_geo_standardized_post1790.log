@@ -1,0 +1,33 @@
+File: output/analysis/post1790_cd/suspicious_geo_standardized_post1790.csv
+
+MD5 hash: 1b7acb2bab1509de52ec89387e3990e9
+
+Keys: row_id 
+
+                      type  count unique       mean        std    min        50%          max
+row_id               int64  2,403         1,201.000    693.831  0.000  1,201.000    2,402.000
+state_data             str  2,403      9                                                     
+state_data_index     int64  2,403         1,087.658    598.156  2.000  1,031.000    2,193.000
+6p_Dollar          float64    257         1,043.681  2,350.670  3.000    222.000   20,000.000
+6p_Cents           float64    232            52.996     35.761  0.000     54.000      351.623
+6p_def_Dollar      float64    279           799.233  2,415.970  0.000    121.000   26,384.000
+6p_def_Cents       float64    261            47.483     29.746  0.000     45.000      175.813
+3p_Dollar          float64  2,263         1,999.399  7,548.079  1.000    387.000  184,549.000
+3p_Cents           float64  2,164            44.085     31.904  0.000     43.000      384.090
+town                   str    262    215                                                     
+state                  str  2,395     19                                                     
+occupation             str    111     37                                                     
+Name                   str  2,403  1,205                                                     
+First Name             str    259    124                                                     
+Last Name              str    228    194                                                     
+new_town               str    195    124                                                     
+county                 str    227     80                                                     
+new_state              str  2,390     14                                                     
+country                str  2,403      6                                                     
+geo_level              str  2,403      4                                                     
+6p_total           float64  2,403           111.672    832.501  0.000      0.000   20,000.000
+6p_def_total       float64  2,403            92.846    860.925  0.000      0.000   26,384.390
+3p_total           float64  2,403         1,883.310  7,339.762  0.000    342.760  184,549.550
+suspicious_row        bool  2,403      1                                                     
+suspicious_reason      str  2,403      7                                                     
+

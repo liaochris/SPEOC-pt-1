@@ -1,0 +1,44 @@
+File: output/analysis/debt_analysis/speculator_matches_pre1790_cleaned.csv
+
+MD5 hash: e9181e677e9d414027dc492d6725baa6
+
+Keys: row_id 
+
+                                          type count unique        mean         std        min         50%         max
+row_id                                   int64   398         70,570.128  20,492.684    475.000  80,090.500  93,741.000
+org_file                                   str   398     11                                                           
+org_index                                  str   398    398                                                           
+state                                      str   393     10                                                           
+date of the certificate | year         float64   369          1,780.019       2.983  1,776.000   1,779.000   1,788.000
+date of the certificate | month        float64   369              5.564       3.024      1.000       5.000      12.000
+date of the certificate | day          float64   368             16.380       9.184      1.000      17.000      31.000
+to whom due | title                        str    15      4                                                           
+to whom due | first name                   str   398     46                                                           
+to whom due | last name                    str   398     44                                                           
+to whom due | title.1                      str     0      0                                                           
+to whom due | first name.1                 str    40      7                                                           
+to whom due | last name.1                  str    40      7                                                           
+amount | dollars                       float64   398          2,813.983   5,635.911      1.000     800.000  54,000.000
+amount in specie | dollars             float64   286            252.678     281.002      5.000     120.890   1,000.000
+letter                                     str    84     13                                                           
+time when the debt became due | month  float64    84              6.345       6.500      1.000       4.000      31.000
+time when the debt became due | day        str    84     29                                                           
+time when the debt became due | year       str    84     22                                                           
+amount | 90th                              str   398     55                                                           
+line strike through? | yes?            float64    60              1.000       0.000      1.000       1.000       1.000
+line strike through? | note                str    82     48                                                           
+notes                                      str     7      6                                                           
+amount | 10th                          float64     0                                                                  
+exchange                                   str     0      0                                                           
+amount in specie | cents               float64     1             29.000                 29.000      29.000      29.000
+amount | 8th                           float64    15              3.467       1.807      1.000       4.000       7.000
+delivered | month                      float64    17              6.353       2.978      3.000       5.000      12.000
+delivered | day                        float64    17             22.824       6.106      4.000      25.000      28.000
+delivered | year                       float64    17          1,784.294       0.985  1,781.000   1,784.000   1,785.000
+total dollars | notes                      str     0      0                                                           
+total dollars | notes.1                float64     0                                                                  
+organization?                             bool   398      1                                                           
+final_agg_debt index                       str   398    398                                                           
+deceased?                                 bool   398      1                                                           
+is_speculator                             bool   398      1                                                           
+

@@ -1,4 +1,3 @@
-# import packages
 from pathlib import Path
 import json
 
@@ -10,64 +9,60 @@ import plotly.express as px
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
-from shapely import wkt
-import requests
 
-INDIR_SHAPEFILES = Path("source/raw/shapefiles")
-INDIR_CENSUS = Path("source/raw/census_data")
-
-
-# import info from other pages
 from app import app
 
-# import json file that converts full name of a state to two character abbreviation
-state_codes = json.loads(requests.get('https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/web_app/assets/state_codes.json').text)
+REPO_ROOT = Path(__file__).resolve().parents[2]
+ASSETS_DIR = Path(__file__).parent / "assets"
+INDIR_SHAPEFILES = REPO_ROOT / "source/raw/shapefiles"
+INDIR_CENSUS = REPO_ROOT / "source/raw/census_data"
+INDIR_DERIVED = REPO_ROOT / "output/derived/postscrape/post1790_cd"
+
+state_codes = json.loads((ASSETS_DIR / "state_codes.json").read_text())
 state_codes_inv = {v: k for k, v in state_codes.items()}
 
-map_descr = json.loads(requests.get('https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/web_app/assets/map_descriptions.json').text)
+map_descr = json.loads((ASSETS_DIR / "map_descriptions.json").read_text())
 
 
 # Number of project description slides
 DESCRIPTION_COUNT = 2
 
-######################################################################
-###################################### dataframes used for maps ########################################################
-########################################################################################################################
-# data for counties is preprocessed elsewhere, saves us 3s
-df_raw = pd.read_csv('https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/web_app/assets/map_df.csv', index_col = 0)
-df_raw['geometry'] = df_raw['geometry'].apply(wkt.loads)
-map_df = gpd.GeoDataFrame(df_raw)
+map_df = gpd.read_file(
+    INDIR_SHAPEFILES / "orig/historicalcounties_1790/COUNTY_1790_US_SL050_Coast_Clipped.shp")
+map_df.rename(columns={'STATENAM': 'state', 'NHGISNAM': 'county'}, inplace=True)
+map_df['state_abrev'] = map_df['state'].map(state_codes)
 
 
 # only contains state borders, no county borders
 # don't optimize time because it's fast enough without optimizing
-state_map_df = gpd.read_file(INDIR_SHAPEFILES / "stateshape_1790")
+state_map_df = gpd.read_file(INDIR_SHAPEFILES / "orig/stateshape_1790")
 state_map_df.rename(columns={'STATENAM': 'state'}, inplace=True)
 state_map_df['state_abrev'] = state_map_df.loc[:, 'state']
 state_map_df.replace({"state_abrev": state_codes}, inplace=True)
 
 # list of states we include in dropdown menu
-states = pd.read_csv("https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/source/raw/census_data/statepop.csv")["State"].dropna()
+_state_abbrev_names = {
+    "CT": "Connecticut", "DE": "Delaware", "GA": "Georgia",
+    "MD": "Maryland", "MA": "Massachusetts", "NH": "New Hampshire",
+    "NJ": "New Jersey", "NY": "New York", "NC": "North Carolina",
+    "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina",
+    "VA": "Virginia",
+}
+_county_pop = pd.read_csv(INDIR_CENSUS / "orig/county_pop_fips.csv", header=1)
+statepop = _county_pop.groupby("Geo_STUSAB")["SE_T001_001"].sum().reset_index()
+statepop.columns = ["State", "Total Pop"]
+statepop["State"] = statepop["State"].map(_state_abbrev_names)
+statepop["Slave Pop"] = float("nan")
+states = statepop["State"].dropna()
 states = pd.concat([pd.Series(["All States"]), states]).tolist()
-# remove states that have no map data
-states.remove("Maine")
-states.remove("Kentucky")
-states.remove("Tennessee")
 
-########################################################################################################################
-###################################### dataframes used for maps ########################################################
-########################################################################################################################
-# DEBT - COUNTY + STATE LEVEL
-# county - import debt
-debt_by_county = pd.read_csv("https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/output/derived/post1790_cd/final_data_CD.csv")[["Group State", "Group County", 'final_total_adj']]
+debt_by_county = pd.read_csv(INDIR_DERIVED / "final_data_CD.csv")[["Group State", "Group County", 'final_total_adj']]
 debt_by_county = debt_by_county.fillna('')
 debt_by_county = debt_by_county.groupby(by=["Group County", "Group State"]).agg(['size', 'sum'])
 debt_by_county.reset_index(inplace=True)
 debt_by_county.columns = debt_by_county.columns.droplevel(1)
 debt_by_county.columns = ['county', 'state', 'count', 'final_total_adj']
-# county - import geography and population data
-county_pop_data_raw = pd.read_csv("https://raw.githubusercontent.com/liaochris/SPEOC-pt-1/main/source/raw/census_data/countyPopulation.csv", header=1)
-county_geo_fips = county_pop_data_raw[county_pop_data_raw["SE_T001_001"].notna()]
+county_geo_fips = _county_pop[_county_pop["SE_T001_001"].notna()].copy()
 county_geo_fips = county_geo_fips.astype({"SE_T001_001": "int", "Geo_FIPS": "str"})
 county_geo_fips = county_geo_fips[["Geo_FIPS", "Geo_name", 'Geo_STUSAB', "SE_T001_001"]]
 county_geo_fips.rename(columns={"Geo_name": "county", 'Geo_STUSAB': 'state', "SE_T001_001": 'population'},
@@ -90,7 +85,7 @@ nat_debt_geo["mean_6p_total"] = state_debt_geo['final_total_adj'].sum()/state_de
 
 # SLAVE POPULATION - COUNTY + STATE LEVEL
 # county
-county_slaves = gpd.read_file(INDIR_CENSUS / "census.csv")
+county_slaves = gpd.read_file(INDIR_CENSUS / "orig/county_demographics_1790.csv")
 county_slaves = county_slaves[["GISJOIN", "slavePopulation"]].head(290)
 county_slaves['GISJOIN'] = county_slaves['GISJOIN'].str.replace('G0', '')
 county_slaves['GISJOIN'] = county_slaves['GISJOIN'].str.replace('G', '')  # convert to geo_fips
@@ -116,9 +111,6 @@ map_to_col = {'Population': 'population',
               'Debt Density': 'density',
               'Average Debt Holdings': 'mean_6p_total'}
 
-########################################################################################################################
-######################################### Define App Components ########################################################
-########################################################################################################################
 # Project description tab
 project_desc = html.Div(className='box', children=[
     html.H2(children='Project Description', className='box-title', style={'marginBottom': '20px'}, id = 'slider-title'),
@@ -210,13 +202,9 @@ maps_layout = [project_desc,
                html.Div(className='tabs-container', children=[left_tab, right_tab]),
                html.Div(className='right-tab', children=display_tab)]
 
-########################################################################################################################
-########################################### Helper Functions ###########################################################
-########################################################################################################################
-def returnSlider(df, col, slidermax, sliderrange):
+def ReturnSlider(df, col, slidermax, sliderrange):
     maxval = df[col].max()+1
     if slidermax != maxval:
-        print(np.linspace(0, maxval, num = 6))
         slider = dcc.RangeSlider(min=0, max=maxval, id="slider", 
                                  marks = {i: '{:,.1f}'.format(i) for i in np.linspace(0.1, maxval, num = 6)})
         return df, slider
@@ -226,7 +214,7 @@ def returnSlider(df, col, slidermax, sliderrange):
         df_adj = df[df[col].between(sliderrange[0], sliderrange[1], inclusive="both")]
         return df_adj, slider
 
-def returnFig(df_adj, df_geojson, geo_col, color_col, featureidkey, basemap_visible, fitbounds, hover_name, hover_data, all_max, map_type,
+def ReturnFig(df_adj, df_geojson, geo_col, color_col, featureidkey, basemap_visible, fitbounds, hover_name, hover_data, all_max, map_type,
               border_type):
     df_adj[map_type] = df_adj[color_col]
     if border_type != 'Countywide':
@@ -247,36 +235,22 @@ def returnFig(df_adj, df_geojson, geo_col, color_col, featureidkey, basemap_visi
     
                         
     return fig
-########################################################################################################################
-######################################### Callback Functions ###########################################################
-########################################################################################################################
 # Callback function to display range slider when heatmap type is chosen
 @app.callback(
     Output("range-slider", "style"),
     [Input("heatmap_drpdwn", "value")]
 )
-def add_range_slider(stat_val):
-    """
-    chooses to display or hide the dropdown menu
-    :param stat_val: what parameter was selected for the Statistic option
-    :return: display style - show or hide
-    """
+def AddRangeSlider(stat_val):
     if (stat_val is not None) and (stat_val != "Not Selected"):
         return {"display": "block"}
     else:
         return {"display": "none"}
 
-# when state/county is chosen as the region, display state dropdown
 @app.callback(
     Output("states_c_drpdwn", "children"),
     Input("reg_drpdwn", "value")
 )
-def display_state_drpdwn(reg_val):
-    """
-    chooses what state dropdown type to show
-    :param reg_val: what parameter was selected for the Region option
-    :return: dropdown that the user can use to select a state
-    """
+def DisplayStateDrpdwn(reg_val):
     if reg_val == "State":
         state_drpdwn_title = html.H5(children="State", id="state_drpdwn_t",
                                      style={'text-align':'left'})
@@ -293,19 +267,12 @@ def display_state_drpdwn(reg_val):
     )
     return dbc.Row([dbc.Col(state_drpdwn_title, width = 4), dbc.Col(state_drp, width = 8)], style = {'padding-top': '10px'})
 
-#
-# when state of the county is chosen, display county dropdown
 @app.callback(
     Output("c_drpdwn", "children"),
     [Input("states_drpdwn", "value"),
      Input('reg_drpdwn', 'value')]
 )
-def display_county_drpdwn(state_val, reg_val):
-    """
-    display list of counties in dropdown for the user to pick from
-    :param state_val: which state the user selected
-    :return: dropdown with list of counties
-    """
+def DisplayCountyDrpdwn(state_val, reg_val):
     if (state_val != "All States") and (state_val is not None) and (reg_val == 'County'):
         counties = map_df.query("state==" + "'" + state_val + "'")["county"].tolist()
         counties.insert(0, "All Counties")
@@ -322,21 +289,13 @@ def display_county_drpdwn(state_val, reg_val):
         return ''
 
 
-# when region is chosen, display border dropdown
 @app.callback(
     Output("bord_c_drpdwn", "children"),
     [Input("reg_drpdwn", "value"),
      Input("states_drpdwn", "value"),
      Input("county_drpdwn", "value")]
 )
-def display_border_drpdwn(reg_value, state_value, county_value):
-    """
-    determines what border options are made available, given the selection of region, state and county
-    :param reg_value: what region type we're displaying (county, state, nation)
-    :param state_value: state
-    :param county_value: county
-    :return: approrpiate dropdown list
-    """
+def DisplayBorderDrpdwn(reg_value, state_value, county_value):
     if (reg_value != "Not Selected") and (reg_value is not None):
         if (reg_value == "State") and (state_value == "All States") or (reg_value == "County") and (
                 state_value == "All States") \
@@ -367,7 +326,7 @@ def display_border_drpdwn(reg_value, state_value, county_value):
     [Input("border_drpdwn", "value"),  # need more input so it doesnt show up in county/state ex
      Input("reg_drpdwn", "value")]
 )
-def display_heatmap_drpdwn(border_value, region_value):
+def DisplayHeatmapDrpdwn(border_value, region_value):
     if (border_value != "Not Selected") and (border_value is not None):
         heatmap_chklist_title = html.H5(
             children=["Statistic", html.Button(children='ℹ', className='more_info_btn', id='heatmap_more_info_button')],
@@ -382,24 +341,22 @@ def display_heatmap_drpdwn(border_value, region_value):
     else:
         return ''
 
-# Callback functions to handle additional information button
 @app.callback(
     Output('regions_modal', 'is_open'),
     Input('more_info_regions', 'n_clicks')
 )
-def open_regions_information(n_clicks):
+def OpenRegionsInformation(n_clicks):
     if n_clicks > 0:
         return True
     else:
         return False
 
-# Display more information about what border type means
 @app.callback(
     Output("border_type_modal", "is_open"),
     Input('more_info_border_button', 'n_clicks'),
     State('border_type_modal', 'is_open')
 )
-def open_border_type_modal(n_click, state):
+def OpenBorderTypeModal(n_click, state):
     if n_click:
         return not state
     return state
@@ -409,7 +366,7 @@ def open_border_type_modal(n_click, state):
     Input('heatmap_more_info_button', 'n_clicks'),
     State('heatmap_modal', 'is_open')
 )
-def open_heatmap_more_info(n_clicks, state):
+def OpenHeatmapMoreInfo(n_clicks, state):
     if n_clicks:
         return not state
     return state
@@ -424,9 +381,8 @@ def open_heatmap_more_info(n_clicks, state):
      Input('slider', 'max')]
     # to keep track of when the heatmap type changes--> means that the rangeslider maximum must be adjusted
 )
-def handle_state_dropdown(state, county, map_type, border_type, sliderrange, slidermax):
+def HandleStateDropdown(state, county, map_type, border_type, sliderrange, slidermax):
     global fig
-    global nat_debt
     global county_data_final
     global state_data_final
 
@@ -454,7 +410,6 @@ def handle_state_dropdown(state, county, map_type, border_type, sliderrange, sli
 
     if (county != "All Counties") and (county is not None):
         map_df_c = map_df_c.loc[map_df_c['county'] == county]
-        print(county)
         county_data_final_pre = county_data_final[county_data_final['county'] == (county + " County")]
 
     # save as a geojson
@@ -469,18 +424,18 @@ def handle_state_dropdown(state, county, map_type, border_type, sliderrange, sli
         slider = dcc.RangeSlider(id="slider", min=0, max=10)
     else:
         if border_type == "Countywide":
-            county_data_final_adj, slider = returnSlider(county_data_final_pre, param, slidermax, sliderrange)
-            fig = returnFig(
+            county_data_final_adj, slider = ReturnSlider(county_data_final_pre, param, slidermax, sliderrange)
+            fig = ReturnFig(
                 county_data_final_adj, map_gj, 'Geo_FIPS', param, 'properties.Geo_FIPS', basemap_visible, fitbounds,
                 'county', param, county_data_final_pre[param].max(), map_type, border_type)
         elif border_type == "Statewide":
-            state_data_final_adj, slider = returnSlider(state_data_final_pre, param, slidermax, sliderrange)
-            fig = returnFig(
+            state_data_final_adj, slider = ReturnSlider(state_data_final_pre, param, slidermax, sliderrange)
+            fig = ReturnFig(
                 state_data_final_adj, states_gj, 'state', param, 'properties.state', basemap_visible, fitbounds,
                 'state', param, state_data_final_pre[param].max(), map_type, border_type)
         elif border_type == "Nationwide":
-            national_data_final_adj, slider = returnSlider(national_data_final, param, slidermax, sliderrange)
-            fig = returnFig(
+            national_data_final_adj, slider = ReturnSlider(national_data_final, param, slidermax, sliderrange)
+            fig = ReturnFig(
                 national_data_final_adj, states_gj, 'state', param, 'properties.state', basemap_visible, fitbounds,
                 'state', param, national_data_final[param].max(), map_type, border_type)
 
@@ -508,7 +463,7 @@ def handle_state_dropdown(state, county, map_type, border_type, sliderrange, sli
      Input('border_drpdwn', 'value')]
     # to keep track of when the heatmap type changes--> means that the rangeslider maximum must be adjusted
 )
-def change_map_display(state, county, map_type, border_type):
+def ChangeMapDisplay(state, county, map_type, border_type):
     if (map_type is not None) and (map_type != 'Not Selected') and (border_type is not None) and (border_type != "Not Selected"):
         btype = border_type
         if border_type == 'Nationwide':
@@ -533,7 +488,7 @@ def change_map_display(state, county, map_type, border_type):
     [Input('heatmap_drpdwn', 'value')]
     # to keep track of when the heatmap type changes--> means that the rangeslider maximum must be adjusted
 )
-def change_map_display(map_type):
+def ChangeStatisticDescription(map_type):
     if (map_type is not None) and (map_type != 'Not Selected'):
         return [html.P(children=[
             html.Strong('What: '),
@@ -568,7 +523,7 @@ slide_title = {
     Output('slider-title', 'children'),
     [Input('left_arrow', 'n_clicks'), Input('right_arrow', 'n_clicks')]
 )
-def update_project_desc(left_clicks, right_clicks):
+def UpdateProjectDesc(left_clicks, right_clicks):
     global DESCRIPTION_COUNT
     if left_clicks == None:
         left_clicks = 0

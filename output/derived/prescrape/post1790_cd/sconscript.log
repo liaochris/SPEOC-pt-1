@@ -1,0 +1,6 @@
+*** Builder log created: {2026-03-10 09:20:48}
+*** Builder log completed: {2026-03-10 09:20:51}
+File 'output/derived/prescrape/post1790_cd/check/companies_unidentified_partners.csv' saved successfully.
+File 'output/derived/prescrape/post1790_cd/check/name_changes_list.csv' saved successfully.
+File 'output/derived/prescrape/post1790_cd/check/name_town_conflicts_list.csv' saved successfully.
+File 'output/derived/prescrape/post1790_cd/geo_name_standardized_CD_post1790.csv' saved successfully.

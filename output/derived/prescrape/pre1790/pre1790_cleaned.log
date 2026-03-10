@@ -1,0 +1,43 @@
+File: output/derived/prescrape/pre1790/pre1790_cleaned.csv
+
+MD5 hash: 2124f629fc019c5cbe2f01ab97c8511d
+
+Keys: row_id 
+
+                                          type   count     unique        mean         std        min         50%          max
+row_id                                   int64  96,011             48,005.000  27,716.133      0.000  48,005.000   96,010.000
+org_file                                   str  96,011         12                                                            
+org_index                                  str  96,011     73,018                                                            
+state                                      str  89,778         14                                                            
+date of the certificate | year         float64  58,693              1,781.438       3.166  1,776.000   1,780.000    1,789.000
+date of the certificate | month        float64  58,692                  5.672       3.263      1.000       5.000       12.000
+date of the certificate | day          float64  58,676                 15.473      10.258      0.000      15.000    1,211.000
+to whom due | title                        str   3,706         92                                                            
+to whom due | first name                   str  96,011      6,648                                                            
+to whom due | last name                    str  95,960     25,700                                                            
+to whom due | title.1                      str       1          1                                                            
+to whom due | first name.1                 str     365        126                                                            
+to whom due | last name.1                  str     362        207                                                            
+amount | dollars                       float64  96,011                755.831   4,751.128      0.000     187.440  778,957.778
+amount in specie | dollars             float64  34,701                114.562     722.322      1.000      43.715  130,846.000
+letter                                     str  24,892         26                                                            
+time when the debt became due | month  float64  24,878                  7.672      19.677      1.000       6.000    2,191.000
+time when the debt became due | day     object  24,877        116                                                            
+time when the debt became due | year    object  24,848         92                                                            
+amount | 90th                           object  96,011  1,412.000                                                            
+line strike through? | yes?            float64  15,543                  1.000       0.029      1.000       1.000        4.000
+line strike through? | note                str  23,585      4,191                                                            
+notes                                      str   1,069        154                                                            
+amount | 10th                          float64      10              1,321.550   2,655.896     30.000      72.000    6,572.000
+exchange                                   str     103         34                                                            
+amount in specie | cents               float64     763                 43.277      23.065      1.000      42.000       89.000
+amount | 8th                           float64     684                  3.918       1.714      1.000       4.000        7.000
+delivered | month                      float64   1,009                  5.951       3.413      1.000       5.000       12.000
+delivered | day                        float64   1,009                 15.846       9.791      1.000      15.000      123.000
+delivered | year                       float64   1,009              1,799.465     510.264      7.000   1,785.000   17,894.000
+total dollars | notes                      str     325        161                                                            
+total dollars | notes.1                float64       3                 45.333       6.110     40.000      44.000       52.000
+organization?                             bool  96,011          1                                                            
+final_agg_debt index                       str  96,011     96,011                                                            
+deceased?                                 bool  96,011          2                                                            
+

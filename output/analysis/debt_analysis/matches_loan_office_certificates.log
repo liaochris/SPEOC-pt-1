@@ -1,0 +1,13 @@
+File: output/analysis/debt_analysis/matches_loan_office_certificates.csv
+
+MD5 hash: f86333676e626f75792ad2048dbd9fb5
+
+Keys: raw_name state original_row 
+
+                 type count unique        mean         std      min        50%         max
+raw_name          str   170      5                                                        
+state             str   170      5                                                        
+original_row    int64   170         13,232.124  20,376.661   63.000  1,549.500  79,248.000
+Face Value      int64   170            481.176     455.861  200.000    400.000   4,000.000
+Specie Value  float64   170            224.540     214.241    5.000    145.844     889.133
+

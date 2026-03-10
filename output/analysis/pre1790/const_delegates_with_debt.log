@@ -1,0 +1,11 @@
+File: output/analysis/pre1790/const_delegates_with_debt.csv
+
+MD5 hash: d41d8cd98f00b204e9800998ecf8427e
+
+Keys: full_name state 
+
+                 type count unique mean std min 50% max
+full_name         str     0      0                     
+state             str     0      0                     
+amount_total  float64     0                            
+

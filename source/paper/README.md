@@ -1,0 +1,1 @@
+This folder contains reports created for work related to this codebase during the summers of 2021 and 2022. `source/paper/Summer_Report_2022.pdf` contains comments that correct broken links. For best performance, pdfs should be opened with Adobe Acrobat. 

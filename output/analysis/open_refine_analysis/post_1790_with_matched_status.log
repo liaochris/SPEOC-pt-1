@@ -1,0 +1,35 @@
+File: output/analysis/open_refine_analysis/post_1790_with_matched_status.csv
+
+MD5 hash: 846aa3bb8e7d6ae5f745aee361a8bbb0
+
+Keys: recon_id 
+
+                        type  count unique       mean         std    min        50%            max
+recon_id                 str  3,893  3,893                                                        
+Column                 int64  3,893         1,946.000   1,123.957  0.000  1,946.000      3,892.000
+Group Name               str  3,893  3,728                                                        
+state                    str  3,868     14                                                        
+Group County             str  3,109    122                                                        
+Group Town               str  2,704    375                                                        
+Group Name Type          str  3,893      4                                                        
+Group Match Index        str  2,703  2,693                                                        
+Group Match Url          str  3,852  3,797                                                        
+Full Search Name         str  3,893  3,739                                                        
+assets                   str  3,893  3,779                                                        
+occupation               str  1,686    180                                                        
+Name_Fix_Transfer        str  3,893  3,651                                                        
+raw_name                 str  3,893  3,640                                                        
+imputed_location         str    997      3                                                        
+location conflict        str     23      1                                                        
+Group Village            str    500     24                                                        
+6p_total             float64  3,893         1,929.460  17,476.437  0.000    165.660    803,985.330
+6p_def_total         float64  3,893           970.149   8,815.866  0.000     79.050    401,992.670
+unpaid_interest      float64  3,893         2,169.951  15,150.997  0.000    207.260    689,658.990
+6p_total_adj         float64  3,893         1,779.683  17,175.623  0.000    155.280    803,985.330
+6p_def_total_adj     float64  3,893           895.760   8,670.973  0.000     72.743    401,992.670
+unpaid_interest_adj  float64  3,893         2,030.672  14,904.510  0.000    197.520    689,658.990
+final_total          float64  3,893         2,899.609  26,255.373  0.000    251.430  1,205,978.000
+final_total_adj      float64  3,893         2,675.442  25,810.289  0.000    236.770  1,205,978.000
+matched_status          bool  3,893      2                                                        
+raw_name_state           str  3,868  3,824                                                        
+

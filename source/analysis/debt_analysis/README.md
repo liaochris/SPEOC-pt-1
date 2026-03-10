@@ -11,7 +11,7 @@ Treasurer matching and Hamilton public debt analysis.
 ### Input
 
 - `output/derived/post1790_cd/final_data_CD.csv`
-- `output/derived/pre1790/agg_debt_grouped.csv`
+- `output/derived/pre1790/pre1790_cleaned.csv`
 - `source/raw/delegates/` (convention delegate rosters)
 
 ### Output

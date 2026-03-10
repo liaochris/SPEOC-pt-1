@@ -1,0 +1,31 @@
+File: output/derived/postscrape/post1790_cd/final_data_CD.csv
+
+MD5 hash: d641beee6d95c1897c39985f8a398901
+
+Keys: Group Name Group State Group County Group Town Group Name Type Group Match Index Group Match Url 
+
+                        type  count unique       mean         std    min      50%            max
+Group Name               str  3,917  3,751                                                      
+Group State              str  3,917     15                                                      
+Group County             str  3,917    125                                                      
+Group Town               str  3,917    429                                                      
+Group Name Type          str  3,917      4                                                      
+Group Match Index        str  3,917  2,436                                                      
+Group Match Url          str  3,917  3,485                                                      
+Full Search Name         str  3,917  3,759                                                      
+assets                   str  3,917  3,784                                                      
+occupation               str  3,917    187                                                      
+Name_Fix_Transfer        str  3,917  3,654                                                      
+Name_Fix_Clean           str  3,917  3,647                                                      
+imputed_location         str  3,917      3                                                      
+location conflict        str  3,917      3                                                      
+Group Village            str  3,917     26                                                      
+6p_total             float64  3,917         1,921.517  17,424.184  0.000  164.750    803,985.330
+6p_def_total         float64  3,917           966.072   8,789.009  0.000   78.920    401,992.670
+unpaid_interest      float64  3,917         2,169.823  15,108.139  0.000  207.500    689,658.990
+6p_total_adj         float64  3,917         1,768.231  17,126.104  0.000  152.650    803,985.330
+6p_def_total_adj     float64  3,917           890.303   8,646.138  0.000   72.080    401,992.670
+unpaid_interest_adj  float64  3,917         2,018.076  14,858.929  0.000  195.910    689,658.990
+final_total          float64  3,917         2,887.589  26,176.488  0.000  249.200  1,205,978.000
+final_total_adj      float64  3,917         2,658.534  25,736.016  0.000  233.740  1,205,978.000
+

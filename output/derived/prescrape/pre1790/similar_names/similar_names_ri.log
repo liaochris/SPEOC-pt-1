@@ -1,0 +1,45 @@
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ri.csv
+
+MD5 hash: 4561510e200cee18c8300fb9c1506b7b
+
+Keys: row_id 
+
+                                          type count  unique       mean      std        min        50%        max
+row_id                                   int64   181             90.000   52.394      0.000     90.000    180.000
+org_file                                   str   181       2                                                     
+org_index                                  str   181     181                                                     
+state                                      str   181       1                                                     
+date of the certificate | year         float64    56          1,784.929    0.710  1,784.000  1,785.000  1,786.000
+date of the certificate | month        float64    56              5.250    3.428      1.000      5.000     11.000
+date of the certificate | day          float64    56             13.768    8.358      2.000     11.000     28.000
+to whom due | title                        str     4       1                                                     
+to whom due | first name                   str   181      90                                                     
+to whom due | last name                    str   181     127                                                     
+to whom due | title.1                      str     0       0                                                     
+to whom due | first name.1                 str     2       1                                                     
+to whom due | last name.1                  str     2       1                                                     
+amount | dollars                       float64   181            221.037  621.622      1.000     80.000  5,699.950
+amount in specie | dollars             float64     0                                                             
+letter                                     str    56      12                                                     
+time when the debt became due | month  float64    56              5.804    3.620      1.000      6.000     12.000
+time when the debt became due | day     object    56      24                                                     
+time when the debt became due | year    object    56       7                                                     
+amount | 90th                           object   181  40.000                                                     
+line strike through? | yes?            float64    47              1.000    0.000      1.000      1.000      1.000
+line strike through? | note                str    50      32                                                     
+notes                                      str    14       5                                                     
+amount | 10th                          float64     0                                                             
+exchange                                   str     0       0                                                     
+amount in specie | cents               float64     0                                                             
+amount | 8th                           float64    34              3.824    1.642      1.000      4.000      6.000
+delivered | month                      float64    56              5.607    3.273      1.000      5.000     12.000
+delivered | day                        float64    56             17.482   10.092      1.000     16.500     56.000
+delivered | year                       float64    56          1,785.357    1.167  1,784.000  1,785.000  1,788.000
+total dollars | notes                      str     0       0                                                     
+total dollars | notes.1                float64     0                                                             
+organization?                             bool   181       1                                                     
+final_agg_debt index                       str   181     181                                                     
+deceased?                                 bool   181       1                                                     
+full name                                  str   181     172                                                     
+matches                                    str   181     172                                                     
+

@@ -1,0 +1,252 @@
+row_id,to whom due | first name,state,org_file,org_index
+0,Owners of the Hope Furnace,,Marine_Liquidated_Debt_Certificates.xlsx,1
+1,The Estate of John Young dee,,Marine_Liquidated_Debt_Certificates.xlsx,71
+2,The Estate of Thomas Simpson,,Marine_Liquidated_Debt_Certificates.xlsx,370
+3,The Estate of Miler Pennington,,Marine_Liquidated_Debt_Certificates.xlsx,718
+4,Hoov and Harrison,,Marine_Liquidated_Debt_Certificates.xlsx,764
+5,William And Lewis,,Pierce_Certs_cleaned_2019.xlsx,69738
+6,Gordon and McClemments,de,liquidated_debt_certificates_DE.xlsx,15
+7,Wilson and Fury,de,liquidated_debt_certificates_DE.xlsx,19
+8,Edward and Joseph,de,liquidated_debt_certificates_DE.xlsx,59
+9,Daniel J Adams and Peter Adams,de,liquidated_debt_certificates_DE.xlsx,86
+10,Jordan and Gamble,de,liquidated_debt_certificates_DE.xlsx,95
+11,McCalment and Kennedy,de,liquidated_debt_certificates_DE.xlsx,122
+12,Morton and Starr,de,liquidated_debt_certificates_DE.xlsx,123
+13,Robert Porter and Thomas Forbin,de,liquidated_debt_certificates_DE.xlsx,137
+14,George Campbell and S. Dulany,de,liquidated_debt_certificates_DE.xlsx,198
+15,Read and Worrett,de,liquidated_debt_certificates_DE.xlsx,214
+16,John and George,de,liquidated_debt_certificates_DE.xlsx,264
+17,William and Thomas,de,liquidated_debt_certificates_DE.xlsx,319
+18,Richard Cantwell And  John Jones,de,liquidated_debt_certificates_DE.xlsx,330
+19,Archd and Thomas ,de,liquidated_debt_certificates_DE.xlsx,342
+20,David and Andrew,de,liquidated_debt_certificates_DE.xlsx,415
+21,Shipley and Parson,de,liquidated_debt_certificates_DE.xlsx,420
+22,William and Isaiah,de,liquidated_debt_certificates_DE.xlsx,506
+23,Read and Worral,de,liquidated_debt_certificates_DE.xlsx,562
+24,Daniel and John,ma,liquidated_debt_certificates_MA.xlsx,109
+25,Town of Hadley,ma,liquidated_debt_certificates_MA.xlsx,151
+26,Hermon and Brimmer,ma,liquidated_debt_certificates_MA.xlsx,368
+27,Select Men Of Northampton,ma,liquidated_debt_certificates_MA.xlsx,487
+28,Town of Roxbury,ma,liquidated_debt_certificates_MA.xlsx,1416
+29,Estae of John Davis,ma,liquidated_debt_certificates_MA.xlsx,1417
+30,Town of Dorchester,ma,liquidated_debt_certificates_MA.xlsx,1595
+31,Town of Kittery,ma,liquidated_debt_certificates_MA.xlsx,1660
+32,Selectmen of Cambridge,ma,liquidated_debt_certificates_MA.xlsx,1897
+33,Town of Cambridge,ma,liquidated_debt_certificates_MA.xlsx,1905
+34,Estates of Nath Ruggles,ma,liquidated_debt_certificates_MA.xlsx,1955
+35,Feoffees of the school on jamiaia plain,ma,liquidated_debt_certificates_MA.xlsx,1957
+36,The Heir of William Pierpont,ma,liquidated_debt_certificates_MA.xlsx,1973
+37,The Trustees of Grammar School in Roxbury,ma,liquidated_debt_certificates_MA.xlsx,2053
+38,The Estate of Ja Shed,ma,liquidated_debt_certificates_MA.xlsx,2067
+39,State of New York,ny,liquidated_debt_certificates_NY.xlsx,2303
+40,Trustees Of White Creek Church,ny,liquidated_debt_certificates_NY.xlsx,7115
+41,Trustees Of New Windsor Church,ny,liquidated_debt_certificates_NY.xlsx,7122
+42,Trustees Of & Davids Church,ny,liquidated_debt_certificates_NY.xlsx,7290
+43,Curtis and Peter,pa,liquidated_debt_certificates_PA_stelle.xlsx,9
+44,Smith and Leman,pa,liquidated_debt_certificates_PA_stelle.xlsx,23
+45,Ash and Renshaw,pa,liquidated_debt_certificates_PA_stelle.xlsx,30
+46,James and Ash,pa,liquidated_debt_certificates_PA_stelle.xlsx,31
+47,Perkin and County,pa,liquidated_debt_certificates_PA_stelle.xlsx,208
+48,Taylor and Moore,pa,liquidated_debt_certificates_PA_stelle.xlsx,297
+49,Conard Beamer and James Johnston,pa,liquidated_debt_certificates_PA_stelle.xlsx,299
+50,McCullough and Peterson,pa,liquidated_debt_certificates_PA_stelle.xlsx,556
+51,Barner and Rice,pa,liquidated_debt_certificates_PA_stelle.xlsx,557
+52,Sietchly Morton and Jn Taylor,pa,liquidated_debt_certificates_PA_stelle.xlsx,574
+53,Jn Knight and Edward Brenon,pa,liquidated_debt_certificates_PA_stelle.xlsx,623
+54,Moulder and Stewart,pa,liquidated_debt_certificates_PA_stelle.xlsx,680
+55,Frederick Heymer and Getheb Lejor,pa,liquidated_debt_certificates_PA_stelle.xlsx,750
+56,Adam Jameson and James Gamble,pa,liquidated_debt_certificates_PA_stelle.xlsx,771
+57,Esatate of Thomas Meredith,pa,liquidated_debt_certificates_PA_stelle.xlsx,1303
+58,Samuel and Jn,pa,liquidated_debt_certificates_PA_stelle.xlsx,1511
+59,Abraham and Jacob,pa,liquidated_debt_certificates_PA_stelle.xlsx,1849
+60,Henry Barnet and Lewis Knows,pa,liquidated_debt_certificates_PA_stelle.xlsx,1875
+61,William Morgan and John Miller,pa,liquidated_debt_certificates_PA_stelle.xlsx,2106
+62,John Eret and Adam Rhoad,pa,liquidated_debt_certificates_PA_stelle.xlsx,2249
+63,Robert Forgoher and Andrew Scott,pa,liquidated_debt_certificates_PA_stelle.xlsx,2592
+64,Jn and James,pa,liquidated_debt_certificates_PA_stelle.xlsx,3307
+65,Gerhurst and Balzer,pa,liquidated_debt_certificates_PA_stelle.xlsx,3326
+66,Christian and David,pa,liquidated_debt_certificates_PA_stelle.xlsx,3341
+67,Adam Stakee and David Ferrey,pa,liquidated_debt_certificates_PA_stelle.xlsx,3595
+68,Dew Smith and Keod Bartholomew,pa,liquidated_debt_certificates_PA_stelle.xlsx,3627
+69,Henry and Adam,pa,liquidated_debt_certificates_PA_stelle.xlsx,3713
+70,George Depher and Martin Ritter,pa,liquidated_debt_certificates_PA_stelle.xlsx,3918
+71,Heiss and Yeiser,pa,liquidated_debt_certificates_PA_stelle.xlsx,4080
+72,Estat of Thomas Huges,pa,liquidated_debt_certificates_PA_stelle.xlsx,4833
+73,Reported to the board of treasury,pa,liquidated_debt_certificates_PA_stelle.xlsx,4957
+74,Plunket and Mathews,pa,liquidated_debt_certificates_PA_stelle.xlsx,6554
+75,Gray and Peters,pa,liquidated_debt_certificates_PA_stelle.xlsx,7073
+76,Sproul and Lewis,pa,liquidated_debt_certificates_PA_stelle.xlsx,7205
+77,Gleave and Hayworth,pa,liquidated_debt_certificates_PA_stelle.xlsx,7440
+78,State of Rhode Island,ri,liquidated_debt_certificates_RI.xlsx,485
+79,The proprietors of Tiverton,ri,liquidated_debt_certificates_RI.xlsx,1166
+80,Town of Providence,ri,liquidated_debt_certificates_RI.xlsx,1373
+81,Sam Austin exec to Sam Hasting,ma,loan_office_certificates_9_states.xlsx,3749
+82,John Gray &Tho Dawes Fws.to Sarah Green,ma,loan_office_certificates_9_states.xlsx,4000
+83,Benj Allen Executor to B Winchester,ma,loan_office_certificates_9_states.xlsx,4987
+84,Joseph Allen Executor to B Winchester,ma,loan_office_certificates_9_states.xlsx,4989
+85,Jn Gray & Thomas Dawes Trustees to Sach Green,ma,loan_office_certificates_9_states.xlsx,5564
+86,Rev Xxx On Behalf Of Thomas Sander Esq Deceased,ma,loan_office_certificates_9_states.xlsx,8736
+87,To Allen Exec to Benj Winchester,ma,loan_office_certificates_9_states.xlsx,8937
+88,Jos Richards Treas 2nd Precinct Roxbury,ma,loan_office_certificates_9_states.xlsx,9176
+89,John Barrett & Sons Trustees to Creditors of John Elsworth,ma,loan_office_certificates_9_states.xlsx,13574
+90,Dan Thurston Treasurer Church in Franklin,ma,loan_office_certificates_9_states.xlsx,14248
+91,Simeon Howard Treasurer Convention of Ministers,ma,loan_office_certificates_9_states.xlsx,14296
+92,Eli Root Treasurer of Pittsfield,ma,loan_office_certificates_9_states.xlsx,14312
+93,Overseers of the Poor Town of Boston,ma,loan_office_certificates_9_states.xlsx,16176
+94,Riggs Dairs And Humphrey,ct,loan_office_certificates_9_states.xlsx,23072
+95,Henry Mcclellen And Henry,ny,loan_office_certificates_9_states.xlsx,26752
+96,Trustees of Kingston,ny,loan_office_certificates_9_states.xlsx,29859
+97,Catherine Elizabeth and Sarah,nj,loan_office_certificates_9_states.xlsx,32616
+98,Mercer and Skenk,nj,loan_office_certificates_9_states.xlsx,32913
+99,John Stevens and William Burnett,nj,loan_office_certificates_9_states.xlsx,33567
+100,Stephen Ford and Canfield,nj,loan_office_certificates_9_states.xlsx,35285
+101,Forman and Hunt,nj,loan_office_certificates_9_states.xlsx,35315
+102,Administrator of Jacob Vancys,nj,loan_office_certificates_9_states.xlsx,35418
+103,Trustus of Queens Colledge,nj,loan_office_certificates_9_states.xlsx,36959
+104,Isaac Wood for A prize see,nj,loan_office_certificates_9_states.xlsx,39131
+105,Thomas Platt for A prize in the Lottery 3rd Class,nj,loan_office_certificates_9_states.xlsx,39132
+106,Mary Crolwer A prize in Lottery 3rd Class,nj,loan_office_certificates_9_states.xlsx,39145
+107,Nah Beeks A Prize in Lottery,nj,loan_office_certificates_9_states.xlsx,39156
+108,George Ely for A Prize in Lottery 3rd Class,nj,loan_office_certificates_9_states.xlsx,39158
+109,Ex of the estate of R Gerraty,pa,loan_office_certificates_9_states.xlsx,39719
+110,George Cunningham For Anna His Daughter,pa,loan_office_certificates_9_states.xlsx,40216
+111,Thomas Lawrence for the est of Thomas Lawrence Dec,pa,loan_office_certificates_9_states.xlsx,40395
+112,Trustees of the college of N Gersey,pa,loan_office_certificates_9_states.xlsx,40478
+113,Ecr of Jn Gaston,pa,loan_office_certificates_9_states.xlsx,40489
+114,John Morton Ex of Sam Morton,pa,loan_office_certificates_9_states.xlsx,40503
+115,Rotch and Jarvis,pa,loan_office_certificates_9_states.xlsx,41450
+116,Mark Glenn for estate of J Gleen,pa,loan_office_certificates_9_states.xlsx,41514
+117,Levy and Levy,pa,loan_office_certificates_9_states.xlsx,44558
+118,Peter and Isaac Wikoff,pa,loan_office_certificates_9_states.xlsx,44988
+119,Nathan Donnel For Thestah Off Fummingham For His Daughter,pa,loan_office_certificates_9_states.xlsx,45198
+120,Peter And Isaac Wikoff,pa,loan_office_certificates_9_states.xlsx,45746
+121,Isaac Roush & Mary Bldney of Jacob Carver,pa,loan_office_certificates_9_states.xlsx,46924
+122,Milner and Haynes,pa,loan_office_certificates_9_states.xlsx,47293
+123,Michel and Zion Churches,pa,loan_office_certificates_9_states.xlsx,47734
+124,Michele Shubart For Corporation of Michelle & Zion Churches,pa,loan_office_certificates_9_states.xlsx,47758
+125,Chalone and White,pa,loan_office_certificates_9_states.xlsx,48237
+126,Vance Caldwell and Vance,pa,loan_office_certificates_9_states.xlsx,48274
+127,William Rigdense ex to Josiah Moore,pa,loan_office_certificates_9_states.xlsx,48314
+128,Jacob and Henry Geiger,pa,loan_office_certificates_9_states.xlsx,48594
+129,Letitea and Am Correy,pa,loan_office_certificates_9_states.xlsx,48596
+130,Lelitia and Ann Correy,pa,loan_office_certificates_9_states.xlsx,48605
+131,Milner and Sherr,pa,loan_office_certificates_9_states.xlsx,48660
+132,George Young Gerardia for Anna Painter,pa,loan_office_certificates_9_states.xlsx,48824
+133,Furman and Hunt,pa,loan_office_certificates_9_states.xlsx,49145
+134,Isaac Sears and R N Smith,pa,loan_office_certificates_9_states.xlsx,49433
+135,Ilean and RN Smith,pa,loan_office_certificates_9_states.xlsx,49440
+136,John Edwards Executor for the Estate of Stephen Boyd,pa,loan_office_certificates_9_states.xlsx,49581
+137,David Mackey and Debt Executor,pa,loan_office_certificates_9_states.xlsx,49582
+138,William and H. Boyd,pa,loan_office_certificates_9_states.xlsx,49611
+139,Sam and Havard,pa,loan_office_certificates_9_states.xlsx,50478
+140,Tramen and Hunt,pa,loan_office_certificates_9_states.xlsx,50644
+141,George Liller exec of Leon Ampach,pa,loan_office_certificates_9_states.xlsx,51099
+142,Geo Seller Ex The Estate of Leon Anshach,pa,loan_office_certificates_9_states.xlsx,51130
+143,William Meeum Adm. To House Lambson,pa,loan_office_certificates_9_states.xlsx,51363
+144,Peter and Dumont,pa,loan_office_certificates_9_states.xlsx,51478
+145,Michael and Hohn,pa,loan_office_certificates_9_states.xlsx,51730
+146,Hezekiah and Hooghtalm,pa,loan_office_certificates_9_states.xlsx,51742
+147,Jayber And Mesander,pa,loan_office_certificates_9_states.xlsx,51920
+148,James Wilson administrator To Samuel Allen,pa,loan_office_certificates_9_states.xlsx,51938
+149,Caspar Peter Guardian to A. Peter,pa,loan_office_certificates_9_states.xlsx,51948
+150,Robert and Cor. Steven,pa,loan_office_certificates_9_states.xlsx,52146
+151,The Estate of Ebenezer Kennedy,pa,loan_office_certificates_9_states.xlsx,52152
+152,Geo Miller for Estate of Dewald Ent,pa,loan_office_certificates_9_states.xlsx,52167
+153,Keph and Doryea,pa,loan_office_certificates_9_states.xlsx,52934
+154,Isaac Hartman and Heeman Van Jul,pa,loan_office_certificates_9_states.xlsx,52968
+155,Andrew Hagenbach And Catherine Brobst Guardians Of John Brobst,pa,loan_office_certificates_9_states.xlsx,53038
+156,Philip Sidler Eva Bilman Ex of Jacob Bilman,pa,loan_office_certificates_9_states.xlsx,53479
+157,Ja Gamiel Dowdel Ex to the Estate of the craig,pa,loan_office_certificates_9_states.xlsx,53566
+158,James Ganeal Davidal Ex of thomas Craig,pa,loan_office_certificates_9_states.xlsx,53602
+159,Sam Lightburne and I Harvey,pa,loan_office_certificates_9_states.xlsx,53731
+160,Thomas Haslip Guardian to Richard Jarvill,pa,loan_office_certificates_9_states.xlsx,54408
+161,Simeon Dreisback Adm for the Estate of Philip Fox detd,pa,loan_office_certificates_9_states.xlsx,54455
+162,John Penny Cacker Ex. To the Estale of Ju Eighter,pa,loan_office_certificates_9_states.xlsx,54495
+163,The Estate of John Eijhster,pa,loan_office_certificates_9_states.xlsx,54568
+164,Peter Breenner Ex to the Estate of Jn Trappagan,pa,loan_office_certificates_9_states.xlsx,54921
+165,Jun Abraham Lent for new Hachinach Church,pa,loan_office_certificates_9_states.xlsx,55195
+166,Messer And Spark,pa,loan_office_certificates_9_states.xlsx,55258
+167,Michele Shubert For the German Society,pa,loan_office_certificates_9_states.xlsx,55262
+168,Hugh Samuel Jons and Neary Jackson,pa,loan_office_certificates_9_states.xlsx,55432
+169,Michael Shubert Es to Est of Dertrik Pecse dtd,pa,loan_office_certificates_9_states.xlsx,55674
+170,Michel Shubart Exchange of Dutrich Reese,pa,loan_office_certificates_9_states.xlsx,55780
+171,John Mam and Dunbar,pa,loan_office_certificates_9_states.xlsx,56038
+172,Van Vrem And Clark,pa,loan_office_certificates_9_states.xlsx,56093
+173,John Mann and Andrew Dunbar,pa,loan_office_certificates_9_states.xlsx,56095
+174,Christian Weedman & Samuel Harris Esq Mathia Birkly,pa,loan_office_certificates_9_states.xlsx,56384
+175,Rob and Corn Stevenson,pa,loan_office_certificates_9_states.xlsx,57005
+176,Sebastian Miller Ad to Fred Fearing dec,pa,loan_office_certificates_9_states.xlsx,57191
+177,William Rigden and Edward Middleton,pa,loan_office_certificates_9_states.xlsx,57291
+178,Hre Rest & Ch & St Pr Chumess,pa,loan_office_certificates_9_states.xlsx,57469
+179,The rector of christ and st. peters churches,pa,loan_office_certificates_9_states.xlsx,57477
+180,Samuel and Rea,pa,loan_office_certificates_9_states.xlsx,57653
+181,Peter Brown & Nic Jacobs Ex & …….,pa,loan_office_certificates_9_states.xlsx,57680
+182,Samuel and John,pa,loan_office_certificates_9_states.xlsx,58235
+183,Guilliaume Sabatier Sits and Pierce Despres,pa,loan_office_certificates_9_states.xlsx,58246
+184,The Trustees of Academy at Newark,pa,loan_office_certificates_9_states.xlsx,58790
+185,Justus Of The Academy Of New York,pa,loan_office_certificates_9_states.xlsx,58792
+186,Michael Shutart for the German Society,pa,loan_office_certificates_9_states.xlsx,59227
+187,In Peingle Harr Lake & John Nixon Ex,pa,loan_office_certificates_9_states.xlsx,60010
+188,Ernest Klinger Ex to Jn Klinger,pa,loan_office_certificates_9_states.xlsx,60120
+189,Ernest Klinger Esq of John Klinger,pa,loan_office_certificates_9_states.xlsx,60132
+190,Will Rigden jr Middletown Esq of Joshua Moore,pa,loan_office_certificates_9_states.xlsx,60775
+191,Will Robinson and Sons,pa,loan_office_certificates_9_states.xlsx,61411
+192,Meredith and Plymir,pa,loan_office_certificates_9_states.xlsx,61570
+193,Meredith and Clymer,pa,loan_office_certificates_9_states.xlsx,61586
+194,Robert and Jn Will,pa,loan_office_certificates_9_states.xlsx,61726
+195,Rutter and Potts,pa,loan_office_certificates_9_states.xlsx,61973
+196,Sam Ely and Jn Gallaher Esq,pa,loan_office_certificates_9_states.xlsx,62583
+197,Ex of Jacob Detwiter,pa,loan_office_certificates_9_states.xlsx,62694
+198,Simon Dreisbach For Estates and John fox,pa,loan_office_certificates_9_states.xlsx,67543
+199,Ferrason and Pocy,pa,loan_office_certificates_9_states.xlsx,68296
+200,Terrason and Pory,pa,loan_office_certificates_9_states.xlsx,68299
+201,Sam and Rob,pa,loan_office_certificates_9_states.xlsx,69183
+202,Henry and Thomas Brown,pa,loan_office_certificates_9_states.xlsx,69233
+203,Michael Schubert for St Michael and Zeus Corporation,pa,loan_office_certificates_9_states.xlsx,69327
+204,Michael Shabach for the Estate of Detrick Ruser,pa,loan_office_certificates_9_states.xlsx,69638
+205,Isaac Rauch and Mary Sallie Executor of Jacob Calvert,pa,loan_office_certificates_9_states.xlsx,70077
+206,Foulke and Hameren,pa,loan_office_certificates_9_states.xlsx,70110
+207,Jacob Fisher and Chris Lentz Executor of Christ V. Cross,pa,loan_office_certificates_9_states.xlsx,70133
+208,John Steinmetz for Corperetion of F Mich & Lions Cer,pa,loan_office_certificates_9_states.xlsx,70246
+209,William Haztelon for the son of John Wilhinson,pa,loan_office_certificates_9_states.xlsx,70305
+210,M Shubart for The German Society,pa,loan_office_certificates_9_states.xlsx,70335
+211,Robert and John,pa,loan_office_certificates_9_states.xlsx,70632
+212,A and J J Caldwell for EvMitchell,pa,loan_office_certificates_9_states.xlsx,71032
+213,McCulloch and Peterson,pa,loan_office_certificates_9_states.xlsx,71933
+214,Jon Steinmetz for St Michaels and Zions Cerpreatere,pa,loan_office_certificates_9_states.xlsx,72125
+215,Read and Gilpin,de,loan_office_certificates_9_states.xlsx,72367
+216,Levin and Jos,de,loan_office_certificates_9_states.xlsx,72583
+217,Glan and McClay,de,loan_office_certificates_9_states.xlsx,72803
+218,Edward and Rebecca Armstrong,de,loan_office_certificates_9_states.xlsx,72811
+219,Rogers and Cooke,md,loan_office_certificates_9_states.xlsx,73095
+220,Wallace and Davidson,md,loan_office_certificates_9_states.xlsx,73122
+221,Massachusetts Milner and Haines,md,loan_office_certificates_9_states.xlsx,73475
+222,Harris Wood and Wainright,md,loan_office_certificates_9_states.xlsx,73787
+223,Eastman and Neth,md,loan_office_certificates_9_states.xlsx,73840
+224,Arell Cooper and Arrel,md,loan_office_certificates_9_states.xlsx,73892
+225,Allison and Ramsey,md,loan_office_certificates_9_states.xlsx,74092
+226,Wilkins and Gassaway,md,loan_office_certificates_9_states.xlsx,74162
+227,Hooe and Harrisons,md,loan_office_certificates_9_states.xlsx,74275
+228,Russell and Gilmore,md,loan_office_certificates_9_states.xlsx,74396
+229,Richard and Jennings,md,loan_office_certificates_9_states.xlsx,74474
+230,Kirsley and Monrow,md,loan_office_certificates_9_states.xlsx,75958
+231,Hec and Harrisons,md,loan_office_certificates_9_states.xlsx,76730
+232,McLure and Sterrett,md,loan_office_certificates_9_states.xlsx,77028
+233,Polly and Harriet Sterrett,md,loan_office_certificates_9_states.xlsx,77048
+234,Joseph Beall of Ninian,md,loan_office_certificates_9_states.xlsx,77308
+235,Russell and Gilmour,md,loan_office_certificates_9_states.xlsx,77446
+236,Thomas Rutland of Edward,md,loan_office_certificates_9_states.xlsx,77643
+237,John Beall of Ninian,md,loan_office_certificates_9_states.xlsx,77754
+238,Francis Fair Brother and Allen Luynn,md,loan_office_certificates_9_states.xlsx,77900
+239,Daniel Scott of Aquila,md,loan_office_certificates_9_states.xlsx,78099
+240,Jno H Cocke Ex Of William Ruffin Dec'D,va,loan_office_certificates_9_states.xlsx,79576
+241,Jno And Henry Kuykendal,va,loan_office_certificates_9_states.xlsx,79677
+242,Est Of Presley Thorton,va,loan_office_certificates_9_states.xlsx,79763
+243,Est Of Margaret Taylor,va,loan_office_certificates_9_states.xlsx,79950
+244,Messrs Newton And Holly,va,loan_office_certificates_9_states.xlsx,79978
+245,Trustees Of Arch Mcpherson,va,loan_office_certificates_9_states.xlsx,80001
+246,Est Of William Lightfoot,va,loan_office_certificates_9_states.xlsx,80106
+247,Ests Of Randolph Price,va,loan_office_certificates_9_states.xlsx,80465
+248,Peter Conway And James Ball,va,loan_office_certificates_9_states.xlsx,80516
+249,Mess Early And Callaway,va,loan_office_certificates_9_states.xlsx,80662
+250,Baker Blow And Oldham,va,loan_office_certificates_9_states.xlsx,80799

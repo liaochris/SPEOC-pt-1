@@ -1,0 +1,938 @@
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ct.csv
+
+MD5 hash: 392c15568239f68da4e3a9c415358e17
+
+Keys: row_id 
+
+                                          type  count  unique       mean        std        min        50%         max
+row_id                                   int64  2,515          1,257.000    726.162      0.000  1,257.000   2,514.000
+org_file                                   str  2,515       3                                                        
+org_index                                  str  2,515   2,508                                                        
+state                                      str  2,515       1                                                        
+date of the certificate | year         float64  1,417          1,778.987      1.920  1,777.000  1,779.000   1,787.000
+date of the certificate | month        float64  1,417              5.974      3.381      1.000      5.000      12.000
+date of the certificate | day          float64  1,416             16.358      9.661      1.000     16.000     189.000
+to whom due | title                        str    412      23                                                        
+to whom due | first name                   str  2,515     390                                                        
+to whom due | last name                    str  2,515   1,141                                                        
+to whom due | title.1                      str      0       0                                                        
+to whom due | first name.1                 str      3       3                                                        
+to whom due | last name.1                  str      3       3                                                        
+amount | dollars                       float64  2,515            603.632  1,144.273      1.000    300.000  21,242.690
+amount in specie | dollars             float64  1,288            128.437    150.636      5.661     55.917     972.556
+letter                                     str    129      13                                                        
+time when the debt became due | month  float64    129              4.574      2.157      1.000      4.000      12.000
+time when the debt became due | day     object    129   5.000                                                        
+time when the debt became due | year    object    126       6                                                        
+amount | 90th                           object  2,515  31.000                                                        
+line strike through? | yes?            float64    114              1.000      0.000      1.000      1.000       1.000
+line strike through? | note                str    114      61                                                        
+notes                                      str      4       3                                                        
+amount | 10th                          float64      0                                                                
+exchange                                   str      0       0                                                        
+amount in specie | cents               float64      0                                                                
+amount | 8th                           float64      0                                                                
+delivered | month                      float64      0                                                                
+delivered | day                        float64      0                                                                
+delivered | year                       float64      0                                                                
+total dollars | notes                      str      0       0                                                        
+total dollars | notes.1                float64      0                                                                
+organization?                             bool  2,515       1                                                        
+final_agg_debt index                       str  2,515   2,515                                                        
+deceased?                                 bool  2,515       2                                                        
+full name                                  str  2,515   1,760                                                        
+matches                                    str  2,515   1,734                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ga.csv
+
+MD5 hash: 42e94fe8204a28f72747326d14c229ba
+
+Keys: row_id 
+
+                                          type count unique       mean        std      min        50%        max
+row_id                                   int64     4             1.500      1.291    0.000      1.500      3.000
+org_file                                   str     4      1                                                     
+org_index                                  str     4      4                                                     
+state                                      str     4      1                                                     
+date of the certificate | year         float64     0                                                            
+date of the certificate | month        float64     0                                                            
+date of the certificate | day          float64     0                                                            
+to whom due | title                        str     0      0                                                     
+to whom due | first name                   str     4      3                                                     
+to whom due | last name                    str     4      3                                                     
+to whom due | title.1                      str     0      0                                                     
+to whom due | first name.1                 str     0      0                                                     
+to whom due | last name.1                  str     0      0                                                     
+amount | dollars                       float64     4         1,823.630  1,047.003  351.000  2,103.950  2,735.620
+amount in specie | dollars             float64     0                                                            
+letter                                     str     0      0                                                     
+time when the debt became due | month  float64     0                                                            
+time when the debt became due | day     object     0      0                                                     
+time when the debt became due | year    object     0      0                                                     
+amount | 90th                           object     4  1.000                                                     
+line strike through? | yes?            float64     0                                                            
+line strike through? | note                str     0      0                                                     
+notes                                      str     0      0                                                     
+amount | 10th                          float64     0                                                            
+exchange                                   str     0      0                                                     
+amount in specie | cents               float64     0                                                            
+amount | 8th                           float64     0                                                            
+delivered | month                      float64     0                                                            
+delivered | day                        float64     0                                                            
+delivered | year                       float64     0                                                            
+total dollars | notes                      str     0      0                                                     
+total dollars | notes.1                float64     0                                                            
+organization?                             bool     4      1                                                     
+final_agg_debt index                       str     4      4                                                     
+deceased?                                 bool     4      1                                                     
+full name                                  str     4      4                                                     
+matches                                    str     4      4                                                     
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ma.csv
+
+MD5 hash: a8c67325fecb66465119da80645a332b
+
+Keys: row_id 
+
+                                          type  count  unique       mean        std        min        50%          max
+row_id                                   int64  7,134          3,566.500  2,059.553      0.000  3,566.500    7,133.000
+org_file                                   str  7,134       3                                                         
+org_index                                  str  7,134   7,074                                                         
+state                                      str  7,134       1                                                         
+date of the certificate | year         float64  2,599          1,779.850      2.639  1,777.000  1,779.000    1,786.000
+date of the certificate | month        float64  2,599              5.108      3.426      1.000      4.000       12.000
+date of the certificate | day          float64  2,599             15.463      8.808      1.000     15.000       31.000
+to whom due | title                        str    331      19                                                         
+to whom due | first name                   str  7,134     828                                                         
+to whom due | last name                    str  7,134   3,151                                                         
+to whom due | title.1                      str      0       0                                                         
+to whom due | first name.1                 str     11       6                                                         
+to whom due | last name.1                  str     11       8                                                         
+amount | dollars                       float64  7,134            506.217  2,266.399      0.000    145.085  104,000.000
+amount in specie | dollars             float64  2,035            130.249    166.645      5.000     46.750    1,025.556
+letter                                     str    564      14                                                         
+time when the debt became due | month  float64    564              4.846      2.769      1.000      4.000       20.000
+time when the debt became due | day     object    564  31.000                                                         
+time when the debt became due | year    object    564      11                                                         
+amount | 90th                           object  7,134  77.000                                                         
+line strike through? | yes?            float64    531              1.000      0.000      1.000      1.000        1.000
+line strike through? | note                str    531     344                                                         
+notes                                      str      5       5                                                         
+amount | 10th                          float64      0                                                                 
+exchange                                   str      0       0                                                         
+amount in specie | cents               float64      0                                                                 
+amount | 8th                           float64      0                                                                 
+delivered | month                      float64      0                                                                 
+delivered | day                        float64      0                                                                 
+delivered | year                       float64      0                                                                 
+total dollars | notes                      str      0       0                                                         
+total dollars | notes.1                float64      0                                                                 
+organization?                             bool  7,134       1                                                         
+final_agg_debt index                       str  7,134   7,134                                                         
+deceased?                                 bool  7,134       1                                                         
+full name                                  str  7,134   5,543                                                         
+matches                                    str  7,134   5,414                                                         
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_md.csv
+
+MD5 hash: 041be1c8dedaa0e5a560714258fac80a
+
+Keys: row_id 
+
+                                          type  count unique       mean        std        min        50%         max
+row_id                                   int64  1,041           520.000    300.655      0.000    520.000   1,040.000
+org_file                                   str  1,041      2                                                        
+org_index                                  str  1,041  1,040                                                        
+state                                      str  1,041      1                                                        
+date of the certificate | year         float64    304         1,779.072      0.609  1,777.000  1,779.000   1,781.000
+date of the certificate | month        float64    304             4.507      2.890      1.000      4.000      12.000
+date of the certificate | day          float64    304             4.507      2.890      1.000      4.000      12.000
+to whom due | title                        str     33      5                                                        
+to whom due | first name                   str  1,041    205                                                        
+to whom due | last name                    str  1,037    722                                                        
+to whom due | title.1                      str      0      0                                                        
+to whom due | first name.1                 str      4      2                                                        
+to whom due | last name.1                  str      4      2                                                        
+amount | dollars                       float64  1,041           602.577  1,940.546      1.730    145.000  39,000.000
+amount in specie | dollars             float64    304            66.757    108.953      5.000     31.692     788.542
+letter                                     str      0      0                                                        
+time when the debt became due | month  float64      0                                                               
+time when the debt became due | day     object      0      0                                                        
+time when the debt became due | year    object      0      0                                                        
+amount | 90th                           object  1,041  2.000                                                        
+line strike through? | yes?            float64      0                                                               
+line strike through? | note                str      0      0                                                        
+notes                                      str      0      0                                                        
+amount | 10th                          float64      0                                                               
+exchange                                   str      0      0                                                        
+amount in specie | cents               float64      0                                                               
+amount | 8th                           float64      0                                                               
+delivered | month                      float64      0                                                               
+delivered | day                        float64      0                                                               
+delivered | year                       float64      0                                                               
+total dollars | notes                      str      0      0                                                        
+total dollars | notes.1                float64      0                                                               
+organization?                             bool  1,041      1                                                        
+final_agg_debt index                       str  1,041  1,041                                                        
+deceased?                                 bool  1,041      1                                                        
+full name                                  str  1,041    889                                                        
+matches                                    str  1,041    875                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_nc.csv
+
+MD5 hash: d4c09788dd5887c70bb5e58cd13f8e5a
+
+Keys: row_id 
+
+                                          type count unique     mean      std     min     50%        max
+row_id                                   int64   157          78.000   45.466   0.000  78.000    156.000
+org_file                                   str   157      1                                             
+org_index                                  str   157    157                                             
+state                                      str   157      1                                             
+date of the certificate | year         float64     0                                                    
+date of the certificate | month        float64     0                                                    
+date of the certificate | day          float64     0                                                    
+to whom due | title                        str     0      0                                             
+to whom due | first name                   str   157     53                                             
+to whom due | last name                    str   157    138                                             
+to whom due | title.1                      str     0      0                                             
+to whom due | first name.1                 str     0      0                                             
+to whom due | last name.1                  str     0      0                                             
+amount | dollars                       float64   157         437.100  853.723  10.000  80.000  4,987.450
+amount in specie | dollars             float64     0                                                    
+letter                                     str     0      0                                             
+time when the debt became due | month  float64     0                                                    
+time when the debt became due | day     object     0      0                                             
+time when the debt became due | year    object     0      0                                             
+amount | 90th                           object   157  2.000                                             
+line strike through? | yes?            float64     0                                                    
+line strike through? | note                str     0      0                                             
+notes                                      str     0      0                                             
+amount | 10th                          float64     0                                                    
+exchange                                   str     0      0                                             
+amount in specie | cents               float64     0                                                    
+amount | 8th                           float64     0                                                    
+delivered | month                      float64     0                                                    
+delivered | day                        float64     0                                                    
+delivered | year                       float64     0                                                    
+total dollars | notes                      str     0      0                                             
+total dollars | notes.1                float64     0                                                    
+organization?                             bool   157      1                                             
+final_agg_debt index                       str   157    157                                             
+deceased?                                 bool   157      1                                             
+full name                                  str   157    157                                             
+matches                                    str   157    155                                             
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_nh.csv
+
+MD5 hash: 59d696ae6f3b7bddea19e2a0bd0c5717
+
+Keys: row_id 
+
+                                          type count  unique       mean        std        min        50%         max
+row_id                                   int64   673            336.000    194.423      0.000    336.000     672.000
+org_file                                   str   673       3                                                        
+org_index                                  str   673     672                                                        
+state                                      str   673       1                                                        
+date of the certificate | year         float64   134          1,779.515      2.352  1,777.000  1,779.000   1,786.000
+date of the certificate | month        float64   134              4.478      3.248      1.000      3.000      12.000
+date of the certificate | day          float64   132             16.364      9.281      1.000     19.000      31.000
+to whom due | title                        str    72      10                                                        
+to whom due | first name                   str   673     179                                                        
+to whom due | last name                    str   673     444                                                        
+to whom due | title.1                      str     0       0                                                        
+to whom due | first name.1                 str     0       0                                                        
+to whom due | last name.1                  str     0       0                                                        
+amount | dollars                       float64   673            338.521  1,037.681      1.000    100.000  20,000.000
+amount in specie | dollars             float64   110            136.618    156.707      5.000     47.033     681.533
+letter                                     str    24      10                                                        
+time when the debt became due | month  float64    24              4.250      1.984      1.000      4.000      12.000
+time when the debt became due | day     object    24   4.000                                                        
+time when the debt became due | year    object    24       4                                                        
+amount | 90th                           object   673  13.000                                                        
+line strike through? | yes?            float64    22              1.000      0.000      1.000      1.000       1.000
+line strike through? | note                str    23      16                                                        
+notes                                      str     0       0                                                        
+amount | 10th                          float64     0                                                                
+exchange                                   str     0       0                                                        
+amount in specie | cents               float64     0                                                                
+amount | 8th                           float64     0                                                                
+delivered | month                      float64     0                                                                
+delivered | day                        float64     0                                                                
+delivered | year                       float64     0                                                                
+total dollars | notes                      str     0       0                                                        
+total dollars | notes.1                float64     0                                                                
+organization?                             bool   673       1                                                        
+final_agg_debt index                       str   673     673                                                        
+deceased?                                 bool   673       1                                                        
+full name                                  str   673     602                                                        
+matches                                    str   673     585                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_nj.csv
+
+MD5 hash: 22ca9716b56476b4c7724fa3d13c07fc
+
+Keys: row_id 
+
+                                          type  count   unique       mean        std        min        50%          max
+row_id                                   int64  2,921           1,460.000    843.364      0.000  1,460.000    2,920.000
+org_file                                   str  2,921        3                                                         
+org_index                                  str  2,921    2,918                                                         
+state                                      str  2,921        1                                                         
+date of the certificate | year         float64  2,172           1,781.601      3.043  1,777.000  1,780.000    1,786.000
+date of the certificate | month        float64  2,172               5.875      3.316      1.000      5.000       12.000
+date of the certificate | day          float64  2,172              15.658      8.802      1.000     16.000       31.000
+to whom due | title                        str    150       20                                                         
+to whom due | first name                   str  2,921      348                                                         
+to whom due | last name                    str  2,921    1,294                                                         
+to whom due | title.1                      str      0        0                                                         
+to whom due | first name.1                 str     12        4                                                         
+to whom due | last name.1                  str     12        5                                                         
+amount | dollars                       float64  2,921             778.659  4,007.778      0.000    257.300  185,900.000
+amount in specie | dollars             float64  1,195              96.937    158.808      5.000     41.439    1,436.736
+letter                                     str    974       12                                                         
+time when the debt became due | month  float64    974              10.247      9.430      1.000      9.000       31.000
+time when the debt became due | day     object    974   21.000                                                         
+time when the debt became due | year    object    974       13                                                         
+amount | 90th                           object  2,921  147.000                                                         
+line strike through? | yes?            float64    903               1.000      0.000      1.000      1.000        1.000
+line strike through? | note                str    903      403                                                         
+notes                                      str     60       17                                                         
+amount | 10th                          float64      0                                                                  
+exchange                                   str      0        0                                                         
+amount in specie | cents               float64      0                                                                  
+amount | 8th                           float64      0                                                                  
+delivered | month                      float64      0                                                                  
+delivered | day                        float64      0                                                                  
+delivered | year                       float64      0                                                                  
+total dollars | notes                      str      0        0                                                         
+total dollars | notes.1                float64      0                                                                  
+organization?                             bool  2,921        1                                                         
+final_agg_debt index                       str  2,921    2,921                                                         
+deceased?                                 bool  2,921        1                                                         
+full name                                  str  2,921    1,876                                                         
+matches                                    str  2,921    1,840                                                         
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ma.csv
+
+MD5 hash: a8c67325fecb66465119da80645a332b
+
+Keys: row_id 
+
+                                          type  count  unique       mean        std        min        50%          max
+row_id                                   int64  7,134          3,566.500  2,059.553      0.000  3,566.500    7,133.000
+org_file                                   str  7,134       3                                                         
+org_index                                  str  7,134   7,074                                                         
+state                                      str  7,134       1                                                         
+date of the certificate | year         float64  2,599          1,779.850      2.639  1,777.000  1,779.000    1,786.000
+date of the certificate | month        float64  2,599              5.108      3.426      1.000      4.000       12.000
+date of the certificate | day          float64  2,599             15.463      8.808      1.000     15.000       31.000
+to whom due | title                        str    331      19                                                         
+to whom due | first name                   str  7,134     828                                                         
+to whom due | last name                    str  7,134   3,151                                                         
+to whom due | title.1                      str      0       0                                                         
+to whom due | first name.1                 str     11       6                                                         
+to whom due | last name.1                  str     11       8                                                         
+amount | dollars                       float64  7,134            506.217  2,266.399      0.000    145.085  104,000.000
+amount in specie | dollars             float64  2,035            130.249    166.645      5.000     46.750    1,025.556
+letter                                     str    564      14                                                         
+time when the debt became due | month  float64    564              4.846      2.769      1.000      4.000       20.000
+time when the debt became due | day     object    564  31.000                                                         
+time when the debt became due | year    object    564      11                                                         
+amount | 90th                           object  7,134  77.000                                                         
+line strike through? | yes?            float64    531              1.000      0.000      1.000      1.000        1.000
+line strike through? | note                str    531     344                                                         
+notes                                      str      5       5                                                         
+amount | 10th                          float64      0                                                                 
+exchange                                   str      0       0                                                         
+amount in specie | cents               float64      0                                                                 
+amount | 8th                           float64      0                                                                 
+delivered | month                      float64      0                                                                 
+delivered | day                        float64      0                                                                 
+delivered | year                       float64      0                                                                 
+total dollars | notes                      str      0       0                                                         
+total dollars | notes.1                float64      0                                                                 
+organization?                             bool  7,134       1                                                         
+final_agg_debt index                       str  7,134   7,134                                                         
+deceased?                                 bool  7,134       1                                                         
+full name                                  str  7,134   5,543                                                         
+matches                                    str  7,134   5,414                                                         
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_md.csv
+
+MD5 hash: 041be1c8dedaa0e5a560714258fac80a
+
+Keys: row_id 
+
+                                          type  count unique       mean        std        min        50%         max
+row_id                                   int64  1,041           520.000    300.655      0.000    520.000   1,040.000
+org_file                                   str  1,041      2                                                        
+org_index                                  str  1,041  1,040                                                        
+state                                      str  1,041      1                                                        
+date of the certificate | year         float64    304         1,779.072      0.609  1,777.000  1,779.000   1,781.000
+date of the certificate | month        float64    304             4.507      2.890      1.000      4.000      12.000
+date of the certificate | day          float64    304             4.507      2.890      1.000      4.000      12.000
+to whom due | title                        str     33      5                                                        
+to whom due | first name                   str  1,041    205                                                        
+to whom due | last name                    str  1,037    722                                                        
+to whom due | title.1                      str      0      0                                                        
+to whom due | first name.1                 str      4      2                                                        
+to whom due | last name.1                  str      4      2                                                        
+amount | dollars                       float64  1,041           602.577  1,940.546      1.730    145.000  39,000.000
+amount in specie | dollars             float64    304            66.757    108.953      5.000     31.692     788.542
+letter                                     str      0      0                                                        
+time when the debt became due | month  float64      0                                                               
+time when the debt became due | day     object      0      0                                                        
+time when the debt became due | year    object      0      0                                                        
+amount | 90th                           object  1,041  2.000                                                        
+line strike through? | yes?            float64      0                                                               
+line strike through? | note                str      0      0                                                        
+notes                                      str      0      0                                                        
+amount | 10th                          float64      0                                                               
+exchange                                   str      0      0                                                        
+amount in specie | cents               float64      0                                                               
+amount | 8th                           float64      0                                                               
+delivered | month                      float64      0                                                               
+delivered | day                        float64      0                                                               
+delivered | year                       float64      0                                                               
+total dollars | notes                      str      0      0                                                        
+total dollars | notes.1                float64      0                                                               
+organization?                             bool  1,041      1                                                        
+final_agg_debt index                       str  1,041  1,041                                                        
+deceased?                                 bool  1,041      1                                                        
+full name                                  str  1,041    889                                                        
+matches                                    str  1,041    875                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_nc.csv
+
+MD5 hash: d4c09788dd5887c70bb5e58cd13f8e5a
+
+Keys: row_id 
+
+                                          type count unique     mean      std     min     50%        max
+row_id                                   int64   157          78.000   45.466   0.000  78.000    156.000
+org_file                                   str   157      1                                             
+org_index                                  str   157    157                                             
+state                                      str   157      1                                             
+date of the certificate | year         float64     0                                                    
+date of the certificate | month        float64     0                                                    
+date of the certificate | day          float64     0                                                    
+to whom due | title                        str     0      0                                             
+to whom due | first name                   str   157     53                                             
+to whom due | last name                    str   157    138                                             
+to whom due | title.1                      str     0      0                                             
+to whom due | first name.1                 str     0      0                                             
+to whom due | last name.1                  str     0      0                                             
+amount | dollars                       float64   157         437.100  853.723  10.000  80.000  4,987.450
+amount in specie | dollars             float64     0                                                    
+letter                                     str     0      0                                             
+time when the debt became due | month  float64     0                                                    
+time when the debt became due | day     object     0      0                                             
+time when the debt became due | year    object     0      0                                             
+amount | 90th                           object   157  2.000                                             
+line strike through? | yes?            float64     0                                                    
+line strike through? | note                str     0      0                                             
+notes                                      str     0      0                                             
+amount | 10th                          float64     0                                                    
+exchange                                   str     0      0                                             
+amount in specie | cents               float64     0                                                    
+amount | 8th                           float64     0                                                    
+delivered | month                      float64     0                                                    
+delivered | day                        float64     0                                                    
+delivered | year                       float64     0                                                    
+total dollars | notes                      str     0      0                                             
+total dollars | notes.1                float64     0                                                    
+organization?                             bool   157      1                                             
+final_agg_debt index                       str   157    157                                             
+deceased?                                 bool   157      1                                             
+full name                                  str   157    157                                             
+matches                                    str   157    155                                             
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ny.csv
+
+MD5 hash: 8d20cdd458aabf7677bc1ef901700b21
+
+Keys: row_id 
+
+                                          type  count   unique       mean        std        min        50%         max
+row_id                                   int64  4,426           2,212.500  1,277.820      0.000  2,212.500   4,425.000
+org_file                                   str  4,426        3                                                        
+org_index                                  str  4,426    4,405                                                        
+state                                      str  4,426        1                                                        
+date of the certificate | year         float64  2,872           1,782.788      3.058  1,777.000  1,784.000   1,787.000
+date of the certificate | month        float64  2,872               6.108      3.132      1.000      6.000      12.000
+date of the certificate | day          float64  2,872              15.520      8.773      1.000     15.000      31.000
+to whom due | title                        str     50        3                                                        
+to whom due | first name                   str  4,426      669                                                        
+to whom due | last name                    str  4,426    2,155                                                        
+to whom due | title.1                      str      0        0                                                        
+to whom due | first name.1                 str     21       17                                                        
+to whom due | last name.1                  str     20       16                                                        
+amount | dollars                       float64  4,426             463.978  1,252.450      1.000    102.590  31,000.000
+amount in specie | dollars             float64    947             169.401    244.757      5.000     51.364   1,000.000
+letter                                     str  1,925       14                                                        
+time when the debt became due | month  float64  1,925               5.265      3.547      1.000      5.000      12.000
+time when the debt became due | day     object  1,925       48                                                        
+time when the debt became due | year    object  1,925       13                                                        
+amount | 90th                           object  4,426  141.000                                                        
+line strike through? | yes?            float64  1,856               1.000      0.000      1.000      1.000       1.000
+line strike through? | note                str  1,866      394                                                        
+notes                                      str     66       12                                                        
+amount | 10th                          float64      0                                                                 
+exchange                                   str      0        0                                                        
+amount in specie | cents               float64      0                                                                 
+amount | 8th                           float64      0                                                                 
+delivered | month                      float64      0                                                                 
+delivered | day                        float64      0                                                                 
+delivered | year                       float64      0                                                                 
+total dollars | notes                      str      0        0                                                        
+total dollars | notes.1                float64      0                                                                 
+organization?                             bool  4,426        1                                                        
+final_agg_debt index                       str  4,426    4,426                                                        
+deceased?                                 bool  4,426        2                                                        
+full name                                  str  4,426    3,384                                                        
+matches                                    str  4,426    3,317                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_nh.csv
+
+MD5 hash: 59d696ae6f3b7bddea19e2a0bd0c5717
+
+Keys: row_id 
+
+                                          type count  unique       mean        std        min        50%         max
+row_id                                   int64   673            336.000    194.423      0.000    336.000     672.000
+org_file                                   str   673       3                                                        
+org_index                                  str   673     672                                                        
+state                                      str   673       1                                                        
+date of the certificate | year         float64   134          1,779.515      2.352  1,777.000  1,779.000   1,786.000
+date of the certificate | month        float64   134              4.478      3.248      1.000      3.000      12.000
+date of the certificate | day          float64   132             16.364      9.281      1.000     19.000      31.000
+to whom due | title                        str    72      10                                                        
+to whom due | first name                   str   673     179                                                        
+to whom due | last name                    str   673     444                                                        
+to whom due | title.1                      str     0       0                                                        
+to whom due | first name.1                 str     0       0                                                        
+to whom due | last name.1                  str     0       0                                                        
+amount | dollars                       float64   673            338.521  1,037.681      1.000    100.000  20,000.000
+amount in specie | dollars             float64   110            136.618    156.707      5.000     47.033     681.533
+letter                                     str    24      10                                                        
+time when the debt became due | month  float64    24              4.250      1.984      1.000      4.000      12.000
+time when the debt became due | day     object    24   4.000                                                        
+time when the debt became due | year    object    24       4                                                        
+amount | 90th                           object   673  13.000                                                        
+line strike through? | yes?            float64    22              1.000      0.000      1.000      1.000       1.000
+line strike through? | note                str    23      16                                                        
+notes                                      str     0       0                                                        
+amount | 10th                          float64     0                                                                
+exchange                                   str     0       0                                                        
+amount in specie | cents               float64     0                                                                
+amount | 8th                           float64     0                                                                
+delivered | month                      float64     0                                                                
+delivered | day                        float64     0                                                                
+delivered | year                       float64     0                                                                
+total dollars | notes                      str     0       0                                                        
+total dollars | notes.1                float64     0                                                                
+organization?                             bool   673       1                                                        
+final_agg_debt index                       str   673     673                                                        
+deceased?                                 bool   673       1                                                        
+full name                                  str   673     602                                                        
+matches                                    str   673     585                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_nj.csv
+
+MD5 hash: 22ca9716b56476b4c7724fa3d13c07fc
+
+Keys: row_id 
+
+                                          type  count   unique       mean        std        min        50%          max
+row_id                                   int64  2,921           1,460.000    843.364      0.000  1,460.000    2,920.000
+org_file                                   str  2,921        3                                                         
+org_index                                  str  2,921    2,918                                                         
+state                                      str  2,921        1                                                         
+date of the certificate | year         float64  2,172           1,781.601      3.043  1,777.000  1,780.000    1,786.000
+date of the certificate | month        float64  2,172               5.875      3.316      1.000      5.000       12.000
+date of the certificate | day          float64  2,172              15.658      8.802      1.000     16.000       31.000
+to whom due | title                        str    150       20                                                         
+to whom due | first name                   str  2,921      348                                                         
+to whom due | last name                    str  2,921    1,294                                                         
+to whom due | title.1                      str      0        0                                                         
+to whom due | first name.1                 str     12        4                                                         
+to whom due | last name.1                  str     12        5                                                         
+amount | dollars                       float64  2,921             778.659  4,007.778      0.000    257.300  185,900.000
+amount in specie | dollars             float64  1,195              96.937    158.808      5.000     41.439    1,436.736
+letter                                     str    974       12                                                         
+time when the debt became due | month  float64    974              10.247      9.430      1.000      9.000       31.000
+time when the debt became due | day     object    974   21.000                                                         
+time when the debt became due | year    object    974       13                                                         
+amount | 90th                           object  2,921  147.000                                                         
+line strike through? | yes?            float64    903               1.000      0.000      1.000      1.000        1.000
+line strike through? | note                str    903      403                                                         
+notes                                      str     60       17                                                         
+amount | 10th                          float64      0                                                                  
+exchange                                   str      0        0                                                         
+amount in specie | cents               float64      0                                                                  
+amount | 8th                           float64      0                                                                  
+delivered | month                      float64      0                                                                  
+delivered | day                        float64      0                                                                  
+delivered | year                       float64      0                                                                  
+total dollars | notes                      str      0        0                                                         
+total dollars | notes.1                float64      0                                                                  
+organization?                             bool  2,921        1                                                         
+final_agg_debt index                       str  2,921    2,921                                                         
+deceased?                                 bool  2,921        1                                                         
+full name                                  str  2,921    1,876                                                         
+matches                                    str  2,921    1,840                                                         
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ny.csv
+
+MD5 hash: 8d20cdd458aabf7677bc1ef901700b21
+
+Keys: row_id 
+
+                                          type  count   unique       mean        std        min        50%         max
+row_id                                   int64  4,426           2,212.500  1,277.820      0.000  2,212.500   4,425.000
+org_file                                   str  4,426        3                                                        
+org_index                                  str  4,426    4,405                                                        
+state                                      str  4,426        1                                                        
+date of the certificate | year         float64  2,872           1,782.788      3.058  1,777.000  1,784.000   1,787.000
+date of the certificate | month        float64  2,872               6.108      3.132      1.000      6.000      12.000
+date of the certificate | day          float64  2,872              15.520      8.773      1.000     15.000      31.000
+to whom due | title                        str     50        3                                                        
+to whom due | first name                   str  4,426      669                                                        
+to whom due | last name                    str  4,426    2,155                                                        
+to whom due | title.1                      str      0        0                                                        
+to whom due | first name.1                 str     21       17                                                        
+to whom due | last name.1                  str     20       16                                                        
+amount | dollars                       float64  4,426             463.978  1,252.450      1.000    102.590  31,000.000
+amount in specie | dollars             float64    947             169.401    244.757      5.000     51.364   1,000.000
+letter                                     str  1,925       14                                                        
+time when the debt became due | month  float64  1,925               5.265      3.547      1.000      5.000      12.000
+time when the debt became due | day     object  1,925       48                                                        
+time when the debt became due | year    object  1,925       13                                                        
+amount | 90th                           object  4,426  141.000                                                        
+line strike through? | yes?            float64  1,856               1.000      0.000      1.000      1.000       1.000
+line strike through? | note                str  1,866      394                                                        
+notes                                      str     66       12                                                        
+amount | 10th                          float64      0                                                                 
+exchange                                   str      0        0                                                        
+amount in specie | cents               float64      0                                                                 
+amount | 8th                           float64      0                                                                 
+delivered | month                      float64      0                                                                 
+delivered | day                        float64      0                                                                 
+delivered | year                       float64      0                                                                 
+total dollars | notes                      str      0        0                                                        
+total dollars | notes.1                float64      0                                                                 
+organization?                             bool  4,426        1                                                        
+final_agg_debt index                       str  4,426    4,426                                                        
+deceased?                                 bool  4,426        2                                                        
+full name                                  str  4,426    3,384                                                        
+matches                                    str  4,426    3,317                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_pa.csv
+
+MD5 hash: ab075e98b2e5dff70d62720b52d19246
+
+Keys: row_id 
+
+                                          type   count   unique       mean        std        min        50%          max
+row_id                                   int64  11,165           5,582.000  3,223.202      0.000  5,582.000   11,164.000
+org_file                                   str  11,165        4                                                         
+org_index                                  str  11,165   11,003                                                         
+state                                      str  11,165        1                                                         
+date of the certificate | year         float64   9,373           1,781.055      2.914  1,777.000  1,779.000    1,787.000
+date of the certificate | month        float64   9,373               5.789      3.277      1.000      5.000       12.000
+date of the certificate | day          float64   9,371              16.064      8.692      1.000     16.000       79.000
+to whom due | title                        str      82        8                                                         
+to whom due | first name                   str  11,165      579                                                         
+to whom due | last name                    str  11,158    4,508                                                         
+to whom due | title.1                      str       0        0                                                         
+to whom due | first name.1                 str      60       28                                                         
+to whom due | last name.1                  str      60       34                                                         
+amount | dollars                       float64  11,165           1,258.128  4,347.104      0.000    400.000  196,000.000
+amount in specie | dollars             float64   6,666             107.148    182.841      1.000     43.715    3,807.000
+letter                                     str   3,064       14                                                         
+time when the debt became due | month  float64   3,064               9.843     34.748      1.000      7.000    1,782.000
+time when the debt became due | day     object   3,063       44                                                         
+time when the debt became due | year    object   3,064       25                                                         
+amount | 90th                           object  11,165  362.000                                                         
+line strike through? | yes?            float64       0                                                                  
+line strike through? | note                str   2,946      800                                                         
+notes                                      str      49       20                                                         
+amount | 10th                          float64       4              61.250     20.839     30.000     71.500       72.000
+exchange                                   str      34       21                                                         
+amount in specie | cents               float64     304              45.086     22.052      1.000     43.000       88.000
+amount | 8th                           float64       0                                                                  
+delivered | month                      float64       0                                                                  
+delivered | day                        float64       0                                                                  
+delivered | year                       float64       0                                                                  
+total dollars | notes                      str       0        0                                                         
+total dollars | notes.1                float64       0                                                                  
+organization?                             bool  11,165        1                                                         
+final_agg_debt index                       str  11,165   11,165                                                         
+deceased?                                 bool  11,165        2                                                         
+full name                                  str  11,165    6,534                                                         
+matches                                    str  11,165    6,342                                                         
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ri.csv
+
+MD5 hash: ebb7fe48844fa95f119f3b9d0c9957f7
+
+Keys: row_id 
+
+                                          type count  unique       mean      std        min        50%        max
+row_id                                   int64   181             90.000   52.394      0.000     90.000    180.000
+org_file                                   str   181       2                                                     
+org_index                                  str   181     181                                                     
+state                                      str   181       1                                                     
+date of the certificate | year         float64    56          1,784.929    0.710  1,784.000  1,785.000  1,786.000
+date of the certificate | month        float64    56              5.250    3.428      1.000      5.000     11.000
+date of the certificate | day          float64    56             13.768    8.358      2.000     11.000     28.000
+to whom due | title                        str     4       1                                                     
+to whom due | first name                   str   181      90                                                     
+to whom due | last name                    str   181     127                                                     
+to whom due | title.1                      str     0       0                                                     
+to whom due | first name.1                 str     2       1                                                     
+to whom due | last name.1                  str     2       1                                                     
+amount | dollars                       float64   181            221.037  621.622      1.000     80.000  5,699.950
+amount in specie | dollars             float64     0                                                             
+letter                                     str    56      12                                                     
+time when the debt became due | month  float64    56              5.804    3.620      1.000      6.000     12.000
+time when the debt became due | day     object    56      24                                                     
+time when the debt became due | year    object    56       7                                                     
+amount | 90th                           object   181  40.000                                                     
+line strike through? | yes?            float64    47              1.000    0.000      1.000      1.000      1.000
+line strike through? | note                str    50      32                                                     
+notes                                      str    14       5                                                     
+amount | 10th                          float64     0                                                             
+exchange                                   str     0       0                                                     
+amount in specie | cents               float64     0                                                             
+amount | 8th                           float64    34              3.824    1.642      1.000      4.000      6.000
+delivered | month                      float64    56              5.607    3.273      1.000      5.000     12.000
+delivered | day                        float64    56             17.482   10.092      1.000     16.500     56.000
+delivered | year                       float64    56          1,785.357    1.167  1,784.000  1,785.000  1,788.000
+total dollars | notes                      str     0       0                                                     
+total dollars | notes.1                float64     0                                                             
+organization?                             bool   181       1                                                     
+final_agg_debt index                       str   181     181                                                     
+deceased?                                 bool   181       1                                                     
+full name                                  str   181     172                                                     
+matches                                    str   181     172                                                     
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_va.csv
+
+MD5 hash: 50d5fa1f5941b4a66c07cf9b2a408846
+
+Keys: row_id 
+
+                                          type count unique       mean        std        min        50%         max
+row_id                                   int64   246           122.500     71.158      0.000    122.500     245.000
+org_file                                   str   246      2                                                        
+org_index                                  str   246    246                                                        
+state                                      str   246      1                                                        
+date of the certificate | year         float64   110         1,778.991      0.417  1,778.000  1,779.000   1,780.000
+date of the certificate | month        float64   110             4.718      2.909      1.000      3.500      12.000
+date of the certificate | day          float64   110            15.900      9.029      1.000     15.000      29.000
+to whom due | title                        str     0      0                                                        
+to whom due | first name                   str   246     57                                                        
+to whom due | last name                    str   246    179                                                        
+to whom due | title.1                      str     0      0                                                        
+to whom due | first name.1                 str     0      0                                                        
+to whom due | last name.1                  str     0      0                                                        
+amount | dollars                       float64   246         1,798.511  7,336.909     10.200    400.000  83,200.000
+amount in specie | dollars             float64   110            94.189    112.208      5.000     52.215     680.833
+letter                                     str     0      0                                                        
+time when the debt became due | month  float64     0                                                               
+time when the debt became due | day     object     0      0                                                        
+time when the debt became due | year    object     0      0                                                        
+amount | 90th                           object   246  2.000                                                        
+line strike through? | yes?            float64     0                                                               
+line strike through? | note                str     0      0                                                        
+notes                                      str     0      0                                                        
+amount | 10th                          float64     0                                                               
+exchange                                   str     0      0                                                        
+amount in specie | cents               float64     0                                                               
+amount | 8th                           float64     0                                                               
+delivered | month                      float64     0                                                               
+delivered | day                        float64     0                                                               
+delivered | year                       float64     0                                                               
+total dollars | notes                      str     0      0                                                        
+total dollars | notes.1                float64     0                                                               
+organization?                             bool   246      1                                                        
+final_agg_debt index                       str   246    246                                                        
+deceased?                                 bool   246      1                                                        
+full name                                  str   246    203                                                        
+matches                                    str   246    203                                                        
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_pa.csv
+
+MD5 hash: ab075e98b2e5dff70d62720b52d19246
+
+Keys: row_id 
+
+                                          type   count   unique       mean        std        min        50%          max
+row_id                                   int64  11,165           5,582.000  3,223.202      0.000  5,582.000   11,164.000
+org_file                                   str  11,165        4                                                         
+org_index                                  str  11,165   11,003                                                         
+state                                      str  11,165        1                                                         
+date of the certificate | year         float64   9,373           1,781.055      2.914  1,777.000  1,779.000    1,787.000
+date of the certificate | month        float64   9,373               5.789      3.277      1.000      5.000       12.000
+date of the certificate | day          float64   9,371              16.064      8.692      1.000     16.000       79.000
+to whom due | title                        str      82        8                                                         
+to whom due | first name                   str  11,165      579                                                         
+to whom due | last name                    str  11,158    4,508                                                         
+to whom due | title.1                      str       0        0                                                         
+to whom due | first name.1                 str      60       28                                                         
+to whom due | last name.1                  str      60       34                                                         
+amount | dollars                       float64  11,165           1,258.128  4,347.104      0.000    400.000  196,000.000
+amount in specie | dollars             float64   6,666             107.148    182.841      1.000     43.715    3,807.000
+letter                                     str   3,064       14                                                         
+time when the debt became due | month  float64   3,064               9.843     34.748      1.000      7.000    1,782.000
+time when the debt became due | day     object   3,063       44                                                         
+time when the debt became due | year    object   3,064       25                                                         
+amount | 90th                           object  11,165  362.000                                                         
+line strike through? | yes?            float64       0                                                                  
+line strike through? | note                str   2,946      800                                                         
+notes                                      str      49       20                                                         
+amount | 10th                          float64       4              61.250     20.839     30.000     71.500       72.000
+exchange                                   str      34       21                                                         
+amount in specie | cents               float64     304              45.086     22.052      1.000     43.000       88.000
+amount | 8th                           float64       0                                                                  
+delivered | month                      float64       0                                                                  
+delivered | day                        float64       0                                                                  
+delivered | year                       float64       0                                                                  
+total dollars | notes                      str       0        0                                                         
+total dollars | notes.1                float64       0                                                                  
+organization?                             bool  11,165        1                                                         
+final_agg_debt index                       str  11,165   11,165                                                         
+deceased?                                 bool  11,165        2                                                         
+full name                                  str  11,165    6,534                                                         
+matches                                    str  11,165    6,342                                                         
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_ri.csv
+
+MD5 hash: ebb7fe48844fa95f119f3b9d0c9957f7
+
+Keys: row_id 
+
+                                          type count  unique       mean      std        min        50%        max
+row_id                                   int64   181             90.000   52.394      0.000     90.000    180.000
+org_file                                   str   181       2                                                     
+org_index                                  str   181     181                                                     
+state                                      str   181       1                                                     
+date of the certificate | year         float64    56          1,784.929    0.710  1,784.000  1,785.000  1,786.000
+date of the certificate | month        float64    56              5.250    3.428      1.000      5.000     11.000
+date of the certificate | day          float64    56             13.768    8.358      2.000     11.000     28.000
+to whom due | title                        str     4       1                                                     
+to whom due | first name                   str   181      90                                                     
+to whom due | last name                    str   181     127                                                     
+to whom due | title.1                      str     0       0                                                     
+to whom due | first name.1                 str     2       1                                                     
+to whom due | last name.1                  str     2       1                                                     
+amount | dollars                       float64   181            221.037  621.622      1.000     80.000  5,699.950
+amount in specie | dollars             float64     0                                                             
+letter                                     str    56      12                                                     
+time when the debt became due | month  float64    56              5.804    3.620      1.000      6.000     12.000
+time when the debt became due | day     object    56      24                                                     
+time when the debt became due | year    object    56       7                                                     
+amount | 90th                           object   181  40.000                                                     
+line strike through? | yes?            float64    47              1.000    0.000      1.000      1.000      1.000
+line strike through? | note                str    50      32                                                     
+notes                                      str    14       5                                                     
+amount | 10th                          float64     0                                                             
+exchange                                   str     0       0                                                     
+amount in specie | cents               float64     0                                                             
+amount | 8th                           float64    34              3.824    1.642      1.000      4.000      6.000
+delivered | month                      float64    56              5.607    3.273      1.000      5.000     12.000
+delivered | day                        float64    56             17.482   10.092      1.000     16.500     56.000
+delivered | year                       float64    56          1,785.357    1.167  1,784.000  1,785.000  1,788.000
+total dollars | notes                      str     0       0                                                     
+total dollars | notes.1                float64     0                                                             
+organization?                             bool   181       1                                                     
+final_agg_debt index                       str   181     181                                                     
+deceased?                                 bool   181       1                                                     
+full name                                  str   181     172                                                     
+matches                                    str   181     172                                                     
+
+
+
+File: output/derived/prescrape/pre1790/similar_names/similar_names_va.csv
+
+MD5 hash: 50d5fa1f5941b4a66c07cf9b2a408846
+
+Keys: row_id 
+
+                                          type count unique       mean        std        min        50%         max
+row_id                                   int64   246           122.500     71.158      0.000    122.500     245.000
+org_file                                   str   246      2                                                        
+org_index                                  str   246    246                                                        
+state                                      str   246      1                                                        
+date of the certificate | year         float64   110         1,778.991      0.417  1,778.000  1,779.000   1,780.000
+date of the certificate | month        float64   110             4.718      2.909      1.000      3.500      12.000
+date of the certificate | day          float64   110            15.900      9.029      1.000     15.000      29.000
+to whom due | title                        str     0      0                                                        
+to whom due | first name                   str   246     57                                                        
+to whom due | last name                    str   246    179                                                        
+to whom due | title.1                      str     0      0                                                        
+to whom due | first name.1                 str     0      0                                                        
+to whom due | last name.1                  str     0      0                                                        
+amount | dollars                       float64   246         1,798.511  7,336.909     10.200    400.000  83,200.000
+amount in specie | dollars             float64   110            94.189    112.208      5.000     52.215     680.833
+letter                                     str     0      0                                                        
+time when the debt became due | month  float64     0                                                               
+time when the debt became due | day     object     0      0                                                        
+time when the debt became due | year    object     0      0                                                        
+amount | 90th                           object   246  2.000                                                        
+line strike through? | yes?            float64     0                                                               
+line strike through? | note                str     0      0                                                        
+notes                                      str     0      0                                                        
+amount | 10th                          float64     0                                                               
+exchange                                   str     0      0                                                        
+amount in specie | cents               float64     0                                                               
+amount | 8th                           float64     0                                                               
+delivered | month                      float64     0                                                               
+delivered | day                        float64     0                                                               
+delivered | year                       float64     0                                                               
+total dollars | notes                      str     0      0                                                        
+total dollars | notes.1                float64     0                                                               
+organization?                             bool   246      1                                                        
+final_agg_debt index                       str   246    246                                                        
+deceased?                                 bool   246      1                                                        
+full name                                  str   246    203                                                        
+matches                                    str   246    203                                                        
+

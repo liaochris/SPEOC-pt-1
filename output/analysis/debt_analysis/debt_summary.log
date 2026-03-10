@@ -1,0 +1,11 @@
+File: output/analysis/debt_analysis/debt_summary.csv
+
+MD5 hash: 0b87d574a2d901ef0c2ff89db99483d4
+
+Keys: State 
+
+               type count unique         mean          std         min          50%            max
+State           str    12     12                                                                  
+Private Debt  int64    12               0.000        0.000       0.000        0.000          0.000
+Public Debt   int64    12         862,798.750  927,293.406  16,903.000  514,506.000  2,823,458.000
+

@@ -1,0 +1,15 @@
+File: output/analysis/open_refine_analysis/occupation_counts.csv
+
+MD5 hash: eae5701a28c343d602c3fb10fb2ccbcc
+
+Keys: occupation 
+
+                              type count unique        mean         std       min        50%          max
+occupation                     str    80     80                                                          
+count                        int64    80              4.287      12.972     1.000      1.000       80.000
+pre_1790_total               int64    80         15,263.750  39,116.807   200.000  5,000.000  258,800.000
+post_1790_total            float64    80         13,621.064  36,728.876     0.000  2,818.565  246,850.691
+percent_of_pre1790_total   float64    80              1.250       3.203     0.016      0.409       21.194
+percent_of_post1790_total  float64    80              1.250       3.371     0.000      0.259       22.653
+net_pct_change             float64    80             79.666     329.664  -100.000    -26.178    2,009.500
+

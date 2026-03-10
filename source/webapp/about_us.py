@@ -2,7 +2,7 @@ from dash import html
 from dash import dcc
 
 
-def about_us_layout():
+def AboutUsLayout():
     # Headshots and names in different categories
     categories = {
         "Professors": [
@@ -75,7 +75,6 @@ def about_us_layout():
         },
     )
 
-    # Create the layout
     layout = html.Div([
         html.H1("The Team", style={"text-align": "center"}),
         html.Hr(),  # Thin line separating the categories

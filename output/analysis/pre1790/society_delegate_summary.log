@@ -1,0 +1,10 @@
+File: output/analysis/pre1790/society_delegate_summary.csv
+
+MD5 hash: e0784371bd34686c5b7ebe0a52bbe0a4
+
+Keys: group 
+
+          type count unique   mean    std    min    50%    max
+group      str     2      2                                   
+value  float64     2         4.890  1.923  3.530  4.890  6.250
+

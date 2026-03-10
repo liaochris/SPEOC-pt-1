@@ -2,12 +2,11 @@ from dash import html
 from dash import dcc
 
 
-# Project description tab
 project_desc = html.Div(className='box', children=[
     html.H1("Future Steps", style={'marginBottom': '5px'}, className='section-title'),
     dcc.Markdown('''
     This page provides directions for future steps. If you have any other suggestions or feedback, please email chrisliao (at) uchicago (dot) edu''', style = {'font-size':'3vh'}),
-    html.Hr(style={"height": "2px", "background-color": "black"}),  # Black line separator
+    html.Hr(style={"height": "2px", "background-color": "black"}),
     html.H2("Data-Related Improvements", style={'marginBottom': '5px'}, className='subsection-title'),
     dcc.Markdown('''
     - Finish cleaning Revolutionary War-era debt certificates (also known as pre-1790 data)
@@ -34,7 +33,6 @@ project_desc = html.Div(className='box', children=[
 
     ])
 
-    # Create the layout
 future_layout = html.Div([
     project_desc,
     

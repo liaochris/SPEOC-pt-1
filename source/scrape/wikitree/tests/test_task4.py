@@ -17,7 +17,7 @@ def test_refine_matches_keep_missing_years(tmp_path, monkeypatch):
 
     monkeypatch.setattr(mod, "get_profile", fake_get_profile)
 
-    in_csv = tmp_path / "task_3_matches.csv"
+    in_csv = tmp_path / "candidate_matches.csv"
     pd.DataFrame(
         [
             {"child_id": "C_OK",      "child_name": "A Person", "state": "PA", "in_post1790": True, "error": ""},
@@ -144,7 +144,7 @@ def test_refine_matches_drops_same_parent_child_name(tmp_path):
             {"child_id": "C2", "child_name": "Mary Jones", "state": "MA", "in_post1790": True, "error": ""},
         ]
     )
-    in_csv = tmp_path / "task_3_matches.csv"
+    in_csv = tmp_path / "candidate_matches.csv"
     df_in.to_csv(in_csv, index=False)
 
     out_csv = tmp_path / "filtered.csv"
